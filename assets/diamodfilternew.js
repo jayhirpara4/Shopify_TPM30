@@ -823,27 +823,44 @@ $(".diamond__quick-shop-tab").on("click", function () {
   getData();
 });
 
-//Sort dropdown
-$(".select-dropdown__button , .report-dropdown__button").on(
+// Sort dropdown
+$(document).on(
   "click",
+  ".select-dropdown__button, .report-dropdown__button",
   function () {
-    $(this).next(".select-dropdown__list").toggleClass("active");
+    $(this).next(".select-dropdown__list").slideToggle(200);
   }
 );
-$("#diamond__report-list li").on("click", function () {
-  $(this).parent().parent().find(".sort_by-title").text($(this).text());
-  $("#reportby").val($(this).attr("data-value"));
-  $(".report-dropdown__button")
-    .next(".select-dropdown__list")
-    .removeClass("active");
+
+// Handle item selection for "Sort by"
+$(document).on("click", "#diamond__sort-by li", function () {
+  var button = $(".select-dropdown__button");
+  var list = button.next(".select-dropdown__list");
+
+  // Update button text and hidden input
+  button.find(".sort_by-title").text($(this).text());
+  $("#sortby").val($(this).attr("data-value"));
+
+  // Close the dropdown
+  list.slideUp(200);
+
+  // Get data
   getData();
 });
-$("#diamond__sort-by li").on("click", function () {
-  $(this).parent().parent().find(".sort_by-title").text($(this).text());
-  $("#sortby").val($(this).attr("data-value"));
-  $(".select-dropdown__button")
-    .next(".select-dropdown__list")
-    .removeClass("active");
+
+// Handle item selection for "By report"
+$(document).on("click", "#diamond__report-list li", function () {
+  var button = $(".report-dropdown__button");
+  var list = button.next(".select-dropdown__list");
+
+  // Update button text and hidden input
+  button.find(".sort_by-title").text($(this).text());
+  $("#reportby").val($(this).attr("data-value"));
+
+  // Close the dropdown
+  list.slideUp(200);
+
+  // Get data
   getData();
 });
 
