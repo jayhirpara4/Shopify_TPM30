@@ -1,0 +1,66 @@
+
+{%- assign mobile_image = section.settings.mobile_image -%}
+{%- assign desktop_image = section.settings.desktop_image -%}
+
+<div id="shopify-section-home-fullwidth-image"
+    class="shopify-section index-section--flush fullwidth-image-section">
+    <div class="page-width">
+        <div class="home-fullwidth-image">
+            <div class="absolute-image-wrapper small--hide">
+                <div class="absolute-image-wrapper" style="padding-top:15.277777777777777%;"
+                    data-image-loading-animation>
+                    <img loading="eager" id="TextColumnImage-e5182260-2245-4121-915d-92a33435c912" class="absolute-image lazyload"
+                        src="{{ desktop_image | image_url: width: desktop_image.width  }}" alt="{{ section.settings.heading }}">
+                </div>
+               
+            </div>
+            <div class="absolute-image-wrapper medium-up--hide">
+                <div class="absolute-image-wrapper" style="padding-top:36.16666666666667%;"
+                    data-image-loading-animation>
+                    <img loading="eager" id="TextColumnImage-e5182260-2245-4121-915d-92a33435c912" class="absolute-image lazyload"
+                        src="{{ mobile_image | image_url: width: mobile_image.width}}"
+                        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728,4096,6144]"
+                        data-aspectratio="2.7649769585253456" data-sizes="auto" alt="{{ section.settings.heading }}">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% schema %}
+  {
+  "name": "Single Banner",
+  "class": "singlebanner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": " Curated by us. <br>for you.",
+      "placeholder": "Banner heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single Banner "
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

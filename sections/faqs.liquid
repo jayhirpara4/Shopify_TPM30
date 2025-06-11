@@ -1,0 +1,109 @@
+<section class="mrg_tb">
+  <div class="container">
+    <!-- Heading and subheading from section settings -->
+    <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+      <h2 class="heading">{{ section.settings.heading }}</h2>
+      <div class="subHeading">{{ section.settings.subheading }}</div>
+    </div>
+
+    <!-- Accordion container -->
+    <div class="accordion accordion-flush" id="accordionFlushFaq-{{ section.id }}">
+  {% for block in section.blocks %}
+    {% if block.type == 'faq' %}
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button
+            class="accordion-button collapsed ivy f-20 cusLspace FAQBtn"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}"
+            aria-expanded="false"
+            aria-controls="flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}"
+          >
+            {{ block.settings.question }}
+          </button>
+        </h3>
+        <div
+          id="flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushFaq-{{ section.id }}"
+        >
+          <div class="accordion-body FAQBody">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+  </div>
+</section>
+
+<!-- JSON-LD FAQ schema for rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for block in section.blocks %}
+      {% if block.type == 'faq' %}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | json }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "FAQ's",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "FAQ's"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Section Subheading",
+      "default": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "FAQ Question",
+          "default": "What is a lab-grown diamond?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "FAQ Answer",
+          "default": "<p>They are real diamonds created in a controlled lab environment...</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ's"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="{{ 'newheader.aio.min.css' | asset_url }}">
+<div class="bg-two">
+        <div class="container">
+
+            <div class="row d-flex f-14 cfw-Medi">
+
+                <div class="col-12 col-xl-6 p-2 d-flex justify-content-center justify-content-xl-start align-items-center">
+                    <!-- All Jewelry Proudly Made In The <span class="cfw-Bold cl-theme">&nbsp;USA</span> -->
+                  New Tariff Pricing Coming Soon.  <span class="cfw-Bold cl-theme">&nbsp;Order Now!</span>
+                </div>
+
+                <div class="col-3 col-xl-6 d-none d-xl-flex justify-content-end">
+                    <a href="tel:+19179096402" class="cusA p-2 me-3 tele cusTransition d-none d-xl-block" aria-label="call: +1 917-909-6402">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.70801 2.04168C6.70801 1.71951 6.96917 1.45834 7.29134 1.45834C10.1909 1.45834 12.5413 3.80885 12.5413 6.70834C12.5413 7.03052 12.2802 7.29168 11.958 7.29168C11.6358 7.29168 11.3747 7.03052 11.3747 6.70834C11.3747 4.45318 9.54651 2.62501 7.29134 2.62501C6.96917 2.62501 6.70801 2.36384 6.70801 2.04168ZM6.99967 4.08334C6.99967 3.76118 7.26083 3.50001 7.58301 3.50001C9.19382 3.50001 10.4997 4.80585 10.4997 6.41668C10.4997 6.73885 10.2385 7.00001 9.91634 7.00001C9.59417 7.00001 9.33301 6.73885 9.33301 6.41668C9.33301 5.45018 8.54953 4.66668 7.58301 4.66668C7.26083 4.66668 6.99967 4.40551 6.99967 4.08334Z" fill="#113174"/>
+                            <path d="M4.84487 2.49105L4.69714 2.15865C4.49815 1.71093 4.39865 1.48706 4.23491 1.32882C4.12682 1.22437 3.99963 1.14171 3.86029 1.08536C3.64918 1 3.40421 1 2.91425 1C2.1847 1 1.81992 1 1.53571 1.17712C1.3614 1.28575 1.19468 1.47017 1.10414 1.65454C0.956512 1.95512 0.990002 2.28629 1.05698 2.94864C1.61274 8.44468 4.63865 11.4706 10.1347 12.0263C10.797 12.0933 11.1282 12.1268 11.4288 11.9792C11.6132 11.8887 11.7976 11.722 11.9062 11.5476C12.0833 11.2634 12.0833 10.8986 12.0833 10.1691C12.0833 9.67912 12.0833 9.43412 11.998 9.22302C11.9416 9.08372 11.859 8.95649 11.7545 8.8484C11.5962 8.68466 11.3724 8.5852 10.9247 8.38617L10.5923 8.23847C10.2 8.06411 10.0038 7.9769 9.80705 7.96033C9.59775 7.94272 9.38751 7.98174 9.19851 8.07333C9.02077 8.15943 8.86899 8.31121 8.56542 8.61478C8.26676 8.91344 8.11742 9.06278 7.92294 9.15074C7.73371 9.23632 7.46776 9.27272 7.26249 9.2411C7.0515 9.20861 6.89645 9.12111 6.58641 8.94623C5.48712 8.32626 4.7571 7.59622 4.13709 6.49693C3.96219 6.18688 3.87475 6.03183 3.84226 5.82084C3.81064 5.61557 3.84702 5.34963 3.9326 5.16038C4.02054 4.9659 4.16987 4.81657 4.46853 4.51791C4.77211 4.21434 4.9239 4.06255 5.00999 3.88483C5.10157 3.69581 5.1406 3.48561 5.12298 3.27631C5.10641 3.07953 5.01924 2.88337 4.84487 2.49105Z" fill="#113174"/>
+                        </svg>
+                        <span class="cfw-Semi ms-2 teleLine">917-909-6402</span>
+                    </a>
+
+
+                    {% comment %} Start with Currency Switcher {% endcomment %}
+
+                    {% comment %} Conditional Block {% endcomment %}
+                 {% if section.settings.enable_currency != 'No' %}
+                 {% comment %} Country Selector Div {% endcomment %}
+                   <div class="country-selector desk_country-selector cusA p-2">
+                     {% comment %} Localization Form {% endcomment %}
+                     <localization-form>
+                       {%- form 'localization',
+                         id: 'localization_form',
+                         class: 'shopify-localization-form multi-selectors',
+                         data-disclosure-form: ''
+                       -%}
+                       {% comment %} Disclosure Dropdown {% endcomment %}
+                         <div class="disclosure" data-disclosure-currency>
+                           <button
+                             type="button"
+                             class="disclosure__button"
+                             aria-expanded="false"
+                             aria-controls="CountryList"
+                             aria-describedby="CountryList"
+                             data-disclosure-toggle
+                           >
+                           {% comment %} Currency Flag and Code Display {% endcomment %}
+                             <span
+                               class="currency-flag currency-flag--{{ localization.country.iso_code | downcase }}"
+                               data-flag="{{ localization.country.currency.iso_code }}"
+                               aria-hidden="true"
+                             ></span>
+                             <span class="cfw-Semi cl-theme ps-2">
+                               {%  if localization.country.iso_code =='MX' %}
+                                  MXN
+                                {%  else %}
+                                  {{ localization.country.currency.iso_code }}
+                                {%  endif %}
+                             </span>
+                             {% comment %} SVG Icon for Dropdown {% endcomment %}
+                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                 <path d="M3.5 5.25003L7.00002 8.75L10.5 5.25" stroke="#113174" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"/>
+                             </svg>
+                           </button>
+                           {% comment %} Country List Dropdown {% endcomment %}
+                           <ul id="CountryList" class="disclosure-list" hidden>
+                            {% assign allowed_countries = "IN,US,CA,MX,GB,SA,AU" | split: "," %}
+
+                            {% for country in form.available_countries %}
+                              {% if allowed_countries contains country.iso_code and country.iso_code != localization.country.iso_code %}
+                                <li class="disclosure__item">
+                                  <a
+                                    href="#"
+                                    data-value="{{ country.iso_code }}"
+                                    data-disclosure-option
+                                  >
+                                    <span
+                                      class="currency-flag currency-flag--{{ country.iso_code | downcase }}"
+                                      data-flag="{{ country.currency.iso_code }}"
+                                      aria-hidden="true"
+                                    ></span>
+                                    <span>
+                                      {%  if country.iso_code =='MX' %}
+                                        MXN
+                                      {%  else %}
+                                        {{ country.currency.iso_code }}
+                                      {%  endif %}
+                                    </span>
+                                  </a>
+                                </li>
+                              {% endif %}
+                            {% endfor %}
+                           </ul>
+                           {% comment %} Hidden Input {% endcomment %}
+                           <input
+                             type="hidden"
+                             name="country_code"
+                             value="{{ localization.country.iso_code }}"
+                             data-disclosure-input
+                           >
+                         </div>
+                       {%- endform -%}
+                     </localization-form>
+                   </div>
+                 {% endif %}
+
+                 {% comment %} Start with Currency Switcher {% endcomment %}
+
+
+
+
+
+                    
+                    {% comment %} <a href="#" class="cusA p-2">
+                        <span class="cfw-Semi cl-theme">USA</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M3.5 5.25003L7.00002 8.75L10.5 5.25" stroke="#113174" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a> {% endcomment %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Fix self-closing inputs (not valid in W3C strict if not XHTML)
+  document.querySelectorAll('input').forEach(el => {
+    // Clone as outerHTML without slash
+    let outer = el.outerHTML;
+    if (outer.endsWith('/>')) {
+      const clean = outer.replace(/\/>/, '>');
+      const span = document.createElement('span');
+      span.innerHTML = clean;
+      el.replaceWith(span.firstChild);
+    }
+  });
+});
+</script>
+
+
+
+{% schema %}
+  {
+  "name": "New Header",
+  "class": "refreshheader",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_dark",
+      "label": "Logo Dark"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_white",
+      "label": "Logo White"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone"
+    },
+    {
+      "type": "radio",
+      "id": "enable_currency",
+      "label": "Enable Currency",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes"
+        },
+        {
+          "value": "no",
+          "label": "No"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

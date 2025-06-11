@@ -1,0 +1,53 @@
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <form>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 my-2">
+                            <div class="inputHeading ivy">Name :</div>
+                            <input type="text" placeholder="Enter your name here" class="cusInput cusTransition" required >
+                        </div>
+                        <div class="col-12 col-sm-6 my-2">
+                            <div class="inputHeading ivy">Phone Number :</div>
+                            <input type="number" placeholder="Enter your name here" class="cusInput cusTransition" required >
+                        </div>
+                        <div class="col-12 my-2">
+                            <!-- <div class="inputHeading ivy">Email :</div> -->
+                            <label for="ContEmail1" class="form-label inputHeading ivy">Email :</label>
+                            <input type="email" id="ContEmail1" placeholder="Enter your name here" class="cusInput cusTransition" required >
+                        </div>
+                      
+                        <div class="col-12 my-2">
+                            <label for="ContMessage1" class="inputHeading ivy">Ask a Question :</label>
+                            <textarea id="ContMessage1" rows="5" placeholder="Enter your Question here" class="cusInput cusTransition" required ></textarea>
+                        </div>
+                        <div class="col-12"><input type="submit" class="cusBtnOne w-100"></div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="cusMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2366638368153!2d-73.978893!3d40.756819199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d530be5c65%3A0xc0689d6a44552e4a!2sStienhardt%20%26%20Stones!5e0!3m2!1sen!2sus!4v1729672823745!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "contact form",
+    "settings": [],
+     "presets": [
+    {
+      "name": "contact form"
+    }
+  ]
+  }
+{% endschema %}

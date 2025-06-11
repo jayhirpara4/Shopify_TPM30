@@ -1,0 +1,85 @@
+{%- assign image = section.settings.image -%}
+<div class="page-width rewards-redeem-discounts">
+    <div class="wrapper flex-md align-items_center">
+        <div class="col-media">  
+            <div class="absolute-image-wrapper" style="padding-top:89.89690721649485%;">
+              <img loading="lazy" id="TextColumnImage-template--22356074823963__page-redeem-discounts" class="absolute-image lazyautosizes ls-is-cached lazyloaded" src="{{ image | image_url: width: image.width  }}" >
+            </div>
+        </div>
+        <div class="col-content small--text-center">
+              <h2>{{ section.settings.heading }} </h2>
+              <p>{{ section.settings.description }} </p>
+           <div class="points-wrapper small--text-left">
+                <ul class="flex">
+                  {%- for block in section.blocks -%}
+                    {%- case block.type -%}
+
+                      {%- when 'block' -%}
+                       <li data-uw-rm-sr="">
+                          <h3 class="section-header-reverse" data-uw-rm-sr="">{{ block.settings.title }} </h3>
+                          <p>{{ block.settings.short_description }}</p>
+                       </li>  
+                      {%- endcase -%}
+                    {%- endfor -%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Redeem for Discounts",
+  "class": "rewards-redeem-discounts-section",
+  "max_blocks": 3,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A little about us…"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "short_description",
+          "label": "Short description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Redeem for Discounts"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

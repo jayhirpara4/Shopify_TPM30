@@ -1,0 +1,804 @@
+<style>
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+}
+br, .iframe-container:empty {display: none;}
+.article .breadcrumb {
+  max-width: 1230px;
+  padding: 0 20px;
+}
+.article-wrapper {
+  max-width: 1190px;
+  margin: 0 auto;
+}
+.article__header .article__title {
+  font-family: var(--font-stack-body);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 17px;
+}
+.article__meta {
+  background: rgba(244, 244, 244, 0.65);
+  padding: 5px 15px;
+  margin-bottom: 23px;
+  justify-content: space-between;
+}
+.article__meta span {
+  color: #707070;
+  font-size: 14px;
+  letter-spacing: 0.46px;
+}
+.article__meta .article__date svg {
+  width: 22px;
+  height: 22px;
+  margin-right: 4px;
+}
+.article__meta .article__author {
+  font-family: var(--font-stack-header);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+.article__meta .article__author span {
+  font-size: 18px;
+  letter-spacing: normal;
+}
+.article__meta div > span {margin-right: 40px;}
+.article__image {
+  max-height: 412px;
+  overflow: hidden;
+}
+.article__grid-image-container {height: 100%;}
+.article__content {margin-top: 23px;}
+.article__content p {
+  color: var(--color-text);
+  font-size: 18px;
+  line-height: 26px;
+}
+.article__content p:not(:last-child), 
+.article__content .wide-image, 
+.col-container, 
+.article__content .table-wrapper {
+  margin-bottom: 35px;
+}
+.article__content p a:not(.btn),
+.article__content p strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+.article__content > h2 {
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+.article__content > h3 {
+  font-family: var(--font-stack-body);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.66px;
+  margin-bottom: 8px;
+}
+.article__content .wide-image img {
+  display: block;
+  margin: 0 auto;
+}
+.table-of-content {
+  background: rgba(231, 254, 255, 0.6);
+  padding: 20px 28px;
+  margin-bottom: 32px;
+}
+.table-of-content h2 {
+  font-family: var(--font-stack-body);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 23px;
+}
+.table-of-content div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.table-of-content a {
+  color: var(--color-text);
+  font-size: 18px;
+  line-height: 1.2;
+  padding-left: 24px;
+  position: relative;
+}
+.table-of-content a:not(:last-child) {margin-bottom: 8px;}
+.table-of-content a:before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--color-text);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+.col-row:not(:last-child) {margin-bottom: 35px;}
+.col-row .col-image {
+  width: 160px;
+  flex: 0 0 160px;
+}
+.col-row .col-image img {
+  display: block;
+  width: 100%;
+}
+.col-row h4 {
+  font-family: var(--font-stack-body);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.col-row h4 a {color: var(--color-text);}
+.col-row h4 a:hover {color: var(--color-anchor-text);}
+.col-row p {letter-spacing: 0.59px;}
+.article__content ul li{
+  list-style: disc;
+  font-size: 16px !important;
+  color: var(--color-body-text)!important;
+  margin-bottom: 5px;
+}
+.article__content ul {margin: 0 0 35px 15px;}
+.article__content table {
+  border: 1px solid #ABC7C6;
+  text-align: center;
+}
+.article__content table th, 
+.article__content table td {
+  border: 1px solid #ABC7C6;
+}
+.article__content table th:first-child, 
+.article__content table td:first-child {text-align: left;}
+.article__content table th {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.53px;
+  line-height: 1.2;
+  padding: 13px 12px;
+}
+.article__content table td {
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.46px;
+  padding: 14px 12px;
+}
+.article__content-footer {
+  margin-top: 35px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.article__content-footer .shop-link {
+  color: var(--color-text);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.79px;
+  display: inline-block;
+  padding: 20px 41px;
+  border: 2px solid #1D3348;
+}
+/* Share article */
+.share-article > div {
+  border-bottom: 2px solid #707070;
+  padding-bottom: 9px;
+}
+.share-article h3 {
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0.43px;
+}
+.social-sharing li {margin-left: 12px;}
+.social-sharing svg {
+  display: block;
+  height: 25px;
+  width: auto;
+  color: #5c92bc;
+}
+.social-sharing svg > * {fill: #78b7c0 !important;}
+@media (min-width: 750px) {
+  .article-content {
+    width: 64%;
+    flex: 0 0 64%;
+  }
+  .col-row {display: flex;}
+  .col-row .col-content {
+    width: calc(100% - 160px);
+    flex: 0 0 calc(100% - 160px);
+    padding-left: 35px;
+  }
+  .article-sidebar {
+    width: 36%;
+    flex: 0 0 36%;
+    padding-left: 5%;
+  }
+}
+@media (max-width: 749px) {
+  .article__header .article__title {
+    font-size: 24px;
+    line-height: 1.1;
+    letter-spacing: 0.84px;
+    margin-bottom: 20px;
+  }
+  .article__image {
+    max-height: 197px;
+  }
+  .article__content {margin-top: 13px;}
+  .article__content p:not(:last-child), 
+  .article__content .wide-image, 
+  .col-container, 
+  .article__content .table-wrapper {
+    margin-bottom: 23px;
+  }
+  .table-of-content {margin-bottom: 20px;}
+  .col-row .col-image {margin-bottom: 15px;}
+  .col-row:not(:last-child) {margin-bottom: 25px;}
+  .article__content ul li{font-size: 14px !important;}
+  .article__content-footer {margin-top: 55px;}
+  .article__content-footer .shop-link {padding: 20px 30px;}
+  .share-article {margin-top: 20px;}
+}
+
+/*===== SIDEBAR =====*/
+.article-sidebar .article__sidebar-banner {margin-bottom: 88px;}
+.article__sidebar-banner .content {
+  background: #DAE8F8;
+  padding: 33px 10px;
+}
+.article__sidebar-banner h3 {
+  font-size: 35px;
+  line-height: 42px;
+  letter-spacing: 1.16px;
+}
+.article__sidebar-banner h3 i {font-weight: 600;}
+/* Related articles */
+.article__related-articles .section-header {
+  font-family: var(--font-stack-body);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 1.06px;
+  margin-bottom: 40px;
+}
+.article__related-articles .article__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+/* Form */
+.article__sidebar-form .needsclick.kl-private-reset-css-Xuajs1 {
+  min-height: auto !important;
+}
+/* .article__sidebar-form {
+  background: rgba(176, 214, 216, 0.24);
+  padding: 13px 17px 27px;
+}
+.article__sidebar-form h3 {
+  font-family: var(--font-stack-body);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 13px;
+}
+.article__sidebar-form p {
+  font-size: 18px;
+  line-height: 1.55;
+} */
+@media (min-width: 750px) {
+  .article__related-articles .article-card:not(:last-child) {margin-bottom: 66px;}
+  .article__related-articles .article-card a {display: flex;}
+  .article__related-articles .article-card_image {
+    width: 158px;
+    flex: 0 0 158px;
+  }
+  .article__related-articles .article-card_details {
+    width: calc(100% - 158px);
+    flex: 0 0 calc(100% - 158px);
+    padding-left: 31px;
+    margin-top: 0;
+  }
+  .article__related-articles .article__title {margin-top: -6px;}
+}
+@media (max-width: 749px) {
+  .related-articles-slider > .article-card:not(:nth-child(-n+1)) {display: none;}
+  .related-articles-slider .slick-arrow {
+    /* background: url(https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow_slider.svg?v=1682175767) no-repeat; */
+    width: 25px;
+    height: 25px;
+    top: -50px;
+    left: auto;
+    right: 0;
+    bottom: auto;
+  }
+  .related-articles-slider .slick-prev {
+    background-position: -111px -8px;
+    right: 35px;
+  }
+  .related-articles-slider .slick-next {background-position: -151px -8px;}
+}
+
+/*===== Article nav =====*/
+/* .article__nav-btns {
+  margin-top: 40px;
+  justify-content: space-between;
+}
+.article__nav-btns a {color: var(--color-text);}
+.article__nav-btns .icon-arrow {
+  width: 45px;
+  height: 45px;
+  display: block;
+  background: url("https://cdn.shopify.com/s/files/1/0411/6437/4183/files/blog_sprite.png?v=1682604111");
+}
+.article__nav-btns .icon-arrow.icon-prev {
+  background-position: -789px -56px;
+  margin-right: 5px;
+}
+.article__nav-btns .icon-arrow.icon-next {
+  background-position: -742px -54px;
+  margin-left: 5px;
+}
+@media (min-width: 750px) {
+  .article__nav-btns span {font-size: 18px;}
+} */
+/*===== FAQ accordion =====*/
+.article__faqs {margin-top: 80px;}
+.article__faqs h2 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.58px;
+  margin-bottom: 10px;
+}
+.faq-accordion p {font-size: 18px;}
+.faq-accordion .accordion-head,
+.faq-accordion .accordion-header {
+  position: relative;
+  padding: 18px 30px 18px 0;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0.43px;
+  margin-bottom: 0;
+}
+.faq-accordion .accordion-head p,
+.faq-accordion .accordion-header p {
+  font-size: 18px;
+  color: var(--color-text);
+}
+.faq-accordion .accordion-header:before,
+.faq-accordion .accordion-header:after {
+  content: "";
+  display: block;
+  background: #293036;
+  position: absolute;
+  right: 0;
+}
+.faq-accordion .accordion-header:before {
+  width: 2px;
+  height: 16px;
+  top: calc(50% - 8px);
+  right: 7px;
+}
+.faq-accordion .accordion-head:after,
+.faq-accordion .accordion-header:after {
+  width: 16px;
+  height: 2px;
+  top: calc(50% - 1px);
+}
+.faq-accordion .accordion-head.active:after,
+.faq-accordion .accordion-header.active:before {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+.faq-accordion .accordion-body,
+.faq-accordion .accordion-content {
+  display: none;
+  padding-bottom: 20px;
+}
+.faq-accordion .accordion-head.active + .accordion-body,
+.faq-accordion .accordion-header.active + .accordion-content {
+  display: block;
+}
+@media (max-width: 749px) {
+  .article__faqs {margin-top: 40px;}
+  .faq-accordion .accordion-header {
+    font-size: 22px;
+    letter-spacing: .4px;
+    line-height: 1.1;
+    padding: 13px 25px 13px 0;
+  }
+  .faq-accordion p {font-size: 16px;}
+}
+
+/*===== tps elements CSS =====*/
+.tps_block .tps_section_block:nth-child(even) .col:first-child {
+  order: 1;
+}
+.tps_block .tps_section_block:nth-child(even) .col:last-child {
+  order: 2;
+}
+.article__content .has-text-align-center {
+  text-align: center;
+}
+.article__content .section.group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.article__content hr {
+  margin: 1rem 0;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.article__content table p {margin: 0;}
+/* Slider  */
+.neck-allure .style_heading {
+  margin-bottom: 0;
+}
+@media (min-width: 750px) {
+  .section.group .col {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+  .section.group .col img {
+    padding: 10px;
+  }
+  .section.group .col.float_right {
+    order: 2;
+  }
+  .article__content .section.group {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 749px) {
+  .section.group .col {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+}  
+.rformblock{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: visible;
+  max-width: 375px;
+  float: right;
+  border-radius: 0px;
+  border-style: none;
+  border-width: 0px;
+  border-color: rgb(0, 0, 0);
+  background-color: rgb(236, 245, 246);
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  padding: 0px 5px 10px;
+  flex: 1 1 0%;
+  transition: all 0s ease 0s;
+}
+</style>
+<article class="page-width" aria-labelledby="title-0">
+    <div class="article-wrapper flex-md flex-wrap">
+        <div class="article-content">
+            <div id="shopify-section-article-template" class="shopify-section">
+                <div class="article__header">
+                    <h1 class="article__title" id="title-0" role="heading" aria-level="2" data-uw-rm-heading="level">{{ article.title }}</h1>
+                    <div class="article__meta small--hide flex">
+                        <div>
+                            <span class="article__author">By: <span> {{ article.author }} </span> </span>
+
+                            {%  if article.metafields.custom.read_time != blank %}
+                            <span class="article__read-time">Read Time: <span>{{ article.metafields.custom.read_time }} mins</span> </span>
+                            {% endif %}
+
+                            <span class="article__category">{{ blog.title }}</span>
+                        </div>
+
+                        <span class="article__date flex align-items_center">
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 25">
+                              <defs><style>.icon-clock-s1{fill:none;stroke:#707071;stroke-linecap:round;stroke-linejoin:round;}.icon-clock-s2{opacity:.5;}</style></defs>
+                              <g id="Icon_feather-clock" class="icon-clock-s2"><path id="Path_1" class="icon-clock-s1" d="m29.6,12.6c0,6.2-5,11.1-11.1,11.1s-11.1-5-11.1-11.1S12.3,1.5,18.4,1.5s11.1,5,11.1,11.1Z"></path>
+                                <path id="Path_2" class="icon-clock-s1" d="m17.5,5v8.9l5.9,3"></path></g>
+                            </svg>
+                            {{ article.published_at | time_tag: format: 'month_day_year' }}
+                      </span>
+
+                    </div>
+                </div>
+              {% if article.image != blank %}
+                <div class="article__image">
+
+                    <div class="article__grid-image-container absolute-image-wrapper" style="padding-top:54.21052631578948%;">
+                        {%- render 'image-element',
+                          img: article.image != blank,
+                          classes: 'article__grid-image lazyautosizes ls-is-cached lazyloaded',
+                        -%}
+                    </div>
+
+                </div>
+              {% endif %}
+
+                <div class="article__content rte">
+                    {{ article.content | replace: '<img', '<img loading="lazy"' | replace: '<iframe', '<iframe loading="lazy"' | replace: '<video', '<video preload="none"' }}
+                </div>
+
+                <div class="article__content-footer flex-md small--text-center">
+                  {%  if article.metafields.custom.shop_button_text != blank %}
+                    <a href="{{ article.metafields.custom.shop_button_link }}" class="shop-link text-uppercase" >{{ article.metafields.custom.shop_button_text }}</a>
+                  {% endif %}
+
+                    <div class="share-article small--text-center">
+                        <div class="inline-flex align-items_center">
+                            <h3>Share:</h3>
+                              {%- render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image -%}
+                        </div>
+                    </div>
+
+                </div>
+
+                {%- assign faq = article.metafields.custom.faq_s.value -%}
+                {% if faq != blank %}
+                <div class="article__faqs">
+                    <h2>FAQs</h2>
+                    <div class="faq-accordion">
+                        {% for item in faq %}
+                        <p class="accordion-header">{{ item.que }}</p>
+                        <div class="accordion-content">
+                            <p>{{ item.ans }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+              {%  endif %}
+
+
+            </div>
+        </div>
+
+        <div class="article-sidebar">
+          {%- assign image_picker_0 = section.settings.image_picker_0 -%}
+          {%  if image_picker_0 != blank %}
+            <div id="shopify-section-article-sidebar-banner" class="shopify-section article__sidebar-banner small--hide">
+                <div class="banner-wrapper text-center">
+
+                    <a href="{{ section.settings.url_1 }} " data-uw-rm-brl="PR">
+                        <div class="absolute-image-wrapper" style="padding-top:121.73913043478262%;">
+                         {{ image_picker_0 | image_url: width: image_picker_0.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+                        </div>
+                    </a>
+                </div>
+            </div>
+          {% endif %}
+  
+            <div id="shopify-section-related-articles" class="shopify-section article__related-articles">
+
+                <h3 class="section-header">Related Posts</h3>
+
+                <div class="related-articles-slider">
+                  {% assign skip_articles = article.handle | split: '.....' %}
+                  {% for tag in article.tags %}
+                  {% assign counter = 0 %}
+                  {% for related_article in blog.articles limit:3 %}
+                    {% if related_article.tags contains tag and counter < 4 %}
+                      {% unless skip_articles contains related_article.handle %}
+                        {% assign counter = counter | plus: 1 %}
+                        {% assign temp = related_article.handle | split: '.....' %}
+                        {% assign skip_articles = skip_articles | concat: temp %}
+                          <div class="article-card" {{ counter }}>
+                              <a href="{{ related_article.url }}" class="article__link" >
+                                  <div class="article-card_image">
+                                   {%- render 'image-element',
+                                    img: related_article.image,
+                                    sizes: '33vw',
+                                    widths: '180, 360, 540, 720, 900, 1080',
+                                  -%}
+                                  </div>
+                                  <div class="article-card_details">
+                                      <p class="sub-title">{{ blog.title }}</p>
+                                      <h3 class="article__title">{{ related_article.title | escape }}</h3>
+                                      <p class="article__date">{{ related_article.published_at | time_tag: format: 'month_day_year' }}</p>
+                                      <p class="article__content hide">{{ related_article.content | strip_html | truncatewords: 30 }}</p>
+                                  </div>
+                              </a>
+                          </div>
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                
+                  {% endfor %}
+
+                    
+
+                </div>
+
+            </div>
+            <div id="shopify-section-article-sidebar-form" class="shopify-section article__sidebar-form">
+                <div class="form-wrapper">
+
+                    <div class="desktop-form small--hide rformblock">
+                        <div class="klaviyo-form-SJiMHc klaviyo-form form-version-cid-1">
+                            <div class="needsclick  kl-private-reset-css-Xuajs1" style="transform: translate(0px, 0px);">
+                              <div  class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; flex-direction: row; align-items: stretch; position: relative;">
+                                <div  class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; justify-content: flex-start; padding: 10px 6px; position: relative; flex: 1 0 0px;">
+                                  <div class="kl-private-reset-css-Xuajs1 go3176171171" id="rich-text-79933693" style="width: 100%;">
+                                    <p style="font-size: 14px; font-weight: 400; text-align: left;">
+                                      <span style="color: #14344a; font-size: 32px;  font-weight: 600;">Got questions?</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; flex-direction: row; align-items: stretch; position: relative;">
+                                <div  class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; justify-content: flex-start; padding: 5px 10px 10px; position: relative; flex: 1 0 0px;">
+                                  <div class="kl-private-reset-css-Xuajs1 go3176171171" id="rich-text-79933694" style="width: 100%;">
+                                    <p style="font-size: 14px; font-weight: 400; line-height: 200%;">
+                                      <span style="color: #14344a; font-size: 18px; font-weight: 500;">
+                                        <span>Count on our expert gemologists to help you navigate you through the world of engagement rings, loose diamonds, wedding rings and fine jewelry.&nbsp;</span>
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; flex-direction: row; align-items: stretch; position: relative;">
+                                <div class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; justify-content: flex-start; padding: 5px 10px 10px; position: relative; flex: 1 0 0px;">
+                                  <button class="needsclick go3894874857 kl-private-reset-css-Xuajs1" type="button" tabindex="0" style="background: rgb(255, 255, 255); border-radius: 0px; border-style: solid; border-color: rgb(112, 112, 112); border-width: 1px; color: rgb(20, 52, 74);  font-size: 18px; font-weight: 600; letter-spacing: 2px; line-height: 1; white-space: normal; padding-top: 0px; padding-bottom: 0px; text-align: center; word-break: break-word; align-self: flex-end; cursor: pointer; height: 35px; width: 100%;">GET IN TOUCH</button>
+                                </div>
+                              </div>
+                              <div  class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; flex-direction: row; align-items: stretch; position: relative;">
+                                <div data-testid="form-component" class="needsclick  kl-private-reset-css-Xuajs1" style="display: flex; justify-content: flex-start; padding: 30px 10px 10px; position: relative; flex: 1 0 0px;">
+                                  <div class="kl-private-reset-css-Xuajs1 go3176171171" id="rich-text-79937086" style="width: 100%;">
+                                    <p style="font-size: 14px; font-weight: 400; line-height: 200%;">
+                                      <span style="color: #14344a; font-size: 18px;  font-weight: 500;">
+                                        <span>Stay up-to-date on all the news and exclusive offers by signing up.</span>
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <section id="shopify-section-template--15813977571389__1717307900d1cfc8f3" style="margin-bottom:10px;" class="shopify-section">
+                                      <div
+                                id='forms_inline_JkwUyb'
+                                data-form-root='true'
+                                data-forms-id='forms-root-125371'
+                                data-forms-text-color='#202020'
+                                data-forms-button-background-color='#202020'
+                                data-forms-button-label-color='#FFFFFF'
+                                data-forms-links-color='#1878B9'
+                                data-forms-errors-color='#E02229'
+                                data-forms-text-alignment='left'
+                                data-forms-alignment='left'
+                                data-forms-padding-top='0'
+                                data-forms-padding-right='0'
+                                data-forms-padding-bottom='0'
+                                data-forms-padding-left='0'
+                              ></div>
+                              
+                              <script>
+                                window['ShopifyForms'] = {
+                                  ...window['ShopifyForms'],
+                                  currentPageType: "article"
+                                };
+                              </script>
+
+                            </section>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mobile-form medium-up--hide">
+                        <div class="klaviyo-form-VKcG2j"></div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+<script>
+$(document).ready(function () {
+    $(".neck-allure").slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: !0,
+        dots: !1,
+        infinite: !0,
+        autoplay: !1,
+        adaptiveHeight: !0,
+        autoplaySpeed: 3e3,
+        speed: 500,
+        rows: 0,
+        responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+            { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+        ],
+    }),
+        $(".accordion-head,.accordion-header").on("click", function () {
+            $(this).next().slideToggle(), $(this).toggleClass("active");
+        }),
+        $(window).width() < 750 && $(".related-articles-slider").slick({ slidesToShow: 1, slidesToScroll: 1, dots: !1, arrows: !0, infinite: !1 }),
+        $(".template-article .article__content > h2").each(function () {
+            var articleID = $(this).text();
+            (articleID = articleID
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/-$/, "")
+                .replace(/^-/, "")),
+                $(this).attr("id", articleID);
+        });
+});
+
+  
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "articleBody": {{ article.content | strip_html | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ shop.url | append: article.url | json }}
+  },
+  "headline": {{ article.title | json }},
+  {% if article.excerpt != blank %}
+    "description": {{ article.excerpt | strip_html | json }},
+  {% endif %}
+  {% if article.image %}
+    {% assign image_size = article.image.width | append: 'x' %}
+    "image": [
+      {{ article | img_url: image_size | prepend: "https:" | json }}
+    ],
+  {% endif %}
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    {% if page_image %}
+      {% assign image_size = page_image.width | append: 'x' %}
+      "logo": {
+        "@type": "ImageObject",
+        "height": {{ page_image.height | json }},
+        "url": {{ page_image | img_url: image_size | prepend: "https:" | json }},
+        "width": {{ page_image.width | json }}
+      },
+    {% endif %}
+    "name": {{ shop.name | json }}
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "blog-detail",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Sidebar ad banner",
+      "id": "image_picker_0"
+    },
+    {
+      "type": "url",
+      "label": "Ad link",
+      "id": "url_1"
+    }
+    
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,75 @@
+{%- assign Image = section.settings.Image -%}
+
+<Section class="mrg_b">
+    <div class="container">
+
+        <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+            <h2 class="heading" style="padding-bottom: 10px;">{{ section.settings.heading }}</h2>
+            <div class="subHeading">{{ section.settings.description_1 }}</div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 order-1 order-lg-0">
+                <div class="aboutDesc">{{ section.settings.description_2 }}</div>
+            </div>
+            <div class="col-lg-6 order-0 order-lg-1">
+                {%- if section.settings.Image != blank -%}
+                    <img
+                        width="600"
+                        height="600"
+                        loading="lazy"
+                        alt="Sustainability Initiatives"
+                        draggable="false"
+                        class="img-fluid mb-2 mb-lg-0"
+                      src="{{ section.settings.Image | image_url }}">
+                  {%- else -%}
+                    <img
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                      alt="Sustainability Initiatives"
+                      draggable="false"
+                      class="img-fluid mb-2 mb-lg-0"
+                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Sustainability_Initiatives.png?v=1732282177">
+                {%- endif -%}
+           </div>
+        </div>
+    </div>
+</Section>
+
+ 
+{% schema %}
+  {
+  "name": "Sustainability",
+  "class": "video-with-content-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "richtext",
+      "id": "description_1",
+      "label": "Description 1"
+    },
+    {
+      "type": "richtext",
+      "id": "description_2",
+      "label": "Description 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability Initiatives"
+    }
+  ]
+}  
+{% endschema %}

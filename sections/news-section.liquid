@@ -1,0 +1,120 @@
+<style>
+.news-wrapper  .flex-md{
+  display:flex;
+}
+.news-wrapper h2 {
+  margin-bottom: 30px;
+}
+.news-wrapper .news {
+  margin-bottom: 20px;
+}
+.news-wrapper .news a {
+    background: #d5ebec;
+    padding: 35px;
+}
+.news-wrapper .col-content p {
+  font-family: var(--font-stack-header);
+}
+@media (min-width: 750px) {
+    .news-wrapper .col-image{
+        padding-right: 45px;
+        width: 29%;
+    }
+    .news-wrapper .col-content{
+        width: 71%;
+    }
+    .news-wrapper .col-content p {
+        font-size: 20px;
+        line-height: 28px;
+    }
+  
+}
+@media (max-width: 749px) {
+    .news-wrapper a {display: block;}
+    .news-wrapper .col-image {max-width: 250px;margin: 0 auto;}
+    .news-wrapper .col-content {margin-top: 20px;}
+    .news-wrapper .col-content{width: 100%;}
+}
+</style>
+<div class="page-width">
+    <div class="news-wrapper">
+        <h2 class="section-header-sm">{{ section.settings.heading }}</h2>
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+        {%- when 'news' -%}
+        {%- assign image = block.settings.image -%}
+        <div class="news flex-md">
+            <a {% if block.settings.artcle_url != blank %}href="{{ block.settings.artcle_url }}" {% else %} href="javascript:void(0)" {% endif %}class="one-whole flex-md" aria-describedby="a11y-external-message" data-uw-rm-brl="PR" >
+                <div class="col-image medium-up--one-third ">
+                    <div class="image-wrapper absolute-image-wrapper" style="padding-top:35.05434782608695%;">
+                        <img loading="lazy" class="lazyautosizes ls-is-cached lazyloaded" src="{{ image | image_url: width: image.width }}" alt="{{ block.settings.description }}">
+                    </div>
+                </div>
+                <div class="col-content medium-up--two-thirds">
+                    <h3 class="section-header-sm section-header-reverse">{{ block.settings.description }}</h3>
+                    <p class="text-uppercase">{{ block.settings.date }}</p>
+                </div>
+            </a>
+        </div>
+      {%- endcase -%}
+    {%- endfor -%}
+        
+    </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "News Section",
+  "class": "news-section",
+  "max_blocks": 50,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We love happy customers"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "News",
+      "type": "news",
+      "settings": [
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "artcle_url",
+          "label": "Article link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "News Section"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

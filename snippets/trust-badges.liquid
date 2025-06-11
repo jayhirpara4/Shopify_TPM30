@@ -1,0 +1,185 @@
+<div class="trust-badge-container">
+  {% assign trust_badges = 
+    "https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blue-outline-padlock-keyhole-symbolizing-security-privacy.png?v=1747654520::Secure Checkout::Your information is protected with SSL encryption during checkout.||
+     https://cdn.shopify.com/s/files/1/0708/5876/8690/files/outline-cardboard-box-horizontal-stripes-small-tag-attached-rendered-simple-blue-design-white-background.png?v=1747654426::Easy 15-Day Returns::Return within 15 days with no hassle, full refund guaranteed.||
+     https://cdn.shopify.com/s/files/1/0708/5876/8690/files/outline-illustration-diamond-shape-blue-transparent-background.png?v=1747654383::Certified Lab-Grown Diamonds::Each diamond is certified by IGI or GIA, ensuring authenticity and quality.||
+     https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blue-check-mark-inside-square-symbolizing-approval-confirmation.png?v=1747654366::Ethically Sourced & Eco-Friendly::We use sustainable, eco-conscious practices and conflict-free sourcing." 
+    | replace: "\n", "" | split: "||" %}
+
+  {% for badge in trust_badges %}
+    {% assign parts = badge | strip | split: "::" %}
+    <div class="trust-badge-item" onclick="toggleTooltip(this)">
+      <img src="{{ parts[0] | strip }}" alt="{{ parts[1] | strip }}" />
+      {{ parts[1] }}
+      <div class="trust-badge-tooltip">
+        <button type="button" class="tooltip-close" onclick="closeTooltip(event)">×</button>
+        {{ parts[2] }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .trust-badge-container {
+    display: flex;
+    flex-wrap: wrap; /* allows wrapping on small screens */
+    max-width: 100%;
+    align-items: center;
+  }
+  
+  .trust-badge-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    /*padding: 8px 12px;*/
+    padding: 8px 10px 8px 0px;
+    cursor: pointer;
+    position: relative;
+  }
+    
+  .trust-badge-item img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .trust-badge-tooltip {
+    display: none;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    transform: translateY(-12px);
+    color: #000;
+    padding: 8px 10px 8px 15px; /* padding-left for close button */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    z-index: 9999;
+    min-width: 320px;
+    max-width: 320px;
+    box-shadow: rgba(0, 0, 0, 0.21) 0px 3px 6px 1px;
+    background-color: #fff;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-weight: normal;
+  }
+
+  .trust-badge-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 20px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    filter: drop-shadow(0 -1px 1px rgba(0,0,0,0.08));
+  }
+
+  .trust-badge-item.active .trust-badge-tooltip {
+    display: block;
+  }
+
+  .trust-badge-tooltip .tooltip-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    color: #888;
+    padding: 0;
+  }
+
+  .trust-badge-tooltip .tooltip-close:hover {
+    color: #000;
+  }
+
+  .tooltip-top::after {
+    top: 100%;
+    border-color: #fff transparent transparent transparent;
+  }
+
+  .tooltip-bottom {
+    top: 110%;
+  }
+
+  .tooltip-bottom::after {
+    bottom: 100%;
+    border-color: transparent transparent #fff transparent;
+  }
+
+  @media (max-width: 480px) {
+    .trust-badge-item {
+      font-size: 15px;
+      padding: 10px 12px;
+    }
+
+    .trust-badge-tooltip {
+      font-size: 13px;
+      max-width: 90vw;
+    }
+  }
+</style>
+
+<script>
+  function toggleTooltip(el) {
+    // Close other tooltips
+    document.querySelectorAll('.trust-badge-item').forEach(item => {
+      if (item !== el) {
+        item.classList.remove('active');
+        const tip = item.querySelector('.trust-badge-tooltip');
+        if (tip) {
+          tip.classList.remove('tooltip-top', 'tooltip-bottom');
+        }
+      }
+    });
+
+    // Toggle this tooltip
+    el.classList.toggle('active');
+
+    const tooltip = el.querySelector('.trust-badge-tooltip');
+    if (!tooltip) return;
+
+    const rect = el.getBoundingClientRect();
+    const spaceTop = rect.top;
+    const spaceBottom = window.innerHeight - rect.bottom;
+
+    // Position tooltip above or below based on available space
+    if (spaceTop > tooltip.offsetHeight + 20) {
+      tooltip.classList.add('tooltip-top');
+      tooltip.classList.remove('tooltip-bottom');
+    } else {
+      tooltip.classList.add('tooltip-bottom');
+      tooltip.classList.remove('tooltip-top');
+    }
+  }
+
+  function closeTooltip(event) {
+    event.stopPropagation(); // Prevent toggling badge on clicking close icon
+    const tooltip = event.target.closest('.trust-badge-tooltip');
+    if (!tooltip) return;
+    const badgeItem = tooltip.parentElement;
+    badgeItem.classList.remove('active');
+    tooltip.classList.remove('tooltip-top', 'tooltip-bottom');
+  }
+
+  // Close tooltip when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.trust-badge-item')) {
+      document.querySelectorAll('.trust-badge-item').forEach(item => {
+        item.classList.remove('active');
+        const tip = item.querySelector('.trust-badge-tooltip');
+        if (tip) {
+          tip.classList.remove('tooltip-top', 'tooltip-bottom');
+        }
+      });
+    }
+  });
+</script>

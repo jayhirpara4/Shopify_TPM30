@@ -1,0 +1,250 @@
+<style>
+.cart__customer-info {
+    padding: 0 3%;
+    margin: 20px 0 -10px;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+.cart__customer-info {
+    list-style: none;
+  }
+.cart__customer-info li {
+    font-weight: 500;
+    padding: 0 10px 0 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.cart__customer-info li:before {
+    content: "";
+    display: block;
+    background: url(https://cdn.shopify.com/s/files/1/0708/5876/8690/files/cart_sub_icon_b689f038-c7ef-4a90-ac53-2562144fae0d.png?v=1726236783) left top;
+    width: 15px;
+    height: 13px;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 6px;
+}
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+    .cart__customer-info li {
+        width: 50%;
+        flex: 0 0 50%;
+    }
+}
+@media (max-width: 749px) {
+    .faqs-section .accordion .acc-title {
+        font-size: 16px !important;
+    }
+    .faqs-section .accordion p {
+      padding: 0px!important;
+    }
+}
+@media (max-width: 424px) {
+    .faqs-section .accordion .acc-title {
+        font-size: 14px !important;
+    }
+   .faqs-section .accordion p {
+      padding: 0px!important;
+    }
+}
+@media (max-width: 321px) {
+    .faqs-section .accordion .acc-title {
+        font-size: 11px !important;
+    }
+   .faqs-section .accordion p {
+      padding: 0px!important;
+    }
+}
+div#shopify-section-template--22868579942706__main .rte {
+    display: none !important;
+}
+  div#shopify-section-template--22868579942706__main .section-header {
+    margin-bottom: 50px;
+}
+  .cart__page-col:last-child {
+    background: #f5f5f5;
+    border: 4px solid var(--color-text);
+    padding: 40px;
+}
+  .cart__item-row {
+    justify-content: center;
+    align-items: center;
+    margin-bottom:0;
+}
+  .cart__item-sub.cart__item-row>div {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+  .cart__customer-info {
+    margin-top: 30px !important;
+}
+  .cart__item-sub>div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.cart__remove {
+    margin-left: 20px;
+}
+.cart__remove .icon{
+    height: 16px;
+    width: 16px;
+}
+
+#shopify-section-template--22868579942706__faq_GJM9J8 .page-width-sm {
+    max-width: 1400px !important;
+    padding: 0 !important;
+}
+@media only screen and (min-width: 769px) {
+    .cart__page-col:first-child {
+        padding-right: 70px;
+    }
+    .cart__page-col:last-child {
+        flex: 0 1 37%;
+    }
+}
+@media(min-width: 768px){ 
+  #shopify-section-template--22868579942706__faq_GJM9J8 .faqs-wrapper.accordion {
+        width: 60%;
+   }
+}
+.cart__item-sub {
+    flex: 1 1 auto !important;
+   
+}
+@media(max-width: 767px){
+  .cart__image {
+      flex: 0 0 60px;
+  }
+  .cart__item-sub.cart__item-row>div {
+      font-size: 17px;
+  }
+  .cart__item-sub>div {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+}
+@media(max-width: 1025px){
+  #shopify-section-template--22868579942706__faq_GJM9J8 .faqs-wrapper  {
+      padding: 10px;
+  }
+}
+</style>
+{%- render 'breadcrumbs' -%}
+<div class="page-width page-content">
+
+  
+
+  <header class="section-header text-center{% if cart.item_count == 0 %} section-header--404{% endif %}">
+    <h1 class="section-header__title">{{ 'cart.general.title' | t }}</h1>
+    <div class="rte text-spacing">
+      {%- if cart.item_count == 0 -%}
+        <p>{{ 'cart.general.empty' | t }}</p>
+      {%- endif -%}
+      <p>{{ 'cart.general.continue_browsing_html' | t: url: routes.all_products_collection_url }}</p>
+    </div>
+  </header>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate data-location="page" id="CartPageForm">
+      <div class="cart__page">
+        <div data-products class="cart__page-col">
+          {% for item in cart.items %}
+            {%- render 'cart-item', product: item, sizes: '150px', -%}
+          {%- endfor -%}
+        </div>
+        <div class="cart__page-col">
+          {% if settings.cart_notes_enable %}
+            <div>
+              <label for="CartNote">{{ 'cart.general.note' | t }}</label>
+              <textarea name="note" class="input-full cart-notes" id="CartNote">{{ cart.note }}</textarea>
+            </div>
+          {% endif %}
+
+          <div data-discounts>
+            {% if cart.cart_level_discount_applications != blank %}
+              <div class="cart__discounts cart__item-sub cart__item-row">
+                <div>{{ 'cart.general.discounts' | t }}</div>
+                <div class="text-right">
+                  {% for cart_discount in cart.cart_level_discount_applications %}
+                    <div class="cart__discount">
+                      {{ cart_discount.title }} (-{{ cart_discount.total_allocated_amount | money }})
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="cart__item-sub cart__item-row">
+            <div>{{ 'cart.general.subtotal' | t }} : </div>
+            <div data-subtotal>{{ cart.total_price | money }}</div>
+          </div>
+
+          <div class="cart__item-row text-center">
+            <small>
+              {{ 'cart.general.shipping_at_checkout' | t }}<br />
+            </small>
+          </div>
+
+          {% if settings.cart_terms_conditions_enable %}
+            <div class="cart__item-row cart__terms">
+              <input type="checkbox" id="CartTerms" class="cart__terms-checkbox">
+              <label for="CartTerms">
+                {% if settings.cart_terms_conditions_page != blank %}
+                  {{ 'cart.general.terms_html' | t: url: settings.cart_terms_conditions_page.url }}
+                {% else %}
+                  {{ 'cart.general.terms' | t }}
+                {% endif %}
+              </label>
+            </div>
+          {% endif %}
+
+          <div class="cart__item-row cart__checkout-wrapper">
+            <button type="submit" name="checkout" data-terms-required="{{ settings.cart_terms_conditions_enable }}" class="btn cart__checkout">
+              {{ 'cart.general.checkout' | t }}
+            </button>
+
+            <ul class="cart__customer-info flex-md flex-wrap text-left text-uppercase">
+              {%- for block in section.blocks -%}
+              <li>{{ block.settings.text_0 }}</li>
+              {%- endfor -%}
+            </ul>
+
+            {% if additional_checkout_buttons and settings.cart_additional_buttons %}
+              <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+            {% endif %}
+          </div>
+          {% render 'trust-badges' %}
+          
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart.name",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "name": "Trust Text",
+      "type": "trust_text",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Text 0",
+          "id": "text_0"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,102 @@
+<section>
+    <hr class="cusblogHr">
+
+    <div class="container-md my-4">
+        <div class="row d-flex justify-content-between align-items-center">
+
+            <div class="col-6 cusVerticalLineBorderRight">
+                <a href="{{ section.settings.previous_post_link }}" class="cusA d-flex flex-column justify-content-center align-items-start scalHvr">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <g clip-path="url(#clip0_725_3435)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.3984 13.6801L20.8817 13.6801C21.0621 13.6801 21.1934 13.8277 21.1934 14.0082C21.1934 14.1886 21.0621 14.3198 20.8817 14.3198L7.3984 14.3198C7.21796 14.3198 7.08674 14.1886 7.08674 14.0082C7.08674 13.8277 7.21796 13.6801 7.3984 13.6801Z" fill="#515151"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.369 9.89101C11.451 9.89101 11.5494 9.92381 11.6151 9.98942C11.7299 10.1371 11.7299 10.3339 11.5986 10.4487L7.62911 14.0082L11.5986 17.5512C11.7299 17.666 11.7299 17.8793 11.6151 18.0105C11.5002 18.1417 11.3034 18.1417 11.1558 18.0269L6.92378 14.2542C6.85817 14.1886 6.80896 14.0902 6.80896 14.0082C6.80896 13.9098 6.85817 13.8277 6.92378 13.7457L11.1558 9.97302C11.205 9.92381 11.3034 9.89101 11.369 9.89101Z" fill="#515151"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.009 0.032851C21.7184 0.0328516 27.9844 6.28241 27.9844 14.0082C27.9844 21.7177 21.7184 27.9836 14.009 27.9836C6.28315 27.9836 0.0335851 21.7013 0.0335858 14.0082C0.0335865 6.31522 6.28315 0.0328503 14.009 0.032851ZM14.009 27.3439C21.3575 27.3439 27.3447 21.3568 27.3447 14.0082C27.3447 6.65968 21.3575 0.672571 14.009 0.67257C6.66042 0.672569 0.673305 6.65968 0.673305 14.0082C0.673304 21.3568 6.66042 27.3439 14.009 27.3439Z" fill="#515151"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_725_3435">
+                            <rect width="28" height="28" fill="white" transform="translate(28 28) rotate(-180)"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        <h3 class="ivy cl-51 mb-0 ms-1 ms-sm-3 cusFontsize">{{ section.settings.previous_post_text }}</h3>
+                    </div>
+                    <div class="PrevNextPostHead text-start d-none d-md-block">{{ section.settings.previous_post_description }}</div>
+                </a>
+            </div>
+
+
+            <div class="col-6">
+                <a href="{{ section.settings.next_post_link }}" class="cusA d-flex flex-column justify-content-center align-items-end scalHvr">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 class="ivy cl-51 mb-0 me-1 me-sm-3 cusFontsize">{{ section.settings.next_post_text }}</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <g clip-path="url(#clip0_725_3424)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.6016 14.3199H7.1183C6.93786 14.3199 6.80664 14.1723 6.80664 13.9918C6.80664 13.8114 6.93786 13.6802 7.1183 13.6802H20.6016C20.782 13.6802 20.9133 13.8114 20.9133 13.9918C20.9133 14.1723 20.782 14.3199 20.6016 14.3199Z" fill="#515151"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.631 18.109C16.549 18.109 16.4506 18.0762 16.3849 18.0106C16.2701 17.8629 16.2701 17.6661 16.4014 17.5513L20.3709 13.9918L16.4014 10.4488C16.2701 10.334 16.2701 10.1207 16.3849 9.98949C16.4998 9.85826 16.6966 9.85826 16.8442 9.97308L21.0762 13.7458C21.1418 13.8114 21.191 13.9098 21.191 13.9918C21.191 14.0902 21.1418 14.1723 21.0762 14.2543L16.8442 18.027C16.795 18.0762 16.6966 18.109 16.631 18.109Z" fill="#515151"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.991 27.9671C6.28159 27.9671 0.015625 21.7176 0.015625 13.9918C0.015625 6.28232 6.28159 0.0163574 13.991 0.0163574C21.7169 0.0163574 27.9664 6.29872 27.9664 13.9918C27.9664 21.6848 21.7169 27.9671 13.991 27.9671ZM13.991 0.656076C6.64246 0.656076 0.655344 6.64319 0.655344 13.9918C0.655344 21.3403 6.64246 27.3274 13.991 27.3274C21.3396 27.3274 27.3267 21.3403 27.3267 13.9918C27.3267 6.64319 21.3396 0.656076 13.991 0.656076Z" fill="#515151"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_725_3424">
+                                <rect width="28" height="28" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                    </div>
+                    <div class="PrevNextPostHead text-end d-none d-md-block">{{ section.settings.next_post_description }}</div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="cusblogHr">
+</section>
+
+{% schema %}
+{
+  "name": "Previous and Next",
+  "settings": [
+    {
+      "type": "text",
+      "id": "previous_post_text",
+      "label": "Previous Post Text",
+      "default": "Previous Post"
+    },
+    {
+      "type": "textarea",
+      "id": "previous_post_description",
+      "label": "Previous Post Description",
+      "default": "It is a long established fact that a reader."
+    },
+    {
+      "type": "url",
+      "id": "previous_post_link",
+      "label": "Previous Post Link"
+    },
+    {
+      "type": "text",
+      "id": "next_post_text",
+      "label": "Next Post Text",
+      "default": "Next Post"
+    },
+    {
+      "type": "textarea",
+      "id": "next_post_description",
+      "label": "Next Post Description",
+      "default": "It is a long established fact that a reader."
+    },
+    {
+      "type": "url",
+      "id": "next_post_link",
+      "label": "Next Post Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Previous and Next",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

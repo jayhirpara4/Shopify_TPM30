@@ -1,0 +1,804 @@
+/*=============================================================================================================================
+ 									max-width: 1600px Start
+ ==============================================================================================================================*/
+@media only screen and (max-width: 1600px) {
+  /* =========================   Blog   ========================= */
+  .padVisMis {
+    padding: 0px 150px;
+  }
+  /* =========================   6 Steps Guide   ========================= */
+  .GuideStepTextPadd {
+    padding: 0px 50px;
+  }
+  .cusMyMrg {
+    margin: 60px 0px;
+  }
+}
+/*=============================================================================================================================
+                                       max-width: 1600px End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       max-width: 1409px Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 1409px) {
+}
+/*=============================================================================================================================
+                                       max-width: 1409px End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       max-width: 1399px Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 1399px) {
+  .bandsBG {
+    padding: 20px 0px 20px 26px;
+    background-color: var(--theme-Gray-BG);
+  }
+  /* =========================   Blog   ========================= */
+  .sideBlogHeading {
+    font-size: 20px;
+  }
+}
+
+/*=============================================================================================================================
+                                       max-width: 1399px End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       max-width: 1199px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 1199px) {
+  /* =========================   NAVBAR   ========================= */
+  .navIcon {
+    display: block;
+  }
+  .blackBG {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999 !important;
+  }
+  .blackBGActive {
+    right: 0;
+  }
+  .navbar {
+    width: 450px;
+    position: fixed;
+    left: -500px;
+    top: 0;
+    height: 100%;
+    background-color: var(--theme-white);
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    z-index: 3;
+    overflow-y: auto;
+    display: block !important;
+    z-index: 999999 !important;
+  }
+  .navbarActive {
+    left: 0px;
+  }
+  .navItem {
+    font-size: 16px !important;
+    margin: 20px 0px;
+    color: var(--theme-black);
+  }
+  .Close {
+    display: flex;
+    justify-content: left;
+    align-items: start !important;
+    margin: 26px 0;
+    cursor: pointer;
+  }
+  /* ========================= 4 Category ========================= */
+  .CateName {
+    font-size: 20px;
+  }
+  .categoryArrow {
+    height: 22px;
+    width: 22px;
+  }
+  .CategoryAbsolute {
+    padding: 20px 20px;
+  }
+  .BGBreadcrumb {
+    padding: 80px 0px;
+  }
+  .BGBreadcrumb_Slim {
+    padding: 10px 0px;
+  }
+  /* =========================   Blog   ========================= */
+  .sideBlogHeading {
+    font-size: 24px;
+  }
+  /* ========================= Product Page ========================= */
+  .stepNumber {
+    font-size: 26px;
+    text-align: center;
+    width: 40px;
+    line-height: 100px;
+  }
+  .stepsName {
+    font-size: 18px !important;
+  }
+  .stepsIcon {
+    height: 14px;
+    width: 14px;
+  }
+  .stepImage {
+    height: 40px;
+    width: 40px;
+  }
+  /* =========================   Blog   ========================= */
+  .padVisMis {
+    padding: 0px 100px;
+  }
+
+  /* ========================= About Us ========================= */
+  .aboutDesc {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+/*=============================================================================================================================
+                                       max-width: 1199px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                      max-width: 991px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 991px) {
+  /* ========================= Heading ========================= */
+  .heading {
+    font-size: 30px;
+  }
+  .subHeading {
+    font-size: 11px;
+    width: 70%;
+  }
+  .BGBreadcrumb {
+    padding: 50px 0px;
+  }
+  .BGBreadcrumb_Slim {
+    padding: 10px 0px;
+  }
+
+  /* ========================= Banner ========================= */
+  .bgBanner {
+    height: 80vh;
+    background-color: #f0f1f2;
+    padding: 0px 0px 80px 0px;
+  }
+
+  /* ========================= Valentine Banner ========================= */
+  .bgBannerValentine {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Valentine-Mobile-ViewBG.png?v=1736589736");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f0f1f2;
+    padding: 0px 0px 80px 0px;
+  }
+
+  .cusTextCenStart {
+    text-align: center !important;
+  }
+
+  /* ========================= 3 Topic ========================= */
+  .TopicsIcon {
+    height: 40px;
+    width: 40px;
+  }
+  .ThreeTopicHead {
+    font-size: 14px;
+  }
+  .ThreeTopicSub {
+    font-size: 10px;
+  }
+
+  /* ========================= 4 Category ========================= */
+  .CateName {
+    font-size: 18px;
+  }
+  .categoryArrow {
+    height: 20px;
+    width: 20px;
+  }
+  /* ========================= Browse Our Best Sellers ========================= */
+  .cusOptBtn {
+    font-size: 12px;
+    padding: 8px 16px;
+    margin: 8px;
+  }
+  /* ========================= About Stienhardt ========================= */
+  .bgAboutUs {
+    background-position: center !important;
+  }
+  /* ========================= Shop Rings by Style ========================= */
+  .minusMrgTxt {
+    font-size: 16px;
+  }
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .shapeName {
+    font-size: 12px;
+  }
+  .diamond_card {
+    padding: 20px;
+  }
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .SHOWshapeName {
+    font-size: 18px;
+  }
+  .DiamondArwSize {
+    max-width: 50px;
+  }
+  /* ========================= Blog Home Page ========================= */
+  .BLogHomeHead {
+    font-size: 24px;
+  }
+  .blogButton {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .blogHome::after {
+    top: 20%;
+  }
+  /* ========================= Product Page ========================= */
+  .stepNumber {
+    font-size: 22px;
+    text-align: center;
+    width: 40px;
+    line-height: 100px;
+  }
+  .stepsName {
+    font-size: 16px !important;
+  }
+  .stepChangRmv {
+    font-size: 11px;
+  }
+  .VerticalLine {
+    margin-right: 10px;
+    height: 34px;
+  }
+  .stepsIcon {
+    height: 12px;
+    width: 12px;
+  }
+  /* ========================= Contact Us ========================= */
+  .cusMap {
+    height: 450px;
+  }
+  /* ========================= Diamond Details ========================= */
+  .overYauto {
+    overflow-x: scroll !important;
+  }
+  /* .resImgSize{
+          min-width: 210px;
+      } */
+  .cusTable {
+    border-spacing: 8px;
+    border-collapse: separate;
+  }
+  /* =========================   Blog   ========================= */
+  .padVisMis {
+    padding: 0px 36px;
+  }
+
+  /* ========================= About Us ========================= */
+  .aboutDesc {
+    font-size: 16px;
+    line-height: 30px;
+  }
+  .stickyNone {
+    position: relative !important;
+  }
+}
+/*=============================================================================================================================
+                                      max-width: 991px   End
+  ==============================================================================================================================*/
+
+
+
+
+/*=============================================================================================================================
+                                      max-width: 670px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 991px) {
+
+    /* ========================= Banner ========================= */
+  .bgBanner {
+    height: 100vh;
+  }
+
+
+}
+
+/*=============================================================================================================================
+                                      max-width: 670px   End
+  ==============================================================================================================================*/
+
+
+
+
+
+
+/*=============================================================================================================================
+                                        Max-Width: 767px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 767px) {
+  .Logo {
+    max-height: 50px;
+  }
+  /* ========================= 3 Topic ========================= */
+  .TopicsIcon {
+    height: 30px;
+    width: 30px;
+  }
+  .ThreeTopicHead {
+    font-size: 12px;
+  }
+  .ThreeTopicSub {
+    font-size: 8px;
+  }
+  /* ========================= 4 Category ========================= */
+  .CateName {
+    font-size: 14px;
+  }
+  .categoryArrow {
+    display: none;
+  }
+  .CategoryAbsolute {
+    padding: 10px 10px;
+  }
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .shapeName {
+    font-size: 10px;
+  }
+  .ActiveDiamond {
+    min-width: 100px;
+  }
+
+  .cusBreadcrumb {
+    font-size: 12px;
+  }
+  /* ========================= 404 Page not Found Error ========================= */
+  .cusFullwidth {
+    width: 100% !important;
+  }
+  /* ========================= Diamond Details ========================= */
+  .cusTable {
+    font-size: 14px;
+  }
+  .responsiveColumn {
+    width: none;
+  }
+  .responsiveColumnOther {
+    width: 22% !important;
+  }
+
+  .range-slider_thumb {
+    width: 8vmin;
+    height: 8vmin;
+    font-size: 3vmin !important;
+    border: 0.6vmin solid var(--theme-color);
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 767px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       Max-Width: 700px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 700px) {
+  /* ========================= Product Page ========================= */
+  .customizedSteps,
+  .node,
+  .nodeTwo {
+    height: 60px;
+  }
+  .stepNumber {
+    font-size: 20px;
+    text-align: center;
+    width: 28px;
+    line-height: 100px;
+  }
+  .stepsName {
+    font-size: 16px !important;
+  }
+  .stepChangRmv {
+    font-size: 11px;
+  }
+  .VerticalLine {
+    display: none !important;
+  }
+  .stepsIcon {
+    height: 12px;
+    width: 12px;
+  }
+  .nodeThree:before,
+  .nodeTwo:before {
+    border-top: 30px solid #fff;
+    border-bottom: 30px solid #fff;
+    border-left: 15px solid transparent;
+  }
+  .nodeTwo:after,
+  .nodeOne:after {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 15px solid #fff;
+  }
+  /* =========================   6 Steps Guide   ========================= */
+  .GuideStepTextPadd {
+    padding: 0px 20px;
+  }
+  .cusMyMrg {
+    margin: 60px 0px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 700px   End
+   ==============================================================================================================================*/
+/*=============================================================================================================================
+                                       Max-Width: 600px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 600px) {
+  /* ========================= Browse Our Best Sellers ========================= */
+  .productName {
+    font-size: 16px;
+  }
+  .productPrice {
+    font-size: 13px;
+  }
+  /* ========================= FAQ ========================= */
+  .FAQBtn {
+    font-size: 15px;
+  }
+  .FAQBody {
+    font-size: 13px;
+    line-height: 26px;
+  }
+  /* ========================= Diamond Details ========================= */
+  .overYauto {
+    overflow-x: scroll !important;
+  }
+  /* .resImgSize{
+          min-width: 160px;
+      } */
+  .cusTable {
+    border-spacing: 6px;
+    border-collapse: separate;
+  }
+  /* ========================= About Us ========================= */
+  .aboutDesc {
+    font-size: 13px;
+    line-height: 24px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 600px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       Max-Width: 575px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 575px) {
+  .navbar {
+    width: 100%;
+    position: fixed;
+    left: -100%;
+    top: 0;
+  }
+  .navbarActive {
+    left: 0%;
+  }
+  /* ========================= Heading ========================= */
+  .heading {
+    font-size: 26px;
+  }
+  .subHeading {
+    font-size: 10px;
+    width: 80%;
+  }
+  /* ========================= Browse Our Best Sellers ========================= */
+  .cusOptBtn {
+    font-size: 11px;
+    padding: 6px 12px;
+    margin: 6px;
+  }
+  /* ========================= Shop Rings by Style ========================= */
+  .minusMrgTxt {
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 0px;
+  }
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .shapeName {
+    font-size: 12px;
+  }
+  .ActiveDiamond {
+    min-width: 70px;
+  }
+  .cusGap {
+    gap: 16px;
+  }
+  /* ========================= 4 Category ========================= */
+  .CateName {
+    font-size: 20px;
+  }
+  .categoryArrow {
+    display: block;
+  }
+  .CategoryAbsolute {
+    padding: 20px 20px;
+  }
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .SHOWshapeName {
+    font-size: 16px;
+  }
+  /* ========================= Blog ========================= */
+  .BlogHead {
+    font-size: 15px;
+  }
+  .BlogDesc {
+    font-size: 11px;
+  }
+  .cusLearn {
+    font-size: 12px;
+  }
+  .BlogRightArrow {
+    height: 8px;
+  }
+  .blogButton {
+    padding: 6px 8px;
+  }
+  .pinButton {
+    max-width: 70px;
+  }
+  /* ========================= 404 Page not Found Error ========================= */
+  .errorOops {
+    font-size: 20px;
+  }
+  /* ========================= Setting Details ========================= */
+  .cusPadzero {
+    padding-right: 0px;
+  }
+
+  /* ========================= Diamond Details ========================= */
+  .FourCsBox {
+    padding: 20px;
+  }
+  .FourCsHead {
+    font-size: 20px !important;
+    line-height: 26px;
+  }
+  .FourCsHead > h2 {
+    line-height: 24px;
+  }
+  .FourCsSub {
+    font-size: 14px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 575px   End
+   ==============================================================================================================================*/
+
+@media only screen and (max-width: 450px) {
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .ActiveDiamond {
+    min-width: 60px;
+  }
+  .cusGap {
+    gap: 12px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 425px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 425px) {
+  .footContact {
+    font-size: 14px !important;
+  }
+  .copyrights {
+    font-size: 10px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 425px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       Max-Width: 375px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 375px) {
+  .NavmegaHeading {
+    font-size: 14px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width:   375px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       Max-Width: 320px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 320px) {
+}
+/*=============================================================================================================================
+                                       Max-Width: 320px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                      Max-Width: 450px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 450px) {
+  /* ========================= Shop Diamonds by Shape ========================= */
+  .ActiveDiamond {
+    min-width: 60px;
+  }
+  .cusGap {
+    gap: 12px;
+  }
+  /* ========================= Blog ========================= */
+  .cusFontsize {
+    font-size: 18px;
+  }
+  .cusVerticalLineBorderRight {
+    border-right: none;
+  }
+
+  /* ========================= Product Page ========================= */
+  .stepNumber {
+    font-size: 18px;
+    text-align: center;
+    width: 24px;
+    line-height: 100px;
+  }
+  .stepsName {
+    font-size: 14px !important;
+  }
+  .stepChangRmv {
+    font-size: 10px;
+  }
+  .stepsIcon {
+    height: 10px;
+    width: 10px;
+  }
+  /* ========================= About Us ========================= */
+  .OurApproachHvrMain:hover .hvrDescription {
+    display: block;
+    /* opacity: 0;
+          display: none;
+          height: 0 !important; */
+  }
+}
+/*=============================================================================================================================
+  Max-Width: 450px   End
+  ==============================================================================================================================*/
+
+/*=============================================================================================================================
+  Max-Width: 425px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 425px) {
+  .BGBreadcrumb {
+    background-position: bottom;
+  }
+  .BGBreadcrumb_Slim {
+    background-position: bottom;
+  }
+  .footContact {
+    font-size: 14px !important;
+  }
+  .copyrights {
+    font-size: 10px;
+  }
+  /* ========================= Complete Your Ring ========================= */
+  .ringSettingBG {
+    padding: 20px;
+  }
+  .CompleteShippingLink {
+    font-size: 12px;
+  }
+  .CompleteShippingLink > a {
+    font-size: 12px;
+  }
+  .cusColumn {
+    flex-direction: column;
+  }
+  /* ========================= Book Your Appointment ========================= */
+  .BookMainBG {
+    padding: 14px 20px 20px 20px;
+    width: 600px;
+    max-width: 90%;
+    border: 4px solid var(--theme-ccc);
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+  }
+  .cusBookImgWidth {
+    width: 100%;
+  }
+  .cusborderRadius {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+  .cusbookBtn {
+    padding: 10px;
+  }
+}
+
+/*=============================================================================================================================
+                                       Max-Width: 425px   End
+   ==============================================================================================================================*/
+
+/*=============================================================================================================================
+                                       Max-Width: 375px   Start
+   ==============================================================================================================================*/
+@media only screen and (max-width: 375px) {
+  .NavmegaHeading {
+    font-size: 14px;
+  }
+  /* ========================= Product Page ========================= */
+  .stepNumber {
+    font-size: 16px;
+    text-align: center;
+    width: 20px;
+    line-height: 100px;
+  }
+  .stepsName {
+    font-size: 13px !important;
+  }
+  .stepChangRmv {
+    font-size: 9px;
+  }
+  .stepsIcon {
+    height: 10px;
+    width: 10px;
+  }
+}
+/*=============================================================================================================================
+  Max-Width:   375px   End
+  ==============================================================================================================================*/
+
+/*=============================================================================================================================
+  Max-Width: 320px   Start
+  ==============================================================================================================================*/
+@media only screen and (max-width: 350px) {
+  /* ========================= Product Page ========================= */
+  .stepChangRmv {
+    font-size: 8px;
+  }
+}
+/*=============================================================================================================================
+                                       Max-Width: 320px   End
+   ==============================================================================================================================*/
+
+/* ========================= Blog CSS Stylesheet Section (Media Query) ========================= */
+@media only screen and (max-width: 991px) {
+  .stickyNone {
+    position: relative !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .overXauto {
+    overflow-x: auto !important;
+  }
+  .BlogPostbgFfive {
+    padding: 10px 12px !important;
+  }
+}

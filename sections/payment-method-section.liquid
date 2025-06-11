@@ -1,0 +1,296 @@
+<style>
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+}
+/* Nav */
+.payment-nav {
+  margin-top: 40px;
+  display: inherit;
+    margin-bottom: 80px;
+}
+.payment-nav a {
+    color: var(--color-body-text);
+    font-size: 16px;
+    width: 144px;
+    display: inline-block;
+    border: 1px solid var(--color-body-text);
+    padding: 6px 3px;
+    border-radius: 5px;
+    margin: 0 3px;
+}
+.payment-nav a.active {
+    background: var(--color-body-text);
+    color: #FFF;
+}
+
+/* Payment Methods */
+.payment-method section:not(:last-child) {margin-bottom: 65px;}
+.buying-steps-section h3 {
+    font-size: 22px;
+    margin: 20px 0;
+}
+.buying-steps-section p {
+    max-width: 275px;
+    margin: 20px auto 0;
+}
+.affirm-at-checkout .bg-color {
+    background: #f7f7f7;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+.affirm-at-checkout h5 {
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+.affirm-at-checkout .key_factors {
+    position: relative;
+    z-index: 0;
+}
+.affirm-at-checkout .key_factors:not(:last-child) {padding-bottom: 23px;}
+.affirm-at-checkout .key_factors:not(:last-child)::after {
+    content: '';
+    display: block;
+    background: #efecea;
+    width: 250px;
+    height: 2px;
+}
+.affirm-at-checkout .key_factors:not(:last-child) p {padding-bottom: 23px;}
+.affirm-at-checkout .disclosure {
+    max-width: 760px;
+    margin: 40px auto 0;
+}
+@media (min-width: 750px) {
+    .affirm-at-checkout .bg-color::after {
+        content: '';
+        background: #eff0f3;
+        width: 1190px;
+        height: 1190px;
+        border-radius: 32%;
+        position: absolute;
+        left: -39%;
+        top: 50%;
+        z-index: -1;
+        transform: translateY(-50%) rotate(48deg);
+    }
+    .affirm-at-checkout .bg-color > div {
+        width: 50%;
+        flex: 0 0 50%;
+        padding: 60px;
+    }
+}
+@media (max-width: 749px) {
+    .payment-method .banner-section .grid__item-content,
+    .payment-method .buying-steps-section,
+    .affirm-at-checkout .disclosure,
+    .payment-method .payment-section {
+        padding: 0 20px;
+    }
+    .payment-nav a {
+        width: 134px;
+        margin: 0 2px;
+    }
+    .buying-steps-section .grid__item:not(:last-child) {margin-bottom: 40px;}
+    .payment-method .banner-section .grid__item-content {
+        margin-top: 30px;
+        order: 2;
+    }
+    .buying-steps-section h3 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    .affirm-at-checkout .bg-color > div {padding: 35px 20px;}
+    .affirm-at-checkout .text-on-left {background: #efecea;}
+}
+</style>
+<div id="shopify-section-template--22356074594587__page-payment-methods" class="shopify-section mpo-payment-methods-section">
+    <!-- mpo-payment-methods.liquid -->
+
+  <div class="page-width">
+      <div class="payment-nav text-center text-uppercase">
+          <a href="#splitPayment" class="active" data-uw-rm-brl="PR" >Split pay</a>
+          <a href="#payInstallments" class="" data-uw-rm-brl="PR" >Installments</a>
+      </div>
+  </div>
+
+    <div class="page-width sm-pd-0">
+        <div class="payment-methods">
+            <!-- Split payment option -->
+            <div id="splitPayment" class="payment-method split-payment-method">
+                <section class="banner-section">
+                    <div class="grid grid--no-gutters-sm flex flex-wrap align-items_center">
+                        <div class="grid__item small--one-whole medium-up--one-third grid__item-content">
+                            <div class="content small--text-center">
+                                <h2 class="section-header">Make Your Payments Interest Free</h2>
+                                <p>When the inspiration strikes, say yes with confidence. Make up to four interest free payments with Affirm.</p>
+                            </div>
+                        </div>
+                        <div class="grid__item small--one-whole medium-up--two-thirds grid__item-image">
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyloaded one-whole d-block" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Header_Wedding_Bands_Mens.jpg?v=1727376008"  data-sizes="auto" alt="Make Your Payments Interest Free"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Banner -->
+                <section class="buying-steps-section text-center">
+                    <div class="section-heading">
+                        <h2 class="section-header section-header-reverse">Purchase In 3 Simple Steps</h2>
+                    </div>
+                    <div class="grid">
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">1. Select payment method at checkout</h3>
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/split_step_1.webp?v=1717607323" data-sizes="auto" />
+                            </div>
+                            <p>When you're done shopping, select Affirm at checkout.</p>
+                        </div>
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">2. Create Your Account</h3>
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/split_step_2.webp?v=1717607513"  data-sizes="auto" />
+                            </div>
+                            <p>Enter a few pieces of information for a real-time decision.</p>
+                        </div>
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">3. Pay over time</h3>
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/split_step_3.webp?v=1717607551"  data-sizes="auto" />
+                            </div>
+                            <p>Make 4 payments every 2 weeks at affirm.com or in the Affirm app.</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Buying steps -->
+                <section class="affirm-at-checkout">
+                    <div class="flex-md align-items_center bg-color">
+                        <div class="medium-up--one-half text-on-left">
+                            <h4 class="section-header-sm section-header-reverse">Say yes with confidence</h4>
+                            <p>When you buy with Affirm, you always know exactly what you'll owe and when you'll be done paying. You’ll never pay a hidden fee or any fee, for that matter.</p>
+                        </div>
+                        <div class="medium-up--one-half text-on-right">
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Transparent</h5>
+                                <p>Never pay more than the price of your purchase.</p>
+                            </div>
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Simple</h5>
+                                <p>It only takes a moment, and checking your eligibility won’t affect your credit score.</p>
+                            </div>
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Fair</h5>
+                                <p>Affirm won’t charge you late fees or penalties of any kind, ever.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="disclosure text-center">* Payment options are offered by Affirm, are subject to an eligibility check, and may not be available in all states. California residents: Affirm Loan Services, LLC is licensed by the Department of Business Oversight. Loans are made
+                        or arranged pursuant to California Financing Law license 60DBO-111681.</p>
+                </section>
+                <!-- Affirm at checkout -->
+            </div>
+            <!-- Installment option -->
+            <div id="payInstallments" class="payment-method installment-method" style="display: none;">
+                <section class="banner-section">
+                    <div class="grid grid--no-gutters-sm flex flex-wrap align-items_center">
+                        <div class="grid__item small--one-whole medium-up--one-third grid__item-content">
+                            <div class="content small--text-center">
+                                <h2 class="section-header">Pay at your own pace</h2>
+                                <p>With installments you pay on you schedule. By selecting Affirm at checkout to pay over time you will be able to choose up to 36- month installments for payments making your dream sparkle as accessible as ever.</p>
+                            </div>
+                        </div>
+                        <div class="grid__item small--one-whole medium-up--two-thirds grid__item-image">
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload one-whole d-block" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Round_lab_grown_diamond_ring_b5dca8c6-c4d8-4ad8-a289-8bd6478c0dab.webp?v=1725860617" data-sizes="auto" alt="Pay at your own pace"  />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Banner -->
+                <section class="payment-section text-center">
+                    <h3 class="section-header section-header-reverse">Choose 12, 18, Or 36 Monthly Payments</h3>
+                    <p>* For example, a $700 purchase might cost $64/mo over 12 months at 15% APR.</p>
+                </section>
+                <!-- Payment -->
+                <section class="buying-steps-section text-center">
+                    <div class="section-heading">
+                        <h2 class="section-header section-header-reverse">Purchase In 3 Simple Steps</h2>
+                    </div>
+                    <div class="grid">
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">1. Fill Your Cart</h3>
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/split_step_1.webp?v=1717607323"  data-sizes="auto" />
+                            </div>
+                            <p>Select Affirm at checkout, then enter a few pieces of info for a real-time decision.</p>
+                        </div>
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">2. Choose How You Pay</h3>
+                            <div class="image-wrapper">
+                                <img class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/split_step_2.webp?v=1717607513"  data-sizes="auto" />
+                            </div>
+                            <p>Pick the monthly payment plan you like best. You’ll never pay more than you agree to up front.</p>
+                        </div>
+                        <div class="grid__item medium-up--one-third">
+                            <h3 class="section-header-reverse">3. Pay over time</h3>
+                            <div class="image-wrapper">
+                                <img loading="lazy" class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/Installment_step_3.webp?v=1717608049"  data-sizes="auto" />
+                            </div>
+                            <p>Make payments at affirm.com or in the Affirm app. You’ll get email and text reminders.</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Buying steps -->
+                <section class="affirm-at-checkout">
+                    <div class="flex-md align-items_center bg-color">
+                        <div class="medium-up--one-half text-on-left">
+                            <h4 class="section-header-sm section-header-reverse">Buy With Confidence</h4>
+                            <p>With Affirm, you always know exactly what you'll owe and when you'll be done paying.</p>
+                        </div>
+                        <div class="medium-up--one-half text-on-right">
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Transparent</h5>
+                                <p>Affirm tells you up front the total amount you’ll pay. That number will never go up.</p>
+                            </div>
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Flexible</h5>
+                                <p>You choose the payment schedule that works for you.</p>
+                            </div>
+                            <div class="key_factors">
+                                <h5 class="section-header-reverse text-uppercase">Fair</h5>
+                                <p>Affirm won’t charge you late fees or penalties of any kind, ever.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Affirm at checkout -->
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+  $('.payment-nav > a').on('click',function(e){
+    e.preventDefault();
+    $('.payment-nav a').removeClass('active');
+    $(this).addClass('active');
+    var tid = $(this).attr('href')
+    $('.payment-method').hide();
+    $(tid).show();
+  });
+</script>
+{% schema %}
+  {
+    "name": "Payment method section",
+    "settings": [],
+    "presets": [
+    {
+      "name": "Payment method section"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,383 @@
+<style>
+
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+}
+.justify-content_center {
+    justify-content: center;
+}
+.text-center {
+    text-align: center !important;
+}
+.multi-slider p , .multi-slider h2 ,  .multi-slider h3 {
+ color:#fff;
+}
+.multi-content-slider .block-content .btn{
+    color:#111111;
+    background:#fff;
+}
+.multi-content-slider .block-content .btn:hover {
+    color:#111111;
+    background:#fff !important;
+}
+.multi-slider p {
+  font-size: 18px;
+}
+.multi-slider .subtitle {
+    display: inline-block;
+    font-family: var(--font-stack-header);
+    margin-bottom: 5px;
+}
+.multi-slider .heading-section .text {margin: 0 auto;}
+.multi-title-slider {margin: 40px 0;}
+.multi-content-slider > [class*="slide_"]:not(:first-child) {display: none;}
+.multi-content-slider .block-content {padding: 0 7%;}
+.multi-content-slider .block-content p {margin-bottom: 0;}
+.multi-content-slider .block-content .btn {margin-top: 30px;}
+.multi-content-slider .image-replace-text {
+    width: 100%;
+    height: 100%;
+    background: var(--color-text);
+    color: #FFF;
+    padding: 45px;
+    min-height: 400px;
+}
+.multi-content-slider .image-replace-text h3 {
+    color: #FFF;
+    margin-bottom: 0;
+}
+@media (min-width: 750px) {
+    .multi-slider {padding: 45px;}
+    .multi-slider .block-image.align-right {order: 2;}
+    .multi-title-slider > [class*="slide_"] {padding: 0 20px;}
+    .multi-title-slider p {
+        font-size: 18px;
+        display: inline-block;
+        padding-bottom: 5px;
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+    }
+    .multi-title-slider [class*="slide_"].active p {border-bottom-color: #fff;}
+    .multi-content-slider .block-content {align-self: center;}
+}
+@media (max-width: 749px) {
+    .multi-slider {padding: 45px 0;}
+    .multi-slider .heading-section {padding: 0 20px;}
+    .multi-slider p {font-size: 14px;}
+    .multi-title-slider > [class*="slide_"]:not(:first-child) {display: none;}
+    .multi-content-slider .block-content {padding: 30px 20px 0;}
+    .multi-content-slider .block-content .btn {margin-top: 20px;}
+    .multi-content-slider .image-replace-text {min-height: 220px;}
+    .multi-content-slider .image-replace-text h3 br {display: none;}
+}
+
+/* Multi Slider v1 */
+.multi-slider-v1 .multi-slider {padding: 0;}
+.multi-slider-v1 .multi-slider .section-header {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: var(--font-stack-body);
+    line-height: 1.2;
+    letter-spacing: 1.92px;
+    margin-bottom: 8px;
+}
+.multi-slider-v1 .multi-slider .heading-font-enabled .section-header {
+    font-family: var(--font-stack-header);
+    font-size: 55px;
+    font-weight: 500;
+    letter-spacing: -2.75px;
+    font-style: italic;
+}
+.multi-slider-v1 .page-width {max-width: 1170px;}
+.multi-slider-v1 .multi-title-slider [class*="slide"] {
+    padding: 0 28px;
+    position: relative;
+}
+.multi-slider-v1 .multi-title-slider [class*="slide"]:not(:last-child):after {
+    content: '';
+    display: block;
+    height: 28px;
+    border-right: 1px solid;
+    position: absolute;
+    top: -2px;
+    right: 0;
+}
+.multi-slider-v1 .multi-title-slider p {
+    color: rgba(33, 50, 69, 0.4);
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: 1.28px;
+    padding-bottom: 0;
+}
+.multi-slider-v1 .multi-title-slider [class*="slide_"].active p {
+    color: var(--color-text);
+    font-weight: 700;
+}
+.multi-slider-v1 .section-header-sm {
+    font-size: 55px;
+    line-height: 1;
+    font-style: italic;
+    letter-spacing: -2.75px;
+}
+.multi-slider-v1 .btn {
+    font-weight: 700;
+    line-height: 1;
+    width: 171px;
+    padding: 9.9px 19px;
+    margin-top: 40px;
+}
+@media (min-width: 750px) {
+    .multi-slider-v1 .multi-title-slider {padding: 0;}
+    .multi-slider-v1 .multi-slider .slick-arrow {display: none !important;}
+    .multi-slider-v1 .multi-slider .block-image {
+        width: 39%;
+        padding-right: 1px;
+    }
+    .multi-slider-v1 .multi-slider .multi-content-slider .block-content {
+        width: 61%;
+        padding: 0 9% 0 1px;
+    }
+    .multi-slider-v1 .btn {
+        font-size: 12px;
+        letter-spacing: 1.13px;
+    }
+}
+@media(max-width: 749px) {
+    .multi-slider-v1 .heading-section {padding: 0 20px;}
+    .multi-slider-v1 .heading-section:not(.heading-font-enabled) > * {padding-right: 55px;}
+    .multi-slider-v1 .heading-font-enabled .text {padding-right: 55px;}
+    .multi-slider-v1 .multi-slider .section-header {
+        font-size: 20px;
+        letter-spacing: 1.6px;
+    }
+    .multi-slider-v1 .multi-slider .heading-font-enabled .section-header {
+        font-size: 49px;
+        line-height: 59px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .multi-slider-v1 .heading-font-enabled p {font-size: 18px;}
+    .multi-slider-v1 .multi-title-slider {
+        display: flex;
+        padding: 0;
+        margin: 30px 0;
+    }
+    .multi-slider-v1 .multi-title-slider [class*="slide"] {padding: 0 20px;}
+    .multi-slider-v1 .multi-slider .multi-title-slider > [class*="slide_"] {display: block;}
+    .multi-slider-v1 .multi-title-slider > [class*="slide_"]:not(:nth-child(-n+3)) {display: none;}
+    /* .multi-slider-v1 .multi-title-slider .slick-list {padding-right: 40px;} */
+    .multi-slider-v1 .multi-title-slider .slick-arrow {
+        top: -42px;
+        width: 24px;
+        height: 24px;
+        right: 20px;
+        left: auto;
+    }
+    .multi-slider-v1 .multi-title-slider .slick-prev {background-position: -111px -8px; right: 50px;}
+    .multi-slider-v1 .multi-title-slider .slick-next {background-position: -151px -8px;}
+    .multi-slider-v1 .section-header-sm {
+        font-size: 49px;
+        line-height: 1;
+        letter-spacing: -2.45px;
+    }
+    .multi-slider-v1 .btn {
+        padding: 11.4px 20px;
+        margin-top: 30px;
+    }
+    .multi-slider-v1 .multi-title-slider p {border-bottom: 1px solid transparent;}
+    .multi-slider-v1 .multi-title-slider [class*="slide_"].active p {border-bottom-color: #fff;}
+    .multi-slider-v1 .multi-content-slider .block-content p {font-size: 18px;}
+}
+</style>
+
+<div class="page-width sm-pd-0">
+    <div class="multi-slider multi-slider{{ section.id }} text-center" style="background: #071635;">
+        <div class="heading-section">
+            <span class="subtitle text-uppercase">{{ section.settings.heading }} </span> 
+            <h2 class="section-header">{{ section.settings.sub_heading }} </h2>
+            <p class="description">{{ section.settings.description | newline_to_br }} </p>
+        </div>
+        <div class="multi-title-slider slick-arrows text-center flex-md justify-content_center" id="slider_{{ section.id }}__page-multi-slider">
+          {%- assign titleIndex = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when 'tabs' -%}
+            {%- assign titleIndex = titleIndex | plus: 1 -%}
+            <div class="slide slide_{{ titleIndex  }} {% if titleIndex == 1 %} active {%  endif %}" data-slide="{{ titleIndex  }}">
+                <p class="text-uppercase">{{ block.settings.heading }}</p>
+            </div>
+              {%- endcase -%}
+          {%- endfor -%}
+            
+            
+        </div>
+        <div class="multi-content-slider">
+          {%- assign contentIndex = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when 'tab_slider' -%}
+            {%- assign image = block.settings.image -%}
+            {%- assign contentIndex = contentIndex | plus: 1 -%}
+            <div class="slide_{{ contentIndex  }}">
+                <div class="slide-content flex-md">
+                    <div class="medium-up--one-half block-image  align-right">
+                        <div class="image-wrapper absolute-image-wrapper" style="padding-top:63.33666333666333%;">
+                            {{ image | image_url: width: image.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+                        </div>
+
+                    </div>
+                    <div class="medium-up--one-half block-content small--text-center  medium-up--text-left">
+                        <p>{{ block.settings.description | newline_to_br}}</p>
+                    </div>
+                </div>
+            </div>
+              {%- endcase -%}
+          {%- endfor -%}
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+var numSlick = 0;
+$(".multi-slider{{ section.id }}").each(function () {
+    numSlick++;
+    let $this = $(this),
+        $multiTitleSlider = $(this)
+            .find(".multi-title-slider")
+            .addClass("slider-" + numSlick),
+        $multiContentSlider = $(this)
+            .find(".multi-content-slider")
+            .addClass("slider-" + numSlick),
+        slideNum = $multiTitleSlider.find(".slide").length,
+        slideToShow = parseInt($multiTitleSlider.attr("data-slides"));
+    $multiContentSlider.slick({ slidesToShow: 1, slidesToScroll: 1, dots: !1, arrows: !1, adaptiveHeight: !0, draggable: !1, responsive: [{ breakpoint: 750, settings: { draggable: !0 } }] }),
+        $multiTitleSlider.hasClass("slick-slider") && $multiContentSlider.slick("slickSetOption", "asNavFor", ".multi-title-slider.slider-" + numSlick, !0),
+        $this.parents().hasClass("multi-slider-v1") ||
+            ((slideNum > slideToShow || $(window).width() < 750) &&
+                $multiTitleSlider.slick({
+                    vertical: !1,
+                    slidesToShow: slideToShow,
+                    slidesToScroll: 1,
+                    dots: !1,
+                    arrows: !0,
+                    draggable: !1,
+                    focusOnSelect: !0,
+                    asNavFor: ".multi-content-slider.slider-" + numSlick,
+                    responsive: [{ breakpoint: 750, settings: { slidesToShow: 1 } }],
+                }),
+            $multiTitleSlider.find("div[data-slide]").on("click", function () {
+                $(this).addClass("active").siblings().removeClass("active");
+                var slideno = $(this).data("slide");
+                $multiContentSlider.slick("slickGoTo", slideno - 1);
+            }),
+            $multiContentSlider.on("afterChange", function (event, slick, currentSlide) {
+                var index = currentSlide + 1;
+                $multiTitleSlider.find(".slide").removeClass("active"), $multiTitleSlider.find(".slide.slide_" + index).addClass("active");
+            })),
+        $this.parents().hasClass("multi-slider-v1") &&
+            ((slideNum > slideToShow || ($(window).width() < 750 && slideNum > 2)) &&
+                $multiTitleSlider.slick({
+                    vertical: !1,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: !1,
+                    arrows: !0,
+                    draggable: !1,
+                    focusOnSelect: !0,
+                    variableWidth: !0,
+                    infinite: !0,
+                    asNavFor: ".multi-content-slider.slider-" + numSlick,
+                    responsive: [{ breakpoint: 750, settings: { variableWidth: !0, slidesToShow: 1 } }],
+                }),
+            $multiTitleSlider.find("div[data-slide]").on("click", function () {
+                if (($(this).addClass("active").siblings().removeClass("active"), $multiTitleSlider.hasClass("slick-slider"))) {
+                    var slideno = $(this).data("slick-index");
+                    $multiContentSlider.slick("slickGoTo", slideno);
+                } else {
+                    var slideno = $(this).data("slide");
+                    $multiContentSlider.slick("slickGoTo", slideno - 1);
+                }
+            }),
+            $multiTitleSlider.hasClass("slick-slider")
+                ? $multiContentSlider.on("afterChange", function (event, slick, currentSlide) {
+                      var dataIndex = $(slick.$slides[currentSlide]).data("slick-index");
+                      $multiTitleSlider.slick("slickGoTo", dataIndex), $multiTitleSlider.find(".slide.slick-current").addClass("active").siblings().removeClass("active");
+                  })
+                : $multiContentSlider.on("afterChange", function (event, slick, currentSlide) {
+                      var index = currentSlide + 1;
+                      $multiTitleSlider.find(".slide").removeClass("active"), $multiTitleSlider.find(".slide.slide_" + index).addClass("active");
+                  }));
+})
+</script>
+
+{% schema %}
+  {
+  "name": "Multi Slider Section",
+  "class": "multi-slider-section",
+  "max_blocks": 8,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "DELIBERATELY DIFFERENT NO. 1"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Engagement ring collection"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Tabs",
+      "type": "tabs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "name": "Tab Slider",
+      "type": "tab_slider",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi Slider Section"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

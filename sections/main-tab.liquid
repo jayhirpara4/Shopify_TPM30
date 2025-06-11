@@ -1,0 +1,82 @@
+<section>
+    <div class="container" style="margin-bottom:30px">
+        <div class="row mt-4 cards-container">
+            {% for block in section.blocks %}
+            {% if block.type == "card" %}
+            <div class="col-6 my-3 my-lg-0 mb-0 mb-lg-4 col-lg-3 card-item">
+                <a href="{{ block.settings.link }}" class="cusA d-block">
+                    <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                        <img src="{{ block.settings.image | img_url: 'master' }}" draggable="false" class="img-fluid">
+                        <div class="BlogHead mt-3 mb-2">{{ block.settings.bolgname }}</div>
+                        <div class="BlogDesc">{{ block.settings.bolgdecs }}</div>
+                        <div class="d-flex justify-content-center align-items-center mt-5">
+                            <span class="cusLearn cusTransition">Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- View All Button -->
+        <div class="col-12 d-flex justify-content-center align-items-center mt-4" >
+            <a href="{{ section.settings.view_all_link }}" class="cusA cusOptBtn f-14">View All</a>
+        </div>
+    </div>
+
+</section>
+
+
+
+                                  {% schema %}
+{
+  "name": "main-tab",
+  "settings": [
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link",
+      "default": "/collections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "bolgname",
+          "label": "Card Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "bolgdecs",
+          "label": "Card Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Learn More Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "main-tab",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
+

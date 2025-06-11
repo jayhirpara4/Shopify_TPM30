@@ -1,0 +1,83 @@
+<div id="shopify-section-home-help" class="shopify-section index-section home-help-section">
+    <div class="page-width page-width-1440">
+        <div class="wrapper">
+            <div class=" page-width-sm">
+                <div class="help-content ">
+                    <h2 class="section-header">{{ section.settings.heading }}</h2>
+                    <p class="section-description">
+                        {{ section.settings.description }}
+                    </p>
+                </div>
+                <div class="help-grids">
+                  {%  if section.settings.chat_url  %}
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="{{ section.settings.chat_url }} " class="button-chat"></a>
+                        <p class="help-title">Chat</p>
+                    </div>
+                  {% endif %}
+                  {%  if section.settings.email  %}
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="mailto:{{ section.settings.email }}" class="button-email"></a>
+                        <p class="help-title">Email</p>
+                    </div>
+                  {% endif %}
+                  {%  if section.settings.phone  %}
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="tel:{{ section.settings.phone }}" class="button-call US-contact"></a>
+                        <p class="help-title">Call</p>
+                    </div>
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Help & Support",
+  "class": "supportsection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We're here to help.",
+      "placeholder": "Section heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our expert gemologists are here to help.\nWe’re available seven days a week to guide you on\ndiamonds, gemstones, and jewelry.",
+      "placeholder": "Section Description"
+    },
+    {
+      "type": "url",
+      "id": "chat_url",
+      "label": "Chat url"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help & Support"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,165 @@
+<style>
+.video-with-content .video-wrapper {
+    padding-bottom: 0;
+}
+.video-with-content {
+      background: #071635;
+}
+.video-with-content .content p , .video-with-content h2  {
+    color:#fff;
+}
+.video-with-content .content p {
+    font-size: 18px;
+    line-height: 28px;
+}
+.video-with-content .video-pre-icon {
+    left: auto;
+    bottom: auto;
+    top: 20px;
+    right: 20px;
+}
+.video-with-content .btn-wrapper:not(:empty) {
+    margin-top: 30px;
+}
+@media (min-width: 750px) {
+    .video-with-content .grid__content {
+        padding: 20px 45px;
+    }
+    .video-with-content .video-box.align-right {
+        order: 1;
+    }
+}
+@media (max-width: 749px) {
+    .video-with-content {
+        padding: 0;
+    }
+    .video-with-content .grid__content {
+        width: 100%;
+        padding: 30px 20px 40px;
+    }
+    .video-with-content .content p {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .video-with-content .video-pre-icon {
+        top: 15px;
+        right: 15px;
+    }
+}
+.video-with-content.home-preview {
+    background: #dee9eb;
+}
+.video-with-content.home-preview .section-header {
+    margin-bottom: 10px;
+}
+.video-with-content.home-preview .features li {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+@media (min-width: 750px) {
+    .video-with-content.home-preview .video-box {
+        width: 60%;
+        flex: 0 0 60%;
+    }
+    .video-with-content.home-preview .grid__content {
+        width: 40%;
+        flex: 0 0 40%;
+    }
+}
+@media (max-width: 749px) {
+    .video-with-content.home-preview .content p {
+        font-size: 18px;
+        line-height: 24px;
+        max-width: 330px;
+        margin: 0 auto 20px;
+    }
+    .video-with-content.home-preview .features li {
+        font-size: 17px;
+        line-height: 26px;
+        letter-spacing: normal;
+        margin-bottom: 3px;
+    }
+}
+
+  
+</style>
+{%- assign display_image = section.settings.display_image -%}
+<div class="page-width sm-pd-0">
+    <div class="video-with-content flex flex-wrap align-items_center a-clear-purpose">
+        <div class="video-box medium-up--one-half small--one-whole  align-right"><div class="video-wrapper" style="padding-top:56.25%;">
+                
+                <video playsinline="" preload="none" muted="" id="technologyVideo" data-video-id="technology_video" poster="{{ display_image | image_url: width: display_image.width }}" >
+                    <source src="{{ section.settings.video_url }} " type="video/mp4">Your browser does not support the video tag.
+                </video>
+                <div class="video-pre-icon">
+                    <div class="sprite play-icon" title="Play" id="play" style="display: block;"></div>
+                    <div class="sprite stop-icon" title="Stop" id="stop" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid__content medium-up--one-half small--text-center">         
+                <h2 class="section-header-lg">{{ section.settings.heading }} </h2>        
+                <div class="content"><p>{{ section.settings.description }} </p></div>
+          <div class="btn-wrapper"></div>
+        </div>
+    </div>
+</div>
+ 
+<script>
+  $( document ).ready(function($) {
+    $('.sprite').click(function() {
+      if($(this).hasClass('play-icon')){
+        $('#play').hide();
+        $('#stop').show();
+         $('#technologyVideo').trigger('play');
+      }else{
+        $('#stop').hide();
+        $('#play').show();
+        $('#technologyVideo').trigger('pause');
+      }
+    });
+});
+</script>
+{% schema %}
+  {
+  "name": "Text with video",
+  "class": "video-with-content-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video url"
+    },
+    {
+      "type": "image_picker",
+      "id": "display_image",
+      "label": "Display image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with video"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

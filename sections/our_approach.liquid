@@ -1,0 +1,251 @@
+<section class="mrg_tb">
+    <div class="container">
+
+        <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+            <h2 class="heading" style="padding-bottom: 10px;">{{ section.settings.main_heading }}</h2>
+            <div class="subHeading">{{ section.settings.main_description }}</div>
+        </div>
+
+        <div class="row d-flex justify-content-center h-100">
+
+            <div class="col-md-4 mb-3 mb-md-0 OurApproachHvrMain cusTransition">
+                    <div class="blogHome Customizable cusTransition">
+                        {%- if section.settings.Image_1 != blank -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Customizable"
+                              draggable="false"
+                              class="img-fluid cusTransition"
+                              src="{{ section.settings.Image_1 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Customizable"
+                              draggable="false"
+                              class="img-fluid cusTransition"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Customizable.png?v=1732279236">
+                        {%- endif -%}
+                        <div class="BLogBannerHeading d-flex flex-column justify-content-center align-items-center p-2 p-lg-3 p-xl-4 AUSApprochHvr cusTransition">
+                            <div class="ServIconBG hvrIcon CustomizableIcon">
+                                {%- if section.settings.Image_1_1 != blank -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Customizable icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="{{ section.settings.Image_1_1 | image_url }}">
+                                  {%- else -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Customizable icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Customizable.svg?v=1732279235">
+                                {%- endif -%}
+                            </div>
+                            <h2 class="ivy BLogHomeHead text-white cusTransition mt-3 mb-1">{{ section.settings.heading_1 }}</h2>
+                            <div class="text-center text-white hvrDescription" style="color: {{ section.settings.description_color }}">{{ section.settings.description_1 }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3 mb-md-0 OurApproachHvrMain">
+                    <div class="blogHome Collaborative">
+                        {%- if section.settings.Image_2 != blank -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Collaborative"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.Image_2 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Collaborative"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Collaborative.png?v=1732279238">
+                        {%- endif -%}
+                        <div class="BLogBannerHeading d-flex flex-column justify-content-center align-items-center p-2 p-lg-3 p-xl-4 AUSApprochHvr">
+                            <div class="ServIconBG hvrIcon CollaborativeIcon">
+                                {%- if section.settings.Image_1_2 != blank -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Collaborative icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="{{ section.settings.Image_1_2 | image_url }}">
+                                  {%- else -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Collaborative icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Collaborative.svg?v=1732279234">
+                                {%- endif -%}
+                            </div>
+                            <h2 class="ivy BLogHomeHead text-white mt-3 mb-1">{{ section.settings.heading_2 }}</h2>
+                            <div class="text-center text-white hvrDescription" style="color: {{ section.settings.description_color }}">{{ section.settings.description_2 }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3 mb-md-0 OurApproachHvrMain">
+                    <div class="blogHome Crafted">
+                        {%- if section.settings.Image_3 != blank -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Crafted"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.Image_3 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="800"
+                              height="800"
+                              loading="lazy"
+                              alt="Image of Crafted"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Crafted.png?v=1732279238">
+                        {%- endif -%}   
+                        <div class="BLogBannerHeading d-flex flex-column justify-content-center align-items-center p-2 p-lg-3 p-xl-4 AUSApprochHvr">
+                            <div class="ServIconBG hvrIcon CraftedIcon">
+                                {%- if section.settings.Image_1_3 != blank -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Crafted icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="{{ section.settings.Image_1_3 | image_url }}">
+                                  {%- else -%}
+                                    <img
+                                      width="50"
+                                      height="50"
+                                      loading="lazy"
+                                      alt="Crafted icon"
+                                      draggable="false"
+                                      class="img-fluid"
+                                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Crafted.svg?v=1732279234">
+                                {%- endif -%}
+                            </div>
+                            <h2 class="ivy BLogHomeHead text-white mt-3 mb-1">{{ section.settings.heading_3 }}</h2>
+                            <div class="text-center text-white hvrDescription">{{ section.settings.description_3 }}</div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</section>
+
+ 
+{% schema %}
+  {
+  "name": "Our Approach",
+  "class": "video-with-content-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading 1",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Heading 2",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "text",
+      "id": "heading_3",
+      "label": "Heading 3",
+      "default": "A clear purpose."
+    },
+    {
+      "type": "richtext",
+      "id": "main_description",
+      "label": "Main Description"
+    },
+    {
+      "type": "text",
+      "id": "description_1",
+      "label": "Description 1"
+    },
+    {
+      "type": "text",
+      "id": "description_2",
+      "label": "Description 2"
+    },
+    {
+      "type": "text",
+      "id": "description_3",
+      "label": "Description 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_1_1",
+      "label": "Image 1.1"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_1_2",
+      "label": "Image 1.2"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image_1_3",
+      "label": "Image 1.3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Approach"
+    }
+  ]
+}  
+{% endschema %}

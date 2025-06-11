@@ -1,0 +1,148 @@
+<section class="mrg_tb">
+  <div class="container">
+    {% capture faq_schema_data %}{% endcapture %}
+
+    <div class="accordion accordion-flush" id="accordionFlushFaq-{{ section.id }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq_category' %}
+          <!-- FAQ Category Heading & Subheading -->
+          <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+            <h2 class="heading">{{ block.settings.heading }}</h2>
+            <div class="subHeading">{{ block.settings.subheading }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.type == 'faq' %}
+          <!-- FAQ Questions & Answers -->
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed ivy f-20 cusLspace FAQBtn" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}"
+                aria-expanded="false"
+                aria-controls="flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}">
+                {{ block.settings.question }}
+              </button>
+            </h3>
+            <div id="flush-collapseFAQ-{{ section.id }}-{{ forloop.index }}" 
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFlushFaq-{{ section.id }}">
+              <div class="accordion-body FAQBody">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+
+          {% capture faq_item %}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ block.settings.answer | json }}
+            }
+          }
+          {% endcapture %}
+
+          {% assign faq_schema_data = faq_schema_data | append: faq_item %}
+          {% unless forloop.last %}
+            {% assign faq_schema_data = faq_schema_data | append: "," %}
+          {% endunless %}
+        {% endif %}
+
+        {% if block.type == 'faq_space' %}
+          <!-- Space Block (Dynamically Add Space Between Sections) -->
+          <div style="height: {{ block.settings.space_size }}px;"></div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Inject JSON-LD Schema for SEO -->
+{% if faq_schema_data != "" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{{ faq_schema_data }}]
+  }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Advanced FAQ Section",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "faq_category",
+      "name": "FAQ Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Category Heading",
+          "default": "FAQ Category"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Category Subheading",
+          "default": "Find answers to commonly asked questions."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "FAQ Question",
+          "default": "What is a lab-grown diamond?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "FAQ Answer",
+          "default": "<p>They are real diamonds created in a controlled lab environment...</p>"
+        }
+      ]
+    },
+    {
+      "type": "faq_space",
+      "name": "Space Block",
+      "settings": [
+        {
+          "type": "range",
+          "id": "space_size",
+          "label": "Space Size (px)",
+          "default": 90,
+          "min": 10,
+          "max": 200,
+          "step": 10
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advanced FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_category"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq_space"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

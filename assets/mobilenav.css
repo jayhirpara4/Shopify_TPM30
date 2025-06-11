@@ -1,0 +1,666 @@
+ .site-nav__page-width {
+    display: flex;
+    width: 100%;
+    max-width: 1480px;
+    padding: 0 40px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/*================ Site Nav Links ================*/
+.site-nav__link--button:focus,
+.site-nav__link--button:hover {
+    color: var(--color-text-focus);
+}
+
+/*================ Dropdowns ================*/
+.site-nav--has-dropdown {
+    position: relative;
+}
+.site-nav--has-dropdown:hover .site-nav__dropdown,
+.site-nav--active-dropdown .site-nav__dropdown {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+.site-nav--has-centered-dropdown {
+    position: static;
+}
+.site-nav__dropdown {
+    position: absolute;
+    min-height: 450px;
+    padding: 30px 0 63px;
+    margin: 0;
+    z-index: 999;
+    text-align: left;
+    background: var(--color-bg);
+    left: 0;
+    right: 0;
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    transition: all 0.5s;
+}
+.site-nav__dropdown .site-nav__link {
+    font-size: 14px;
+    color: var(--color-text);
+    letter-spacing: 0.28px;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    position: relative;
+}
+
+/*===== Common CSS =====*/
+.site-nav__menu-container {
+    /* display: flex; */
+    width: auto;
+    /* flex: 0 0 auto; */
+}
+.site-nav__menu-container > .site-nav__childlist {
+    padding-right: 30px;
+}
+.site-nav__banner-wrapper {
+    width: 280px;
+    padding-top: 43px;
+}
+/* .site-nav__dropdown .site-nav__childlist {width: 100%;} */
+.site-nav__childlist-grid .site-nav__childlist-item {
+    width: auto;
+    flex: 0 0 auto;
+}
+/* .diamonds .site-nav__childlist-grid .site-nav__childlist-item {
+  width: calc(100% / 3);
+  flex: 0 0 calc(100% / 3);
+} */
+.about-us .site-nav__childlist-grid .site-nav__childlist-item {
+    width: 50%;
+    flex: 0 0 50%;
+}
+.fine-jewelry .site-nav__childlist-grid .site-nav__childlist-item {
+    width: auto;
+    flex: 1 1 auto;
+}
+/* .site-nav__dropdown .natural-diamond ul, 
+.site-nav__dropdown .lab-diamonds ul {
+  column-count: 2;
+} */
+/* .site-nav__dropdown .natural-diamond li, 
+.site-nav__dropdown .lab-diamonds li {
+  display: inline-block;
+  width: 100%;
+} */
+.education .site-nav__childlist-item.gemstone-educations {
+    width: 100%;
+    flex: 0 0 100%;
+}
+.site-nav .site-nav__megamenu-title,
+.site-nav .site-nav__megamenu-title a {
+    /* font-family: var(--font-stack-body); */
+    color: var(--color-text);
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 2.38px;
+}
+#SiteNavLabel-high-jewelry .site-nav__megamenu-title {
+    display: none;
+}
+.site-nav .site-nav__megamenu-title {
+    margin-bottom: 18px;
+}
+.site-nav .site-nav__megamenu-title a {
+    padding: 0;
+}
+.site-nav .site-nav__megamenu-title a:hover {
+    color: var(--color-body-text);
+    opacity: 0.6;
+}
+.site-nav__menu-list:not(:last-child) .site-nav__childlist {
+    width: auto;
+    border-right: 1px solid #707070;
+    margin-right: 22px;
+}
+.site-nav__dropdown .site-nav__childlist-item {
+    /* padding-right: 22px;
+  margin-bottom: 20px; */
+    position: relative;
+}
+.site-nav__dropdown .site-nav__child-link--parent,
+.site-nav__dropdown .engagement-rings .site-nav__link.new-arrivals,
+.site-nav__dropdown .engagement-rings .site-nav__link.luxe-collection,
+.site-nav__dropdown .engagement-rings .site-nav__link.best-sellers,
+.site-nav__dropdown .engagement-rings .site-nav__link.custom-rings,
+.site-nav__dropdown .engagement-rings .site-nav__link.home-preview,
+.site-nav__dropdown .engagement-rings .site-nav__link.ready-to-ship {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 1.62px;
+    padding: 0 0 2px 0;
+}
+.site-nav__dropdown .fine-jewelry .site-nav__link.gemstone-jewelry {
+    font-size: 14px;
+    letter-spacing: 0.28px;
+    text-transform: uppercase;
+
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 1.62px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid;
+    margin-top: 15px;
+}
+.site-nav__dropdown .site-nav__child-link--parent {
+    margin-bottom: 15px;
+}
+/* .site-nav__dropdown .site-nav__link.shop-all { */
+.site-nav__dropdown .site-nav__link[class*="shop-all"] {
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 0 0;
+}
+.site-nav__dropdown .engagement-rings .site-nav__link.new-arrivals,
+.site-nav__dropdown .engagement-rings .site-nav__link.luxe-collection,
+.site-nav__dropdown .engagement-rings .site-nav__link.best-sellers,
+.site-nav__dropdown .engagement-rings .site-nav__link.custom-rings,
+.site-nav__dropdown .engagement-rings .site-nav__link.home-preview,
+.site-nav__dropdown .engagement-rings .site-nav__link.ready-to-ship {
+    margin-top: 15px;
+}
+.site-nav__dropdown .site-nav__link.new-arrivals::before,
+.site-nav__dropdown .site-nav__link.luxe-collection::before,
+.site-nav__dropdown .site-nav__link.best-sellers:before,
+.site-nav__dropdown .site-nav__link.shop-all::before,
+.site-nav__dropdown .site-nav__link.custom-rings::before,
+.site-nav__dropdown .site-nav__link.home-preview::before,
+.site-nav__dropdown .site-nav__link.ready-to-ship::before {
+    display: none;
+}
+.site-nav__dropdown a[href="#"] {
+    cursor: default;
+}
+.site-nav__menu-container .site-nav__childlist .site-nav__child-link--parent {
+    /* text-decoration: underline 1px; */
+    display: inline-block;
+    border-bottom: 1px solid;
+}
+.site-nav__menu-container .site-nav__childlist .site-nav__child-link--parent:not([href="#"]):hover {
+    opacity: 0.6;
+}
+.site-nav__menu-container > .site-nav__childlist .site-nav__childlist-item:not(:last-child) {
+    padding-right: 60px;
+}
+.site-nav__childlist-grid > .site-nav__childlist-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    height: 100%;
+    border-right: 1px solid var(--color-text);
+}
+.site-nav__menu-list:not(:last-child) .site-nav__childlist,
+.diamonds .site-nav__menu-list:not(:last-child),
+.wedding-bands .site-nav__menu-list:not(:last-child) {
+    margin-right: 50px;
+}
+
+/*===== Menu Banner =====*/
+.site-nav__banner-wrapper a {
+    display: block;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+.site-nav__banner-wrapper .banner-content {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    width: 100%;
+    padding: 30px 20px;
+}
+.site-nav__banner-wrapper img {
+    display: block;
+    transition: all 0.5s;
+}
+.site-nav__banner-wrapper .banner-content > * {
+    color: #fff;
+    text-shadow: 2px 2px 3px #00000033;
+}
+.site-nav__banner-wrapper h3 {
+    font-family: var(--font-stack-body);
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 1.94px;
+}
+.site-nav__banner-wrapper p {
+    font-size: 15px;
+    letter-spacing: 1.22px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.site-nav__banner-wrapper .link-label {
+    font-size: 8px;
+    letter-spacing: 0.75px;
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 2px solid;
+}
+/* .site-nav__banner-wrapper a:hover img {transform: scale(1.1);} */
+.site-nav__banner-wrapper .flex a {
+    width: 100%;
+    flex: 1 1 auto;
+}
+.site-nav__banner-wrapper .site-nav__banner-btn {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 1.13px;
+    border-bottom: 1px solid;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+/*===== Engagement Rings =====*/
+#SiteNavLabel-engagement-rings .site-nav__childlist-grid .site-nav__childlist-item {
+    width: auto;
+    flex: 0 0 auto;
+}
+#SiteNavLabel-engagement-rings .site-nav__childlist-grid > .site-nav__childlist-item:after {
+    display: none;
+}
+.site-nav__menu-container > .site-nav__menu-list {
+    width: auto;
+    flex: 0 0 auto;
+}
+.engagement-rings .site-nav__menu-list:not(:last-child) .site-nav__childlist {
+    margin-right: 30px;
+}
+.engagement-rings .site-nav__childlist-item {
+    padding-right: 30px;
+}
+
+/*===== Diamonds =====*/
+.site-nav__menu-container .diamonds {
+    padding-right: 50px;
+}
+/* .diamonds .site-nav__menu-list, 
+.wedding-bands .site-nav__menu-list {padding-right: 20px;} */
+.diamonds .site-nav__menu-list:not(:last-child),
+.wedding-bands .site-nav__menu-list:not(:last-child) {
+    border-right: 1px solid var(--color-text);
+}
+.diamonds .site-nav__menu-list .site-nav__childlist,
+.wedding-bands .site-nav__menu-list .site-nav__childlist {
+    border-right: none;
+}
+.diamonds .site-nav__childlist-item {
+    width: auto;
+    flex: 0 0 auto;
+}
+.diamonds .site-nav__menu-container > .site-nav__childlist .site-nav__childlist-item:not(:last-child),
+.wedding-bands .site-nav__menu-container > .site-nav__childlist,
+.wedding-bands .site-nav__menu-container > .site-nav__childlist .site-nav__childlist-item:not(:last-child) {
+    padding-right: 50px;
+}
+.diamonds .lab-diamonds .site-nav__child-link--parent,
+.wedding-bands .site-nav__childlist-item .site-nav__child-link--parent {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+/* .diamonds .site-nav__child-link--parent, 
+.wedding-bands .site-nav__child-link--parent, 
+.about-us .site-nav__childlist .site-nav__child-link--parent {text-decoration: underline 1px;} */
+.diamonds .site-nav__menu-list .site-nav__childlist:not(:last-of-type) {
+    margin-bottom: 25px;
+}
+.lab-diamonds .site-nav__childlist-item ul li:last-child {
+    column-span: all;
+}
+.lab-diamonds .shape ul {
+    column-count: 2;
+    column-gap: 30px;
+}
+.lab-diamonds .site-nav__child-link--parent,
+.womens-bands .site-nav__child-link--parent,
+.mens-bands .site-nav__child-link--parent {
+    text-decoration: none;
+}
+
+/*===== Luxe =====*/
+.site-nav__dropdown .luxe .site-nav__banner-wrapper {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 1320px;
+    padding-top: 0;
+}
+.site-nav__dropdown .luxe .banner-content {
+    padding: 15px 25px;
+}
+.site-nav__dropdown .luxe .banner-content .sub-title {
+    font-size: 18px;
+    letter-spacing: 1.44px;
+    font-weight: 600;
+}
+.site-nav__dropdown .luxe .banner-content h3 {
+    font-family: var(--font-stack-header);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-style: italic;
+    letter-spacing: -1.7px;
+}
+@media (min-width: 750px) {
+    .site-nav__dropdown .luxe .grid {
+        margin-left: -30px;
+    }
+    .site-nav__dropdown .luxe .grid__item {
+        padding-left: 30px;
+    }
+}
+
+/*===== Collections =====*/
+.collections .site-nav__banner-wrapper {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 1415px;
+    padding-top: 0;
+}
+.collections .site-nav__menu-container {
+    padding-right: 4%;
+}
+.collections .site-nav__menu-list > ul .site-nav__child-link--parent {
+    border-bottom: 0;
+}
+.collections .site-nav__banner-wrapper h3 {
+    font-family: var(--font-stack-header);
+    text-shadow: none;
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-block;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.44px;
+    transition: all 0.4s;
+}
+.collections .site-nav__banner-wrapper h3:after {
+    content: "";
+    display: block;
+    width: 0;
+    border-top: 1px solid #fff;
+    transition: all 0.4s ease-in-out;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.collections .site-nav__banner-wrapper a:hover h3 {
+    font-style: italic;
+}
+.collections .site-nav__banner-wrapper a:hover h3::after {
+    width: 100%;
+}
+.collections .site-nav__banner-wrapper .banner-content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+.collections .site-nav__banner-wrapper .banner-content::before {
+    content: "";
+    display: block;
+    background: rgba(5, 5, 5, 0.4);
+    opacity: 1;
+    transition: all 0.3s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+.collections .site-nav__banner-wrapper .banner-content:hover::before {
+    opacity: 0;
+    /* transform: scale(0.4); */
+}
+@media (min-width: 750px) {
+    .collections .site-nav__banner-wrapper .grid,
+    .luxe .site-nav__banner-wrapper .grid {
+        margin-left: -13px;
+    }
+    .collections .site-nav__banner-wrapper .grid__item,
+    .luxe .site-nav__banner-wrapper .grid__item {
+        padding-left: 13px;
+    }
+}
+
+/*===== Wedding bands =====*/
+.wedding-bands .style .site-nav__child-link {
+    padding-left: 0;
+}
+.wedding-bands .site-nav__link::before {
+    display: none;
+}
+
+/*===== About us =====*/
+.about-us .site-nav__menu-list .site-nav__childlist {
+    padding-left: 30px;
+    margin-left: 30px;
+    border-left: 1px solid var(--color-text);
+}
+.about-us .site-nav__menu-list > ul .site-nav__child-link--parent {
+    border-bottom: 0;
+    margin-bottom: 8px;
+}
+
+/*===== Child link icons =====*/
+.create-your-engagement-ring .site-nav__child-link,
+.design-your-own-engagement-ring .site-nav__child-link {
+    padding-left: 30px;
+}
+.style .site-nav__child-link {
+    padding-left: 38px;
+}
+.shape .site-nav__child-link {
+    padding-left: 23px;
+}
+.create-your-engagement-ring .site-nav__child-link::before,
+.style .site-nav__child-link::before,
+.shape .site-nav__child-link::before,
+.mobile-nav .lab-diamonds .site-nav__child-link::before,
+.design-your-own-engagement-ring .site-nav__child-link::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.create-your-engagement-ring .site-nav__child-link::before,
+.design-your-own-engagement-ring .site-nav__child-link::before {
+    height: 20px;
+}
+.style .site-nav__child-link::before {
+    width: 30px;
+}
+.shape .site-nav__child-link::before,
+.mobile-nav .lab-diamonds .site-nav__child-link::before {
+    width: 15px;
+    background-size: contain;
+}
+.create-your-engagement-ring .start-with-a-setting::before,
+.design-your-own-engagement-ring .start-with-a-setting::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/create-ring-icon_setting.svg?v=1717041318");
+}
+.create-your-engagement-ring .start-with-a-natural-diamond::before,
+.design-your-own-engagement-ring .start-with-a-diamond::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/create-ring-icon_natural-diamonds.svg?v=1717041347");
+}
+.create-your-engagement-ring .start-with-a-lab-diamond::before,
+.design-your-own-engagement-ring .start-with-a-lab-diamond::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/create-ring-icon_lab-diamond.svg?v=1717041374");
+}
+.create-your-engagement-ring .start-with-a-featured-deal-diamond::before,
+.design-your-own-engagement-ring .start-with-a-featured-deal-diamond::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/create-ring-icon_featured-deal.svg?v=1717041400");
+}
+/* Style */
+.style .solitaire::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_solitaire.svg?v=1717041426");
+}
+.style .halo::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_halo.svg?v=1717041454");
+}
+.style .vintage::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_vintage.svg?v=1717041480");
+}
+.style .side-stone::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_side-stone.svg?v=1717041504");
+}
+.style .three-stone::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_three-stone.svg?v=1717041528");
+}
+.style .pave::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_pave.svg?v=1717041554");
+}
+.style .hidden-halo::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_hidden-halo.svg?v=1717041580");
+}
+.style .something-blue::before {
+    background-image: url("");
+}
+.style .luxe::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_luxe.svg?v=1717041607");
+}
+.style .the-reserve::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_the-reserve.svg?v=1717041648");
+}
+.site-nav__link.fancy-color-diamonds::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_fancy-color-diamond.svg?v=1717041672");
+}
+.site-nav__link.toi-et-moi::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_toi-et-moi.svg?v=1717041706");
+}
+/* Shape */
+.site-nav__link.round::before,
+.mobile-nav .lab-diamonds .site-nav__link.round::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Round_Cropped.png?v=1719595305");
+}
+.site-nav__link.princess::before,
+.mobile-nav .lab-diamonds .site-nav__link.princess::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Princess_1896719f-59b4-49a1-a247-5c7bffa14c01.png?v=1719595372");
+}
+.site-nav__link.oval::before,
+.mobile-nav .lab-diamonds .site-nav__link.oval::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Oval_7955b8e4-84fc-4edb-8810-4114e976fd70.png?v=1719595425");
+}
+.site-nav__link.cushion::before,
+.mobile-nav .lab-diamonds .site-nav__link.cushion::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Cushion_4d933acf-e41d-4975-ab19-61891b304ca6.png?v=1719595521");
+}
+.site-nav__link.emerald::before,
+.mobile-nav .lab-diamonds .site-nav__link.emerald::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Emerald-1.png?v=1719595492");
+}
+.site-nav__link.pear::before,
+.mobile-nav .lab-diamonds .site-nav__link.pear::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Pear_58db4ba9-f678-4cab-934b-a86c197ec9d6.png?v=1719595417");
+}
+.site-nav__link.asscher::before,
+.mobile-nav .lab-diamonds .site-nav__link.asscher::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Asscher_66163ac4-91c9-4bbc-bb17-0a979c79cabd.png?v=1719595524");
+}
+.site-nav__link.marquise::before,
+.mobile-nav .lab-diamonds .site-nav__link.marquise::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Marquese.png?v=1719595454");
+}
+.site-nav__link.radiant::before,
+.mobile-nav .lab-diamonds .site-nav__link.radiant::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Radiant_dddd619f-8dc5-4154-bef3-a63802da1564.png?v=1719595347");
+}
+.site-nav__link.heart::before,
+.mobile-nav .lab-diamonds .site-nav__link.heart::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Heart-1.png?v=1719595485");
+}
+.site-nav__link.portuguese::before,
+.mobile-nav .lab-diamonds .site-nav__link.portuguese::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Portuguese-1.png?v=1719595396");
+}
+.site-nav__link.Long_Cushion::before,
+.mobile-nav .lab-diamonds .site-nav__link.Long_Cushion::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Long_Cushion.png?v=1719595458");
+}
+.site-nav__link.Antique_Cuts::before,
+.mobile-nav .lab-diamonds .site-nav__link.Antique_Cuts::before {
+    background-image: url("https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Antique_Cuts.png?v=1719595561");
+}
+.site-nav--has-dropdown.luxe .site-nav__megamenu-title {
+    display: none;
+}
+@media (min-width: 750px) {
+}
+@media screen and (max-width: 1381px) and (min-width: 1200px) {
+    .site-nav__page-width {
+        padding: 0 10px;
+    }
+    .site-nav .site-nav__megamenu-title,
+    .site-nav .site-nav__megamenu-title a {
+        font-size: 20px;
+    }
+    .site-nav__dropdown .site-nav__link {
+        font-size: 13px;
+        letter-spacing: 0;
+    }
+    .site-nav__dropdown .site-nav__child-link--parent,
+    .site-nav__dropdown .engagement-rings .site-nav__link.custom-rings,
+    .site-nav__dropdown .engagement-rings .site-nav__link.home-preview {
+        font-size: 14px;
+    }
+    /* .site-nav__menu-container {width: calc(100% - 280px);} */
+}
+@media (min-width: 1440px) {
+    .site-nav__page-width {
+        max-width: 1440px;
+        padding: 0;
+    }
+    .site-nav__menu-list:not(:last-child) .site-nav__childlist,
+    .diamonds .site-nav__menu-list:not(:last-child),
+    .wedding-bands .site-nav__menu-list:not(:last-child) {
+        margin-right: 50px;
+    }
+    /* .site-nav__dropdown .site-nav__childlist-item, 
+  .diamonds .site-nav__menu-list, 
+  .wedding-bands .site-nav__menu-list {padding-right: 50px;} */
+}
+@media (max-width: 1440px) {
+    .site-nav .site-nav__link--main {
+        letter-spacing: 0.6px;
+        padding: 10px 14px;
+    }
+    .site-nav__banner-wrapper {
+        width: 260px;
+        flex: 0 0 260px;
+    }
+    .engagement-rings .site-nav__menu-list:not(:last-child) .site-nav__childlist {
+        margin-right: 20px;
+    }
+    .engagement-rings .site-nav__childlist-item {
+        padding-right: 20px;
+    }
+}
+@media (max-width: 1280px) {
+    .site-nav__banner-wrapper {
+        width: 230px;
+        flex: 0 0 230px;
+    }
+}

@@ -1,0 +1,114 @@
+<style>
+.page-navigation  li {
+    list-style: none;
+    display: inline-block;
+  }
+.page-navigation .list--inline {
+    padding: 0;
+    margin: 0
+  }
+.page-navigation .list--inline > li {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle
+  }
+.page-navigation li a {
+    padding: 20px 15px;
+    display: block;
+    font-size: 18px;
+    font-family: var(--font-stack-header);
+    color: var(--color-text);
+    text-transform: uppercase;
+}
+@media (min-width: 750px) {
+    .page-navigation ul {
+        border-bottom: 2px solid #f3f1f0;
+    }
+}
+@media (max-width: 749px) {
+    .page-navigation li {
+        border: 2px solid;
+    }
+    .page-navigation li.active {
+        order: 1;
+        cursor: pointer;
+        position: relative;
+    }
+    .page-navigation li.active:after {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 100%;
+        background: var(--svg-select-icon) no-repeat;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all 0.3s;
+    }
+    .page-navigation li.active.open-nav:after {
+        transform: rotateX(-180deg);
+    }
+    .page-navigation li.active a {
+        pointer-events: none;
+    }
+    .page-navigation li:not(.active) {
+        order: 2;
+        display: none;
+        border-top: transparent;
+    }
+    .page-navigation li a {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
+
+</style>
+{%- assign page_navigation = section.settings.page_navigation.links -%}
+<div class="page-width">
+    <div class="page-navigation in-the-news">
+        <ul class="flex flex-wrap medium-up--text-center">
+          {%- for link in page_navigation -%}
+            <li class="small--one-whole medium-up--one-quarter active">
+                <a href="{{ link.url }}" data-uw-rm-brl="PR" data-uw-original-href="{{ link.url }}">
+                    <span>{{ link.title  }}</span>
+                </a>
+            </li>
+          {%- endfor -%}
+
+        </ul>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Page navigation",
+  "class": "page-navigation-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We love happy customers"
+    },
+    {
+      "type": "link_list",
+      "id": "page_navigation",
+      "label": "Page navigation"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page navigation"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

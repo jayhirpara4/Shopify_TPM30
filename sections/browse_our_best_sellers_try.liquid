@@ -1,0 +1,224 @@
+<section class="mrg_t">
+  <div class="container">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <h2 class="heading">{{ section.settings.heading }}</h2>
+      <div class="subHeading">{{ section.settings.description }}</div>
+    </div>
+
+    <div class="">
+      <div class="product-filter d-flex justify-content-start justify-content-xl-center align-items-center mt-4 mb-2 cusOverflowX">
+        <button class="filter-btn active cusA cusOptBtn f-14 ms-0 cusOptBtnActive" data-filter="new-arrivals">
+          Explore New Arrivals
+        </button>
+        <button class="filter-btn cusA cusOptBtn f-14" data-filter="engagement-rings">Shop Engagement Rings</button>
+        {% comment %} <button class="filter-btn cusA cusOptBtn f-14" data-filter="lab-grown-diamonds">Lab-Grown Diamonds</button> {% endcomment %}
+        <button class="filter-btn cusA cusOptBtn f-14" data-filter="fashion-rings">See Fashion Rings Collection</button>
+        <button class="filter-btn cusA cusOptBtn f-14" data-filter="tennis-bracelets">Discover Tennis Bracelets</button>
+        <button class="filter-btn cusA cusOptBtn f-14 me-0" data-filter="best-selling-products">
+          Best Selling Products
+        </button>
+      </div>
+    </div>
+
+    <div class="row product-list">
+      <!-- New Arrivals Products -->
+
+      <div class="product-group" id="new-arrivals">
+        <div class="product-item-new row">
+          {% for product in collections['new-arrivals'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a
+                href="{{ product.url }}/"
+                class="cusA d-flex flex-column justify-content-center align-items-center scalHvr"
+              >
+                <img
+                  src="{{ product.featured_image | img_url: 'medium' }}"
+                  alt="{{ product.title }}"
+                  draggable="false"
+                  class="img-fluid w-100"
+                >
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Engagement Rings Products -->
+      <div class="product-group" id="engagement-rings" style="display:none;">
+        <div class="product-item-new row">
+          {% for product in collections['engagement-rings'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a
+                href="{{ product.url }}/"
+                class="cusA d-flex flex-column justify-content-center align-items-center scalHvr"
+              >
+                <img
+                  src="{{ product.featured_image | img_url: 'medium' }}"
+                  alt="{{ product.title }}"
+                  draggable="false"
+                  class="img-fluid w-100"
+                >
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% comment %}
+        <!-- Lab-Grown Diamonds Products -->
+        <div class="product-group" id="lab-grown-diamonds" style="display:none;">
+          <div class="product-item-new row">
+          {% for product in collections['lab-grown-diamonds'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a href="{{ product.url }}" class="cusA d-flex flex-column justify-content-center align-items-center scalHvr">
+                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" draggable="false" class="img-fluid w-100">
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      {% endcomment %}
+
+      <!-- Fashion Rings Products -->
+      <div class="product-group" id="fashion-rings" style="display:none;">
+        <div class="product-item-new row">
+          {% for product in collections['fashion-rings'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a
+                href="{{ product.url }}/"
+                class="cusA d-flex flex-column justify-content-center align-items-center scalHvr"
+              >
+                <img
+                  src="{{ product.featured_image | img_url: 'medium' }}"
+                  alt="{{ product.title }}"
+                  draggable="false"
+                  class="img-fluid w-100"
+                >
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Tennis Bracelets Products -->
+      <div class="product-group" id="tennis-bracelets" style="display:none;">
+        <div class="product-item-new row">
+          {% for product in collections['tennis-bracelets'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a
+                href="{{ product.url }}/"
+                class="cusA d-flex flex-column justify-content-center align-items-center scalHvr"
+              >
+                <img
+                  src="{{ product.featured_image | img_url: 'medium' }}"
+                  alt="{{ product.title }}"
+                  draggable="false"
+                  class="img-fluid w-100"
+                >
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Ready-to-Ship Products -->
+      <div class="product-group" id="best-selling-products" style="display:none;">
+        <div class="product-item-new row">
+          {% for product in collections['best-selling-products'].products limit: 4 %}
+            <div class="col-6 col-lg-3 my-3 my-lg-0">
+              <a
+                href="{{ product.url }}/"
+                class="cusA d-flex flex-column justify-content-center align-items-center scalHvr"
+              >
+                <img
+                  src="{{ product.featured_image | img_url: 'medium' }}"
+                  alt="{{ product.title }}"
+                  draggable="false"
+                  class="img-fluid w-100"
+                >
+                <div class="productName mt-3">{{ product.title }}</div>
+                <div class="productPrice f-14">from {{ product.price | money }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- View All Button -->
+
+      <div class="view-all col-12 d-flex justify-content-center align-items-center mt-3">
+        <a id="view-all-link" href="{{ collections['new-arrivals'].url }}/" class="cusA cusOptBtn f-14">Explore the Full Collection</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript: Toggle Products and Update View All Link -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const productGroups = document.querySelectorAll('.product-group');
+      const viewAllLink = document.getElementById('view-all-link');
+
+      // Add click event listener to filter buttons
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove('cusOptBtnActive'));
+          // Add active class to clicked button
+          this.classList.add('cusOptBtnActive');
+
+          // Hide all product groups
+          productGroups.forEach((group) => (group.style.display = 'none'));
+
+          // Show the selected product group
+          const filter = this.getAttribute('data-filter');
+          const selectedProductGroup = document.getElementById(filter);
+
+          if (selectedProductGroup) {
+            selectedProductGroup.style.display = 'block'; // Make sure it shows as block
+          }
+
+          // Update View All link dynamically
+          viewAllLink.href = `/collections/${filter}/`;
+        });
+      });
+    });
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Browse Our Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Browse Our Best Sellers"
+    },
+    {
+      "type": "html",
+      "id": "description",
+      "label": "Description",
+      "default": "Explore our stunning assortment of sustainable and ethical engagement rings, wedding sets and bands, fashion rings, and elegant bridal jewelry."
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Browse Our Best Sellers"
+    }
+  ]
+}
+{% endschema %}

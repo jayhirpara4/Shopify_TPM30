@@ -1,0 +1,122 @@
+<section>
+  <div class="bgBanner">
+    <div class="container sub-container hero-container">
+      <div class="row">
+        <div class="col-lg-8 col-xl-6 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
+          <div class="banerTxtitalic f-24 cusTextCenStart">{{ section.settings.sub_heading }}</div>
+          <h1 class="custom-font cusH1 mt-1 mt-lg-2 cusTextCenStart">{{ section.settings.heading }}</h1>
+
+          <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center mt-5">
+            <a href="{{ section.settings.button_url_1 }}">
+              <div class="cusBtnOneHero">{{ section.settings.button_text_1 }}</div>
+            </a>
+            <a href="{{ section.settings.button_url_2 }}">
+              <div class="cusBtnTwoHero ms-md-3 mt-3 mt-md-0">{{ section.settings.button_text_2 }}</div>
+            </a>
+          </div>
+          <!-- NEW BLOCK START -->
+          <div class="info-icons p-3 mt-5 w-100 rounded">
+            <div class="row text-center text-md-start">
+              <div class="col-12 col-md-4 mb-3 mb-md-0 info-block">
+                <div class="icon-wrapper">
+                  <img
+                    loading="lazy"
+                    alt="Simple line art of a sprouting plant with two leaves and a rounded base, symbolizing growth and nature."
+                    draggable="false"
+                    class="img-fluid-hero"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/simple-line-art-sprouting-plant-two-leaves-rounded-base-symbolizing-growth-nature.svg?v=1747742795"
+                  >
+                </div>
+                <div class="info-title">Sustainable</div>
+                <div class="info-desc">“Lab-grown, eco-friendly”</div>
+              </div>
+              <div class="col-12 col-md-4 mb-3 mb-md-0 info-block">
+                <div class="icon-wrapper">
+                  <img
+                    loading="lazy"
+                    alt="A simple line drawing of a hand holding a heart, symbolizing care, support, and compassion."
+                    draggable="false"
+                    class="img-fluid-hero"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/simple-line-drawing-hand-holding-heart-symbolizing-care-support-compassion.svg?v=1747742831"
+                  >
+                </div>
+                <div class="info-title">Ethical</div>
+                <div class="info-desc">“Conflict-free, fair labor”</div>
+              </div>
+              <div class="col-12 col-md-4 info-block">
+                <div class="icon-wrapper">
+                  <img
+                    loading="lazy"
+                    alt="A simple blue outlined diamond shape with geometric facets, symbolizing luxury or value.   "
+                    draggable="false"
+                    class="img-fluid-hero"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/simple-blue-outlined-diamond-shape-geometric-facets-symbolizing-luxury-value.svg?v=1747742742"
+                  >
+                </div>
+                <div class="info-title">Affordable</div>
+                <div class="info-desc">“20-40% less than mined”</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW BLOCK END -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "First Home",
+  "settings": [
+    {
+      "type": "html",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Discover the Beauty of"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lab-Grown Diamonds & <br> Custom Engagement Rings"
+    },
+    {
+      "type": "text",
+      "id": "button_text_1",
+      "label": "Button Text 1",
+      "default": "Shop Lab Grown Diamonds"
+    },
+    {
+      "type": "url",
+      "id": "button_url_1",
+      "label": "Button URL 1"
+    },
+    {
+      "type": "text",
+      "id": "button_text_2",
+      "label": "Button Text 2",
+      "default": "Shop Engagement Rings"
+    },
+    {
+      "type": "url",
+      "id": "button_url_2",
+      "label": "Button URL 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "First_Home_Image",
+      "label": "First_Home_Image",
+      "info": "400 x 120px .png recommended"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "First Home"
+    }
+  ]
+}
+{% endschema %}

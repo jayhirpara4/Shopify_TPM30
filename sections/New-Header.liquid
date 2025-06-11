@@ -1,0 +1,3063 @@
+{% comment %} <link rel="stylesheet" href="{{ 'newheader.aio.min.css' | asset_url }}">
+<div
+  id="SearchDrawer"
+  class="search-bar drawers drawer--top critical-hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search"
+  data-predictive-search-drawer
+>
+  <div class="search-bar__interior">
+    <div class="search-form__container" data-search-form-container>
+      {% render 'predictive-search', context: 'header' %}
+
+      <div class="search-bar__actions">
+        <button type="button" class="btn--link search-bar__close js-drawer-close">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+            <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+            class="layer" />
+          </svg>
+          <span class="icon__fallback-text">Close search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+              
+<div data-section-id="header" data-section-type="header-section" data-header-section>
+  <header class="site-header logo--center" role="banner">
+    <div class="page-width sm-pd-0">
+      <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+        <div class="grid__item medium-up--one-third grid__left">
+          <div class="header-icons-wrapper_left">
+            <div class="site-header__icons-wrapper flex icons-left">
+              <button
+                type="button"
+                class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open"
+                aria-controls="MobileNav"
+                aria-expanded="false"
+                aria-label="Menu"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 50 50"
+                  class="icon icon--full-color icon-hamburger"
+                >
+                  <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"
+                  />
+                </svg>
+
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  role="presentation"
+                  class="icon icon-close"
+                  viewBox="0 0 40 40"
+                >
+                  <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+                  class="layer" />
+                </svg>
+              </button>
+            </div>
+            
+            {% if section.settings.enable_currency != 'No' %}
+              <div class="country-selector desk_country-selector">
+                <localization-form>
+                  {%- form 'localization',
+                    id: 'localization_form',
+                    class: 'shopify-localization-form multi-selectors',
+                    data-disclosure-form: ''
+                  -%}
+                    <div class="disclosure" data-disclosure-currency>
+                      <button
+                        type="button"
+                        class="disclosure__button"
+                        aria-expanded="false"
+                        aria-controls="CountryList"
+                        aria-describedby="CurrencyHeading-{{ location }}"
+                        data-disclosure-toggle
+                      >
+                        <span
+                          class="currency-flag currency-flag--{{ localization.country.iso_code | downcase }}"
+                          data-flag="{{ localization.country.currency.iso_code }}"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="">
+                          {{ localization.country.currency.iso_code }}
+                        </span>
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          role="presentation"
+                          class="icon icon-caret"
+                          viewBox="0 0 10 6"
+                        >
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                        </svg>
+                      </button>
+                      <ul id="CountryList" class="disclosure-list" hidden>
+                       {%- for country in form.available_countries-%}
+                          <li class="disclosure__item{% if country.iso_code == localization.country.iso_code %} disclosure-list__item--current{% endif %}">
+                            <a
+                              href="#"
+                              {% if country.iso_code == localization.country.iso_code %}
+                                aria-current="true"
+                              {% endif %}
+                              data-value="{{ country.iso_code }}"
+                              data-disclosure-option
+                            >
+                              <span
+                                class="currency-flag currency-flag--{{ country.iso_code | downcase }}"
+                                data-flag="{{ country.currency.iso_code }}"
+                                aria-hidden="true"
+                              ></span>
+                              <span class="">
+                                {{ country.currency.iso_code }}
+                              </span>
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                      <input
+                        type="hidden"
+                        name="country_code"
+                        value="{{ localization.country.iso_code }}"
+                        data-disclosure-input
+                      >
+                    </div>
+                  {%- endform -%}
+                </localization-form>
+              </div>
+            {% endif %}
+          
+
+            <a
+              href="/pages/book-an-appointment"
+              class="inline-flex align-items_center site-header__icon site-header__book-appointment"
+            >
+              <svg
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                class="icon-book-appointment"
+                viewBox="0 0 23.4 23.3"
+                style="enable-background:new 0 0 23.4 23.3;"
+                xml:space="preserve"
+              >
+                                                  <g>
+                                                      <path d="M18.8,17.2c-0.6,0-1.2,0-1.7,0c-0.1,0-0.2,0-0.3,0c0-0.1,0-0.2,0-0.3c0-0.9,0-1.9,0-2.8c0-0.4-0.3-0.7-0.7-0.7
+                c-0.4,0-0.7,0.3-0.7,0.7c0,1.3,0,2.5,0,3.8c0,0.3,0.2,0.6,0.5,0.7c1,0,2,0,2.9,0c0,0,0,0,0,0c0.3-0.1,0.5-0.4,0.5-0.8
+                C19.3,17.4,19.1,17.2,18.8,17.2z" />
+                                                      <path d="M20.8,11.2c0-2.3,0-4.6,0-6.8c0-1.3-0.9-2.2-2.2-2.2c-0.6,0-1.3,0-1.9,0c0-0.3,0-0.7,0-1c0-0.4-0.1-0.8-0.5-0.9
+                c-0.6-0.2-0.9,0.4-0.9,0.9c0,0.3,0,0.6,0,0.9H5.7c0-0.3,0-0.6,0-1c0-0.4-0.1-0.8-0.5-0.9C4.7,0.1,4.3,0.6,4.3,1.1c0,0.3,0,0.7,0,1
+                c-0.7,0-1.3,0-2,0c-0.3,0-0.6,0.1-0.9,0.2C0.6,2.7,0.2,3.4,0.2,4.4c0,3.9,0,7.8,0,11.7c0,0.6,0,1.3,0,1.9c0,1.1,0.7,1.9,1.7,2.1
+                c0.1,0,0.2,0,0.4,0c2.9,0,5.7,0,8.6,0c1.2,1.7,3.2,2.9,5.5,2.9c3.7,0,6.7-3,6.7-6.7C23.1,14.2,22.2,12.4,20.8,11.2z M1.6,4.4
+                c0-0.6,0.3-0.9,0.9-0.9c0.6,0,1.2,0,1.9,0c0,0.4,0,0.8,0,1.1c0,0.5,0.3,0.8,0.7,0.8c0.4,0,0.7-0.3,0.7-0.7c0-0.4,0-0.7,0-1.1
+                c0,0,0,0,0-0.1h9.5c0,0.4,0,0.8,0,1.1c0,0.4,0.3,0.7,0.6,0.7c0.4,0,0.7-0.2,0.7-0.7c0-0.4,0-0.8,0-1.2c0.7,0,1.4,0,2.1,0
+                c0.3,0,0.6,0.3,0.6,0.6c0,0.9,0,1.8,0,2.8H1.6c0-0.1,0-0.1,0-0.2C1.6,5.9,1.6,5.1,1.6,4.4z M10.2,18.7c-2.6,0-5.2,0-7.8,0
+                c-0.5,0-0.8-0.3-0.8-0.8c0-3.2,0-6.3,0-9.5c0,0,0,0,0-0.1h17.8v2c-0.9-0.4-1.9-0.7-3-0.7c-3.7,0-6.7,3-6.7,6.7
+                C9.7,17.1,9.9,18,10.2,18.7z M19.9,20.2c-0.8,0.8-2,1.3-3.5,1.3c-1.8,0-3.4-0.9-4.4-2.4c-0.5-0.8-0.9-1.9-0.9-2.9
+                c0-2.9,2.4-5.3,5.3-5.3c1.9,0,3.6,1.1,4.6,2.7c0.4,0.8,0.7,1.7,0.7,2.6C21.7,17.9,21,19.3,19.9,20.2z" />
+                                                  </g>
+              </svg>
+              <span class="small--hide">Book an Appointment</span>
+            </a>
+          </div>
+        </div>
+        <div class="grid__item medium-up--one-third logo-align--center">
+          <div class="h2 site-header__logo text-center">
+            <a class="site-header__logo-link" href="/">
+              {%- assign logo_dark = section.settings.logo_dark -%}
+              {%- assign logo_white = section.settings.logo_white -%}
+              {{ logo_dark | image_url: width: logo.width | image_tag: class: 'logo-dark', loading: 'lazy' }}
+              {{ logo_white | image_url: width: logo.width | image_tag: class: 'logo-white', loading: 'lazy' }}
+            </a>
+          </div>
+        </div>
+        <div class="grid__item medium-up--one-third text-right site-header__icons grid__right">
+          <div class="site-header__icons-wrapper flex icons-right">
+            {% if section.settings.phone_number != blank %}
+              <div class="contact-number">
+                <a
+                  href="tel:{{ section.settings.phone_number }}"
+                  class="inline-flex align-items_center site-header__icon site-header__phone US-contact"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" class="icon-phone" viewBox="0 0 23 23">
+                    <defs>
+                        <style>
+                            .phone-a{fill:#fff;opacity:0;}.phone-b{fill:none;stroke:#14344a;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                        </style>
+                    </defs>
+                    <g transform="translate(-19 -41)">
+                        <rect class="phone-a" width="23" height="23" transform="translate(19 41)"></rect>
+                        <path class="phone-b" d="M11.427,8.938a.374.374,0,0,0-.52-.01S9.843,9.969,9.773,10.035a.222.222,0,0,1-.059.042c-1.107.561-5.1-3.717-4.34-4.521L6.513,4.44a.374.374,0,0,0,0-.528L2.79.112A.37.37,0,0,0,2.528,0a.378.378,0,0,0-.265.107C.4,1.94-2.6,3.782,4.395,10.912c6.9,7.035,8.876,4.369,10.78,2.322a.374.374,0,0,0-.006-.517Z"
+                        transform="translate(22.5 44.5)" style="stroke-width: 1.5;"></path>
+                    </g>
+                  </svg>
+                  <span class="small--hide">{{ section.settings.phone_number }}</span>
+                </a>
+                <a
+                  href="tel:{{ section.settings.phone_number }}"
+                  class="inline-flex align-items_center site-header__icon site-header__phone CA-contact"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" class="icon-phone" viewBox="0 0 23 23">
+                    <defs>
+                        <style>
+                            .phone-a{fill:#fff;opacity:0;}.phone-b{fill:none;stroke:#14344a;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                        </style>
+                    </defs>
+                    <g transform="translate(-19 -41)">
+                        <rect class="phone-a" width="23" height="23" transform="translate(19 41)"></rect>
+                        <path class="phone-b" d="M11.427,8.938a.374.374,0,0,0-.52-.01S9.843,9.969,9.773,10.035a.222.222,0,0,1-.059.042c-1.107.561-5.1-3.717-4.34-4.521L6.513,4.44a.374.374,0,0,0,0-.528L2.79.112A.37.37,0,0,0,2.528,0a.378.378,0,0,0-.265.107C.4,1.94-2.6,3.782,4.395,10.912c6.9,7.035,8.876,4.369,10.78,2.322a.374.374,0,0,0-.006-.517Z"
+                        transform="translate(22.5 44.5)" style="stroke-width: 1.5;"></path>
+                    </g>
+                  </svg>
+                  <span class="small--hide">{{ section.settings.phone_number }}</span>
+                </a>
+              </div>
+            {% endif %}
+
+            <a
+              href="javascript:void(0)"
+              class="site-header__icon site-header__search-toggle js-drawer-open-top site-nav__link site-nav__link--icon js-search-header"
+            >
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="icon icon-search"
+                viewBox="0 0 37 40"
+              >
+                <path d="M35.6 36l-9.8-9.8c4.1-5.4 3.6-13.2-1.3-18.1-5.4-5.4-14.2-5.4-19.7 0-5.4 5.4-5.4 14.2 0 19.7 2.6 2.6 6.1 4.1 9.8 4.1 3 0 5.9-1 8.3-2.8l9.8 9.8c.4.4.9.6 1.4.6s1-.2 1.4-.6c.9-.9.9-2.1.1-2.9zm-20.9-8.2c-2.6 0-5.1-1-7-2.9-3.9-3.9-3.9-10.1 0-14C9.6 9 12.2 8 14.7 8s5.1 1 7 2.9c3.9 3.9 3.9 10.1 0 14-1.9 1.9-4.4 2.9-7 2.9z"
+                />
+              </svg>
+              <span class="icon__fallback-text">Search</span>
+            </a>
+
+            <a href="/account/login" class="site-header__icon site-header__account small--hide">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="icon icon-login"
+                viewBox="0 0 28.33 37.68"
+              >
+                <path d="M14.17 14.9a7.45 7.45 0 1 0-7.5-7.45 7.46 7.46 0 0 0 7.5 7.45zm0-10.91a3.45 3.45 0 1 1-3.5 3.46A3.46 3.46 0 0 1 14.17 4zM14.17 16.47A14.18 14.18 0 0 0 0 30.68c0 1.41.66 4 5.11 5.66a27.17 27.17 0 0 0 9.06 1.34c6.54 0 14.17-1.84 14.17-7a14.18 14.18 0 0 0-14.17-14.21zm0 17.21c-6.3 0-10.17-1.77-10.17-3a10.17 10.17 0 1 1 20.33 0c.01 1.23-3.86 3-10.16 3z"
+                />
+              </svg>
+              <span class="icon__fallback-text">Log in</span>
+            </a>
+
+            <span class="wishcont">
+              <wishlist-count class="iWishView site-header__icon iwish-header" style="position:relative;">
+                <svg
+                  fill="none"
+                  height="24"
+                  width="24"
+                  stroke="#14344a"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <div class="site-header__iwish-count critical-hidden wishiconpart">
+                  <span class="iWishCount">0</span>
+                </div>
+              </wishlist-count>
+            </span>
+
+            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 37 40">
+                <path d="M36.5 34.8L33.3 8h-5.9C26.7 3.9 23 .8 18.5.8S10.3 3.9 9.6 8H3.7L.5 34.8c-.2 1.5.4 2.4.9 3 .5.5 1.4 1.2 3.1 1.2h28c1.3 0 2.4-.4 3.1-1.3.7-.7 1-1.8.9-2.9zm-18-30c2.2 0 4.1 1.4 4.7 3.2h-9.5c.7-1.9 2.6-3.2 4.8-3.2zM4.5 35l2.8-23h2.2v3c0 1.1.9 2 2 2s2-.9 2-2v-3h10v3c0 1.1.9 2 2 2s2-.9 2-2v-3h2.2l2.8 23h-28z"
+                />
+              </svg>
+              <span class="icon__fallback-text">Cart</span>
+              {% if cart.item_count > 0 %}
+                <div id="CartCount" class="site-header__cart-count critical-hidden" data-cart-count-bubble>
+                  <span class="cart-link__bubbles" data-cart-count>{{ cart.item_count }}</span>
+                  <span class="icon__fallback-text medium-up--hide" data-item-count="{{ cart.item_count }}">items</span>
+                </div>
+              {% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="mobile-nav-wrapper critical-hidden" role="navigation">
+      <form class="search-form search-bar__form" action="/search" method="get" role="search">
+        <div class="search-form__input-wrapper">
+          <input
+            type="text"
+            name="q"
+            placeholder="Search"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-owns="predictive-search-results"
+            aria-expanded="false"
+            aria-label="Search"
+            aria-haspopup="listbox"
+            class="search-form__input search-bar__input"
+            data-predictive-search-drawer-input
+            data-base-url="/search"
+          >
+          <input type="hidden" name="options[prefix]" value="last" aria-hidden="true">
+          <div
+            class="predictive-search-wrapper predictive-search-wrapper--drawer"
+            data-predictive-search-mount="drawer"
+          ></div>
+        </div>
+
+        <button class="search-bar__submit search-form__submit" type="submit" data-search-form-submit>
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 37 40">
+            <path d="M35.6 36l-9.8-9.8c4.1-5.4 3.6-13.2-1.3-18.1-5.4-5.4-14.2-5.4-19.7 0-5.4 5.4-5.4 14.2 0 19.7 2.6 2.6 6.1 4.1 9.8 4.1 3 0 5.9-1 8.3-2.8l9.8 9.8c.4.4.9.6 1.4.6s1-.2 1.4-.6c.9-.9.9-2.1.1-2.9zm-20.9-8.2c-2.6 0-5.1-1-7-2.9-3.9-3.9-3.9-10.1 0-14C9.6 9 12.2 8 14.7 8s5.1 1 7 2.9c3.9 3.9 3.9 10.1 0 14-1.9 1.9-4.4 2.9-7 2.9z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="17.805"
+            height="18.207"
+            viewBox="0 0 17.805 18.207"
+            class="search-icon medium-up--hide"
+          >
+            <g id="Magnifying_Glass_Icon" data-name="Magnifying Glass Icon" transform="translate(-0.402)">
+                <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0.402)" fill="none" stroke="#707070" stroke-width="1">
+                    <circle cx="7.5" cy="7.5" r="7.5" stroke="none" />
+                    <circle cx="7.5" cy="7.5" r="7" fill="none" />
+                </g>
+                <line id="Line_1" data-name="Line 1" x2="5" y2="5" transform="translate(12.5 12.5)" fill="none" stroke="#707070" stroke-linecap="round" stroke-width="1" />
+            </g>
+          </svg>
+          <span class="icon__fallback-text">Submit</span>
+        </button>
+      </form>
+
+      <ul id="MobileNav" class="mobile-nav">
+        <li class="mobile-nav__level-1 engagement-rings">
+          <div class="menu-nav__with-dropdown menu-engagement-rings" data-sttitle="engagement-rings-1">
+            <a
+              href="/pages/diamond-engagement-rings"
+              id="st-top_engagement-rings"
+              class="mobile-nav__link mobile-nav__link-1"
+            >
+              ENGAGEMENT RINGS
+            </a>
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2 test" data-parent="engagement-rings-1" data-level="2">
+            <div class="flex flex-wrap">
+              <li class="mobile-nav__item create-your-own-ring">
+                <div class="menu-nav__with-dropdown" data-sttitle="st-your-own-ring-">
+                  <a
+                    href="/collections/engagement-rings"
+                    id="st-top_create-your-own-ring"
+                    class="mobile-nav__link mobile-nav__link-2 link-create-your-own-ring mobile-nav__link--active"
+                    aria-current="page"
+                  >
+                    CREATE YOUR OWN RING
+                  </a>
+                  <span class="toggle-icon"></span>
+                </div>
+                <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="st-your-own-ring-" data-level="2">
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item create-your-engagement-ring">
+                    <div class="menu-nav__with-dropdown" data-sttitle="st-your-engagement-ring--1">
+                      <a
+                        href="/pages/diamond-engagement-rings"
+                        id="st_create-your-own-ring_create-your-engagement-ring"
+                        class="mobile-nav__link mobile-nav__link-2 link-create-your-engagement-ring"
+                      >
+                        CREATE YOUR ENGAGEMENT RING
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_create-your-engagement-ring"
+                      data-parent="st-your-engagement-ring--1"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/engagement-rings"
+                          id="st_create-your-own-ring_create-your-engagement-ring_start-with-a-setting"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link start-with-a-setting"
+                          aria-current="page"
+                        >
+                          <span class="mobile-nav__label">Start With A Setting</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/natural-diamonds"
+                          id="st_create-your-own-ring_create-your-engagement-ring_start-with-a-natural-diamond"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link start-with-a-natural-diamond"
+                        >
+                          <span class="mobile-nav__label">Start With A Natural Diamond</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/lab-diamonds"
+                          id="st_create-your-own-ring_create-your-engagement-ring_start-with-a-lab-diamond"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link start-with-a-lab-diamond"
+                        >
+                          <span class="mobile-nav__label">Start With A Lab Diamond</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/lab-grown-diamonds-featured-deals"
+                          id="st_create-your-own-ring_create-your-engagement-ring_start-with-a-featured-deal-diamond"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link start-with-a-featured-deal-diamond"
+                        >
+                          <span class="mobile-nav__label">Start With A Featured Deal Diamond</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/best-sellers"
+                          id="st_create-your-own-ring_create-your-engagement-ring_best-sellers"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link best-sellers"
+                        >
+                          <span class="mobile-nav__label">BEST SELLERS</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/just-in-engagement-rings"
+                          id="st_create-your-own-ring_create-your-engagement-ring_new-arrivals"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link new-arrivals"
+                        >
+                          <span class="mobile-nav__label">NEW ARRIVALS</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/pages/luxe-collection-engagement-rings-and-jewelry"
+                          id="st_create-your-own-ring_create-your-engagement-ring_luxe-collection"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link luxe-collection"
+                        >
+                          <span class="mobile-nav__label">HERITAGE COLLECTION</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/pages/custom-engagement-rings"
+                          id="st_create-your-own-ring_create-your-engagement-ring_custom-rings"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link custom-rings"
+                        >
+                          <span class="mobile-nav__label">CUSTOM RINGS</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/pages/home-preview"
+                          id="st_create-your-own-ring_create-your-engagement-ring_home-preview"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link home-preview"
+                        >
+                          <span class="mobile-nav__label">HOME PREVIEW</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item style">
+                    <div class="menu-nav__with-dropdown" data-sttitle="style--2">
+                      <a
+                        href="/collections/engagement-rings"
+                        id="st_create-your-own-ring_style"
+                        class="mobile-nav__link mobile-nav__link-2 link-style mobile-nav__link--active"
+                        aria-current="page"
+                      >
+                        STYLE
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_style"
+                      data-parent="style--2"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/solitaire-diamond-engagement-rings?filter.p.tag=Solitaire"
+                          id="st_create-your-own-ring_style_solitaire"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link solitaire"
+                        >
+                          <span class="mobile-nav__label">Solitaire</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/halo-diamond-engagement-rings?filter.p.tag=Halo"
+                          id="st_create-your-own-ring_style_halo"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link halo"
+                        >
+                          <span class="mobile-nav__label">Halo</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/vintage-diamond-engagement-rings?filter.p.tag=Vintage"
+                          id="st_create-your-own-ring_style_vintage"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link vintage"
+                        >
+                          <span class="mobile-nav__label">Vintage</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/side-stone-diamond-engagement-rings?filter.p.tag=Side_Stone"
+                          id="st_create-your-own-ring_style_side-stone"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link side-stone"
+                        >
+                          <span class="mobile-nav__label">Side Stone</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/three-stone-diamond-engagement-rings?filter.p.tag=Three_Stone"
+                          id="st_create-your-own-ring_style_three-stone"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link three-stone"
+                        >
+                          <span class="mobile-nav__label">Three Stone</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/pave-diamond-engagement-rings?filter.p.tag=Pave"
+                          id="st_create-your-own-ring_style_pave"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link pave"
+                        >
+                          <span class="mobile-nav__label">Pave</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/hidden-halo-diamond-engagement-rings?filter.p.tag=Hidden_Halo"
+                          id="st_create-your-own-ring_style_hidden-halo"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link hidden-halo"
+                        >
+                          <span class="mobile-nav__label">Hidden Halo</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/heritage-diamond-engagement-rings?filter.p.tag=Heritage"
+                          id="st_create-your-own-ring_style_luxe"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link luxe"
+                        >
+                          <span class="mobile-nav__label">Heritage</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/the-reserve-diamond-engagement-rings?filter.p.tag=The_Reserve"
+                          id="st_create-your-own-ring_style_the-reserve"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link the-reserve"
+                        >
+                          <span class="mobile-nav__label">The Reserve</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item shape">
+                    <div class="menu-nav__with-dropdown" data-sttitle="shape--3">
+                      <a
+                        href="/collections/engagement-rings"
+                        id="st_create-your-own-ring_shape"
+                        class="mobile-nav__link mobile-nav__link-2 link-shape mobile-nav__link--active"
+                        aria-current="page"
+                      >
+                        SHAPE
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_shape"
+                      data-parent="shape--3"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/round-cut-diamond-engagement-rings?filter.v.option.shape=Round"
+                          id="st_create-your-own-ring_shape_round"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link round"
+                        >
+                          <span class="mobile-nav__label">Round</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/princess-cut-diamond-engagement-rings?filter.v.option.shape=Princess"
+                          id="st_create-your-own-ring_shape_princess"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link princess"
+                        >
+                          <span class="mobile-nav__label">Princess</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/oval-cut-diamond-engagement-rings?filter.v.option.shape=Oval"
+                          id="st_create-your-own-ring_shape_oval"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link oval"
+                        >
+                          <span class="mobile-nav__label">Oval</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/cushion-cut-diamond-engagement-rings?filter.v.option.shape=Cushion"
+                          id="st_create-your-own-ring_shape_cushion"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link cushion"
+                        >
+                          <span class="mobile-nav__label">Cushion</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/emerald-cut-diamond-engagement-rings?filter.v.option.shape=Emerald"
+                          id="st_create-your-own-ring_shape_emerald"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link emerald"
+                        >
+                          <span class="mobile-nav__label">Emerald</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/pear-cut-diamond-engagement-rings?filter.v.option.shape=Pear"
+                          id="st_create-your-own-ring_shape_pear"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link pear"
+                        >
+                          <span class="mobile-nav__label">Pear</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/radiant-cut-diamond-engagement-rings?filter.v.option.shape=Radiant"
+                          id="st_create-your-own-ring_shape_radiant"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link radiant"
+                        >
+                          <span class="mobile-nav__label">Radiant</span>
+                        </a>
+                      </li>
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/marquise-cut-diamond-engagement-rings?filter.v.option.shape=Marquise"
+                          id="st_create-your-own-ring_shape_marquise"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link marquise"
+                        >
+                          <span class="mobile-nav__label">Marquise</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/heart-cut-diamond-engagement-rings?filter.v.option.shape=Heart"
+                          id="st_create-your-own-ring_shape_heart"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link heart"
+                        >
+                          <span class="mobile-nav__label">Heart</span>
+                        </a>
+                      </li>
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/portuguese-cut-diamond-engagement-rings?filter.v.option.shape=Portuguese"
+                          id="st_create-your-own-ring_shape_heart"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link portuguese"
+                        >
+                          <span class="mobile-nav__label">Portuguese</span>
+                        </a>
+                      </li>
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/long-cushion-cut-diamond-engagement-rings?filter.v.option.shape=Long+Cushion"
+                          id="st_create-your-own-ring_shape_heart"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link Long_Cushion"
+                        >
+                          <span class="mobile-nav__label">Long Cushion</span>
+                        </a>
+                      </li>
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/antique-cut-diamond-engagement-rings?filter.v.option.shape=Antique_Cuts"
+                          id="st_create-your-own-ring_shape_heart"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link Antique_Cuts"
+                        >
+                          <span class="mobile-nav__label">Antique Cuts</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item metal">
+                    <div class="menu-nav__with-dropdown" data-sttitle="metal--4">
+                      <a
+                        href="/collections/engagement-rings"
+                        id="st_create-your-own-ring_metal"
+                        class="mobile-nav__link mobile-nav__link-2 link-metal mobile-nav__link--active"
+                        aria-current="page"
+                      >
+                        METAL
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_metal"
+                      data-parent="metal--4"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14kt-and-18kt-white-gold-diamond-engagement-rings?filter.v.option.color=14k+White+Gold"
+                          id="st_create-your-own-ring_metal_white-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link white-gold"
+                        >
+                          <span class="mobile-nav__label">White Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14kt-and-18kt-yellow-gold-diamond-engagement-rings?filter.v.option.color=14k+Yellow+Gold"
+                          id="st_create-your-own-ring_metal_yellow-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link yellow-gold"
+                        >
+                          <span class="mobile-nav__label">Yellow Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14kt-and-18kt-rose-gold-diamond-engagement-rings?filter.v.option.color=14k+Rose+Gold"
+                          id="st_create-your-own-ring_metal_rose-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link rose-gold"
+                        >
+                          <span class="mobile-nav__label">Rose Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/platinum-diamond-engagement-rings?filter.v.option.color=Platinum"
+                          id="st_create-your-own-ring_metal_platinum"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link platinum"
+                        >
+                          <span class="mobile-nav__label">Platinum</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-nav__item preset-lab-diamond-rings">
+                <div class="menu-nav__with-dropdown" data-sttitle="preset-lab-diamond-rings-">
+                  <a
+                    href="/collections/preset-lab-grown-diamond-engagement-rings"
+                    id="st-top_preset-lab-diamond-rings"
+                    class="mobile-nav__link mobile-nav__link-2 link-preset-lab-diamond-rings"
+                  >
+                    PRESET LAB DIAMOND RINGS
+                  </a>
+                  <span class="toggle-icon"></span>
+                </div>
+                <ul
+                  class="mobile-nav__dropdown mobile-nav__level-2"
+                  data-parent="preset-lab-diamond-rings-"
+                  data-level="2"
+                >
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item style">
+                    <div class="menu-nav__with-dropdown" data-sttitle="style--1">
+                      <a
+                        href="/collections/preset-lab-grown-diamond-engagement-rings"
+                        id="st_preset-lab-diamond-rings_style"
+                        class="mobile-nav__link mobile-nav__link-2 link-style"
+                      >
+                        STYLE
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_style"
+                      data-parent="style--1"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/solitaire-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_solitaire"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link solitaire"
+                        >
+                          <span class="mobile-nav__label">Solitaire</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/halo-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_halo"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link halo"
+                        >
+                          <span class="mobile-nav__label">Halo</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/vintage-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_vintage"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link vintage"
+                        >
+                          <span class="mobile-nav__label">Vintage</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/side-stone-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_side-stone"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link side-stone"
+                        >
+                          <span class="mobile-nav__label">Side Stone</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/three-stone-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_three-stone"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link three-stone"
+                        >
+                          <span class="mobile-nav__label">Three Stone</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/pave-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_pave"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link pave"
+                        >
+                          <span class="mobile-nav__label">Pave</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/hidden-halo-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_hidden-halo"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link hidden-halo"
+                        >
+                          <span class="mobile-nav__label">Hidden Halo</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/fancy-colored-lab-grown-diamond-engagement-ring"
+                          id="st_preset-lab-diamond-rings_style_fancy-color-diamonds"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link fancy-color-diamonds"
+                        >
+                          <span class="mobile-nav__label">Fancy Color Diamonds</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/heritage-lab-grown-diamond-engagement-rings"
+                          id="st_preset-lab-diamond-rings_style_luxe"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link luxe"
+                        >
+                          <span class="mobile-nav__label">Heritage</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/the-reserve-lab-grown-diamond-engagement-rings"
+                          id="st_preset-lab-diamond-rings_style_the-reserve"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link the-reserve"
+                        >
+                          <span class="mobile-nav__label">The Reserve</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item shape">
+                    <div class="menu-nav__with-dropdown" data-sttitle="shape--2">
+                      <a
+                        href="/collections/preset-lab-grown-diamond-engagement-rings"
+                        id="st_preset-lab-diamond-rings_shape"
+                        class="mobile-nav__link mobile-nav__link-2 link-shape"
+                      >
+                        SHAPE
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_shape"
+                      data-parent="shape--2"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/round-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Round"
+                          id="st_preset-lab-diamond-rings_shape_round"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link round"
+                        >
+                          <span class="mobile-nav__label">Round</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/oval-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Oval"
+                          id="st_preset-lab-diamond-rings_shape_oval"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link oval"
+                        >
+                          <span class="mobile-nav__label">Oval</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/emerald-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Emerald"
+                          id="st_preset-lab-diamond-rings_shape_emerald"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link emerald"
+                        >
+                          <span class="mobile-nav__label">Emerald</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                        <a
+                          href="/collections/princess-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Princess"
+                          id="st_preset-lab-diamond-rings_shape_princess"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link princess"
+                        >
+                          <span class="mobile-nav__label">Princess</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/cushion-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Cushion"
+                          id="st_preset-lab-diamond-rings_shape_cushion"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link cushion"
+                        >
+                          <span class="mobile-nav__label">Cushion</span>
+                        </a>
+                      </li>
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/radaint-cut-lab-grown-diamond-engagement-ring?filter.v.option.shape=Radaint"
+                          id="engagement-rings_preset-lab-diamond-rings_shape_radaint"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link radiant"
+                        >
+                          <span class="mobile-nav__label">Radaint</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item metal">
+                    <div class="menu-nav__with-dropdown" data-sttitle="metal--3">
+                      <a
+                        href="/collections/preset-lab-grown-diamond-engagement-rings"
+                        id="st_preset-lab-diamond-rings_metal"
+                        class="mobile-nav__link mobile-nav__link-2 link-metal"
+                      >
+                        METAL
+                      </a>
+                      <span class="toggle-icon"></span>
+                    </div>
+                    <ul
+                      class="mobile-nav__dropdown mobile-nav__level-3 level-3_metal"
+                      data-parent="metal--3"
+                      data-level="3"
+                    >
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14k-white-gold-lab-grown-diamond-engagement-ring?filter.v.option.color=14k+White+Gold"
+                          id="st_preset-lab-diamond-rings_metal_white-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link white-gold"
+                        >
+                          <span class="mobile-nav__label">White Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14k-rose-gold-lab-grown-diamond-engagement-ring?filter.v.option.color=14k+Rose+Gold"
+                          id="st_preset-lab-diamond-rings_metal_rose-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link rose-gold"
+                        >
+                          <span class="mobile-nav__label">Rose Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/14k-yellow-gold-lab-grown-diamond-engagement-ring?filter.v.option.color=14k+Yellow+Gold"
+                          id="st_preset-lab-diamond-rings_metal_yellow-gold"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link yellow-gold"
+                        >
+                          <span class="mobile-nav__label">Yellow Gold</span>
+                        </a>
+                      </li>
+
+                      <li class="mobile-nav__item nav__level-3-item">
+                        <a
+                          href="/collections/platinum-lab-grown-diamond-engagement-ring?filter.v.option.color=Platinum"
+                          id="st_preset-lab-diamond-rings_metal_platinum"
+                          class="mobile-nav__sublist-link mobile-nav__link-3 site-nav__link site-nav__child-link platinum"
+                        >
+                          <span class="mobile-nav__label">Platinum</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-nav__item best-sellers">
+                <a href="/collections/best-sellers" id="st-top_best-sellers" class="mobile-nav__link">
+                  <span class="mobile-nav__label">BEST SELLERS</span>
+                </a>
+              </li>
+              <li class="mobile-nav__item new-arrivals">
+                <a href="/collections/just-in-engagement-rings" id="st-top_new-arrivals" class="mobile-nav__link">
+                  <span class="mobile-nav__label">NEW ARRIVALS</span>
+                </a>
+              </li>
+              <li class="mobile-nav__item ready-to-ship">
+                <a
+                  href="/collections/ready-to-ship-engagement-rings"
+                  id="st-top_ready-to-ship"
+                  class="mobile-nav__link"
+                >
+                  <span class="mobile-nav__label">READY TO SHIP</span>
+                </a>
+              </li>
+              <li class="mobile-nav__item custom-rings">
+                <a href="/pages/custom-engagement-rings" id="st-top_custom-rings" class="mobile-nav__link">
+                  <span class="mobile-nav__label">CUSTOM RINGS</span>
+                </a>
+              </li>
+            </div>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 diamonds">
+          <div class="menu-nav__with-dropdown menu-diamonds" data-sttitle="diamonds-3">
+            <a href="/pages/diamonds" id="st-top_diamonds" class="mobile-nav__link mobile-nav__link-1"> DIAMONDS </a>
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="diamonds-3" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item lab-diamonds">
+              <div class="menu-nav__with-dropdown" data-sttitle="lab-diamonds-3-1">
+                <a href="/pages/lab-diamonds" id="st-diamonds_lab-diamonds" class="mobile-nav__link mobile-nav__link-2">
+                  LAB DIAMONDS
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_lab-diamonds"
+                data-parent="lab-diamonds-3-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/round-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_round"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 round"
+                  >
+                    <span class="mobile-nav__label">Round</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/princess-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_princess"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 princess"
+                  >
+                    <span class="mobile-nav__label">Princess</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/oval-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_oval"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 oval"
+                  >
+                    <span class="mobile-nav__label">Oval</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/cushion-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_cushion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 cushion"
+                  >
+                    <span class="mobile-nav__label">Cushion</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/heart-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_heart"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 heart"
+                  >
+                    <span class="mobile-nav__label">Heart</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/emerald-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_emerald"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 emerald"
+                  >
+                    <span class="mobile-nav__label">Emerald</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/pear-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_pear"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 pear"
+                  >
+                    <span class="mobile-nav__label">Pear</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/marquise-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_marquise"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 marquise"
+                  >
+                    <span class="mobile-nav__label">Marquise</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/asscher-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_asscher"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 asscher"
+                  >
+                    <span class="mobile-nav__label">Asscher</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/radiant-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_radiant"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 radiant"
+                  >
+                    <span class="mobile-nav__label">Radiant</span>
+                  </a>
+                </li>
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/portuguese-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_portuguese"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 portuguese"
+                  >
+                    <span class="mobile-nav__label">Portuguese</span>
+                  </a>
+                </li>
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/long-cushion-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_lcushion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 Long_Cushion"
+                  >
+                    <span class="mobile-nav__label">Long Cushion</span>
+                  </a>
+                </li>
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/antique-cut-lab-grown-diamonds"
+                    id="st-diamonds_lab-diamonds_antique"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 Antique_Cuts"
+                  >
+                    <span class="mobile-nav__label">Antique Cuts</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/lab-diamonds"
+                    id="st-diamonds_lab-diamonds_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item carat-wt">
+              <div class="menu-nav__with-dropdown" data-sttitle="carat-wt-3-2">
+                <a href="#" id="st-diamonds_carat-wt" class="mobile-nav__link mobile-nav__link-2"> CARAT WT. </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_carat-wt"
+                data-parent="carat-wt-3-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/1-carat-lab-grown-diamonds"
+                    id="st-diamonds_carat-wt_1-to-2-ct"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 1-to-2-ct"
+                  >
+                    <span class="mobile-nav__label">1 to 2 ct.</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/2-carat-lab-grown-diamonds"
+                    id="st-diamonds_carat-wt_2-to-3-ct"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 2-to-3-ct"
+                  >
+                    <span class="mobile-nav__label">2 to 3 ct.</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/3-carat-lab-grown-diamonds"
+                    id="st-diamonds_carat-wt_3-to-4-ct"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 3-to-4-ct"
+                  >
+                    <span class="mobile-nav__label">3 to 4 ct.</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/4-carat-lab-grown-diamonds"
+                    id="st-diamonds_carat-wt_4-to-5-ct"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 4-to-5-ct"
+                  >
+                    <span class="mobile-nav__label">4 to 5 ct.</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/5-carat-lab-grown-diamonds"
+                    id="st-diamonds_carat-wt_5-ct-above"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 5-ct-above"
+                  >
+                    <span class="mobile-nav__label">5 ct. &amp; above</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item natural-diamond">
+              <div class="menu-nav__with-dropdown" data-sttitle="natural-diamond-3-3">
+                <a href="#" id="st-diamonds_natural-diamond" class="mobile-nav__link mobile-nav__link-2"
+                  >STIENHARDT LIMITED</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_natural-diamond"
+                data-parent="natural-diamond-3-3"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/portuguese-cut-lab-grown-diamonds"
+                    id="st-diamonds_natural-diamond_search-natural-diamonds"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 search-natural-diamonds"
+                  >
+                    <span class="mobile-nav__label">Search Unique Lab Diamonds</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item fancy-colored-diamonds">
+              <div class="menu-nav__with-dropdown" data-sttitle="fancy-colored-diamonds-3-4">
+                <a
+                  href="/collections/color-diamonds"
+                  id="st-diamonds_fancy-colored-diamonds"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >FANCY COLORED DIAMONDS
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_fancy-colored-diamonds"
+                data-parent="fancy-colored-diamonds-3-4"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/color-diamonds"
+                    id="st-diamonds_fancy-colored-diamonds_search-fancy-colored-diamonds"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 search-fancy-colored-diamonds"
+                  >
+                    <span class="mobile-nav__label">Search Fancy Colored Diamonds</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item create-your-engagement-ring">
+              <div class="menu-nav__with-dropdown" data-sttitle="st-your-engagement-ring-3-5">
+                <a href="#" id="st-diamonds_create-your-engagement-ring" class="mobile-nav__link mobile-nav__link-2"
+                  >CREATE YOUR ENGAGEMENT RING
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_create-your-engagement-ring"
+                data-parent="create-your-engagement-ring-3-5"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/engagement-rings"
+                    id="st-diamonds_create-your-engagement-ring_start-with-a-setting"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 start-with-a-setting"
+                    aria-current="page"
+                  >
+                    <span class="mobile-nav__label">Start With A Setting</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/collections/natural-diamonds"
+                    id="st-diamonds_create-your-engagement-ring_start-with-a-natural-diamond"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 start-with-a-natural-diamond"
+                  >
+                    <span class="mobile-nav__label">Start With A Natural Diamond</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/lab-diamonds"
+                    id="st-diamonds_create-your-engagement-ring_start-with-a-lab-diamond"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 start-with-a-lab-diamond"
+                  >
+                    <span class="mobile-nav__label">Start With A Lab Diamond</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/lab-grown-diamonds-featured-deals"
+                    id="st-diamonds_create-your-engagement-ring_start-with-a-featured-deal-diamond"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 start-with-a-featured-deal-diamond"
+                  >
+                    <span class="mobile-nav__label">Start With A Featured Deal Diamond</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 high-jewelry" style="display:none;">
+          <div class="menu-nav__with-dropdown menu-high-jewelry" data-sttitle="high-jewelry-4">
+            <a
+              href="/pages/luxe-collection-engagement-rings-and-jewelry"
+              id="st-top_high-jewelry"
+              class="mobile-nav__link mobile-nav__link-1"
+              >HIGH JEWELRY</a
+            >
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="high-jewelry-4" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item luxe-collection">
+              <a
+                href="/pages/luxe-collection-engagement-rings-and-jewelry"
+                id="st-high-jewelry_luxe-collection"
+                class="mobile-nav__sublist-link"
+              >
+                <span class="mobile-nav__label">Luxe Collection</span>
+              </a>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item the-reserve">
+              <a href="/pages/the-reserve-collection" id="st-high-jewelry_the-reserve" class="mobile-nav__sublist-link">
+                <span class="mobile-nav__label">The Reserve</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 collections" style="display:none;">
+          <div class="menu-nav__with-dropdown menu-collections" data-sttitle="collections-5">
+            <a href="#" id="st-top_collections" class="mobile-nav__link mobile-nav__link-1">COLLECTIONS</a>
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="collections-5" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item toi-et-moi">
+              <a
+                href="/collections/toi-et-moi-collection"
+                id="st-collections_toi-et-moi"
+                class="mobile-nav__sublist-link"
+              >
+                <span class="mobile-nav__label">Toi Et Moi</span>
+              </a>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item celestia">
+              <a href="/collections/celestia" id="st-collections_celestia" class="mobile-nav__sublist-link">
+                <span class="mobile-nav__label">Celestia</span>
+              </a>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item something-blue">
+              <a
+                href="/collections/something-blue-diamond-engagement-rings"
+                id="st-collections_something-blue"
+                class="mobile-nav__sublist-link"
+              >
+                <span class="mobile-nav__label">Something Blue</span>
+              </a>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item galleria">
+              <a href="/collections/galleria" id="st-collections_galleria" class="mobile-nav__sublist-link">
+                <span class="mobile-nav__label">Galleria</span>
+              </a>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item the-ceramic-series">
+              <a
+                href="/collections/the-ceramic-series"
+                id="st-collections_the-ceramic-series"
+                class="mobile-nav__sublist-link"
+              >
+                <span class="mobile-nav__label">The Ceramic Series</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 wedding-bands">
+          <div class="menu-nav__with-dropdown menu-wedding-bands" data-sttitle="wedding-bands-6">
+            <a
+              href="/pages/wedding-bands-education"
+              id="st-top_wedding-bands"
+              class="mobile-nav__link mobile-nav__link-1"
+            >
+              WEDDING BANDS</a
+            >
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="wedding-bands-6" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item womens-bands">
+              <div class="menu-nav__with-dropdown" data-sttitle="womens-bands-6-1">
+                <a
+                  href="/collections/womens-wedding-rings"
+                  id="st-wedding-bands_womens-bands"
+                  class="mobile-nav__link mobile-nav__link-2"
+                >
+                  WOMEN&#39;S BANDS</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_womens-bands"
+                data-parent="womens-bands-6-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-metal-wedding-rings"
+                    id="st-wedding-bands_womens-bands_metal-bands"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 metal-bands"
+                  >
+                    <span class="mobile-nav__label">Metal Bands</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-anniversary-rings"
+                    id="st-wedding-bands_womens-bands_anniversary-rings"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 anniversary-rings"
+                  >
+                    <span class="mobile-nav__label">Anniversary Rings</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-eternity-rings"
+                    id="st-wedding-bands_womens-bands_eternity-rings"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 eternity-rings"
+                  >
+                    <span class="mobile-nav__label">Eternity Rings</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-diamond-wedding-rings"
+                    id="st-wedding-bands_womens-bands_diamond-bands"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 diamond-bands"
+                  >
+                    <span class="mobile-nav__label">Diamond Bands</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-wedding-rings"
+                    id="st-wedding-bands_womens-bands_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item mens-bands">
+              <div class="menu-nav__with-dropdown" data-sttitle="mens-bands-6-2">
+                <a
+                  href="/collections/mens-wedding-bands"
+                  id="st-wedding-bands_mens-bands"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >MEN&#39;S BANDS</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_mens-bands"
+                data-parent="mens-bands-6-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/mens-metal-wedding-bands"
+                    id="st-wedding-bands_mens-bands_metal-bands"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 metal-bands"
+                  >
+                    <span class="mobile-nav__label">Metal Bands</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/mens-diamond-wedding-bands"
+                    id="st-wedding-bands_mens-bands_diamond-bands"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 diamond-bands"
+                  >
+                    <span class="mobile-nav__label">Diamond Bands</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/mens-wedding-bands"
+                    id="st-wedding-bands_mens-bands_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item womens-by-metal">
+              <div class="menu-nav__with-dropdown" data-sttitle="womens-by-metal-6-3">
+                <a href="#" id="st-wedding-bands_womens-by-metal" class="mobile-nav__link mobile-nav__link-2">
+                  WOMEN&#39;S BY METAL</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_womens-by-metal"
+                data-parent="womens-by-metal-6-3"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/14kt-and-18kt-white-gold-womens-wedding-rings"
+                    id="st-wedding-bands_womens-by-metal_white-gold"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 white-gold"
+                  >
+                    <span class="mobile-nav__label">White Gold</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/14kt-and-18kt-yellow-gold-womens-wedding-rings"
+                    id="st-wedding-bands_womens-by-metal_yellow-gold"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 yellow-gold"
+                  >
+                    <span class="mobile-nav__label">Yellow Gold</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/14kt-and-18kt-rose-gold-womens-wedding-rings"
+                    id="st-wedding-bands_womens-by-metal_rose-gold"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 rose-gold"
+                  >
+                    <span class="mobile-nav__label">Rose Gold</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/platinum-womens-wedding-rings"
+                    id="st-wedding-bands_womens-by-metal_platinum"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 platinum"
+                  >
+                    <span class="mobile-nav__label">Platinum</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item mens-by-metal">
+              <div class="menu-nav__with-dropdown" data-sttitle="mens-by-metal-6-4">
+                <a href="#" id="st-wedding-bands_mens-by-metal" class="mobile-nav__link mobile-nav__link-2">
+                  MEN&#39;S BY METAL
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_mens-by-metal"
+                data-parent="mens-by-metal-6-4"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/14kt-and-18kt-white-gold-mens-wedding-bands"
+                    id="st-wedding-bands_mens-by-metal_white-gold"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 white-gold"
+                  >
+                    <span class="mobile-nav__label">White Gold</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/14kt-and-18kt-yellow-gold-mens-wedding-bands"
+                    id="st-wedding-bands_mens-by-metal_yellow-gold"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 yellow-gold"
+                  >
+                    <span class="mobile-nav__label">Yellow Gold</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/platinum-mens-wedding-bands"
+                    id="st-wedding-bands_mens-by-metal_platinum"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 platinum"
+                  >
+                    <span class="mobile-nav__label">Platinum</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 fine-jewelry">
+          <div class="menu-nav__with-dropdown menu-fine-jewelry" data-sttitle="fine-jewelry-7">
+            <a href="/pages/fine-jewelry" id="st-top_fine-jewelry" class="mobile-nav__link mobile-nav__link-1"
+              >FINE JEWELRY</a
+            >
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="fine-jewelry-7" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item earrings">
+              <div class="menu-nav__with-dropdown" data-sttitle="earrings-7-1">
+                <a href="/pages/earrings" id="st-fine-jewelry_earrings" class="mobile-nav__link mobile-nav__link-2"
+                  >EARRINGS
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_earrings"
+                data-parent="earrings-7-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/stud-diamond-earrings"
+                    id="st-fine-jewelry_earrings_studs"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 studs"
+                  >
+                    <span class="mobile-nav__label">Studs</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/diamond-hoop-earrings"
+                    id="st-fine-jewelry_earrings_hoops"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 hoops"
+                  >
+                    <span class="mobile-nav__label">Hoops</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/halo-diamond-earrings"
+                    id="st-fine-jewelry_earrings_halo"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 halo"
+                  >
+                    <span class="mobile-nav__label">Halo</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/fashion-earrings"
+                    id="st-fine-jewelry_earrings_fashion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 fashion"
+                  >
+                    <span class="mobile-nav__label">Fashion</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/gemstone-earrings"
+                    id="st-fine-jewelry_earrings_gemstone"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 gemstone"
+                  >
+                    <span class="mobile-nav__label">Gemstone</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/heritage-earrings"
+                    id="st-fine-jewelry_earrings_luxe"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 luxe"
+                  >
+                    <span class="mobile-nav__label">Heritage</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/collections/the-reserve-diamond-earrings"
+                    id="st-fine-jewelry_earrings_the-reserve"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 the-reserve"
+                  >
+                    <span class="mobile-nav__label">The Reserve</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/shop-all-earrings"
+                    id="st-fine-jewelry_earrings_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item necklaces">
+              <div class="menu-nav__with-dropdown" data-sttitle="necklaces-7-2">
+                <a href="/pages/necklaces" id="st-fine-jewelry_necklaces" class="mobile-nav__link mobile-nav__link-2"
+                  >NECKLACES
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_necklaces"
+                data-parent="necklaces-7-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/halo-diamond-necklaces"
+                    id="st-fine-jewelry_necklaces_halo"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 halo"
+                  >
+                    <span class="mobile-nav__label">Halo</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/diamond-solitaire-necklaces"
+                    id="st-fine-jewelry_necklaces_solitaire"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 solitaire"
+                  >
+                    <span class="mobile-nav__label">Solitaire</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/diamond-tennis-necklaces"
+                    id="st-fine-jewelry_necklaces_tennis"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 tennis"
+                  >
+                    <span class="mobile-nav__label">Tennis</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/fashion-necklaces"
+                    id="st-fine-jewelry_necklaces_fashion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 fashion"
+                  >
+                    <span class="mobile-nav__label">Fashion</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/gemstone-necklaces"
+                    id="st-fine-jewelry_necklaces_gemstone"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 gemstone"
+                  >
+                    <span class="mobile-nav__label">Gemstone</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/heritage-necklaces"
+                    id="st-fine-jewelry_necklaces_luxe"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 luxe"
+                  >
+                    <span class="mobile-nav__label">Heritage</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/collections/the-reserve-diamond-necklaces"
+                    id="st-fine-jewelry_necklaces_the-reserve"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 the-reserve"
+                  >
+                    <span class="mobile-nav__label">The Reserve</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/shop-all-necklaces"
+                    id="st-fine-jewelry_necklaces_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item rings">
+              <div class="menu-nav__with-dropdown" data-sttitle="rings-7-3">
+                <a
+                  href="/collections/shop-all-rings"
+                  id="st-fine-jewelry_rings"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >RINGS</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul class="mobile-nav__dropdown mobile-nav__level-3 level-3_rings" data-parent="rings-7-3" data-level="3">
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-anniversary-rings"
+                    id="st-fine-jewelry_rings_anniversary"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 anniversary"
+                  >
+                    <span class="mobile-nav__label">Anniversary</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/womens-eternity-rings"
+                    id="st-fine-jewelry_rings_eternity"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 eternity"
+                  >
+                    <span class="mobile-nav__label">Eternity</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/stackable-rings"
+                    id="st-fine-jewelry_rings_stackable"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 stackable"
+                  >
+                    <span class="mobile-nav__label">Stackable</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/fashion-rings"
+                    id="st-fine-jewelry_rings_fashion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 fashion"
+                  >
+                    <span class="mobile-nav__label">Fashion</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/gemstone-rings"
+                    id="st-fine-jewelry_rings_gemstone"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 gemstone"
+                  >
+                    <span class="mobile-nav__label">Gemstone</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/heritage-rings"
+                    id="st-fine-jewelry_rings_luxe"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 luxe"
+                  >
+                    <span class="mobile-nav__label">Heritage</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/collections/the-reserve-diamond-eternity-rings"
+                    id="st-fine-jewelry_rings_the-reserve"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 the-reserve"
+                  >
+                    <span class="mobile-nav__label">The Reserve</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/shop-all-rings"
+                    id="st-fine-jewelry_rings_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">Shop All</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item bracelets">
+              <div class="menu-nav__with-dropdown" data-sttitle="bracelets-7-4">
+                <a
+                  href="/collections/shop-bracelets"
+                  id="st-fine-jewelry_bracelets"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >BRACELETS
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_bracelets"
+                data-parent="bracelets-7-4"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/tennis-bracelets"
+                    id="st-fine-jewelry_bracelets_tennis"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 tennis"
+                  >
+                    <span class="mobile-nav__label">Tennis</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/fashion-bracelets"
+                    id="st-fine-jewelry_bracelets_fashion"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 fashion"
+                  >
+                    <span class="mobile-nav__label">Fashion</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/heritage-bracelets"
+                    id="st-fine-jewelry_bracelets_luxe"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 luxe"
+                  >
+                    <span class="mobile-nav__label">Heritage</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/bangles"
+                    id="st-fine-jewelry_bracelets_bangles"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 bangles"
+                  >
+                    <span class="mobile-nav__label">Bangles</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/shop-bracelets"
+                    id="st-fine-jewelry_bracelets_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item create-your-own-jewelry">
+              <div class="menu-nav__with-dropdown" data-sttitle="st-your-own-jewelry-7-5">
+                <a href="#" id="st-fine-jewelry_create-your-own-jewelry" class="mobile-nav__link mobile-nav__link-2">
+                  CREATE YOUR OWN JEWELRY</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_create-your-own-jewelry"
+                data-parent="create-your-own-jewelry-7-5"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/engagement-rings"
+                    id="st-fine-jewelry_create-your-own-jewelry_create-your-own-ring"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 create-your-own-ring"
+                    aria-current="page"
+                  >
+                    <span class="mobile-nav__label">Create Your Own Ring</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/create-your-own-earrings"
+                    id="st-fine-jewelry_create-your-own-jewelry_create-your-own-earrings"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 create-your-own-earrings"
+                  >
+                    <span class="mobile-nav__label">Create Your Own Earrings</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/create-your-own-necklaces"
+                    id="st-fine-jewelry_create-your-own-jewelry_create-your-own-necklace"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 create-your-own-necklace"
+                  >
+                    <span class="mobile-nav__label">Create Your Own Necklace</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/collections/personalized-jewelry"
+                    id="st-fine-jewelry_create-your-own-jewelry_personalized-necklace"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 personalized-necklace"
+                  >
+                    <span class="mobile-nav__label">Personalized Necklace</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/gemstone-jewelry"
+                    id="st-fine-jewelry_create-your-own-jewelry_shop-all-gemstone-jewelry"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all-gemstone-jewelry"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL GEMSTONE JEWELRY</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 gifts">
+          <div class="menu-nav__with-dropdown menu-gifts" data-sttitle="gifts-8">
+            <a href="/collections/jewelry-gifts" id="st-top_gifts" class="mobile-nav__link mobile-nav__link-1">
+              GIFTS</a
+            >
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="gifts-8" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item category">
+              <div class="menu-nav__with-dropdown" data-sttitle="category-8-1">
+                <a href="#" id="st-gifts_category" class="mobile-nav__link mobile-nav__link-2"> CATEGORY</a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_category"
+                data-parent="category-8-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/diamond-ring-gifts"
+                    id="st-gifts_category_rings"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 rings"
+                  >
+                    <span class="mobile-nav__label">Rings</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/necklace-gifts"
+                    id="st-gifts_category_necklaces"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 necklaces"
+                  >
+                    <span class="mobile-nav__label">Necklaces</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/earring-gifts"
+                    id="st-gifts_category_earrings"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 earrings"
+                  >
+                    <span class="mobile-nav__label">Earrings</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/bracelet-gifts"
+                    id="st-gifts_category_bracelets"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 bracelets"
+                  >
+                    <span class="mobile-nav__label">Bracelets</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts"
+                    id="st-gifts_category_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item recipient">
+              <div class="menu-nav__with-dropdown" data-sttitle="recipient-8-2">
+                <a href="#" id="st-gifts_recipient" class="mobile-nav__link mobile-nav__link-2"> RECIPIENT </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_recipient"
+                data-parent="recipient-8-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-for-her"
+                    id="st-gifts_recipient_for-her"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 for-her"
+                  >
+                    <span class="mobile-nav__label">For Her</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-for-mom"
+                    id="st-gifts_recipient_for-mom"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 for-mom"
+                  >
+                    <span class="mobile-nav__label">For Mom</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-for-your-daughter"
+                    id="st-gifts_recipient_for-daughter"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 for-daughter"
+                  >
+                    <span class="mobile-nav__label">For Daughter</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-for-your-wife"
+                    id="st-gifts_recipient_for-wife"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 for-wife"
+                  >
+                    <span class="mobile-nav__label">For Wife</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item occasion">
+              <div class="menu-nav__with-dropdown" data-sttitle="occasion-8-3">
+                <a href="#" id="st-gifts_occasion" class="mobile-nav__link mobile-nav__link-2">OCCASION</a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_occasion"
+                data-parent="occasion-8-3"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/holiday-jewelry-gifts"
+                    id="st-gifts_occasion_holidays"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 holidays"
+                  >
+                    <span class="mobile-nav__label">Holidays</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/birthday-jewelry-gifts"
+                    id="st-gifts_occasion_birthdays"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 birthdays"
+                  >
+                    <span class="mobile-nav__label">Birthdays</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/anniversary-jewelry-gifts"
+                    id="st-gifts_occasion_anniversary"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 anniversary"
+                  >
+                    <span class="mobile-nav__label">Anniversary</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/valentines-day-jewelry-gifts"
+                    id="st-gifts_occasion_valentine-s-day"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 valentine-s-day"
+                  >
+                    <span class="mobile-nav__label">Valentine’s Day</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/mothers-day-jewelry-gifts"
+                    id="st-gifts_occasion_mother-s-day"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 mother-s-day"
+                  >
+                    <span class="mobile-nav__label">Mother’s Day</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/graduation-jewelry-gifts"
+                    id="st-gifts_occasion_graduation"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 graduation"
+                  >
+                    <span class="mobile-nav__label">Graduation</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item price">
+              <div class="menu-nav__with-dropdown" data-sttitle="price-8-4">
+                <a href="#" id="st-gifts_price" class="mobile-nav__link mobile-nav__link-2"> PRICE </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul class="mobile-nav__dropdown mobile-nav__level-3 level-3_price" data-parent="price-8-4" data-level="3">
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-under-350"
+                    id="st-gifts_price_under-350"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 under-350"
+                  >
+                    <span class="mobile-nav__label">under $350</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-under-500"
+                    id="st-gifts_price_under-500"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 under-500"
+                  >
+                    <span class="mobile-nav__label">under $500</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts-under-1000"
+                    id="st-gifts_price_under-1-000"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 under-1-000"
+                  >
+                    <span class="mobile-nav__label">under $1,000</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/collections/jewelry-gifts"
+                    id="st-gifts_price_shop-all"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shop-all"
+                  >
+                    <span class="mobile-nav__label">SHOP ALL</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 education" style="display:none;">
+          <div class="menu-nav__with-dropdown menu-education" data-sttitle="education-9">
+            <a href="/pages/education" id="st-top_education" class="mobile-nav__link mobile-nav__link-1">EDUCATION</a>
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="education-9" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item diamond">
+              <div class="menu-nav__with-dropdown" data-sttitle="diamond-9-1">
+                <a
+                  href="/pages/diamond-education"
+                  id="st-education_diamond"
+                  class="mobile-nav__link mobile-nav__link-2"
+                >
+                  DIAMOND</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_diamond"
+                data-parent="diamond-9-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/4cs-of-diamonds/"
+                    id="st-education_diamond_4-c-s"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 4-c-s"
+                  >
+                    <span class="mobile-nav__label">4 C’s</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/diamond-cut"
+                    id="st-education_diamond_cut"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 cut"
+                  >
+                    <span class="mobile-nav__label">Cut</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/diamond-clarity"
+                    id="st-education_diamond_clarity"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 clarity"
+                  >
+                    <span class="mobile-nav__label">Clarity</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/diamond-carat"
+                    id="st-education_diamond_carat"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 carat"
+                  >
+                    <span class="mobile-nav__label">Carat</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/diamond-color/"
+                    id="st-education_diamond_color"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 color"
+                  >
+                    <span class="mobile-nav__label">Color</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/lab-diamonds"
+                    id="st-education_diamond_lab-diamonds"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 lab-diamonds"
+                  >
+                    <span class="mobile-nav__label">Lab Diamonds</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/diamond/diamond-shape/"
+                    id="st-education_diamond_diamond-shapes"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 diamond-shapes"
+                  >
+                    <span class="mobile-nav__label">Diamond Shapes</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item engagement-rings">
+              <div class="menu-nav__with-dropdown" data-sttitle="engagement-rings-9-2">
+                <a
+                  href="/pages/engagement-ring-education"
+                  id="st-education_engagement-rings"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >ENGAGEMENT RINGS</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_engagement-rings"
+                data-parent="engagement-rings-9-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/ring-101"
+                    id="st-education_engagement-rings_engagement-ring-101"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 engagement-ring-101"
+                  >
+                    <span class="mobile-nav__label">Engagement Ring 101</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/buying-guide/how-much-should-an-engagement-ring-cost/"
+                    id="st-education_engagement-rings_budgeting"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 budgeting"
+                  >
+                    <span class="mobile-nav__label">Budgeting</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/ring-sizing"
+                    id="st-education_engagement-rings_ring-size-guide"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 ring-size-guide"
+                  >
+                    <span class="mobile-nav__label">Ring Size Guide</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item wedding-bands">
+              <div class="menu-nav__with-dropdown" data-sttitle="wedding-bands-9-3">
+                <a
+                  href="/pages/wedding-bands-education"
+                  id="st-education_wedding-bands"
+                  class="mobile-nav__link mobile-nav__link-2"
+                  >WEDDING BANDS</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_wedding-bands"
+                data-parent="wedding-bands-9-3"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/jewelry/engagement-ring-vs-wedding-band-sets-for-women"
+                    id="st-education_wedding-bands_women-s-styles"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 women-s-styles"
+                  >
+                    <span class="mobile-nav__label">Women’s Styles</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/wedding-bands/mens-wedding-band-styles"
+                    id="st-education_wedding-bands_men-s-styles"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 men-s-styles"
+                  >
+                    <span class="mobile-nav__label">Men’s Styles</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/jewelry/engagement-ring-vs-wedding-band-sets-for-women"
+                    id="st-education_wedding-bands_matching-bands-guide"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 matching-bands-guide"
+                  >
+                    <span class="mobile-nav__label">Matching Bands Guide</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item fine-jewelry">
+              <div class="menu-nav__with-dropdown" data-sttitle="fine-jewelry-9-4">
+                <a
+                  href="/pages/jewelry-education"
+                  id="st-education_fine-jewelry"
+                  class="mobile-nav__link mobile-nav__link-2"
+                >
+                  FINE JEWELRY
+                </a>
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_fine-jewelry"
+                data-parent="fine-jewelry-9-4"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/metal-education"
+                    id="st-education_fine-jewelry_precious-metals"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 precious-metals"
+                  >
+                    <span class="mobile-nav__label">Precious Metals</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/jewelry/earrings"
+                    id="st-education_fine-jewelry_earrings-guide"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 earrings-guide"
+                  >
+                    <span class="mobile-nav__label">Earrings Guide</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/jewelry/necklace-guide"
+                    id="st-education_fine-jewelry_necklaces-guide"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 necklaces-guide"
+                  >
+                    <span class="mobile-nav__label">Necklaces Guide</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/blogs/jewelry/diamond-bracelets-guide"
+                    id="st-education_fine-jewelry_bracelets-guide"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 bracelets-guide"
+                  >
+                    <span class="mobile-nav__label">Bracelets Guide</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/gemstone-education"
+                    id="st-education_fine-jewelry_gemstones-education"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 gemstones-education"
+                  >
+                    <span class="mobile-nav__label">Gemstones Education</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="mobile-nav__level-1 about-us">
+          <div class="menu-nav__with-dropdown menu-about-us" data-sttitle="about-us-10">
+            <a href="/pages/about-us" id="st-top_about-us" class="mobile-nav__link mobile-nav__link-1">ABOUT US</a>
+            <span class="toggle-icon"></span>
+          </div>
+
+          <ul class="mobile-nav__dropdown mobile-nav__level-2" data-parent="about-us-10" data-level="2">
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item about-us">
+              <div class="menu-nav__with-dropdown" data-sttitle="about-us-10-1">
+                <a href="/pages/about-us" id="st-about-us_about-us" class="mobile-nav__link mobile-nav__link-2"
+                  >ABOUT US</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_about-us"
+                data-parent="about-us-10-1"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/about-us"
+                    id="st-about-us_about-us_our-story"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 our-story"
+                  >
+                    <span class="mobile-nav__label">Our Story</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/contact"
+                    id="st-about-us_about-us_contact-us"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 contact-us"
+                  >
+                    <span class="mobile-nav__label">Contact Us</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/customer-reviews"
+                    id="st-about-us_about-us_reviews"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 reviews"
+                  >
+                    <span class="mobile-nav__label">Reviews</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/our-gemologist"
+                    id="st-about-us_about-us_our-gemologist"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 our-gemologist"
+                  >
+                    <span class="mobile-nav__label">Our Gemologist</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item" style="display:none;">
+                  <a
+                    href="/pages/radiance-rewards-program"
+                    id="st-about-us_about-us_radiance-rewards"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 radiance-rewards"
+                  >
+                    <span class="mobile-nav__label">Radiance Rewards</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="mobile-nav__item nav__level-2-item site-nav__childlist-item shop-with-confidence">
+              <div class="menu-nav__with-dropdown" data-sttitle="shop-with-confidence-10-2">
+                <a href="#" id="st-about-us_shop-with-confidence" class="mobile-nav__link mobile-nav__link-2"
+                  >SHOP WITH CONFIDENCE</a
+                >
+                <span class="toggle-icon"></span>
+              </div>
+              <ul
+                class="mobile-nav__dropdown mobile-nav__level-3 level-3_shop-with-confidence"
+                data-parent="shop-with-confidence-10-2"
+                data-level="3"
+              >
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/our-policies#lifetime_warranty"
+                    id="st-about-us_shop-with-confidence_lifetime-warranty"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 lifetime-warranty"
+                  >
+                    <span class="mobile-nav__label">Lifetime Warranty</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/financing"
+                    id="st-about-us_shop-with-confidence_financing"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 financing"
+                  >
+                    <span class="mobile-nav__label">Financing</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/our-policies#insured_shipping"
+                    id="st-about-us_shop-with-confidence_shipping"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 shipping"
+                  >
+                    <span class="mobile-nav__label">Shipping</span>
+                  </a>
+                </li>
+
+                <li class="mobile-nav__item nav__level-3-item">
+                  <a
+                    href="/pages/our-policies#returns"
+                    id="st-about-us_shop-with-confidence_returns"
+                    class="mobile-nav__sublist-link site-nav__link site-nav__child-link mobile-nav__link-3 returns"
+                  >
+                    <span class="mobile-nav__label">Returns</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="mobile-nav-account">
+        <li>
+          <a href="/account/login" id="top-mob_sign-in" title="Sign In">Sign In</a>
+        </li>
+        <li><a href="/apps/iwish" id="top-mob_apps-iwish" title="Wishlist">Wishlist</a></li>
+        <li><a href="/cart" id="top-mob_cart" title="My Bag">My Bag</a></li>
+      </ul>
+
+      {% if section.settings.enable_currency != 'No' %}
+        <div class="country-selector mob_country-selector">
+          <localization-form>
+            {%- form 'localization',
+              id: 'localization_form_Mobile',
+              class: 'shopify-localization-form',
+              data-disclosure-form: ''
+            -%}
+              <div class="disclosure" data-disclosure-currency>
+                <button
+                  type="button"
+                  class="disclosure__button"
+                  aria-expanded="false"
+                  aria-controls="CountryList_Mobile"
+                  aria-describedby="CurrencyHeading"
+                  data-disclosure-toggle
+                >
+                  <span
+                    class="currency-flag currency-flag--{{ localization.country.iso_code | downcase }}"
+                    data-flag="{{ localization.country.currency.iso_code }}"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="disclosure-list__label">
+                    {{ localization.country.currency.iso_code }}
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="icon icon-caret"
+                    viewBox="0 0 10 6"
+                  >
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                  </svg>
+                </button>
+                <ul id="CountryList" role="list" class="disclosure__list" hidden>
+                  {%- for country in form.available_countries-%}
+                    <li class="disclosure__item{% if country.iso_code == localization.country.iso_code %} disclosure-list__item--current{% endif %} mobilecountry">
+                      <a
+                        href="javascript:void(0)"
+                        {% if country.iso_code == localization.country.iso_code %}
+                          aria-current="true"
+                        {% endif %}
+                        data-value="{{ country.iso_code }}"
+                        data-disclosure-option
+                      >
+                        <span
+                          class="currency-flag currency-flag--{{ country.iso_code | downcase }}"
+                          data-flag="{{ country.currency.iso_code }}"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="disclosure-list__label">
+                          {{ country.currency.iso_code }}
+                        </span>
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+                <input
+                  type="hidden"
+                  name="country_code"
+                  value="{{ localization.country.iso_code }}"
+                  data-disclosure-input
+                >
+              </div>
+            {%- endform -%}
+          </localization-form>
+        </div>
+      {% endif %}
+    </nav>
+  </header>
+  {% render 'newmobilenav' %}
+</div>
+
+{% endcomment %}
+
+<script src="{{ 'newheader.aio.min.js' | asset_url }}"></script>
+
+{% schema %}
+  {
+  "name": "New Header",
+  "class": "rs-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_dark",
+      "label": "Logo Dark"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_white",
+      "label": "Logo White"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone"
+    },
+    {
+      "type": "radio",
+      "id": "enable_currency",
+      "label": "Enable Currency",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes"
+        },
+        {
+          "value": "no",
+          "label": "No"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Engagement Rings",
+      "type": "engagement_rings",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "label": "Url 1",
+          "id": "url_1"
+        }
+      ]
+    },
+    {
+      "name": "Diamonds",
+      "type": "diamonds",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "High Jewelery",
+      "type": "high_jewelery",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "Collections",
+      "type": "collections",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "label": "Url 1",
+          "id": "url_1"
+        }
+      ]
+    },
+    {
+      "name": "Wedding Bands",
+      "type": "wedding_bands",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "Fine Jewelry",
+      "type": "fine_jewelry",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "Gifts",
+      "type": "gifts",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "Educations",
+      "type": "educations",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "name": "About Us",
+      "type": "about_us",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Header"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,22 @@
+<div class="">
+  {%- render 'breadcrumbs' -%}
+  {% comment %} <header class="section-header">
+    <h1 class="section-header__title">{{ page.title }}</h1>
+  </header> {% endcomment %}
+
+  <div class="rte rte--nomargin">
+    {{ page.content | replace: '<img', '<img loading="lazy"' | replace: '<iframe', '<iframe loading="lazy"' | replace: '<video', '<video preload="none"' }}
+  </div>
+</div>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section"
+}
+{% endschema %}

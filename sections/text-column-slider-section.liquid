@@ -1,0 +1,239 @@
+<style>
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+}
+.align-items_center {
+    align-items: center;
+}
+.justify-content_center {
+    justify-content: center;
+}
+.text-columns-slider {
+    margin-top: 40px;
+}
+.text-columns-slider > .block:not(:first-child) {
+    display: none;
+}
+.text-columns-slider .block-title {
+    background: #14344a;
+}
+.text-columns-slider h3 {
+    color: #f9f9f7;
+    margin: 0;
+}
+.text-columns-slider p {
+    font-size: 18px;
+}
+.text-columns-slider img {
+    margin: 0 auto 40px;
+}
+.text-columns-slider .slick-arrow {
+    top: auto;
+    transform: none;
+}
+@media (min-width: 750px) {
+    .text-columns-slider .block {
+        display: flex;
+    }
+    .text-columns-slider .block-content {
+        min-height: 430px;
+    }
+    .text-columns-slider .content {
+        width: 500px;
+        padding-top: 6%;
+        margin: 0 auto;
+    }
+    .text-columns-slider .slick-arrow {
+        bottom: 45px;
+    }
+    .text-columns-slider .slick-prev {
+        left: auto;
+        right: calc(25% + 30px);
+    }
+    .text-columns-slider .slick-next {
+        right: calc(25% - 60px);
+    }
+}
+@media (max-width: 749px) {
+    .slider-wrapper > *:not(.text-columns-slider) {
+        padding: 0 20px;
+    }
+    .text-columns-slider {
+        margin-top: 30px;
+    }
+    .text-columns-slider .block-title {
+        padding: 20px;
+    }
+    .text-columns-slider .content {
+        padding: 30px 20px 70px;
+    }
+    .text-columns-slider img {
+        max-width: 60px;
+        margin-bottom: 20px;
+    }
+    .text-columns-slider p {
+        font-size: 16px;
+    }
+    .text-columns-slider .slick-arrow {
+        bottom: 0;
+    }
+    .text-columns-slider .slick-prev {
+        left: calc(50% - 60px);
+    }
+    .text-columns-slider .slick-next {
+        right: calc(50% - 60px);
+    }
+}
+
+/*===== Deliberately different =====*/
+.text-columns-slider {margin-top: 40px;}
+.text-columns-slider > .block:not(:first-child) {display: none;}
+.text-columns-slider .block-title {background: #14344a;}
+.text-columns-slider h3 {
+    color: #f9f9f7;
+    margin: 0;
+}
+.text-columns-slider p {font-size: 18px;}
+.text-columns-slider img {margin: 0 auto 40px;}
+.text-columns-slider .slick-arrow {top: auto; transform: none;}
+@media (min-width: 750px) {
+    .text-columns-slider .block {display: flex;}
+    .text-columns-slider .block-content {min-height: 430px;}
+    .text-columns-slider .content {
+        width: 500px;
+        padding-top: 6%;
+        margin: 0 auto;
+    }
+    .text-columns-slider .slick-arrow {bottom: 45px;}
+    .text-columns-slider .slick-prev {
+        left: auto;
+        right: calc(25% + 30px);
+    }
+    .text-columns-slider .slick-next {right: calc(25% - 60px);}
+}
+@media (max-width: 749px) {
+    .slider-wrapper > *:not(.text-columns-slider) {padding: 0 20px;}
+    .text-columns-slider {margin-top: 30px;}
+    .text-columns-slider .block-title {padding: 20px;}
+    .text-columns-slider .content {padding: 30px 20px 70px;}
+    .text-columns-slider img {
+        max-width: 60px;
+        margin-bottom: 20px;
+    }
+    .text-columns-slider p {font-size: 16px;}
+    .text-columns-slider .slick-arrow {bottom: 0;}
+    .text-columns-slider .slick-prev {left: calc(50% - 60px);}
+    .text-columns-slider .slick-next {right: calc(50% - 60px);}
+}
+.slick-prev, .slick-next {
+    position: absolute;
+    display: block;
+    height: 14px;
+    width: 14px;
+    line-height: 0px;
+    font-size: 0px;
+    cursor: pointer;
+    background: transparent;
+    color: transparent;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    z-index: 2;
+}
+.slick-slider .slick-prev, .slick-slider .slick-next {
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/arrow_slider.svg?v=1717434020) no-repeat;
+    width: 40px;
+    height: 40px;
+}
+</style>
+<div class="page-width sm-pd-0">
+    <div class="slider-wrapper text-center">
+
+        <p class="sub-title">{{ section.settings.heading }}</p>
+        <h2 class="section-header">{{ section.settings.sub_heading }} </h2>
+        <p>{{ section.settings.description | newline_to_br }}</p>
+
+        <div class="text-columns-slider">
+          {%- for block in section.blocks -%}
+            <div class="block flex-md">
+                <div class="medium-up--one-half block-title flex-md justify-content_center align-items_center">
+                    <h3 class="section-header section-header-reverse">{{ block.settings.heading }} </h3>
+                </div>
+                <div class="medium-up--one-half block-content flex-md align-items_center">
+                    <div class="content">
+                        <p>{{ block.settings.description | newline_to_br }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+<script>
+ let textColumnSlider = $(".text-columns-slider");
+ textColumnSlider.length && textColumnSlider.slick({ slidesToShow: 1, slidesToScroll: 1, dots: !1, arrows: !0 });
+</script>
+
+{% schema %}
+  {
+  "name": "Text Slider",
+  "class": "text-columns-slider-section",
+  "max_blocks": 8,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "DELIBERATELY DIFFERENT NO. 3"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "FINDING THE BEST RING SIZE"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Are you planning a surprise proposal or ring gift? There are a few ways to find ring size without spoiling the sweet gesture."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slides",
+      "type": "slides",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Slider"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

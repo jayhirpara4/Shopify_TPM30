@@ -1,0 +1,167 @@
+<style>
+.banner-content-overlay-section .page-width, 
+.policies-section .page-width {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.page-our-policies .policies-nav-section {margin-bottom: 35px;}
+.policies-nav-section .heading-slide {
+    font-family: var(--font-stack-header);
+    color: var(--color-text);
+    font-size: 14px;
+    padding: 0 6px;
+}
+.policies-wrapper {
+    border-top: 1px solid #bebebe;
+    margin-top: 40px;
+}
+.policies-wrapper h2.section-header {
+    padding-top: 40px;
+    margin-top: 40px;
+}
+.policies-wrapper .acc-title {
+    font-size: 20px;
+    line-height: 28px;
+    position: relative;
+    padding: 20px 30px 20px 0;
+}
+.policies-wrapper .acc-row {
+    border-bottom: 1px solid #bebebe;
+}
+.policies-wrapper .acc-title::after {
+    content: "";
+    display: block;
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/Clarity_Sprite_home_1.svg?v=1717433370) no-repeat;
+    background-position: -770px -61px;
+    width: 25px;
+    height: 25px;
+    transition: all .3s ease-in-out;
+    position: absolute;
+    top: 21px;
+    right: 0;
+}
+.policies-wrapper .acc-title.active::after {transform: rotate(45deg);}
+.policies-wrapper .acc-content {margin-bottom: 30px;}
+.policies-wrapper .policy-item ul {margin-bottom: 20px;}
+.policies-wrapper .policy-item li:not(:last-child) {margin-bottom: 5px;}
+@media (min-width: 750px) {
+    .policy-heading-slider > .heading-slide:not(:nth-child(-n+6)) {display: none;}
+    .policies-wrapper .acc-content {font-size: 18px;}
+}
+@media (max-width: 749px) {
+    .policy-heading-slider > .heading-slide:not(:first-child) {display: none;}
+    .policies-wrapper .acc-title {
+        font-size: 14px;
+        line-height: 24px;
+        padding: 18px 30px 18px 0;
+    }
+    .policies-wrapper .acc-title::after {
+        top: 18px;
+        transform: scale(.8);
+    }
+    .policies-wrapper .acc-title.active::after {transform: scale(.8) rotate(45deg);}
+}
+.slick-slider .slick-prev {
+    background-position: -11px -5px;
+    left: 0;
+}
+.slick-slider .slick-prev, .slick-slider .slick-next {
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/arrow_slider.svg?v=1717434020) no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+
+  @media (min-width: 750px) {
+    /*#shopify-section-template--22868581318962__image_with_text_and_link_J6JUqz .image-text-overlay .content {
+        left: 100%;
+    }
+    */
+  }
+      .page-our-policies .policies-nav-section {
+    margin-bottom: 35px;
+}
+ section#shopify-section-template--22868581318962__image_with_text_and_link_J6JUqz {
+    margin-top: 30px;
+}
+  #shopify-section-template--22868581318962__policy_page_nav_yQmbAe .slick-slider .slick-prev {
+   background-position: -11px -5px; 
+    left: 0;
+}
+  #shopify-section-template--22868581318962__policy_page_nav_yQmbAe .policy-heading-slider {
+    padding: 0 80px;
+}
+  #shopify-section-template--22868581318962__policy_page_nav_yQmbAe .slick-slider .slick-prev, .slick-slider .slick-next {
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/arrow_slider.svg?v=1717434020) no-repeat;
+    width: 52px;
+    height: 52px;
+}
+ #shopify-section-template--22868581318962__policy_page_nav_yQmbAe button.slick-next.slick-arrow {
+    top: 50%;
+}
+  #shopify-section-template--15818122690621__faq_4hmVca .faqs-wrapper{
+    border-top: 1px solid #bebebe;
+    margin-top: 40px;
+    padding-top: 50px;
+}
+</style>
+{%- assign link_list_0 = section.settings.link_list_0.links -%}
+<div class="page-width page-width-sm">
+    <div class="policy-heading-slider slick-arrows text-center">
+      {%- for block in section.blocks -%}
+        <a class="heading-slide" href="{{ block.settings.url_0 }}">{{ block.settings.link_title }} </a>
+      {%- endfor -%}
+
+    </div>
+</div>
+
+<script>
+
+$(".policy-heading-slider").slick({
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      dots: !1,
+      arrows: !0,
+      responsive: [
+          { breakpoint: 1025, settings: { slidesToShow: 4 } },
+          { breakpoint: 750, settings: { slidesToShow: 1 } },
+      ],
+});
+</script>
+{% schema %}
+  {
+  "name": "Policy nav",
+  "class": "policies-nav-section",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "name": "Link",
+      "type": "link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Link title"
+        },
+        {
+          "type": "url",
+          "label": "Url",
+          "id": "url_0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy nav"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

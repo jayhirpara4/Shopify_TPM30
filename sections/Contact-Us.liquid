@@ -1,0 +1,238 @@
+<!-- =====================================================================================================================================================
+                                                                Contact Us Form
+=====================================================================================================================================================-->
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6">
+
+            <!-- Form -->
+<form id="contactForm">
+    <div class="row">
+        <div class="col-12 col-sm-6 my-2">
+            <div class="inputHeading ivy">Name :</div>
+            <input type="text" id="name" placeholder="Enter your name here" class="cusInput cusTransition" required>
+        </div>
+        <div class="col-12 col-sm-6 my-2">
+            <div class="inputHeading ivy">Phone Number :</div>
+            <input type="number" id="phone" placeholder="Enter your phone number here" class="cusInput cusTransition" required>
+        </div>
+        <div class="col-12 my-2">
+            <label for="email" class="form-label inputHeading ivy">Email :</label>
+            <input type="email" id="email" placeholder="Enter your email here" class="cusInput cusTransition" required>
+        </div>
+        <div class="col-12 my-2">
+            <label for="message" class="inputHeading ivy">Ask a Question :</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter your Question here" class="cusInput cusTransition" required></textarea>
+        </div>
+        <div class="col-12">
+            <button type="submit" id="submitBtn" class="cusBtnOne w-100">
+                Send Message
+            </button>
+            <!-- Loader (Initially Hidden) -->
+            <div id="loader" style="display: none; text-align: center; margin-top: 10px;">
+                <img src="https://i.gifer.com/ZZ5H.gif" width="40px">
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Success Popup Modal -->
+<div id="successPopup" class="popup-overlay-success">
+    <div class="popup-content">
+        <h2 class="ivy">Success!</h2>
+        <p class="ivy my-3">Your message has been sent successfully.</p>
+        <button onclick="closePopup()" class="cusBtnOne w-100">
+            OK
+            </button>
+    </div>
+</div>
+
+            </div>
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="cusMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2366638368153!2d-73.978893!3d40.756819199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d530be5c65%3A0xc0689d6a44552e4a!2sStienhardt%20%26%20Stones!5e0!3m2!1sen!2sus!4v1729672823745!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CSS for Proper Background Overlay -->
+<style>
+    /* Fullscreen background overlay */
+    .popup-overlay-success {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 9999; /* Makes sure it appears above all elements */
+    }
+
+    /* Modal content styling */
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 295px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+    /* Active modal styles */
+    .popup-overlay-success.active {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
+    /* Ensure Shopify sections don’t interfere */
+</style>
+
+
+<!-- =====================================================================================================================================================
+                                                                Book an Appointment
+=====================================================================================================================================================-->
+<section class="mrg_tb">
+    <div class="BGPattern pad_tb">
+        <div class="container">
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h2 class="heading">Experience the Brilliance!</h2>
+                <div class="subHeading">Schedule a consultation to discover the beauty of Lab-created diamonds that fit your style and budget.</div>
+                <div class="d-inline-block mt-4">
+                    <a href="/pages/book-an-appointment" class="cusA BookBtn d-flex justify-content-center align-items-center site-header__book-appointment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4.66634 1.33332C4.66634 0.965136 4.36786 0.666656 3.99967 0.666656C3.63149 0.666656 3.33301 0.965136 3.33301 1.33332V1.63256C3.58655 1.55213 3.8567 1.49471 4.14323 1.45306C4.30853 1.42904 4.48282 1.40983 4.66634 1.39448V1.33332Z" fill="#fff" class="icnHvrBook cusTransition"/>
+                            <path d="M12.6663 1.63256C12.4128 1.55213 12.1427 1.49471 11.8561 1.45306C11.6908 1.42904 11.5165 1.40983 11.333 1.39448V1.33332C11.333 0.965136 11.6315 0.666656 11.9997 0.666656C12.3679 0.666656 12.6663 0.965136 12.6663 1.33332V1.63256Z" fill="#fff" class="icnHvrBook cusTransition"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.68587 1.33334H7.31413C6.01529 1.33332 4.96761 1.3333 4.14355 1.45308C3.28357 1.57808 2.5712 1.84522 2.01201 2.44974C1.45966 3.04688 1.22186 3.79516 1.10944 4.69912C0.99998 5.5793 0.999987 6.70274 1 8.11594V8.55074C0.999987 9.96394 0.99998 11.0874 1.10944 11.9675C1.22186 12.8715 1.45966 13.6198 2.01201 14.2169C2.5712 14.8215 3.28357 15.0886 4.14355 15.2136C4.96761 15.3334 6.01529 15.3333 7.31413 15.3333H8.68587C9.98473 15.3333 11.0324 15.3334 11.8565 15.2136C12.7165 15.0886 13.4288 14.8215 13.988 14.2169C14.5403 13.6198 14.7781 12.8715 14.8905 11.9675C15 11.0874 15 9.96394 15 8.55074V8.11594C15 6.70274 15 5.57931 14.8905 4.69912C14.7781 3.79516 14.5403 3.04688 13.988 2.44974C13.4288 1.84522 12.7165 1.57808 11.8565 1.45308C11.0324 1.3333 9.98473 1.33332 8.68587 1.33334ZM2.99855 6.00001C2.69281 6.00001 2.53993 6.00001 2.44257 6.09612C2.34521 6.19223 2.34325 6.34316 2.33933 6.64502C2.33351 7.09381 2.33333 7.59614 2.33333 8.16214V8.50454C2.33333 9.97441 2.33455 11.0147 2.43258 11.803C2.52885 12.5771 2.70842 13.0063 2.99081 13.3115C3.26637 13.6095 3.64313 13.7935 4.33533 13.8941C5.05239 13.9983 6.00283 14 7.36667 14H8.63333C9.99713 14 10.9476 13.9983 11.6647 13.8941C12.3569 13.7935 12.7336 13.6095 13.0092 13.3115C13.2916 13.0063 13.4711 12.5771 13.5674 11.803C13.6655 11.0147 13.6667 9.97441 13.6667 8.50454V8.16214C13.6667 7.59614 13.6665 7.09381 13.6607 6.64502C13.6567 6.34316 13.6548 6.19223 13.5575 6.09612C13.4601 6.00001 13.3072 6.00001 13.0015 6.00001H2.99855Z" fill="#fff" class="icnHvrBook cusTransition"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 8.66668C4.5 8.20641 4.87309 7.83334 5.33333 7.83334H5.33931C5.79955 7.83334 6.17265 8.20641 6.17265 8.66668C6.17265 9.12694 5.79955 9.50001 5.33931 9.50001H5.33333C4.87309 9.50001 4.5 9.12694 4.5 8.66668ZM7.16367 8.66668C7.16367 8.20641 7.5368 7.83334 7.997 7.83334H8.003C8.4632 7.83334 8.83633 8.20641 8.83633 8.66668C8.83633 9.12694 8.4632 9.50001 8.003 9.50001H7.997C7.5368 9.50001 7.16367 9.12694 7.16367 8.66668ZM9.82733 8.66668C9.82733 8.20641 10.2005 7.83334 10.6607 7.83334H10.6667C11.1269 7.83334 11.5 8.20641 11.5 8.66668C11.5 9.12694 11.1269 9.50001 10.6667 9.50001H10.6607C10.2005 9.50001 9.82733 9.12694 9.82733 8.66668ZM4.5 11.3333C4.5 10.8731 4.87309 10.5 5.33333 10.5H5.33931C5.79955 10.5 6.17265 10.8731 6.17265 11.3333C6.17265 11.7936 5.79955 12.1667 5.33931 12.1667H5.33333C4.87309 12.1667 4.5 11.7936 4.5 11.3333ZM7.16367 11.3333C7.16367 10.8731 7.5368 10.5 7.997 10.5H8.003C8.4632 10.5 8.83633 10.8731 8.83633 11.3333C8.83633 11.7936 8.4632 12.1667 8.003 12.1667H7.997C7.5368 12.1667 7.16367 11.7936 7.16367 11.3333Z" fill="#fff" class="icnHvrBook cusTransition"/>
+                            </svg>
+                        <span class="ps-2">Book an Appointment</span>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================================================================================================================
+                                                                Contact Us Details
+=====================================================================================================================================================-->
+<section>
+    <div class="container">
+
+        <div class="row mt-4 d-flex justify-content-center align-items-center">
+            <div class="col-lg-4 col-xl-6 d-flex justify-content-center align-items-center">
+                <img src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/line-art-stylized-profile-face-star-shaped-pendant.png?v=1737800024" alt="Line art of a stylized profile of a face with a star shaped pendant, against a white background with text overlay." draggable="false" class="img-fluid">
+            </div>
+            <div class="col-lg-8 col-xl-6 mt-4 mt-lg-0">
+                <h2 class="heading text-start mb-4">Still need help? 
+                    <a href="#" class="cusA contactUsLink">Contact Customer Service</a>
+                </h2>
+                <div class="d-flex flex-column justify-content-center align-items-start">
+                    <a href="mailto:care@stienhardt.com" class="cusA hvrBold" aria-label="send an email to care@stienhardt.com">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="me-2">
+                            <path d="M19.8238 3.97348L13.7582 10L19.8238 16.0265C19.9335 15.7973 20 15.544 20 15.2734V4.72656C20 4.45598 19.9335 4.20266 19.8238 3.97348ZM18.2422 2.96875H1.75781C1.48723 2.96875 1.23391 3.03527 1.00473 3.14492L8.75719 10.8583C9.44266 11.5438 10.5573 11.5438 11.2428 10.8583L18.9953 3.14492C18.7661 3.03527 18.5128 2.96875 18.2422 2.96875ZM0.176172 3.97348C0.0665234 4.20266 0 4.45598 0 4.72656V15.2734C0 15.544 0.0665234 15.7974 0.176172 16.0265L6.24176 10L0.176172 3.97348Z" fill="#113174"/>
+                            <path d="M12.9289 10.8286L12.0705 11.6869C10.9284 12.8291 9.06992 12.8291 7.92777 11.6869L7.06949 10.8286L1.00391 16.8551C1.23309 16.9648 1.48641 17.0313 1.75699 17.0313H18.2414C18.512 17.0313 18.7653 16.9648 18.9945 16.8551L12.9289 10.8286Z" fill="#113174"/>
+                        </svg>
+                        care@stienhardt.com
+                    </a>
+                    <a href="tel:+19179096402" class="cusA my-3 hvrBold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="me-2">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.58203 2.91672C9.58203 2.45647 9.95512 2.08337 10.4154 2.08337C14.5576 2.08337 17.9153 5.44125 17.9153 9.58337C17.9153 10.0436 17.5423 10.4167 17.082 10.4167C16.6217 10.4167 16.2487 10.0436 16.2487 9.58337C16.2487 6.36172 13.637 3.75005 10.4154 3.75005C9.95512 3.75005 9.58203 3.37695 9.58203 2.91672ZM9.99869 5.83337C9.99869 5.37315 10.3718 5.00005 10.832 5.00005C13.1332 5.00005 14.9987 6.86553 14.9987 9.16672C14.9987 9.62696 14.6256 10 14.1654 10C13.7051 10 13.332 9.62696 13.332 9.16672C13.332 7.786 12.2128 6.66672 10.832 6.66672C10.3718 6.66672 9.99869 6.29362 9.99869 5.83337Z" fill="#113174"/>
+                            <path d="M6.92041 3.55866L6.70936 3.0838C6.42509 2.4442 6.28295 2.12439 6.04903 1.89833C5.89462 1.74912 5.71292 1.63103 5.51386 1.55053C5.21228 1.42859 4.86232 1.42859 4.16238 1.42859C3.12016 1.42859 2.59905 1.42859 2.19303 1.68162C1.94402 1.8368 1.70585 2.10026 1.57651 2.36365C1.36561 2.79305 1.41345 3.26615 1.50913 4.21236C2.30308 12.0638 6.6258 16.3866 14.4773 17.1804C15.4234 17.2762 15.8966 17.324 16.326 17.1132C16.5894 16.9839 16.8529 16.7457 17.008 16.4966C17.261 16.0906 17.261 15.5694 17.261 14.5273C17.261 13.8273 17.261 13.4773 17.1392 13.1758C17.0586 12.9768 16.9406 12.795 16.7913 12.6406C16.5652 12.4067 16.2454 12.2646 15.6059 11.9803L15.131 11.7693C14.5706 11.5202 14.2903 11.3956 14.0092 11.3719C13.7102 11.3468 13.4099 11.4025 13.1399 11.5333C12.886 11.6563 12.6691 11.8732 12.2355 12.3068C11.8088 12.7335 11.5955 12.9468 11.3176 13.0725C11.0473 13.1948 10.6674 13.2468 10.3741 13.2016C10.0727 13.1552 9.85123 13.0302 9.40832 12.7803C7.83791 11.8947 6.79502 10.8518 5.90929 9.28135C5.65943 8.83842 5.53452 8.61692 5.4881 8.3155C5.44293 8.02226 5.49491 7.64235 5.61716 7.37199C5.74279 7.09416 5.95612 6.88083 6.38278 6.45417C6.81646 6.0205 7.03331 5.80366 7.15629 5.54977C7.28712 5.27975 7.34288 4.97946 7.31771 4.68046C7.29403 4.39935 7.16951 4.11912 6.92041 3.55866Z" fill="#113174"/>
+                        </svg>
+                        +1 917-909-6402
+                    </a>
+                    <a href="/pages/book-an-appointment" class="cusA hvrBold site-header__book-appointment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="me-2">
+                            <path d="M5.83268 1.66671C5.83268 1.20647 5.45958 0.833374 4.99935 0.833374C4.53912 0.833374 4.16602 1.20647 4.16602 1.66671V2.04075C4.48295 1.94022 4.82063 1.86844 5.17879 1.81638C5.38542 1.78635 5.60328 1.76234 5.83268 1.74315V1.66671Z" fill="#113174"/>
+                            <path d="M15.8327 2.04075C15.5158 1.94022 15.1781 1.86844 14.8199 1.81638C14.6133 1.78635 14.3954 1.76234 14.166 1.74315V1.66671C14.166 1.20647 14.5391 0.833374 14.9993 0.833374C15.4596 0.833374 15.8327 1.20647 15.8327 1.66671V2.04075Z" fill="#113174"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8573 1.66663H9.14267C7.51912 1.6666 6.20951 1.66658 5.17944 1.8163C4.10446 1.97254 3.214 2.30647 2.51502 3.06213C1.82458 3.80855 1.52733 4.74389 1.3868 5.87384C1.24998 6.97408 1.24998 8.37838 1.25 10.1449V10.6884C1.24998 12.4549 1.24998 13.8592 1.3868 14.9594C1.52733 16.0894 1.82458 17.0247 2.51502 17.7711C3.214 18.5268 4.10446 18.8607 5.17944 19.017C6.20952 19.1667 7.51911 19.1666 9.14267 19.1666H10.8573C12.4809 19.1666 13.7905 19.1667 14.8206 19.017C15.8956 18.8607 16.786 18.5268 17.485 17.7711C18.1754 17.0247 18.4727 16.0894 18.6132 14.9594C18.75 13.8592 18.75 12.4549 18.75 10.6884V10.1449C18.75 8.37838 18.75 6.97408 18.6132 5.87384C18.4727 4.74389 18.1754 3.80855 17.485 3.06213C16.786 2.30647 15.8956 1.97254 14.8206 1.8163C13.7905 1.66658 12.4809 1.6666 10.8573 1.66663ZM3.74819 7.49996C3.36601 7.49996 3.17492 7.49996 3.05321 7.6201C2.93151 7.74023 2.92906 7.92889 2.92417 8.30622C2.91689 8.86721 2.91667 9.49513 2.91667 10.2026V10.6306C2.91667 12.468 2.91818 13.7684 3.04073 14.7537C3.16106 15.7213 3.38553 16.2578 3.73852 16.6394C4.08297 17.0118 4.55392 17.2419 5.41917 17.3676C6.31548 17.4979 7.50354 17.5 9.20833 17.5H10.7917C12.4964 17.5 13.6845 17.4979 14.5808 17.3676C15.4461 17.2419 15.917 17.0118 16.2615 16.6394C16.6145 16.2578 16.8389 15.7213 16.9593 14.7537C17.0818 13.7684 17.0833 12.468 17.0833 10.6306V10.2026C17.0833 9.49513 17.0831 8.86721 17.0758 8.30622C17.0709 7.92889 17.0685 7.74023 16.9468 7.6201C16.8251 7.49996 16.634 7.49996 16.2518 7.49996H3.74819Z" fill="#113174"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.625 10.8333C5.625 10.258 6.09137 9.79163 6.66667 9.79163H6.67414C7.24944 9.79163 7.71581 10.258 7.71581 10.8333C7.71581 11.4086 7.24944 11.875 6.67414 11.875H6.66667C6.09137 11.875 5.625 11.4086 5.625 10.8333ZM8.95458 10.8333C8.95458 10.258 9.421 9.79163 9.99625 9.79163H10.0038C10.579 9.79163 11.0454 10.258 11.0454 10.8333C11.0454 11.4086 10.579 11.875 10.0038 11.875H9.99625C9.421 11.875 8.95458 11.4086 8.95458 10.8333ZM12.2842 10.8333C12.2842 10.258 12.7506 9.79163 13.3258 9.79163H13.3333C13.9087 9.79163 14.375 10.258 14.375 10.8333C14.375 11.4086 13.9087 11.875 13.3333 11.875H13.3258C12.7506 11.875 12.2842 11.4086 12.2842 10.8333ZM5.625 14.1666C5.625 13.5913 6.09137 13.125 6.66667 13.125H6.67414C7.24944 13.125 7.71581 13.5913 7.71581 14.1666C7.71581 14.742 7.24944 15.2083 6.67414 15.2083H6.66667C6.09137 15.2083 5.625 14.742 5.625 14.1666ZM8.95458 14.1666C8.95458 13.5913 9.421 13.125 9.99625 13.125H10.0038C10.579 13.125 11.0454 13.5913 11.0454 14.1666C11.0454 14.742 10.579 15.2083 10.0038 15.2083H9.99625C9.421 15.2083 8.95458 14.742 8.95458 14.1666Z" fill="#113174"/>
+                        </svg>
+                        Book an appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+     <script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Show loader and disable button
+    // document.getElementById("loader").style.display = "block";
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").innerText = "Sending...";
+
+    let formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+    };
+
+    fetch("https://blog-backend-side-4loa.onrender.com/api/auth/send-email", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Hide loader, reset form, show success popup
+            // document.getElementById("loader").style.display = "none";
+            document.getElementById("submitBtn").disabled = false;
+            document.getElementById("submitBtn").innerText = "Send Message";
+            document.getElementById("contactForm").reset();
+            document.getElementById("successPopup").classList.add("active");
+        } else {
+            alert("Failed to send email. Please try again.");
+        }
+    })
+    .catch(error => {
+        alert("Error: " + error.message);
+    });
+});
+
+// Close popup function
+function closePopup() {
+    document.getElementById("successPopup").classList.remove("active");
+}
+</script>                         
+
+{% schema %}
+    {
+    "name": "Contact Us",
+    "tag": "section",
+    "presets": [
+      {
+        "name": "Contact Us"
+      }
+    ]
+  }  
+{% endschema %}
+

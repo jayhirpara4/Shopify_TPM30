@@ -1,0 +1,36 @@
+{% schema %}
+{
+  "name": "Breadcrumb Section",
+  "settings": [
+    {
+      "type": "html",
+      "id": "home_text",
+      "label": "Home Link Text",
+      "default": "Home"
+    },
+    {
+      "type": "html",
+      "id": "current_text",
+      "label": "Current Page Link Text",
+      "default": "Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb Section"
+    }
+  ]
+}
+{% endschema %}
+
+<section>
+    <div class="BGBreadcrumb" style="margin-bottom:50px">
+        <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+            <div class="cusBreadcrumb">
+                <span class="cusA LinkBreadcrumb" style="color: #3c749b;">{{ section.settings.home_text }}</span>
+                <span class="cusA LinkBreadcrumb">{{ section.settings.current_text }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+

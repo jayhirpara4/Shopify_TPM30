@@ -1,0 +1,87 @@
+<style>
+.feature-columns-slider .slick-slide,.slick-slide img {
+   min-width:20vw;
+}
+</style>
+<!-- feature-columns-slider.liquid -->
+<div class="section-wrapper " style="background: ">
+    <div class="page-width-wide">
+
+        <h2 class="section-header-lg text-uppercase">{{ section.settings.heading }} </h2>
+      
+        <div class="grid  grid--flush-bottom default-slick-slider flex" data-style-slick-slider>
+          {%- for block in section.blocks -%}
+            {%- assign image = block.settings.image -%}
+
+            <div class="grid__item medium-up--one-quarter text-left">
+                <div class="absolute-image-wrapper" style="padding-top:100.0%;" data-image-loading-animation>
+                    {{ image | image_url: width: image.width | image_tag: class: 'absolute-image', loading: 'lazy' }}
+                </div>
+            </div>
+
+        {%- endfor -%}
+        </div>
+    </div>
+</div>
+<script>
+$("[data-style-slick-slider]").slick({
+    dots: !1,
+    arrows: !0,
+    slidesToShow: 4,
+    speed: 500,
+    infinite: !1,
+    slidesToScroll: 1,
+    autoplay: !1,
+    autoplaySpeed: 4e3,
+    adaptiveHeight: !1,
+    rows: 0,
+    responsive: [
+        { breakpoint: 1600, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+        { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+        { breakpoint: 767, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
+});
+    
+</script>
+
+
+{% schema %}
+  {
+  "name": "Image galley slider",
+  "class": "feature-columns-slider",
+  "max_blocks": 15,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SEE OUR GALLERY"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image galley slider"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

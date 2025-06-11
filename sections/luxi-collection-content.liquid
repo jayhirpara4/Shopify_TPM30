@@ -1,0 +1,298 @@
+<style>
+
+body.template-page .page-container[class*=page-luxe],
+body.template-page .page-container[class*=page-the-reserve] 
+{padding-top: 0;}
+.page-container[class*=page-luxe] .main-content,.page-container[class*=page-the-reserve] .main-content {
+    background: #FCF9F5;
+}
+.page-container[class*=page-luxe] .main-content .shopify-section,
+.page-container[class*=page-the-reserve] .main-content .shopify-section{
+    margin-bottom: 0;
+}
+.page-container[class*=page-luxe] .site-footer,
+.page-container[class*=page-the-reserve] .site-footer {
+    margin-top: 0;
+}
+  
+.luxe-collection-content .col:not(:last-child) {
+    margin-bottom: 90px;
+}
+@media only screen and (min-width: 750px) {
+    .align-items_center-md {
+        align-items: center;
+    }
+}
+@media only screen and (min-width: 750px) {
+    .flex-md {
+        display: flex;
+    }
+}
+
+/* Page content */
+.luxe-page-info {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.luxe-page-info p {
+    font-family: var(--font-stack-header);
+    color: #213245;
+    font-size: 22px;
+    line-height: 35px;
+    font-style: italic;
+}
+.container .col-media {
+    position: relative;
+    z-index: 0;
+}
+@media (min-width: 750px) {}
+@media (max-width: 749px) {
+    .luxe-page-info {max-width: 353px; width: calc(100% - 40px);}
+    .luxe-page-info p {
+        font-size: 18px;
+        line-height: 31.5px;
+    }
+    .luxe-page-info p br {display: none;}
+}
+
+.luxe-collection-content-section {padding: 10px 0 83px;}
+.luxe-collection-content .breadcrumb-container {
+    max-width: 1175px;
+    margin: 0 auto 30px !important;
+}
+.luxe-collection-content .container {
+    background: #FFF;
+    max-width: 1175px;
+    padding: 53px 40.5px 77px;
+    margin: 60px auto 0;
+}
+.luxe-collection-content .col:not(:last-child) {margin-bottom: 90px;}
+.luxe-collection-content .col-link {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #FFF;
+    padding: 10px 10px 0 0;
+    color: #213245;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 2.1px;
+    text-decoration: underline;
+}
+.luxe-collection-content .col-title {
+    color: #323C50;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 37px;
+    letter-spacing: -0.42px;
+    padding-right: 22px;
+}
+.luxe-collection-content .col-content p {
+    color: #213245;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 24px;
+}
+.luxe-collection-content .btn-wrapper {margin-top: -30px;}
+.luxe-collection-content .btn-see-more {
+    font-family: var(--font-stack-header);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    font-style: italic;
+    letter-spacing: 2.39px;
+    width: 191px;
+    padding: 10px 15px;
+}
+
+.luxe-collection-content .col:nth-child(2n) .col-media {order: 2;}
+.luxe-collection-content .col:nth-child(2n) .col-link {
+    left: auto;
+    right: 0;
+    padding: 14px 0 0 19px;
+}
+.luxe-collection-content .col:nth-child(2n) .col-content {text-align: right;}
+.luxe-collection-content .col img {display: block;}
+/* Carat weight */
+.tooltipcarat {
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 1.04px;
+}
+.upper-fraction {
+    top: -3px;
+    right: 1px;
+}
+.lower-fraction {
+    bottom: -2px;
+    right: 1px;
+}
+.upper-fraction, .lower-fraction{
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+    letter-spacing: 0;
+}
+@media (min-width: 750px) {
+    .luxe-collection-content .col-media {
+        width: calc(100% - 344px);
+        flex: 0 0 calc(100% - 344px);
+    }
+    .luxe-collection-content .col-content {
+        width: 344px;
+        flex: 0 0 344px;
+        padding-left: 22px;
+    }
+    .luxe-collection-content .col:nth-child(2n) .col-title {padding: 0 0 0 22px;}
+    .luxe-collection-content .col:nth-child(2n) .col-content {padding: 0 22px 0 0;}
+}
+@media (max-width: 749px) {
+    .luxe-collection-content-section {padding-bottom: 60px;}
+    .luxe-collection-content .breadcrumb-container {margin: 0 auto 35px !important;}
+    .luxe-collection-content .container {
+        max-width: calc(100% - 60px);
+        padding: 15px 12px 41px;
+        margin-top: 73px;
+    }
+    .luxe-collection-content .col:not(:last-child) {margin-bottom: 40px;}
+    .luxe-collection-content .col-link {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 1.8px;
+        padding: 6px 12px 0 0;
+    }
+    .luxe-collection-content .col-content {padding-top: 16px;}
+    .luxe-collection-content .col-title {
+        font-size: 20px;
+        line-height: 27px;
+        letter-spacing: -0.3px;
+        padding: 0;
+    }
+    .luxe-collection-content .col-content p {
+        font-size: 15px;
+        line-height: 21px;
+        margin-top: 8px;
+    }
+    .luxe-collection-content .col-content p:not(:last-child) {margin-bottom: 12px;}
+}
+</style>
+<div class="luxe-collection-content">
+    <div class="luxe-page-info text-center">
+        {{ section.settings.description }}
+    </div>
+    <div class="container" data-collection="the-reserve-lab-grown-diamond-engagement-rings">
+      {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'collection' -%}
+        {%- assign collection_image = block.settings.collection_image -%}
+        <div class="col flex-md align-items_center-md">
+            <div class="col-media ">
+              {% if block.settings.link_url != blank %}
+                <a class="" href="{{ block.settings.link_url }}" data-uw-rm-brl="PR" >
+                  {% endif %}
+                    <div class="luxe-absolute-image-wrapper">
+                        {{ collection_image | image_url: width: collection_image.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+                    </div>
+                    <span title="The Cassatt Ring" class="col-link">PRODUCT DETAILS</span>
+               {% if block.settings.link_url != blank %}
+                </a>
+              {% endif %}
+            </div>
+            <div class="col-content">
+                <h2 class="col-title">{{ block.settings.collection_title }}</h2> 
+                <p>{{ block.settings.description }}</p>
+              {% if block.settings.size != blank %}
+                <div class="product-variant-weight">
+                    <p>
+                        <span class="tooltipcarat">{{ block.settings.size }} <span class="upper-fraction">{{ block.settings.weight_upper }}</span>/<span class="lower-fraction">{{ block.settings.weight_lower }}</span>&nbsp;CTTW
+                        </span>
+                    </p>
+                </div>
+              {% endif %}
+            </div>
+        </div>
+       {%- endcase -%}
+     {%- endfor -%}
+
+    </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Luxi Collection Content",
+  "class": "luxe-collection-content-section",
+  "max_blocks": 20,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection image"
+        },
+        {
+          "type": "text",
+          "id": "collection_title",
+          "label": "Collection title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Carat"
+        },
+        {
+          "type": "text",
+          "id": "weight_upper",
+          "label": "Carat (Upper)"
+        },
+        {
+          "type": "text",
+          "id": "weight_lower",
+          "label": "Carat (Lower)"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxi Collection Content"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

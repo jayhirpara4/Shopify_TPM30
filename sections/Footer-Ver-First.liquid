@@ -1,0 +1,534 @@
+
+    <div class="container" style="background-color: var(--theme-color); padding: 60px 0px;">
+
+        <div class="row text-white  d-flex justify-content-center align-items-start">
+
+            <div class="col-md-6 col-xl-4 d-flex flex-column justify-content-center align-items-center mb-4 mb-xl-0">
+
+                <a href="https://stienhardt.com/" class="cusA">
+                
+                {%- assign img_width = 300 -%}
+                {%- assign img_height = 300 -%}
+
+                {%- if section.settings.Stienhardt_and_Stones_white_Logo != blank -%}
+                  <img
+                    id="logo-imgs"
+                    alt="Stienhardt & Stones"
+                    class="img-fluid Logo"
+                    draggable="false"
+                    src="{{ section.settings.Stienhardt_and_Stones_white_Logo | image_url }}">
+                {%- else -%}
+                  <img
+                    id="logo-imgs"
+                    alt="Stienhardt & Stones"
+                    class="img-fluid Logo"
+                    draggable="false"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Stienhardt_and_Stones_white_Logo.webp?v=1728291137">
+                {%- endif -%}
+
+                </a>
+
+                <div class="text-white mt-5 f-14 mb-2">Sign up for <span class="cfw-Bold f-14">$50 OFF</span> your first order</div>
+
+
+
+
+                {% comment %} Start with Email Input {% endcomment %}
+
+               {%- form 'customer', id: 'newsletter-footerXXXX' -%}
+                    {%- if form.posted_successfully? -%}
+                      <div class="note note--success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
+                    {%- endif -%}
+                    {%- if form.context == 'footer' -%}
+                      {%- if form.errors -%}
+                        {{ form.errors | default_errors }}
+                      {%- endif -%}
+                    {%- endif -%}
+          
+                    <label for="Email-{{ block.id }}" class="hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+                    <label for="newsletter-submit-{{ block.id }}" class="hidden-label">{{ 'general.newsletter_form.submit' | t }}</label>
+                    <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+                    <input type="hidden" name="contact[context]" value="footer">
+                    <div class="footer__newsletterXXXX row m-0">
+                        
+                        <div class="col-8 p-0">
+                            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email-{{ block.id }}" class="footer__newsletter-inputXXXX EmailInput" autocapitalize="off" required>
+                        </div>
+
+                    <div class="col-4 p-0">
+                        <button type="submit" id="newsletter-submit-{{ block.id }}" class="footer__newsletter-btnXXXX cusA SubmitBtn d-flex justify-content-center align-items-center w-100" name="commit">
+                            SUBMIT
+                        {% comment %} <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-email" viewBox="0 0 64 64"><title>icon-email</title><path d="M63 52H1V12h62ZM1 12l25.68 24h9.72L63 12M21.82 31.68 1.56 51.16m60.78.78L41.27 31.68"/></svg> {% endcomment %}
+                        <span class="footer__newsletter-btn-label">
+                          {{ 'general.newsletter_form.submit' | t }}
+                        </span>
+                      </button>
+                    </div>
+                    
+                      
+                      
+                    </div>
+               {%- endform -%}
+
+                {% comment %} End with Email Input {% endcomment %}
+
+
+
+
+                <div class="mt-4">
+                    <a href="https://www.facebook.com/people/Stienhardt-Stones/100089955956436/" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6678)">
+                            <path d="M26 13C26 5.81953 20.1805 0 13 0C5.81953 0 0 5.81953 0 13C0 20.1805 5.81953 26 13 26C13.0762 26 13.1523 26 13.2285 25.9949V15.8793H10.4355V12.6242H13.2285V10.2273C13.2285 7.44961 14.9246 5.93633 17.4027 5.93633C18.591 5.93633 19.6117 6.02266 19.9062 6.06328V8.96797H18.2C16.8543 8.96797 16.5902 9.60781 16.5902 10.5473V12.6191H19.8148L19.3934 15.8742H16.5902V25.4973C22.0238 23.9383 26 18.9363 26 13Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6678">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://www.instagram.com/stienhardt/" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6673)">
+                            <path d="M15.4883 13C15.4883 14.3743 14.3742 15.4883 13 15.4883C11.6258 15.4883 10.5117 14.3742 10.5117 13C10.5117 11.6258 11.6258 10.5117 13 10.5117C14.3742 10.5117 15.4883 11.6258 15.4883 13Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            <path d="M18.8191 8.59752C18.6994 8.27327 18.5086 7.97997 18.2607 7.73916C18.0199 7.49119 17.7266 7.30038 17.4023 7.18077C17.1393 7.07865 16.7442 6.95703 16.0163 6.92392C15.229 6.88802 14.993 6.88025 12.9998 6.88025C11.0065 6.88025 10.7704 6.88781 9.98333 6.92372C9.25553 6.95703 8.86015 7.0786 8.59735 7.18077C8.27306 7.30033 7.97973 7.49115 7.739 7.73916C7.49104 7.97997 7.30016 8.27327 7.18041 8.59752C7.07829 8.86056 6.95666 9.2559 6.92355 9.98369C6.88765 10.7708 6.87988 11.0068 6.87988 13.0002C6.87988 14.9934 6.88765 15.2294 6.92355 16.0167C6.95666 16.7445 7.07829 17.1397 7.18041 17.4027C7.30009 17.7269 7.49089 18.0202 7.7388 18.261C7.97957 18.509 8.27288 18.6998 8.59715 18.8194C8.8602 18.9217 9.25553 19.0434 9.98333 19.0765C10.7704 19.1124 11.0063 19.1199 12.9996 19.1199C14.9932 19.1199 15.2292 19.1124 16.0161 19.0765C16.7439 19.0434 17.1393 18.9217 17.4023 18.8194C17.7243 18.6952 18.0166 18.505 18.2607 18.261C18.5047 18.017 18.6949 17.7246 18.8191 17.4027C18.9212 17.1396 19.0428 16.7446 19.0761 16.0167C19.112 15.2294 19.1196 14.9934 19.1196 13.0002C19.1196 11.0068 19.112 10.7708 19.0761 9.98369C19.043 9.2559 18.9214 8.86051 18.8191 8.59752ZM12.9998 16.8332C10.8827 16.8332 9.16646 15.1171 9.16646 13C9.16646 10.8829 10.8827 9.16683 12.9998 9.16683C15.1168 9.16683 16.833 10.8829 16.833 13C16.833 15.1171 15.1168 16.8332 12.9998 16.8332ZM16.9846 9.91108C16.4899 9.91108 16.0888 9.50995 16.0888 9.01529C16.0888 8.52063 16.4899 8.11946 16.9846 8.11946C17.4793 8.11946 17.8804 8.52053 17.8804 9.01524C17.8802 9.50995 17.4793 9.91108 16.9846 9.91108Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            <path d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM20.4198 16.0776C20.3837 16.8723 20.2574 17.4148 20.0729 17.8897C19.8811 18.3856 19.5878 18.8359 19.2119 19.2119C18.8359 19.5878 18.3856 19.8811 17.8897 20.0729C17.415 20.2574 16.8723 20.3835 16.0778 20.4198C15.2818 20.4561 15.0275 20.4648 13.0002 20.4648C10.9727 20.4648 10.7186 20.4561 9.92235 20.4198C9.12793 20.3835 8.58523 20.2574 8.11048 20.0729C7.61232 19.8855 7.16107 19.5916 6.78823 19.2118C6.40853 18.8389 6.11474 18.3877 5.92734 17.8897C5.74285 17.415 5.61651 16.8723 5.5804 16.0778C5.54369 15.2816 5.53516 15.0273 5.53516 13C5.53516 10.9727 5.54369 10.7184 5.5802 9.9224C5.61625 9.12773 5.74244 8.58523 5.92693 8.11032C6.11439 7.61221 6.40831 7.16101 6.78818 6.78823C7.16098 6.4084 7.61219 6.11453 8.11032 5.92714C8.58523 5.74265 9.12773 5.61651 9.9224 5.5802C10.7184 5.54389 10.9727 5.53516 13 5.53516C15.0273 5.53516 15.2816 5.54389 16.0776 5.58035C16.8723 5.61651 17.4148 5.74265 17.8897 5.92693C18.3878 6.11443 18.8391 6.40834 19.212 6.78818C19.5917 7.16103 19.8855 7.61223 20.0729 8.11032C20.2576 8.58523 20.3837 9.12773 20.42 9.9224C20.4563 10.7184 20.4648 10.9727 20.4648 13C20.4648 15.0273 20.4563 15.2816 20.4198 16.0776Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6673">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/stienhardt-stones" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6688)">
+                            <path d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM9.22238 19.6523H6.05627V10.1271H9.22233L9.22238 19.6523ZM7.63938 8.82639H7.61876C6.55632 8.82639 5.8692 8.09504 5.8692 7.18098C5.8692 6.2463 6.57734 5.53516 7.66045 5.53516C8.74352 5.53516 9.41002 6.2463 9.43064 7.18098C9.43064 8.09504 8.74352 8.82644 7.63938 8.82644V8.82639ZM20.6387 19.6523H17.473V14.5565C17.473 13.2759 17.0146 12.4025 15.869 12.4025C14.9944 12.4025 14.4735 12.9917 14.2446 13.5604C14.1609 13.7639 14.1404 14.0484 14.1404 14.333V19.6523H10.9745C10.9745 19.6523 11.016 11.0207 10.9745 10.1271H14.1404V11.4757C14.5612 10.8268 15.314 9.90356 16.9937 9.90356C19.0768 9.90356 20.6387 11.2649 20.6387 14.1906V19.6523Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6688">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://www.pinterest.com/stienhardtstones/" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6691)">
+                            <path d="M13 0C5.82015 0 0 5.82015 0 13C0 20.1798 5.82015 26 13 26C20.1798 26 26 20.1798 26 13C26 5.82015 20.1798 0 13 0ZM18.1941 14.4746C17.6193 15.7873 16.1323 16.8566 14.6802 16.9369C13.7063 16.9904 12.5514 16.8769 12.0813 15.9182C12.0188 16.3818 11.7014 17.6742 11.5682 18.1372C11.4237 18.6379 11.2933 19.349 10.8895 19.7169C10.6695 19.9171 9.73958 20.4274 9.49259 19.7766C9.169 18.9246 9.86068 16.9496 10.1203 15.9847C10.2597 15.4648 10.344 14.9559 10.4256 14.425C10.4938 13.9846 10.6867 13.5658 10.707 13.1174C10.7281 12.6556 10.5721 12.205 10.5602 11.7448C10.5487 11.2669 10.5577 10.7447 10.8089 10.3211C11.2193 9.62918 12.2802 9.09634 13.002 9.62045C13.6579 10.0961 13.5314 11.1156 13.2884 11.7834C13.1143 12.261 12.9775 12.6696 12.8786 13.174C12.8085 13.53 12.731 14.062 12.5733 14.3735C13.0811 14.89 13.294 15.4189 14.1164 15.4133C14.7137 15.4096 15.3192 15.0846 15.6774 14.6073C16.0348 14.1282 16.3349 13.6092 16.5719 13.0605C16.9217 12.2433 16.8732 11.1917 16.7919 10.3226C16.7519 9.90038 16.6238 9.49128 16.4159 9.12168C16.2079 8.75209 15.9248 8.4302 15.5848 8.17682C13.9437 6.95511 11.2043 7.22491 9.888 8.81612C9.09324 9.77732 8.70318 11.1165 8.84006 12.357C8.88681 12.7809 9.24645 13.0603 9.44415 13.4148C9.62721 13.7435 9.60665 14.5247 9.27968 14.805C8.94989 15.0869 8.44859 14.5312 8.20357 14.3053C7.50288 13.659 7.20182 12.8386 7.05875 11.9146C6.97764 11.3902 7.01369 10.7746 7.19421 10.2969C7.39783 9.76014 7.54062 9.22504 7.88111 8.78683C8.16809 8.41761 8.4852 8.00108 8.80457 7.65524C9.1031 7.33221 9.46386 7.12578 9.88208 6.91625C10.3273 6.69292 10.7402 6.40481 11.2041 6.24372C11.7279 6.06178 12.2413 5.9818 12.7865 5.93561C13.6801 5.86014 14.8297 5.89196 15.6673 6.29892C16.3387 6.62504 17.0729 7.05734 17.6322 7.60539C18.3664 8.32524 18.8573 9.55258 18.9567 10.5532C19.0857 11.8507 18.7123 13.2912 18.1941 14.4746Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6691">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@stienhardt" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6685)">
+                            <path d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM19.5218 9.94668V11.7069C18.6918 11.7072 17.8854 11.5446 17.1248 11.2237C16.6386 11.0188 16.181 10.7519 15.7633 10.4297L15.7758 15.8477C15.7705 17.0677 15.2878 18.214 14.4143 19.0774C13.7033 19.7802 12.8025 20.2271 11.826 20.3718C11.5946 20.4061 11.3609 20.4232 11.127 20.4232C10.0818 20.4232 9.08944 20.0846 8.2777 19.4599C8.12401 19.3415 7.97775 19.2138 7.83976 19.0774C6.893 18.1417 6.40479 16.8734 6.487 15.5393C6.54972 14.5237 6.95632 13.5551 7.63415 12.796C8.53094 11.7915 9.78555 11.2339 11.127 11.2339C11.3631 11.2339 11.5966 11.2516 11.826 11.2856V13.7468C11.6028 13.6731 11.3693 13.6356 11.1342 13.6356C9.90869 13.6356 8.91719 14.6355 8.93552 15.862C8.94715 16.6467 9.37579 17.3327 10.008 17.7108C10.3126 17.8934 10.6571 17.9991 11.0117 18.0186C11.2875 18.0339 11.5638 17.9973 11.826 17.9106C12.7017 17.6213 13.3333 16.7989 13.3333 15.8289L13.3362 12.2007V5.5768H15.7603C15.7623 5.81241 15.7865 6.04732 15.8323 6.27844C16.0153 7.19763 16.5334 7.9951 17.2545 8.53876C17.8833 9.01301 18.6662 9.29414 19.5148 9.29414C19.5154 9.29414 19.5224 9.29414 19.5218 9.29358V9.94668H19.5218Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6685">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://x.com/stienhardtstone" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6694)">
+                            <path d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM18.9357 10.136C18.9414 10.264 18.9442 10.3925 18.9442 10.5216C18.9442 14.4645 15.9429 19.0112 10.4544 19.0114C8.76926 19.0114 7.20124 18.5175 5.88072 17.6711C6.11416 17.6986 6.35182 17.7123 6.59242 17.7123C7.99053 17.7123 9.27713 17.2355 10.2984 16.4351C8.99224 16.4109 7.8909 15.5482 7.51085 14.3626C7.69564 14.3983 7.88342 14.4164 8.07163 14.4165C8.34397 14.4165 8.60783 14.3798 8.85854 14.3114C7.49323 14.038 6.46471 12.8314 6.46471 11.3865C6.46471 11.373 6.46471 11.3609 6.46506 11.3484C6.87923 11.5791 7.3427 11.7071 7.81655 11.7215C7.01533 11.187 6.48868 10.2731 6.48868 9.23782C6.4882 8.71092 6.62764 8.19335 6.89274 7.738C8.36423 9.54352 10.5633 10.7309 13.0433 10.8557C12.9914 10.6326 12.9653 10.4043 12.9657 10.1753C12.9657 8.5281 14.3021 7.19169 15.9499 7.19169C16.8082 7.19169 17.5834 7.55452 18.1279 8.13455C18.7961 8.00271 19.4369 7.75778 20.0227 7.4103C19.7995 8.10677 19.3266 8.69111 18.7105 9.06069C19.3141 8.98848 19.8894 8.82842 20.424 8.59076C20.0237 9.19022 19.5197 9.7135 18.9357 10.136Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6694">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@Stienhardt" class="cusA px-1 footSocial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_260_6681)">
+                            <path d="M11.3809 15.4355L15.6096 13L11.3809 10.5646V15.4355Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            <path d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM21.123 13.0133C21.123 13.0133 21.123 15.6498 20.7886 16.9211C20.6011 17.6169 20.0524 18.1656 19.3565 18.3529C18.0853 18.6875 13 18.6875 13 18.6875C13 18.6875 7.92802 18.6875 6.64341 18.3395C5.94755 18.1523 5.39886 17.6034 5.21143 16.9076C4.87678 15.6497 4.87678 13 4.87678 13C4.87678 13 4.87678 10.3637 5.21143 9.09238C5.39871 8.39658 5.96086 7.83438 6.64346 7.64715C7.91466 7.3125 13 7.3125 13 7.3125C13 7.3125 18.0852 7.3125 19.3566 7.66045C20.0524 7.84768 20.6011 8.39658 20.7886 9.09243C21.1365 10.3637 21.123 13.0133 21.123 13.0133L21.123 13.0133Z" fill="#587DCC" class="hvrFill cusTransition"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_260_6681">
+                            <rect width="26" height="26" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-6 col-lg-3 col-xl-2 d-none d-xl-flex flex-column justify-content-center my-4 my-lg-0 mt-lg-4 mt-xl-0">
+                <div class="col-12 FootHead mb-4 text-white">CUSTOMER CARE</div>
+                <a href="/pages/book-an-appointment" class="cusA footOption site-header__book-appointment">Schedule an appointment</a>
+                <a href="/pages/order-look-up" class="cusA footOption">Track Your Order</a>
+                <a href="https://stienhardt.com/pages/free-shipping" class="cusA footOption">Free shipping</a>
+                <a href="https://stienhardt.com/pages/free-returns" class="cusA footOption">Free returns</a>
+                <a href="https://stienhardt.com/pages/lifetime-warranty" class="cusA footOption">Lifetime warranty</a>
+            </div>
+            <div class="col-6 col-lg-3 col-xl-2 d-none d-xl-flex flex-column justify-content-center my-4 my-lg-0 mt-lg-4 mt-xl-0">
+                <div class="col-12 FootHead mb-4 text-white">COMPANY</div>
+                <a href="/pages/about-us" class="cusA footOption">About Us</a>
+              <a href="/blogs/news" class="cusA footOption">Blog</a>
+                <a href="/pages/contact" class="cusA footOption">Contact Us</a>
+                <a href="/pages/customer-reviews" class="cusA footOption">Reviews</a>
+                <!-- <a href="#" class="cusA footOption">Monthly Payment Option</a> -->
+                <a href="/pages/terms-conditions" class="cusA footOption">Terms & Conditions</a>
+                <a href="/pages/privacy-policy" class="cusA footOption">Privacy Policy</a>
+                <a href="/pages/sitemap" class="cusA footOption">Sitemap</a>
+            </div>
+            <div class="col-6 col-lg-3 col-xl-2 d-none d-xl-flex flex-column justify-content-center my-4 my-lg-0 mt-lg-4 mt-xl-0">
+                <div class="col-12 FootHead mb-4 text-white">SHOP</div>
+                <a href="/collections/lab-diamonds" class="cusA footOption">Customized Lab Diamonds</a>
+                <a href="/collections/engagement-rings" class="cusA footOption">Engagement rings</a>
+                <a href="/collections/preset-rings" class="cusA footOption">Preset rings</a>
+                <a href="/pages/custom-engagement-rings" class="cusA footOption">Custom rings</a>
+                <a href="/collections/earrings" class="cusA footOption">Earrings</a>
+            </div>
+            <div class="col-6 col-lg-3 col-xl-2 d-none d-xl-flex flex-column justify-content-center my-4 my-lg-0 mt-lg-4 mt-xl-0">
+                <div class="col-12 FootHead mb-4 text-white">POPULAR SEARCHES</div>
+                <a href="/collections/1-carat-lab-grown-diamonds" class="cusA footOption">1 Carat Lab Grown Diamonds</a>
+                <a href="/collections/2-carat-lab-grown-diamonds" class="cusA footOption">2 Carat Lab Grown Diamonds</a>
+                <a href="/collections/3-carat-lab-grown-diamonds" class="cusA footOption">3 Carat Lab Grown Diamonds</a>
+                <a href="/collections/4-carat-lab-grown-diamonds" class="cusA footOption">4 Carat Lab Grown Diamonds</a>
+                <a href="/collections/5-carat-lab-grown-diamonds" class="cusA footOption">5 Carat Lab Grown Diamonds</a>
+            </div>
+
+            
+            <div class="col-md-6 accordion accordion-flush px-4 d-block d-xl-none mt-4" id="accordionFlushExampleTwo">
+
+                <div class="accordion-item footerAccordian">
+                    <div class="accordion-header" id="flush-headingSix">
+                        <button class="accordion-button footerAccordianBTN collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseSix" aria-expanded="false"
+                            aria-controls="flush-collapseSix">
+                            <span class="footer-label">CUSTOMER CARE</span>
+                        </button>
+                    </div>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse"
+                        aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExampleTwo">
+                        <div class="accordion-body">
+
+                            <div class="d-flex flex-column">
+                                <a href="/pages/book-an-appointment" class="cusA footOption site-header__book-appointment">Schedule an appointment</a>
+                                <a href="/pages/order-look-up" class="cusA footOption">Track Your Order</a>
+                                <a href="https://stienhardt.com/pages/free-shipping" class="cusA footOption">Free shipping</a>
+                                <a href="https://stienhardt.com/pages/free-returns" class="cusA footOption">Free returns</a>
+                                <a href="https://stienhardt.com/pages/lifetime-warranty" class="cusA footOption">Lifetime warranty</a>                                         
+                            </div>        
+    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item footerAccordian">
+                    <div class="accordion-header" id="flush-headingSeven">
+                        <button class="accordion-button footerAccordianBTN collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                            aria-controls="flush-collapseSeven">
+                            <span class="footer-label">COMPANY</span>
+                        </button>
+                    </div>
+                    <div id="flush-collapseSeven" class="accordion-collapse collapse"
+                        aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExampleTwo">
+                        <div class="accordion-body">
+
+                            <div class="d-flex flex-column">
+                                <a href="/pages/about-us" class="cusA footOption">About Us</a>
+                              <a href="/blogs/news" class="cusA footOption">Blog</a>
+                                <a href="/pages/contact" class="cusA footOption">Contact Us</a>
+                                <a href="/pages/customer-reviews" class="cusA footOption">Reviews</a>
+                                <!-- <a href="#" class="cusA footOption">Monthly Payment Option</a> -->
+                                <a href="/pages/terms-conditions" class="cusA footOption">Terms & Conditions</a>
+                                <a href="/pages/privacy-policy" class="cusA footOption">Privacy Policy</a>
+                                <a href="/pages/sitemap" class="cusA footOption">Sitemap</a>
+                            </div>        
+    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item footerAccordian">
+                    <div class="accordion-header" id="flush-headingEight">
+                        <button class="accordion-button footerAccordianBTN collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseEight" aria-expanded="false"
+                            aria-controls="flush-collapseEight">
+                            <span class="footer-label">SHOP</span>
+                        </button>
+                    </div>
+                    <div id="flush-collapseEight" class="accordion-collapse collapse"
+                        aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExampleTwo">
+                        <div class="accordion-body">
+
+                            <div class="d-flex flex-column">
+                                <a href="/collections/lab-diamonds" class="cusA footOption">Customized Lab Diamonds</a>
+                                <a href="/collections/engagement-rings" class="cusA footOption">Engagement rings</a>
+                                <a href="/collections/preset-rings" class="cusA footOption">Preset rings</a>
+                                <a href="/pages/custom-engagement-rings" class="cusA footOption">Custom rings</a>
+                                <a href="/collections/earrings" class="cusA footOption">Earrings</a>
+                            </div>        
+    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item footerAccordian">
+                    <div class="accordion-header" id="flush-headingNine">
+                        <button class="accordion-button footerAccordianBTN collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseNine" aria-expanded="false"
+                            aria-controls="flush-collapseNine">
+                            <span class="footer-label">POPULAR SEARCHES</span>
+                        </button>
+                    </div>
+                    <div id="flush-collapseNine" class="accordion-collapse collapse"
+                        aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExampleTwo">
+                        <div class="accordion-body">
+
+                            <div class="d-flex flex-column">
+                                <a href="/collections/1-carat-lab-grown-diamonds" class="cusA footOption">1 Carat Lab Grown Diamonds</a>
+                                <a href="/collections/2-carat-lab-grown-diamonds" class="cusA footOption">2 Carat Lab Grown Diamonds</a>
+                                <a href="/collections/3-carat-lab-grown-diamonds" class="cusA footOption">3 Carat Lab Grown Diamonds</a>
+                                <a href="/collections/4-carat-lab-grown-diamonds" class="cusA footOption">4 Carat Lab Grown Diamonds</a>
+                                <a href="/collections/5-carat-lab-grown-diamonds" class="cusA footOption">5 Carat Lab Grown Diamonds</a>
+                            </div>        
+    
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <hr class="FootHR">
+
+        <div class="row">
+            <div class="order-1 order-md-0 mt-3 mt-md-0 col-md-6 copyrights d-flex justify-content-center justify-content-md-start align-items-center">
+                © 2025 <a href="#" class="cusA cfw-Semi">&nbsp;Stienhardt & Stones&nbsp;</a> All Rights Reserved.
+            </div>
+            <div class="order-0 order-md-1 mb-3 mb-md-0 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center">
+                <a href="mailto:care@stienhardt.com" class="cusA cusTransition cfw-Medi footContact" aria-label="send an email to care@stienhardt.com">
+                    care@stienhardt.com
+                </a>
+                <div class="mx-3 cl-w">|</div>
+                <a href="tel:+19179096402" class="cusA cusTransition cfw-Medi footContact" aria-label="call: +1 917-909-6402">
+                    917-909-6402
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+<section>
+    <div class="subFooter py-4">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1128)">
+                    <path d="M3.55469 11.6605C3.55469 11.8799 3.68969 12.0149 3.95969 12.0149C4.47156 12.0149 4.84281 11.5705 4.84281 11.0249C4.01031 11.1149 3.55469 11.2555 3.55469 11.6605Z" fill="#113174"/>
+                    <path d="M24.7388 0H2.25C1.00688 0 0 1.00688 0 2.25V15.75C0 16.9931 1.00688 18 2.25 18H24.7388C25.9819 18 26.9888 16.9931 26.9888 15.75V2.25C26.9888 1.00688 25.9819 0 24.7388 0ZM5.87812 12.6619H4.91062V12.0994C4.69125 12.4762 4.23 12.7688 3.7125 12.7688C2.98688 12.7688 2.52 12.375 2.52 11.7225C2.52 10.9012 3.35812 10.6031 4.42688 10.4681C4.71375 10.4288 4.86562 10.3388 4.86562 10.1475C4.86562 9.87188 4.635 9.73125 4.22438 9.73125C3.79125 9.73125 3.3075 9.96187 3.00937 10.2375L2.67188 9.52312C3.04312 9.225 3.72938 8.94938 4.32562 8.94938C5.20312 8.94938 5.87812 9.34313 5.87812 10.3162V12.6675V12.6619ZM11.5312 8.18437C11.5312 8.18437 11.3288 8.06625 11.07 8.06625C10.8337 8.06625 10.5638 8.20125 10.5638 8.67937V9.045H11.4975V9.84375H10.5638V12.6562H9.53438V9.84375H7.97062V12.6562H6.94125V9.84375H6.33938V9.045H6.94125V8.78062C6.94125 7.61062 7.68938 7.23938 8.35313 7.23938C8.76937 7.23938 9.07312 7.34062 9.26437 7.45312L8.94375 8.17875C8.79187 8.09437 8.6175 8.06063 8.4825 8.06063C8.24625 8.06063 7.97625 8.19563 7.97625 8.67375V9.03938H9.54V8.775C9.54 7.605 10.2881 7.23375 10.9519 7.23375C11.5369 7.23375 11.8631 7.4475 11.8631 7.4475L11.5425 8.17313L11.5312 8.18437ZM13.1456 12.6619H12.1163V9.05062H13.1456V12.6619ZM16.335 9.98438C16.2113 9.89437 16.0312 9.855 15.8962 9.855C15.5475 9.855 15.0469 10.0969 15.0469 10.9237V12.6619H14.0119V9.05062H14.9738V9.65812C15.1931 9.18 15.525 8.94375 16.0594 8.94375C16.1944 8.94375 16.3631 8.96062 16.5206 9.02812L16.335 9.98438ZM22.5169 12.6619H21.4875V10.4906C21.4875 10.0125 21.2006 9.81563 20.925 9.81563C20.5819 9.81563 20.2444 10.1306 20.2444 10.8056V12.6619H19.215V10.5019C19.215 10.0069 18.945 9.81563 18.6469 9.81563C18.3206 9.81563 17.9719 10.1362 17.9719 10.8056V12.6619H16.9369V9.05062H17.9325V9.59625C18.1069 9.2475 18.4838 8.94375 19.0294 8.94375C19.53 8.94375 19.9463 9.17438 20.1431 9.57938C20.3569 9.27 20.7619 8.94375 21.3075 8.94375C21.9656 8.94375 22.5112 9.35437 22.5112 10.1644V12.6619H22.5169ZM24.2213 12.6281L24.21 12.6619H23.2312C23.4225 12.0487 23.5181 11.3569 23.5181 10.5863C23.5181 7.16062 21.0206 4.96125 18.1294 4.96125C15.75 4.96125 13.7531 6.58687 13.1625 8.4375H12.15C12.8531 5.95125 15.3394 4.01625 18.1294 4.01625C21.6787 4.01625 24.4631 6.76687 24.4631 10.5863C24.4631 11.3119 24.3787 11.9981 24.2213 12.6281Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1128">
+                    <rect width="26.9888" height="18" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="18" viewBox="0 0 28 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1115)">
+                    <path d="M25.7383 18H3.23828C1.99516 18 0.988281 16.9931 0.988281 15.75V2.25C0.988281 1.00688 1.99516 0 3.23828 0H25.7383C26.9814 0 27.9883 1.00688 27.9883 2.25V15.75C27.9883 16.9931 26.9814 18 25.7383 18ZM10.787 3.03187C7.49078 3.03187 4.81891 5.69812 4.81328 8.99438C4.80766 12.2906 7.47953 14.9625 10.7758 14.9681C11.7152 14.9681 12.6433 14.7487 13.4814 14.3212C11.957 12.9712 11.0795 11.0363 11.0739 9C11.0627 6.95813 11.9402 5.0175 13.4814 3.67875C12.6433 3.25688 11.7208 3.03187 10.7814 3.03187H10.787ZM18.167 3.0375C17.2333 3.0375 16.3108 3.25688 15.4783 3.67875C15.8102 3.96 16.1083 4.26937 16.3783 4.6125C18.6958 7.57687 18.3077 11.8294 15.4895 14.3212C18.4258 15.8062 22.0145 14.6306 23.4995 11.6888C24.9845 8.7525 23.8089 5.16375 20.867 3.67875C20.0289 3.25688 19.1008 3.0375 18.167 3.0375ZM14.4883 4.30875C11.8952 6.33938 11.4452 10.0913 13.4758 12.6788C13.7683 13.0556 14.1114 13.3931 14.4883 13.6912C17.0814 11.655 17.5258 7.90312 15.4895 5.31C15.197 4.93875 14.8595 4.60125 14.4883 4.30875Z" fill="#113174"/>
+                    <path d="M25.3723 16.1998H3.60352V1.7998H25.3723V16.1998ZM10.7866 3.02043C7.49039 3.02043 4.81852 5.6923 4.81852 8.99418C4.81852 12.2904 7.49039 14.9623 10.7923 14.9623C11.7316 14.9623 12.6541 14.7429 13.4923 14.3154C11.9679 12.9654 11.0904 11.0304 11.0848 8.99418C11.0791 6.9523 11.9623 5.01168 13.5035 3.67293C12.6654 3.24543 11.7373 3.02043 10.7923 3.02043H10.7866ZM18.1666 3.0373C17.2329 3.0373 16.3104 3.25668 15.4779 3.67855C15.8098 3.9598 16.1079 4.26918 16.3779 4.6123C18.6954 7.57668 18.3073 11.8292 15.4891 14.3211C18.4254 15.8061 22.0141 14.6304 23.4991 11.6886C24.9841 8.74668 23.8085 5.16355 20.8666 3.67855C20.0285 3.25668 19.1004 3.0373 18.1666 3.0373ZM14.4879 4.30855C11.8948 6.33918 11.4448 10.0911 13.4754 12.6786C13.7679 13.0554 14.111 13.3929 14.4879 13.6911C17.081 11.6548 17.5254 7.90293 15.4891 5.3098C15.1966 4.93855 14.8591 4.60105 14.4879 4.30855Z" fill="#113174"/>
+                    <path d="M23.7363 12.6955H23.6913V12.4648H23.7532L23.8207 12.628L23.8938 12.4648H23.9501V12.6955H23.9107V12.5211L23.8488 12.673H23.8038L23.7363 12.5211V12.6955ZM23.5676 12.6955H23.5338V12.5042H23.4551V12.4648H23.652V12.5042H23.5676V12.6955Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1115">
+                    <rect width="27" height="18" fill="white" transform="translate(0.988281)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="18" viewBox="0 0 29 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1123)">
+                    <path d="M5.10011 8.69571C4.8354 8.92663 4.48622 9.03927 4.1314 9.01111H3.95117V6.6006H4.1314C4.48058 6.5668 4.82977 6.66818 5.10011 6.89346C5.35355 7.12438 5.49998 7.45103 5.49435 7.79459C5.49435 8.13814 5.35355 8.4648 5.10011 8.69571Z" fill="#113174"/>
+                    <path d="M25.7693 18H8.19729C8.53521 17.9437 8.87877 17.8648 9.1998 17.786L9.62783 17.6959C17.0058 16.0063 23.7023 13.4549 27.5377 10.8586C27.6053 10.8079 27.6729 10.7628 27.7405 10.7121C27.8418 10.6389 27.932 10.577 28.0221 10.5094V15.7472C28.0221 16.9919 27.0139 18 25.7693 18ZM2.47514 17.8874C1.58528 17.5607 0.993913 16.7159 0.988281 15.7697V2.25282C0.988281 1.00814 1.99642 0 3.2411 0H25.7693C27.0139 0 28.0221 1.00814 28.0221 2.25282V9.09011C27.7179 9.34355 27.3631 9.61389 26.8957 9.93492C23.1898 12.4468 16.6397 14.9362 9.38002 16.592C9.23359 16.6258 9.09279 16.6539 8.94635 16.6877C8.63096 16.761 8.30993 16.8342 7.98327 16.8961C6.04585 17.3129 4.2436 17.6339 2.47514 17.8874ZM15.1754 9.7209C16.2398 9.7209 17.0959 8.85357 17.0903 7.79474C17.0903 6.73029 16.2229 5.87422 15.1641 5.87985C14.0997 5.87985 13.2436 6.74718 13.2492 7.80601C13.2492 8.86483 14.1109 9.7209 15.1641 9.7209H15.1698H15.1754ZM16.8932 6.01502L18.4251 9.7209H18.8081L20.3287 5.99249H19.574L18.6278 8.4368L17.6591 6.01502H16.8932ZM8.7605 9.68711C9.40255 9.76596 9.98265 9.30413 10.0559 8.66771C10.0615 8.61702 10.0671 8.56633 10.0615 8.51565C10.0615 7.94118 9.81369 7.6821 9.01394 7.38924C8.58027 7.23154 8.45073 7.15269 8.45073 6.92741C8.45073 6.70213 8.67038 6.53317 8.96888 6.53317C9.19416 6.53317 9.40255 6.64581 9.53209 6.82603L9.9038 6.34168C9.61657 6.0826 9.23922 5.93617 8.85061 5.93617H8.77739C8.19729 5.93617 7.7242 6.398 7.7073 6.97247C7.7073 7.46809 7.93822 7.72716 8.59717 7.96371C8.82245 8.04255 8.95199 8.10451 9.03647 8.14393L9.09279 8.16646C9.22232 8.25094 9.29554 8.39737 9.29554 8.54944C9.29554 8.83104 9.07026 9.05632 8.79429 9.05632C8.77739 9.05632 8.75486 9.05632 8.73797 9.05632H8.7267C8.40005 9.05632 8.10155 8.86483 7.96075 8.57197L7.51018 9.01126C7.76926 9.42804 8.21982 9.68711 8.71544 9.68711H8.7605ZM12.1397 5.87985C11.6385 5.87985 11.1597 6.07697 10.7993 6.43179C10.4445 6.78661 10.2417 7.27096 10.2361 7.77222C10.2361 8.2791 10.4276 8.76346 10.788 9.12391C11.1372 9.47309 11.6103 9.67021 12.1059 9.67021H12.1397C12.4438 9.67021 12.748 9.59137 13.0183 9.4562V8.62265C12.8043 8.87046 12.5002 9.01126 12.1735 9.0169H12.1454C11.4977 9.0169 10.9683 8.49312 10.9626 7.84543C10.9626 7.82854 10.9626 7.81727 10.9626 7.80038C10.9401 7.14143 11.4526 6.58949 12.1116 6.56133C12.1228 6.56133 12.1341 6.56133 12.1454 6.56133H12.1566C12.4889 6.56133 12.8099 6.70776 13.024 6.96683L13.0127 6.11076C12.748 5.96433 12.4495 5.88548 12.1454 5.88548H12.1341L12.1397 5.87985ZM20.7004 5.99249V9.63079H22.6716V9.01126H21.3763V8.04255H22.6266V7.42303H21.3763V6.62328H22.6829L22.6716 5.99249H20.7004ZM23.8544 8.16646H23.9557L24.9357 9.61952L25.7693 9.57447L24.6428 8.08761C25.1554 8.00876 25.5158 7.54693 25.4651 7.02879C25.4651 6.35857 24.9977 5.96996 24.181 5.96996H23.1447V9.57447H23.8544V8.16646ZM6.54147 5.99249V9.60826H7.25111L7.23985 5.99249H6.54147ZM3.2411 5.99249V9.597H4.26613C4.30555 9.597 4.33934 9.597 4.37877 9.597C4.8068 9.597 5.22358 9.45056 5.5615 9.18586C6.32746 8.54381 6.42883 7.4005 5.78678 6.62891C5.44322 6.21777 4.93634 5.98123 4.39567 5.98123C4.35061 5.98123 4.30555 5.98123 4.26613 5.98123H3.2411V5.99249ZM25.7693 5.85732C25.6116 5.85732 25.4877 5.98123 25.4877 6.13892C25.4877 6.21214 25.5158 6.27973 25.5665 6.33041C25.6172 6.3811 25.6848 6.40926 25.7524 6.40926H25.758L25.7355 6.38673C25.7355 6.38673 25.7693 6.38673 25.7862 6.38673C25.8481 6.38673 25.9044 6.36421 25.9495 6.33041C26.0114 6.28536 26.0452 6.21214 26.0509 6.13329C26.0509 5.97559 25.927 5.85169 25.7693 5.85169V5.85732ZM24.0796 7.64831H23.8544V6.5557H24.0796C24.5302 6.5557 24.7555 6.73592 24.7555 7.08511C24.7555 7.43429 24.5189 7.64831 24.0796 7.64831ZM25.7636 6.37547C25.7129 6.37547 25.6679 6.35857 25.6285 6.32478C25.6566 6.34168 25.6904 6.34731 25.7298 6.35294H25.758C25.7186 6.35294 25.6791 6.33605 25.6454 6.30789H25.6735V6.17272L25.7749 6.30789H25.8537C25.8537 6.30789 25.7918 6.34731 25.758 6.35294H25.7805C25.8256 6.35294 25.865 6.33605 25.8988 6.30789H25.865C25.865 6.30789 25.8763 6.29099 25.8819 6.28536H25.9213C25.9213 6.28536 25.9101 6.29662 25.9044 6.30225H25.9157C25.8819 6.34731 25.8256 6.37547 25.7693 6.37547H25.7636ZM25.589 6.30225C25.5327 6.2572 25.5046 6.18961 25.5102 6.1164C25.5046 5.99812 25.5947 5.89675 25.7129 5.89111C25.7129 5.89111 25.7186 5.89111 25.7242 5.89111H25.7355C25.6904 5.89675 25.6454 5.91927 25.6116 5.95307H25.589V5.98123C25.589 5.98123 25.5778 6.00376 25.5721 6.00939C25.5496 6.04318 25.5383 6.08824 25.544 6.12766C25.544 6.18398 25.5552 6.23467 25.589 6.27973V6.29099V6.30225ZM25.8537 6.30225L25.8425 6.28536L25.758 6.16145H25.7693C25.803 6.14456 25.8256 6.1164 25.8256 6.0826C25.8256 6.0826 25.8256 6.07134 25.8256 6.06571C25.8199 6.00939 25.7749 5.98123 25.7017 5.98123H25.6003C25.6003 5.98123 25.6172 5.96996 25.6228 5.96433C25.6622 5.93617 25.7073 5.91927 25.7524 5.91927L25.7298 5.89675H25.7355C25.7693 5.89675 25.8087 5.91927 25.8368 5.9418H25.8312C25.8312 5.9418 25.865 5.96433 25.8763 5.98123C25.9101 6.02628 25.927 6.08824 25.9213 6.14456C25.9213 6.19524 25.9044 6.24593 25.8706 6.29099H25.865C25.865 6.29099 25.865 6.29662 25.8594 6.30225H25.8537Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1123">
+                    <rect width="27.0338" height="18" fill="white" transform="translate(0.988281)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="18" viewBox="0 0 28 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1132)">
+                    <path d="M24.7734 18H2.27344C1.03031 18 0.0234375 16.9931 0.0234375 15.75V2.25C0.0234375 1.00688 1.03031 0 2.27344 0H24.7734C26.0166 0 27.0234 1.00688 27.0234 2.25V15.75C27.0234 16.9931 26.0166 18 24.7734 18ZM10.7109 3.375C10.4634 3.375 10.2553 3.56063 10.2159 3.8025L8.76469 13.0275C8.73656 13.1906 8.84344 13.3425 9.00656 13.3706C9.02344 13.3706 9.04031 13.3706 9.05719 13.3706H11.2172L11.0709 14.3156C11.0428 14.4506 11.1328 14.5856 11.2678 14.6137C11.2847 14.6137 11.3016 14.6137 11.3184 14.6137H13.1916C13.4109 14.6137 13.5909 14.4563 13.6247 14.2425V14.1525L13.9622 11.9812V11.8575C13.9903 11.6438 14.1759 11.4862 14.3897 11.4862H14.6709C15.4753 11.5256 16.2741 11.3062 16.9491 10.8731C17.6409 10.3444 18.0966 9.56812 18.2147 8.7075C18.4341 7.99312 18.3047 7.21125 17.8659 6.60375C17.7253 6.44625 17.5566 6.31688 17.3709 6.22125C17.5509 5.5125 17.3709 4.76438 16.8984 4.2075C16.3584 3.645 15.4528 3.36375 14.2097 3.36375H10.7109V3.375ZM13.1972 14.2369H11.4647L12.1734 9.62438H13.2591C14.1591 9.66375 15.0422 9.43313 15.8072 8.96062C16.5778 8.40375 17.1009 7.57125 17.2697 6.6375C17.3709 6.705 17.4553 6.78375 17.5284 6.87937C17.7028 7.0875 17.8153 7.335 17.8547 7.59938C17.8941 7.94813 17.8772 8.3025 17.7984 8.64563C17.7253 9.0675 17.5847 9.46688 17.3709 9.83813C17.1966 10.1306 16.9716 10.3837 16.6959 10.5806C16.4147 10.7719 16.1053 10.9125 15.7734 10.9969C15.4078 11.0812 15.0366 11.1206 14.6597 11.1206H14.3503C14.1534 11.1206 13.9678 11.1937 13.8216 11.3231C13.6753 11.4525 13.5741 11.6269 13.5403 11.8181V11.9306L13.1916 14.1131V14.1919C13.1916 14.1919 13.1916 14.22 13.1916 14.2312L13.1972 14.2369ZM11.2341 13.2638L11.2734 12.9938H9.14719L10.5984 3.85875C10.5984 3.825 10.6097 3.79688 10.6322 3.78C10.6603 3.77437 10.6828 3.77437 10.7109 3.78H14.2097C15.3741 3.78 16.1728 4.02187 16.5834 4.5C16.7691 4.69125 16.8984 4.92188 16.9659 5.18062C17.0222 5.47875 17.0222 5.7825 16.9659 6.08063H16.9491L16.8647 6.04688L16.6453 5.99062L16.4147 5.94562C16.1278 5.90062 15.8353 5.87812 15.5428 5.87812H12.7697C12.7078 5.87812 12.6403 5.895 12.5841 5.92312C12.4547 5.985 12.3647 6.10875 12.3422 6.24937L12.0272 8.25187L11.7572 9.93937L11.7403 10.0463L11.2341 13.2638Z" fill="#113174"/>
+                    <path d="M12.0278 8.24635L11.7578 9.93947L12.0222 8.24072L12.0278 8.24635Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1132">
+                    <rect width="27" height="18" fill="white" transform="translate(0.0234375)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="18" viewBox="0 0 28 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1138)">
+                    <path d="M0.867188 7.9875H0.0234375L1.42969 4.78125H2.38594L3.73594 7.93125H2.89219L2.61094 7.3125H1.14844L0.867188 7.9875ZM1.87969 5.45625L1.65469 5.9625L1.37344 6.69375H2.38594L2.10469 5.9625L1.87969 5.45625Z" fill="#113174"/>
+                    <path d="M7.11055 5.4L6.9418 5.85L6.21055 7.93125H5.53555L4.8043 5.85L4.63555 5.4V7.93125H3.9043V4.78125H5.1418L5.76055 6.6375L5.87305 6.975L5.98555 6.6375L6.6043 4.78125H7.8418V7.93125H7.11055V5.4Z" fill="#113174"/>
+                    <path d="M9.19219 5.45625V6.01875H10.9359V6.69375H9.19219V7.25625H10.9922V7.93125H8.46094V4.78125H10.9922V5.45625H9.19219Z" fill="#113174"/>
+                    <path d="M12.2855 7.93104H11.498V4.78104H13.2418C13.3037 4.76979 13.3712 4.76416 13.433 4.76416C13.9224 4.76416 14.3218 5.14103 14.3668 5.62479V5.79354C14.3949 6.03541 14.3162 6.28291 14.153 6.46853C13.9955 6.65979 13.7649 6.77791 13.523 6.80604L14.5355 7.93104H13.5793L12.623 6.80604H12.2855V7.93104ZM12.2293 5.45603V6.13103H13.1293C13.3037 6.13103 13.4612 6.01853 13.523 5.84978V5.79354C13.523 5.68104 13.523 5.62478 13.4668 5.56853L13.4105 5.51229C13.4105 5.51229 13.3655 5.50104 13.3543 5.48416C13.343 5.46728 13.3205 5.45603 13.298 5.45603H12.2293Z" fill="#113174"/>
+                    <path d="M15.4926 4.78125H14.7051V7.93125H15.4926V4.78125Z" fill="#113174"/>
+                    <path d="M17.4603 4.78111H18.3603V5.45611H17.5166C17.0947 5.45611 16.7347 5.76549 16.6728 6.18736V6.35611C16.5997 6.77799 16.8866 7.18299 17.3141 7.25049C17.3253 7.25049 17.3366 7.25049 17.3478 7.25049H17.6853L17.4603 7.92549H17.4041C16.6559 7.98174 16.0034 7.41924 15.9472 6.67111C15.9472 6.63736 15.9472 6.60924 15.9472 6.57549V6.29424C15.8909 5.50674 16.4591 4.82049 17.2409 4.71924C17.3084 4.76424 17.3872 4.78111 17.4659 4.77549L17.4603 4.78111Z" fill="#113174"/>
+                    <path d="M18.6992 7.9875H17.8555L19.2055 4.78125H20.218L21.6242 7.93125H20.7805L20.4992 7.3125H18.9805L18.6992 7.9875ZM19.7117 5.45625L19.4867 5.9625L19.2055 6.69375H20.218L19.8805 5.9625L19.7117 5.45625Z" fill="#113174"/>
+                    <path d="M22.4676 7.9875H21.7363V4.78125H22.6363L23.7613 6.46875L23.9863 6.80625V4.78125H24.7738V7.93125H23.8176L22.6926 6.1875L22.4676 5.85V7.9875Z" fill="#113174"/>
+                    <path d="M6.49297 11.4748V12.0373H8.29297V12.6561H6.49297V13.2186H8.29297V13.8936H5.76172V10.7998H8.29297V11.4748H6.49297Z" fill="#113174"/>
+                    <path d="M8.46055 13.9498L9.69805 12.3748L8.4043 10.7998H9.36055L10.148 11.7561L10.9355 10.7998H11.8355L10.598 12.3748L11.8918 13.9498H10.9355L10.148 12.9373L9.36055 13.9498H8.46055Z" fill="#113174"/>
+                    <path d="M12.7352 13.9498H12.0039V10.7998H13.7477C13.7814 10.7998 13.8208 10.7998 13.8545 10.7998C14.3777 10.7998 14.8164 11.1879 14.8727 11.7054C14.8727 11.7617 14.8727 11.8179 14.8164 11.8179C14.822 12.3917 14.3777 12.8642 13.8039 12.8867H12.7352V13.9554V13.9498ZM12.7914 11.4186V12.2061H13.6914C13.9052 12.2061 14.0795 12.0429 14.0852 11.8292C14.0852 11.8236 14.0852 11.8179 14.0852 11.8123C14.0852 11.5986 13.922 11.4242 13.7083 11.4186C13.7027 11.4186 13.697 11.4186 13.6914 11.4186H12.7914Z" fill="#113174"/>
+                    <path d="M15.9988 13.8937H15.2676V10.7437H17.0113C17.0451 10.7437 17.0845 10.7437 17.1182 10.7437C17.6807 10.7381 18.142 11.1881 18.1476 11.7506C18.1532 12.2737 17.7595 12.7181 17.2363 12.7743L18.2488 13.8993H17.2926L16.3363 12.7743H15.9988V13.8993V13.8937ZM16.0551 11.475V12.15H16.9551C16.9551 12.15 17.0001 12.1612 17.0226 12.1612C17.1801 12.1387 17.3095 12.0206 17.3488 11.8687V11.8125C17.3376 11.6325 17.1913 11.4862 17.0113 11.475H16.0551Z" fill="#113174"/>
+                    <path d="M19.2602 11.4748V12.0373H21.0039V12.6561H19.2602V13.2186H21.0602V13.8936H18.4727V10.7998H21.0602L21.0039 11.4748H19.2602Z" fill="#113174"/>
+                    <path d="M23.4231 13.0499C23.4794 12.8812 23.3669 12.7687 23.1981 12.7124H22.3544C21.8594 12.763 21.415 12.4143 21.3419 11.9249V11.7562C21.3362 11.2162 21.7581 10.7662 22.2981 10.7437H24.0419L23.7606 11.4187H22.4106C22.2419 11.3624 22.1294 11.4749 22.0731 11.6437C22.0169 11.8124 22.1294 11.9249 22.2981 11.9812H23.1419C23.6144 11.9474 24.0419 12.2568 24.1544 12.7124V12.8812C24.1825 13.4099 23.7775 13.8655 23.2431 13.8937C23.2262 13.8937 23.215 13.8937 23.1981 13.8937H21.4544V13.2187H23.0856C23.2544 13.3312 23.3669 13.2187 23.4231 13.0499Z" fill="#113174"/>
+                    <path d="M27.0234 10.0687H10.6547L10.1484 10.7438L9.69844 10.0687H5.02969V14.6813H9.69844L10.2047 14.0062L10.6547 14.6813H13.4672V13.6687H13.8047C14.0916 13.6575 14.3728 13.6238 14.6484 13.5563V14.7375H16.5609V13.8938L17.2359 14.7375H26.0109C26.3653 14.7319 26.7141 14.6363 27.0234 14.4563V13.3875C26.8828 13.815 26.4553 14.0737 26.0109 14.0062H24.3797V13.3313H26.0109C26.1797 13.3875 26.2922 13.275 26.3484 13.1062C26.4047 12.9375 26.2922 12.825 26.1234 12.7688H25.2797C24.7847 12.8194 24.3403 12.4706 24.2672 11.9812V11.8125C24.2391 11.2837 24.6441 10.8281 25.1784 10.8C25.1953 10.8 25.2066 10.8 25.2234 10.8H27.0234V15.75C27.0234 16.9931 26.0166 17.9944 24.7734 18H2.27344C1.03031 18 0.0290625 16.9931 0.0234375 15.75V8.6625H1.31719L1.59844 7.9875H2.21719L2.49844 8.6625H12.7922V7.81875L13.4672 8.6625H16.1672V8.26875C16.5497 8.56687 17.0334 8.7075 17.5172 8.6625H19.1484L19.4297 7.9875H20.0484L20.3297 8.6625H23.0859V7.7625L23.6484 8.6625H25.5609V4.05H23.5359V5.00625L22.9172 4.05H21.1734V5.23125L20.6109 4.05H17.6297C17.1234 4.05 16.6341 4.2075 16.2234 4.5V4.05H6.21094L5.87344 5.0625L5.53594 4.05H3.28594V5.23125L2.77969 4.05H0.923438L0.0234375 6.1875V2.25C0.0234375 1.00688 1.03031 0 2.27344 0H24.7734C26.0166 0 27.0178 1.00688 27.0234 2.25V10.0687Z" fill="#113174"/>
+                    <path d="M13.2696 6.14797C13.2696 6.14797 13.2415 6.14797 13.2246 6.14797H13.2471C13.3877 6.13109 13.5059 6.03547 13.5565 5.90047C13.5621 5.88359 13.5677 5.87234 13.5734 5.85547C13.5565 5.92297 13.5284 5.98484 13.489 6.03547C13.4496 6.08609 13.399 6.11984 13.3427 6.14234C13.3202 6.14797 13.2921 6.15359 13.2696 6.15359V6.14797Z" fill="#113174"/>
+                    <path d="M26.7408 11.4748H25.3346C25.1658 11.4186 25.0533 11.5311 24.9971 11.6998C24.9408 11.8686 25.0533 11.9811 25.2221 12.0373H26.0658C26.4427 11.9923 26.8083 12.1948 26.9658 12.5436V10.7998L26.7408 11.4748Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1138">
+                    <rect width="27" height="18" fill="white" transform="translate(0.0234375)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="18" viewBox="0 0 28 18" fill="none" class="m-1">
+                    <g clip-path="url(#clip0_736_1159)">
+                    <path d="M24.7734 18H2.27344C1.03031 18 0.0234375 16.9931 0.0234375 15.75V2.25C0.0234375 1.00688 1.03031 0 2.27344 0H24.7734C26.0166 0 27.0234 1.00688 27.0234 2.25V15.75C27.0234 16.9931 26.0166 18 24.7734 18ZM13.4784 10.2881L13.2366 11.4131C13.7034 11.5931 14.1984 11.6888 14.6991 11.6888H14.7497C16.1672 11.6888 17.0897 10.9913 17.0953 9.91125C17.0953 9.09 16.4203 8.73 15.8747 8.44312C15.5203 8.25187 15.2109 8.08875 15.2109 7.84687C15.2109 7.67812 15.3572 7.47 15.7734 7.41375C15.8241 7.41375 15.8747 7.41375 15.9197 7.41375C16.3191 7.41375 16.7128 7.50938 17.0672 7.68937L17.3034 6.56437C16.8984 6.4125 16.4766 6.33375 16.0434 6.33375C15.4697 6.31687 14.9016 6.48562 14.4291 6.81187C14.0297 7.09875 13.7934 7.56 13.7934 8.04938C13.7822 8.78063 14.4178 9.18563 14.9691 9.46125C15.4922 9.72 15.6666 9.88312 15.6666 10.1081C15.6666 10.4569 15.2503 10.62 14.8622 10.62H14.8059C14.3447 10.62 13.8891 10.5075 13.4784 10.2937V10.2881ZM18.7153 10.8337H20.4253L20.5884 11.61H21.8203L20.7291 6.40688H19.6041C19.3566 6.40688 19.1316 6.55875 19.0416 6.78937L17.0222 11.61H18.4397L18.7153 10.8337ZM12.0891 6.40688L10.9641 11.61H12.3141L13.4391 6.40688H12.0891ZM5.20969 6.40688L5.17594 6.55875C5.63719 6.64875 6.08156 6.795 6.50344 6.9975C6.68344 7.08187 6.80719 7.25625 6.82406 7.45312L7.89844 11.61H9.32156L11.5041 6.40688H10.0866L8.68594 9.945L8.12344 6.93563C8.07281 6.63188 7.81406 6.40688 7.50469 6.40688H5.20969ZM20.2116 9.765H19.0866L19.8009 7.81313L20.2116 9.765Z" fill="#113174"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_736_1159">
+                    <rect width="27" height="18" fill="white" transform="translate(0.0234375)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center mt-3 mb-4 flex-wrap">
+                <a href="https://stienhardt.com/pages/free-resizing" class="cusA hvrBold my-2 cusCLTheme">Free Resizing</a><span class="mx-4">|</span>
+                <a href="https://stienhardt.com/pages/easy-financing" class="cusA hvrBold my-2 cusCLTheme">Easy Financing</a><span class="mx-4">|</span>
+                <a href="https://stienhardt.com/pages/ethical-diamonds" class="cusA hvrBold my-2 cusCLTheme">Ethical Diamonds</a><span class="mx-4">|</span>
+                <a href="https://stienhardt.com/pages/manufacturing-warranty" class="cusA hvrBold my-2 cusCLTheme">Manufacturing Warranty</a>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                {%- if section.settings.certification_and_diamond_education_image_2 != blank -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="GIA"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo"
+                      src="{{ section.settings.certification_and_diamond_education_image_2 | image_url }}">
+                  {%- else -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="GIA"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo"
+                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/certification_and_diamond_education_image_2.png?v=1728654141">
+                {%- endif -%}
+
+                {%- if section.settings.certification_and_diamond_education_image_2 != blank -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="GCAL"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo mx-4"
+                      src="{{ section.settings.certification_and_diamond_education_image_2 | image_url }}">
+                  {%- else -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="GCAL"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo mx-4"
+                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/certification_and_diamond_education_image_3.png?v=1728654141">
+                {%- endif -%}
+
+                {%- if section.settings.certification_and_diamond_education_image_2 != blank -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="IGI"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo"
+                      src="{{ section.settings.certification_and_diamond_education_image_2 | image_url }}">
+                  {%- else -%}
+                    <img
+                      width="75"
+                      height="75"
+                      loading="lazy"
+                      alt="IGI"
+                      draggable="false"
+                      class="img-fluid subFootLabLogo"
+                      src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/certification_and_diamond_education_image_4.png?v=1728654141">
+                {%- endif -%}
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    var logoImg = document.getElementById('logo-imgs');
+
+    if (logoImg) {
+        if (screenWidth <= 768) {
+            logoImg.setAttribute('width', '200');
+            logoImg.setAttribute('height', '50');
+        } else {
+            logoImg.setAttribute('width', '300');
+            logoImg.setAttribute('height', '300');
+        }
+    } else {
+        console.log('logo-img element not found!');
+    }
+});
+
+</script>
+
+
+
+
+
+{% schema %}
+    {
+      "name": "Footer Ver First",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "Stienhardt_and_Stones_white_Logo",
+          "label": "Stienhardt_and_Stones_white_Logo",
+          "info": "400 x 120px .png recommended"
+        }
+      ]
+    }
+{% endschema %}

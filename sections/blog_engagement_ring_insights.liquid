@@ -1,0 +1,275 @@
+<!-- =====================================================================================================================================================
+                                                                Breadcrumb
+=====================================================================================================================================================-->
+<section>
+  <div class="BGBreadcrumb" id="breadcrumb_container">
+      
+  </div>
+</section>
+
+
+<section>
+        
+<div class="container d-flex flex-column justify-content-center align-items-center text-center">
+                         
+    <div id="loader" style="display: none;">
+        <img style="width: 3rem;" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Loading.gif?v=1736171458" alt="Loading..." />
+    </div>
+ 
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================================================================================================================
+                                                          Blog
+=====================================================================================================================================================-->
+<Section>
+  <div class="container">
+
+      <div class="row" id="blog-posts">
+
+      </div>
+
+  </div>
+</Section>
+
+
+
+
+
+
+<!-- =====================================================================================================================================================
+                                                          Start with Script
+=====================================================================================================================================================-->
+
+
+
+
+<script>
+
+
+
+
+  // Get the current page URL
+  const currentPageUrl = window.location.href;
+
+  // Define the specific _id you want to match
+  const targetBlogCategoryId = "677ea021c27ca8af666436a3"; // Replace with the desired _id
+
+  const baseUrl = "https://blog-backend-side-4loa.onrender.com/api/auth";
+
+  document.getElementById('loader').style.display = 'block'; // Show loader
+
+
+
+  // Start with Send the current page URL to the backend using PAT CH
+  fetch(`${baseUrl}/update-blog-category-url/${targetBlogCategoryId}`, { // Replace with your actual backend endpoint
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          url: currentPageUrl, // Include the current page URL
+      }),
+  })
+      .then(response => response.json())
+      .then(data => {
+          
+      })
+      .catch(error => {
+          console.error('Error updating page URL:', error);
+      });
+
+  // End with Send the current page URL to the backend using PAT CH
+
+
+
+
+
+
+  fetch(`${baseUrl}/get-blog-category`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.message === "Posts fetched successfully") {
+              const Blog_Category = data.Blog_Category;
+
+              const targeted_category_name = Blog_Category.find(category => category._id === targetBlogCategoryId);
+
+              const categoryName = targeted_category_name.blog_category_name;
+
+              const breadcrumb_container = document.getElementById('breadcrumb_container');
+
+
+              const breadcrumb_containerHTML = `
+              <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+                  
+          <h1 class="ivy cl-theme">${categoryName}</h1>
+          <div class="cusBreadcrumb">
+              <a href="/" class="cusA  LinkBreadcrumb" style="color: #3c749b;">Home</a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                  class="mx-2">
+                  <path d="M4.50003 9L7.5 5.99998L4.5 3" stroke="black" stroke-width="1.5" stroke-miterlimit="16"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <a href="/blogs/news" class="cusA  LinkBreadcrumb" style="color: #3c749b;">Blog</a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                  class="mx-2">
+                  <path d="M4.50003 9L7.5 5.99998L4.5 3" stroke="black" stroke-width="1.5" stroke-miterlimit="16"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <a class="cusA  LinkBreadcrumb">${categoryName}</a>
+          </div>
+      </div>
+              
+                              `;
+
+                              breadcrumb_container.innerHTML += breadcrumb_containerHTML;
+
+
+
+          
+
+
+
+
+
+
+  fetch(`${baseUrl}/get-posts`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.message === "Posts fetched successfully") {
+              const posts = data.posts;
+
+              // Filter posts by "Engagement Ring Insights" category
+              const filteredPosts = posts.filter(post => post.blog_category === categoryName);
+
+              // Sort by recent (reverse chronological order based on `_id` or date)
+              const sortedPosts = filteredPosts.reverse();
+
+              // Initial display: Show only the first 16 posts
+              const initialPosts = sortedPosts.slice(0, 16);
+              let remainingPosts = sortedPosts.slice(16); // All remaining posts
+
+              const postContainer = document.getElementById('blog-posts');
+              let categoryHTML = '';
+
+              // Render initial 16 posts
+              initialPosts.forEach(post => {
+                  categoryHTML += `
+                  <div class="col-6 my-3 my-lg-0 mb-0 mb-lg-4 col-lg-3">
+                      <a href="${post.url}" class="cusA d-block">
+                          <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                              <img src="${post.blog_post_url}" alt="Blog Images" draggable="false" class="img-fluid">
+                              <div class="BlogHead mt-3 mb-2 BlogTitle">${post.blog_title}</div>
+                              <div class="BlogDesc">${post.description}</div>
+                              <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                      <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151" />
+                                  </svg>
+                              </a>
+                          </div>
+                      </a>
+                  </div>
+              `;
+              });
+
+              // Append initial posts and "View All" button to the container
+              postContainer.innerHTML = `
+              <section>
+                  <div class="container">
+                      <div class="row" id="post-grid">
+                          ${categoryHTML}
+                      </div>
+                      <div class="col-12 d-flex justify-content-center align-items-center" id="view-all-container">
+                          <a href="#" class="cusA cusOptBtn f-14" id="view-all-btn">View All</a>
+                      </div>
+                  </div>
+              </section>
+          `;
+
+              // Add "View All" Button functionality
+              const viewAllBtn = document.getElementById('view-all-btn');
+              viewAllBtn.addEventListener('click', (e) => {
+                  e.preventDefault(); // Prevent default action
+
+                  const viewAllContainer = document.getElementById('view-all-container');
+                  const viewAllButton = document.getElementById('view-all-btn');
+
+                  // Render remaining posts
+                  let remainingHTML = '';
+                  const postsToRender = remainingPosts.slice(0, 16); // Show next 16 posts
+                  postsToRender.forEach(post => {
+                      remainingHTML += `
+                      <div class="col-6 my-3 my-lg-0 mb-0 mb-lg-4 col-lg-3">
+                          <a href="${post.url}" class="cusA d-block">
+                              <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                                  <img src="${post.blog_post_url}" alt="Blog Images" draggable="false" class="img-fluid">
+                                  <div class="BlogHead mt-3 mb-2 BlogTitle">${post.blog_title}</div>
+                                  <div class="BlogDesc">${post.description}</div>
+                                  <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                          <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151" />
+                                      </svg>
+                                  </a>
+                              </div>
+                          </a>
+                      </div>
+                  `;
+                  });
+
+                  // Update remainingPosts array
+                  remainingPosts = remainingPosts.slice(16);
+
+                  // Append posts to the post grid
+                  const postGrid = document.getElementById('post-grid');
+                  postGrid.innerHTML += remainingHTML;
+
+                  // Hide the "View All" button if no more posts are left
+                  if (remainingPosts.length === 0) {
+                      viewAllContainer.style.display = 'none';
+                      viewAllButton.style.display = 'none';
+                  }
+              });
+          }
+      });
+      document.getElementById('loader').style.display = 'none'; // Hide loader after processing
+  }
+      }
+  );
+</script>
+
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- =====================================================================================================================================================
+                                                          End with Script
+=====================================================================================================================================================-->
+
+
+
+
+
+{% schema %}
+    {
+      "name": "Blog Engagement Ring",
+      "settings": [
+        
+      ],
+      "presets": [
+        {
+          "name": "Blog Engagement Ring Insights"
+        }
+      ]
+    }
+{% endschema %}

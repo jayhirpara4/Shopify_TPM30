@@ -1,0 +1,2026 @@
+<style>
+  
+<!--rs-css -->
+.main-content .shopify-section {
+        display: inherit;
+        margin-bottom: 80px;
+    }
+.product-template__container {
+        margin-top: var(--diamond-pdp-margin);
+    }
+  #rs-custom-id  .diamond-available .diamond-pdp-loading-skeleton, .diamond-not-available .diamond-pdp-loading-skeleton {
+        display: none;
+    }
+
+@media only screen and (min-width: 750px){
+.medium-up--two-thirds {
+    width: 60% !important;
+}
+.medium-up--one-third {
+    width: 40%;
+}
+}
+
+.grid__item {
+    float: left;
+    padding-left: 20px;
+   
+}
+.grid.diamond-pdp-loading-skeleton {
+    display: flex;
+}
+.image-skeleton .skeleton-box {
+    height: 470px;
+}
+.skeleton-box {
+    position: relative;
+    background-color: #dddbdd;
+    width: 100%;
+    height: 50px;
+    border-radius: 38px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px #0000001c;
+}
+.skeleton-box:after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translate(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+    animation: loading 1s infinite;
+}
+.skeleton-box:not(:last-child) {
+    margin-bottom: 20px;
+}
+.skeleton-box:after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translate(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+    animation: loading 1s infinite;
+}
+.grid::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.product-single-not-available {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+.product-single-not-available p {
+    font-size: 20px;
+}
+
+.diamond-available .product-single {
+    display: flex;
+}
+
+.product-single {
+    display: none;
+}
+.product-single {
+    overflow-anchor: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+}
+@media only screen and (min-width: 750px){
+.medium-up--two-thirds {
+    width: 66.66667%;
+}
+  .medium-up--one-third {
+    width: 33.33333%;
+}
+}
+.diamond-image-wrapper {
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto 40px;
+}
+.diamond-image-grid {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 100%;
+    position: relative;
+}
+.diamond-iframe iframe, .diamond-image-grid .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0px solid;
+}
+.diamond-image img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+.diamond-image-wrapper:not(.slick-slider)>div:nth-child(n+2) {
+    display: none;
+}
+.diamond-iframe iframe, .diamond-image-grid .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0px solid;
+}
+
+.diamond-iframe iframe {
+    background-color: #dddbdd;
+}
+#slider, #slider2 {
+    height: 4px;
+    background: var(--color-btn-primary);
+    position: absolute;
+    width: 90%;
+    bottom: 50px;
+    margin: 0 auto;
+    left: 0;
+    border: 0px solid;
+    right: 0;
+}
+.diamond-thumbnil-wrapper {
+    display: flex;
+    justify-content: center;
+    grid-gap: 40px;
+    margin-top: 0;
+}
+.diamond-thumbnil.active {
+    box-shadow: 0 0 15px #00000069;
+}
+.diamond-thumbnil {
+    width: 50px;
+    height: 50px;
+    box-shadow: inset 0 0 2px #000;
+    -webkit-box-shadow: inset 0px 0px 2px 0px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.diamond-thumbnil img {
+    display: block;
+    object-fit: contain;
+}
+
+.diamond-image img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+
+@media screen and (min-width: 768px){
+.product-single .product-single__description-container {
+    position: sticky;
+    top: 0;
+    width: 35% !important;
+    padding-left: 0px !important;
+}
+}
+.product-single__title {
+    color: #323c50;
+    font-size: 27px;
+    line-height: 30px;
+    letter-spacing: -.27px;
+}
+.product-single__sku {
+    font-size: 11px;
+    letter-spacing: .4px;
+    margin-top: 5px;
+}
+.product-single__price {
+    margin: 5px 0 0;
+}
+.prodcut__price {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+}
+.prodcut__price .price__on-sale {
+    color: #323c50;
+    font-size: 25px;
+}
+
+.prodcut__price>div {
+    margin-right: 6px;
+    line-height: 1;
+}
+.product-single__price .bank-wire-price {
+    margin-top: 5px;
+}
+.ship-timeline-n-tracking, .affirm-info-wrapper {
+    margin-bottom: 4px;
+}
+.affirm-info-wrapper p {
+    font-size: 14px;
+    letter-spacing: -.4px;
+}
+.affirm-modal-trigger {
+    color: #323c50;
+    text-decoration: underline;
+}
+.product__addon-info p {
+    cursor: pointer;
+    font-size: 14px;
+    color: #323c50;
+}
+.diamond-short-information {
+    margin: 25px 0;
+}
+.product__addon-info .extented-returns-title {
+    text-decoration: underline;
+}
+diamond-short-information {
+    margin: var(--diamond-pdp-margin) 0;
+}
+
+.diamond-info-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 90%;
+}
+.diamond-more-info {
+    display: inline-block;
+    cursor: pointer;
+}
+.purchase-advantage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--diamond-pdp-margin);
+    margin-top: var(--diamond-pdp-margin);
+}
+.purchase-advantage>span {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+.purchase-advantage span span {
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0411/6437/4183/files/withcalrity-ldp-sprite.svg?v=1679155749);
+    background-position: -130px -768px;
+}
+.purchase-advantage .free-shipping-info span {
+    background-position: -71px -767px;
+}
+
+#dropahint, #dropahint #dropahint-cta, #dropahint_wrapper {
+    touch-action: initial !important;
+}
+#dropahint, #dropahint #dropahint-cta, #dropahint_wrapper {
+    touch-action: initial !important;
+}
+#dropahint #dropahint-cta #u_body {
+    min-height: auto !important;
+}
+.holiday-diamond-event {
+    margin: 34px 0 20px;
+  display:flex;
+}
+.holiday-diamond-event .image-wrapper {
+    width: 144px;
+}
+.holiday-diamond-event .content {
+    width: calc(100% - 144px);
+    padding-left: 21px;
+}
+.holiday-diamond-event .sub-title {
+    font-size: 14px;
+    line-height: 1;
+    display: block;
+    margin: 0;
+}
+.holiday-diamond-event h3 {
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: .57px;
+    color: #323c50;
+    line-height: 33px;
+    font-style: italic;
+    letter-spacing: normal;
+    margin-top: -7px;
+}
+.holiday-diamond-event h3 span {
+    font-style: normal !important;
+}
+.holiday-diamond-event p {
+    color: #323c50;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 17px;
+    margin-bottom: 5px;
+}
+.holiday-diamond-event p strong {
+    font-weight: 600;
+}
+.holiday-diamond-event .holiday-diamond-event-popup-btn, .holiday-diamond-event .store-appointmet-btn {
+    display: block;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: .5px;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-top: 7px;
+}
+.product-form__error-message-wrapper--hidden {
+    display: none !important;
+}
+.product-form__error-message-wrapper {
+    display: flex;
+    flex-basis: 100%;
+    padding: .5rem 0;
+    margin: 0 calc((5 /(var(--font-size-base)))* 1em) 20px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+.icon__fallback-text, .visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.icon-error {
+    fill: #d20000;
+    width: calc(calc(var(--font-size-base)* 1px) - 2px);
+    height: calc(calc(var(--font-size-base)* 1px) - 2px);
+    margin-top: .1em;
+    flex-shrink: 0;
+}
+.icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    fill: currentColor;
+}
+.product-form__error-message {
+    margin-left: .5rem;
+    font-size: calc(((var(--font-size-base) - 2) /(var(--font-size-base)))* 1em);
+    line-height: 1.2;
+    color: var(--color-body-text);
+}
+.product-form__controls-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+.error-message {
+    display: none;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    line-height: 22px;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+}
+.product-form__item--submit {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.product-form__item {
+    flex-grow: 0;
+    flex-basis: 100%;
+    margin-bottom: 10px;
+    padding: 0;
+}
+.product-form__add-to-setting {
+    margin-bottom: 20px;
+}
+.pdp-get-in-time {
+    margin: 15px 0 5px;
+}
+.ship-msg b {
+    font-size: 16px;
+}
+.align-items_center {
+    align-items: center;
+}
+.pdp-get-in-time img.nye-icon {
+    width: 28px;
+}
+.pdp-get-in-time span {
+    color: #cf4545;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+.ship-timeline-n-tracking, .ship-msg {
+    margin-bottom: 5px;
+    font-size: 12px !important;
+}
+.ship-timeline-n-tracking, .affirm-info-wrapper {
+    margin-bottom: 4px;
+}
+.ship-timeline-n-tracking p {
+    display: inline;
+    font-size: 14px;
+    letter-spacing: -.4px;
+}
+
+.ship-timeline-n-tracking, .ship-msg {
+    margin-bottom: 5px;
+    font-size: 12px !important;
+}
+.ship-timeline-n-tracking p.ship-msg:after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: #000;
+    margin: 0 4px 0 6px;
+    position: relative;
+    top: 3px;
+}
+ship-timeline-n-tracking p {
+    display: inline;
+    font-size: 14px;
+    letter-spacing: -.4px;
+}
+.product-form__controls-group button {
+    position: relative;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 52px;
+    font-size: 20px;
+}
+.product-form__controls-group .loading-spinner, .popup-content-wrapper .loading-spinner {
+    width: 25px;
+    height: 25px;
+}
+.product-form__item--submit [data-add-to-cart-text] {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.btn--secondary-accent {
+    background-color: var(--color-body);
+    color: var(--color-btn-primary);
+    border-color: var(--color-btn-primary);
+}
+.grid.grid--no-gutters-sm.product-single {
+    margin: 40px 0;
+}
+  .product_description--accordion {
+    margin: 30px 0 0;
+    border-bottom: 1px solid rgba(50, 60, 80, .3);
+}
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: var(--font-stack-body);
+    font-weight: 400;
+    border-top: 1px solid rgba(50, 60, 80, .3);
+    padding: 13px 0;
+    cursor: pointer;
+}
+  .accordion-header h4 {
+    font-family: inherit;
+    font-weight: inherit;
+    color: #323c50;
+    letter-spacing: 2.4px;
+    font-weight: 500;
+}
+  .accordion-header .arrow {
+    width: 25px;
+    height: 25px;
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  .accordion-header.active .arrow svg {
+    transform: rotate(180deg);
+}
+.accordion-header .arrow svg {
+    width: 12px;
+    height: auto;
+    transition: all .5s;
+}
+  .active+.accordion-content {
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.accordion-content {
+    display: none;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+  .accordion-content p {
+    margin-bottom: 5px;
+    line-height: 1.5;
+    display: flex;
+}
+  .accordion-content .learn--more {
+    display: block;
+}
+  .diamond__info, .metal__info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+  .product-single__setting-price, .product-single__diamond-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+  .product-single__metal-diamond .price__on-sale {
+    font-size: 20px;
+}
+</style>
+
+
+<style>
+.product-single__media-group {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+  .product-single__media-wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+  .product-single__media {
+    margin: 0 auto;
+    min-height: 1px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+  .product-single__media-wrapper a {
+    display: block;
+}
+  .product-single__media-wrapper .image-360-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+ .product-single__media-wrapper .image-360-wrapper:before {
+    content: "";
+    width: 100%;
+    height: 8%;
+    position: absolute;
+    z-index: 9;
+    background: #fff;
+}
+  .product-featured-media {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+  @media screen and (min-width: 768px){
+.product-single__media-wrapper.all {
+    display: none;
+}
+  }
+.product-single__media-wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+
+
+
+
+  
+  .product-single__metal-diamond {
+    margin-top: var(--diamond-pdp-margin);
+}
+
+.product-single__metal-diamond, .product-single__size-engraving {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--diamond-pdp-margin);
+    grid-gap: 0;
+}
+  .price--on-sale .price__regular {
+    text-decoration: line-through;
+    color: #cdcdcd;
+}
+
+.price--on-sale .price__regular, .price--on-sale .precentage_off {
+    display: block;
+}
+.prodcut__price .price__regular, .prodcut__price .precentage_off {
+    display: none;
+}
+  .product-single__metal-diamond>div, .product-single__size-engraving>div {
+    width: 50%;
+}
+  .product-single__para {
+    font-size: 16px;
+    margin-bottom: 0;
+    line-height: 1;
+}
+  .product-single__size-dropdown {
+    margin-bottom: var(--diamond-pdp-margin);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+  #product-single__ring-size {
+    width: 50%;
+}
+
+#product-single__ring-size {
+    min-width: 200px;
+    text-align: center;
+    padding: 0;
+    min-height: 40px;
+}
+  .product-single__size-dropdown a {
+    color: var(--color-anchor-text);
+    font-size: 12px;
+    text-decoration: underline;
+}
+  .error-msg {
+    font-size: 16px;
+    color: red;
+    display: none;
+}
+  .product__addon {
+    display: flex;
+    grid-gap: 10px;
+    line-height: 1;
+    margin: 25px 0;
+}
+  a.rs-btn-option {
+    color: #323c50 !important;
+}
+  .vt-wishlist-button span {
+    color: #323c50 !important;
+}
+</style>
+ 
+
+<div class="process-steps page-width">
+  <div class="process-steps-wrapper">
+    <p class="process-steps-heading">Create Your Diamond Ring</p>
+    <div class="process-steps-container">
+      <div class="start-over-button">
+        <p id="start-over" class="text-uppercase">Start Over</p>
+      </div>
+      <div class="steps-wrapper">
+        <div class="step step-1" data-step="ring-setting">
+          <div class="step-container">
+            <div class="step-count">
+              <div class="count">1</div>
+              <div class="title-wrapper">
+                <p class="title">Choose a setting</p>
+              </div>
+            </div>
+            <div class="product-selection">
+              <div class="current-ring-setting">
+                <div class="product-img">
+                  <img loading="eager" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
+                </div>
+                <div class="product-link">
+                  <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/collections/engagement-rings">Change</a>
+                  <span>|</span>
+                  <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/products/diamonds?sku=2486697056#">Remove</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step step-2 active" data-step="diamonds">
+          <div class="step-container">
+            <div class="step-count">
+              <div class="count">2</div>
+              <div class="title-wrapper">
+                <p class="title">Choose a diamond</p>
+              </div>
+            </div>
+            <div class="product-selection">
+              <div class="current-diamond-option">
+                <div class="product-img">
+                  <img src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
+                </div>
+                <div class="product-link">
+                  <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/collections/engagement-rings">Change</a>
+                  <span>|</span>
+                  <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/products/diamonds?sku=2486697056#">Remove</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step step-3" data-step="final-ring">
+          <div class="step-container">
+            <div class="step-count">
+              <div class="count">3</div>
+              <div class="title-wrapper">
+                <p class="title">Complete Your Ring</p>
+              </div>
+            </div>
+            <div class="product-selection">
+              <div class="current-ring-setting">
+                <div class="product-img">
+                  <img loading="eager" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Complete Purchase" data-uw-rm-alt="CT">
+                </div>
+                <div class="product-link">
+                  <a href="/collections/engagement-rings" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/collections/engagement-rings">Complete Purchase</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div id="shopify-section-template--15762090885181__main rs-custom-id"  class="shopify-section page-width">
+        <div class="product-template__container   diamond-product-template" id="ProductSection-diamond-product-template">
+            <div class="grid diamond-pdp-loading-skeleton">
+                <div class="grid__item medium-up--two-thirds">
+                  <div class="image-skeleton">
+                    <div class="skeleton-box"></div>
+                  </div>
+                </div>
+                <div class="grid__item medium-up--one-third">
+                  <div class="title skeleton-box "></div>
+                  <div class="price skeleton-box "></div>
+                  <div class="price skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                </div>
+              </div>
+          
+          <div class="product-single-not-available">
+    <p>This diamond is no longer available as it was purchased by another customer. Please try our searching for a new diamond.</p><a href="/collections/lab-diamonds" class="btn" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/collections/lab-diamonds">Choose a diamond</a></div>
+    
+        </div>
+
+   <div class="grid grid--no-gutters-sm product-single">
+    <div class="grid__item product-single__diamond-group medium-up--two-thirds" data-product-single-media-group="">
+      <div class="diamond-image-wrapper">
+        <div class="diamond-image">
+          <div class="diamond-image-grid">
+            <div class="image-wrapper">
+              <img loading="eager" src="https://d3at7kzws0mw3g.cloudfront.net/images/diamond/242110-9.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="diamond-iframe">
+          <div class="diamond-image-grid">
+            <iframe loading="eager" width="600px" height="600px" data-uw-rm-iframe="un"></iframe>
+          </div>
+        </div>
+        <div class="diamond-fingure-view">
+          <div class="diamond-image-grid">
+            <div class="image-wrapper">
+              <img loading="eager" class="thubnil-img lazyload" data-widths="[400,500,600,700,800]" data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/loose-diamond-hand-large.jpg?v=1681822779">
+            </div>
+            <div class="diamond-on-hand">
+              <span class="hand_diamond_img oval" style="background-size: 41.85%;"></span>
+            </div>
+            <div id="slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+              <div id="custom-handle" class="ui-slider-handle ui-corner-all ui-state-default" tabindex="0" style="left: 2.93103%;"><span>0.37 Ct</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="diamond-certificate">
+          <div class="diamond-image-grid">
+            <div class="image-wrapper">
+              <img loading="eager" class="thubnil-img lazyload" data-widths="[400,500,600,700,800]" data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/IGI_Icon_d7510f13-1b92-4a59-9ae5-4bf69426e48d.png?v=1680007037">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="diamond-thumbnil-wrapper">
+        <div class="diamond-thumbnil diamond-image active" data-type="diamond-image">
+          <img src="https://d3at7kzws0mw3g.cloudfront.net/images/diamond/242110-9.jpg">
+        </div>
+        <div class="diamond-thumbnil diamond-360" data-type="diamond-iframe">
+          <img loading="eager" class="thubnil-img ls-is-cached lazyloaded" data-widths="[40, 50,80,100]" data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/video_play.png?v=1680007360" src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/video_play.png?v=1680007360">
+        </div>
+        <div class="diamond-thumbnil diamond-size-preivew" data-type="diamond-fingure-view">
+          <img loading="eager" class="thubnil-img ls-is-cached lazyloaded" data-widths="[40, 50,80,100]" data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/loose-diamond-hand.png?v=1680006720" src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/loose-diamond-hand.png?v=1680006720">
+          <div class="diamond-on-hand">
+            <span class="hand_diamond_img round oval" style="background-size: 41.85%;"></span>
+          </div>
+        </div>
+        <div class="diamond-thumbnil diamond-certificate" data-type="diamond-certificate">
+          <a href="https://www.gia.edu/report-check?reportno=2486697056" target="_blank" rel="null noopener" aria-describedby="a11y-new-window-message" data-uw-rm-ext-link="na" data-uw-rm-brl="PR" data-uw-original-href="https://www.gia.edu/report-check?reportno=2486697056">
+            <img loading="eager" src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/GIA_Icon_60d07140-6c0d-4f9d-8321-89b0bd69240a.png?v=1684576576">
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="grid__item product-single__information medium-up--one-third product-single__description-container">
+      <div class="product-single__meta">
+              <h1 class="product-single__title" role="heading" aria-level="2" data-uw-rm-heading="level">0.37 Carat Oval Natural Diamond</h1>
+              <div class="product-single__sku">Certificate Number#:
+                    <span>2486697056</span>
+              </div>
+              <div class="product-single__price"><div class="prodcut__price">
+                  <div class="price__on-sale" data-uw-rm-sr="">$366</div>
+                    <div class="diamond__only">(Diamond Only)</div>
+                  </div>
+              <div class="bank-wire-price" data-uw-rm-sr="">BANK WIRE PRICE $359</div>
+              </div>
+              <div class="affirm-info-wrapper">
+                <p class="affirm-as-low-as" data-page-type="product" data-amount="36600" data-uw-rm-sr="">Starting at <span class="affirm-ala-price" data-uw-rm-sr="">$34</span>/mo or 0% APR with <span class="__affirm-logo __affirm-logo-blue __ligature__affirm_full_logo__ __processed">Affirm</span>. <a class="affirm-modal-trigger" aria-label="See if you qualify - Learn more about Affirm Financing (opens in modal)" href="javascript:void(0)">See if you qualify</a>
+                </p>
+              </div>
+        <div class="product__addon-info">
+  <p class="extented-returns-popup-button">Free Insured Shipping. <span class="extented-returns-title">15 Day Returns.</span></p>
+</div>
+        <div class="diamond-short-information">
+          <div class="diamond-info-wrapper">
+            <div class="diamond-info">Shape:
+              <span class="shape-info">Oval</span>
+            </div>
+            <div class="diamond-info">Color:
+              <span class="color-info">E</span>
+            </div>
+            <div class="diamond-info">Carat:
+              <span class="carat-info">0.37</span>
+            </div>
+            <div class="diamond-info">Clarity:
+              <span class="clarity-info">SI1</span>
+            </div>
+            <div class="diamond-info">Cut:
+              <span class="cut-info">Very Good</span>
+            </div>
+            <div class="diamond-info">Certificate:
+              <span class="certificate-type-info">GIA</span>
+            </div>
+          </div>
+          <div class="diamond-more-info">
+            <p class="more-info-button">MORE DETAILS</p>
+          </div>  
+        </div> 
+
+        <div class="purchase-advantage diamond-pdp-advantage hide">
+          <span class="free-return-info">
+            <span></span>30 - day Return Period</span>
+          <span class="free-shipping-info">
+            <span></span>Free Shipping</span>
+<div class="hide">
+          <div id="dropahint_wrapper"><div id="dropahint"><div id="dropahint-cta"><style type="text/css">#dropahint-cta .u-row { display: flex; flex-wrap: nowrap; margin-left: 0; margin-right: 0; } #dropahint-cta .u-row .u-col { position: relative; width: 100%; padding-right: 0; padding-left: 0; } #dropahint-cta .u-row .u-col.u-col-100 { flex: 0 0 100%; max-width: 100%; } @media (max-width: 767px) { #dropahint-cta .u-row:not(.no-stack) { flex-wrap: wrap; } #dropahint-cta .u-row:not(.no-stack) .u-col { flex: 0 0 100% !important; max-width: 100% !important; } } #dropahint-cta .layout-mobile.u-row:not(.no-stack) { flex-wrap: wrap; } #dropahint-cta .layout-mobile.u-row:not(.no-stack) .u-col { flex: 0 0 100% !important; max-width: 100% !important; } #dropahint-cta a[onclick] { cursor: pointer; } #dropahint-cta #u_body a { color: #0000ee; text-decoration: underline; } #dropahint-cta #u_body a:hover { color: #0000ee; text-decoration: underline; } #dropahint-cta #u_content_button_1 a:hover { color: #FFFFFF !important; background-color: #3AAEE0 !important; } #u_content_button_cta a:hover { color: #3c749b !important; background-color: transparent !important; } @media (max-width: 480px) { #u_content_button_cta .v-src-width { width: 100% !important; } #u_content_button_cta .v-src-max-width { max-width: 100% !important; } #u_content_button_cta .v-line-height { line-height: 80% !important; } }</style><div id="u_body" class="u_body" style="min-height: 100vh;"><div id="u_row_2" class="u_row v-row-padding v-row-background-image--outer v-row-background-color" style="padding: 0px;"><div class="container v-row-background-image--inner v-row-columns-background-color-background-color" style="max-width: 590px;margin: 0 auto;"><div class="u-row"><div id="u_column_2" class="u-col u-col-100 u_column v-row-align-items v-col-background-color v-col-border v-col-border-radius" style="display:flex;align-items:center;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"><div class="v-col-padding" style="width: 100%;padding:0px;"><div id="u_content_button_cta" class="u_content_button v-container-padding-padding" style="overflow-wrap: break-word;padding: 0px;"><div class="v-text-align" style="text-align: center;"><a href="" target="_blank" class="v-size-width v-line-height v-padding v-button-colors v-border v-border-radius v-font-family v-font-size v-font-weight" style="color:#3c749b;background-color:transparent;border-radius: 0px;line-height:120%;display:inline-block;text-decoration:none;text-align:center;padding:4px 20px 7px 10px;width:100%;max-width:100%;word-wrap:break-word;border-top-color: #000000; border-top-style: solid; border-top-width: 0px; border-left-color: #000000; border-left-style: solid; border-left-width: 0px; border-right-color: #000000; border-right-style: solid; border-right-width: 0px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 0px;font-family: verdana,geneva,sans-serif; font-size: 14px;" aria-label="Drop a hint - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://stienhardt.com/products/diamonds?sku=2486697056$dropahint" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/products/diamonds?sku=2486697056"> Drop a hint </a></div></div></div></div></div></div></div></div></div></div></div>
+        </div>     
+        </div>
+
+        <div class="holiday-diamond-event flex">
+    
+    <div class="image-wrapper">
+        <img loading="eager" src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/PDP-mothers-day_2024_2x_5537c5e8-ffac-4dd3-bad7-7b2bd1661602.png?v=1712914931" class="d-block" alt="Mother's day" data-uw-rm-alt-original="Mother's day" data-uw-rm-alt="ALT">
+    </div>
+    <div class="content">
+        <span class="sub-title hide">LAST DAY</span>
+        <h3><span>Offer</span> Extended</h3>
+        <p data-uw-rm-sr=""><strong>Get 1/4 CTW. Diamond Bar Pendant </strong>with purchase over $1,000.</p>
+        <p data-uw-rm-sr=""><strong>Get 1/2 CTW. Diamond Bolo Bracelet </strong>with purchase over $3,000.</p>
+         <p id="schedule-appointment-btn"></p>
+        <span class="holiday-diamond-event-popup-btn">*TERMS APPLY</span>
+    </div>
+</div>
+        <form method="post" action="/cart/add" id="product_form_8281019023643" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="novalidate" data-product-form=""><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+          
+
+          <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapperrole="alert">
+            <span class="visually-hidden">Error
+            </span>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 14 14"><g fill="none" fill-rule="evenodd"><path d="M7 0a7 7 0 0 1 7 7 7 7 0 1 1-7-7z"></path><path class="icon-error__symbol" d="M6.328 8.396l-.252-5.4h1.836l-.24 5.4H6.328zM6.04 10.16c0-.528.432-.972.96-.972s.972.444.972.972c0 .516-.444.96-.972.96a.97.97 0 0 1-.96-.96z"></path></g></svg>
+            <span class="product-form__error-message" data-error-message="">Quantity must be 1 or more</span>
+          </div>
+
+          <div class="product-form__controls-group product-form__controls-group--submit">
+            <p class="error-message"></p>
+            <div class="product-form__item product-form__item--submit">
+              <div class="product-form__add-to-setting"><div class="pdp-get-in-time flex align-items_center hide">
+                  <img loading="eager" src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/icon-vday_3x_5f947112-8b38-4854-8c7a-de9bae1684f9.png?v=1706005449" class="nye-icon" alt="Get it for V-DAY" data-uw-rm-alt-original="Get it for V-DAY" data-uw-rm-alt="ALT">
+                  <span>GET IT IN TIME FOR <strong>MOTHER'S DAY</strong></span>
+                </div>
+                <div class="ship-timeline-n-tracking">
+                  <p class="product-form_ship-in-ring-timeline ship-msg">Ships in a ring by
+                    <b>Wed, May 29</b>
+                  </p>
+                  <p class="realtime-track">Track in real time before it ships</p>
+                </div>
+                <div class="sticky-button-price-wrapper">
+                  <div class="product-sticky-price engagement-ring medium-up--hide">
+                    <div class="product-single__price"><div class="prodcut__price">
+            <div class="price__on-sale" data-uw-rm-sr="">$366</div>
+            <div class="diamond__only">(Diamond Only)</div>
+        </div>
+        <div class="bank-wire-price" data-uw-rm-sr="">BANK WIRE PRICE $359</div></div>
+                  </div>
+                  <button type="button" name="add" class="btn">
+                    <span class="loading-spinner" data-loader=""></span><span data-add-to-cart-text="">Add to Ring</span></button>
+                </div>
+              </div>
+              <div class="product-form__buy-loose">
+                <p class="product-form_ship-loose-timeline ship-msg">
+                  Ships Loose By
+                  <b>Tues, May 28</b>
+                </p>
+                <input type="hidden" name="properties[_Ship by]" id="properties-ship-by" value="Wednesday, May 29">
+                <input type="hidden" name="properties[_Ship In]" id="properties-ship-in" value="8">
+                <button type="button" name="add" aria-label="Add to cart" class="btn btn--secondary-accent">
+                  <span class="loading-spinner" data-loader=""></span>
+                  <span data-add-to-cart-text="">Buy Loose</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        <input type="hidden" name="product-id" value="8281019023643"><input type="hidden" name="section-id" value="diamond-product-template"></form>
+
+
+      <div class="product_description--accordion">
+        <div class="accordion-header active">
+          <h4>DIAMOND DETAILS</h4>
+          <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+        </div>
+        <div class="accordion-content" style="display: block;">
+  <div class="pair-first-diamond">
+    <p>
+      <span class="meta__title">Lab</span>
+      <span class="meta-info-desc metal-variant-info">
+        <a class="diamond-certificate-link" target="_blank" href="https://www.gia.edu/report-check?reportno=2486697056" rel="null noopener" aria-describedby="a11y-new-window-message" aria-label="GIA - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://www.gia.edu/report-check?reportno=2486697056$gia" data-uw-rm-brl="PR" data-uw-original-href="https://www.gia.edu/report-check?reportno=2486697056">
+          <span class="lab-name">GIA</span>
+        </a>
+      </span>
+    </p>
+    <p>
+      <span class="meta__title">Certificate Number</span>
+      <span class="meta-info-desc metal-variant-info">
+        <a class="diamond-certificate-link" target="_blank" href="https://www.gia.edu/report-check?reportno=2486697056" rel="null noopener" aria-describedby="a11y-new-window-message" aria-label="2486697056 - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://www.gia.edu/report-check?reportno=2486697056$2486697056" data-uw-rm-brl="PR" data-uw-original-href="https://www.gia.edu/report-check?reportno=2486697056">
+          <span class="certificate-number">2486697056</span>
+        </a>
+      </span>
+    </p>
+    <p>
+      <span class="meta__title">SHAPE</span>
+      <span class="meta-info-desc shape-info">Oval</span>
+    </p>
+    <p>
+      <span class="meta__title">CARAT</span>
+      <span class="meta-info-desc carat-info">0.37</span>
+    </p>
+    <p>
+      <span class="meta__title">Cut</span>
+      <span class="meta-info-desc cut-info">Very Good</span>
+    </p>
+    <p>
+      <span class="meta__title">Color</span>
+      <span class="meta-info-desc color-info">E</span>
+    </p>
+    <p class="color-intensity" style="display: none;">
+        <span class="meta__title">Intensity</span>
+        <span class="meta-info-desc intensity-info"></span>
+      </p>
+    <p>
+      <span class="meta__title">Clarity</span>
+      <span class="meta-info-desc clarity-info">SI1</span>
+    </p>
+    <p>
+      <span class="meta__title">Polish</span>
+      <span class="meta-info-desc polish-info">Excellent</span>
+    </p>
+    <p>
+      <span class="meta__title">Symmetry</span>
+      <span class="meta-info-desc symmetry-info">Good</span>
+    </p>
+    <p>
+      <span class="meta__title">Fluorescence</span>
+      <span class="meta-info-desc fluorescence-info">None</span>
+    </p>
+    <p>
+      <span class="meta__title">TABLE</span>
+      <span class="meta-info-desc table-info">60.0%</span>
+    </p>
+    <p>
+      <span class="meta__title">DEPTH</span>
+      <span class="meta-info-desc depth-info">56.3%</span>
+    </p>
+    <p>
+      <span class="meta__title">MEASUREMENT</span>
+      <span class="meta-info-desc measurements-info">6.02x4.23x2.38</span>
+    </p>
+    <p>
+      <span class="meta__title">L/W RATIO</span>
+      <span class="meta-info-desc l-w-ratio-info">1.42</span>
+    </p>
+
+  </div></div>
+        <div class="accordion-header price-match-guarantee" style="display: none;">
+          <h4>DIAMOND PRICE GUARANTEE</h4>
+          <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+        </div>
+        <div class="accordion-content">
+          <p class="learn--more">Our large inventory of exclusive diamonds is fair priced! Therefore, if you find the same diamond with a matching GIA or IGI certificate, we will honor the price.
+            <span>
+              <a href="https://stienhardt.com/pages/our-policies#diamond_price_match" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/pages/our-policies#diamond_price_match" aria-label=" Therefore, if you find the same diamond with a matching GIA or IGI certificate, we will honor the price Learn more." uw-rm-vague-link-id="https://stienhardt.com/pages/our-policies#diamond_price_match$learn more" data-uw-rm-vglnk="">Learn more.</a>
+            </span>
+          </p>
+          
+        </div>
+        <div class="accordion-header lifetime-diamond-upgrade">
+          <h4>LIFETIME DIAMOND UPGRADE</h4>
+          <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+        </div>
+        <div class="accordion-content">
+          <p>We offer a lifetime upgrade policy for all Natural GIA certified diamonds purchased from With Clarity, with proof of receipt. If you would like to upgrade your diamond, we’ll apply 100% of the credit toward the purchase of a new GIA certified diamond priced at least twice the original diamond purchase.</p>
+        </div>
+        
+        
+      </div>
+    </div>
+       </div>
+    
+    </div>
+
+<div id="shopify-section-product-full-width-banner"
+    class=" index-section--flush product-full-width-section">
+    <div class="product-fullwidth-image">
+        <div class="absolute-image-wrapper small--hide">
+            <div class="absolute-image-wrapper" style="padding-top:7.644394110985278%;" data-image-loading-animation>
+               <img loading="eager" src="https://stienhardt.com/cdn/shop/files/pdp_banner-Desktop-op2_4096x.jpg?v=1713516995" >
+            </div>
+        </div>       
+    </div>   
+</div>
+
+
+<div id="shopify-section-home-no-dealbreakers" class=" home-no-dealbreakers">
+    <div class="page-width sm-pd-0">
+        <div class="wrapper text-center text-uppercase">
+            <h2 class="section-header-sm section-header-reverse section-header-md">No Dealbreakers</h2>
+            <div class="dealbreakers-grids flex justify-content_center-md">
+                <div class="dealbreakers-grid">
+                    <a href="/pages/our-policies#financing">
+                        <div class="icon-svg">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewbox="0 0 459.02 158.43">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #03364c;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>Affirm logo</title>
+                                <g id="Layer_2" data-name="Layer 2">
+                                    <g id="Layer_1-2" data-name="Layer 1-2">
+                                        <path class="cls-1"
+                                            d="M177.58,167.57v2.63c0,12.43-.19,24.71,0,37.06.14,7.35-5.05,12.34-12.29,12.32q-67.06-.14-134.09,0c-7.9,0-12.44-4.47-12.44-12.43,0-25.15.11-50.31,0-75.46,0-7.35,5-13,12.56-12.43,2,.15,3.93,0,6.22,0V74.58c0-8.49,5-13.43,13.51-13.43H185.71c8.47,0,13.52,5,13.52,13.48v79.48c0,8.36-5,13.4-13.38,13.43h-8.27M98.43,125.41h-67c-4.82,0-6.38,1.56-6.38,6.47V207c0,4.66,1.68,6.4,6.32,6.4H165.21c4.57,0,6.22-1.65,6.22-6.22V131.69c0-4.8-1.56-6.21-6.36-6.21H98.43m94.66-36.82H43.86v30.66H165.5c7.62,0,12,4.38,12,12v30.08h7.78c5.65,0,7.77-2.11,7.77-7.77v-65ZM43.74,82.23H193.09V75c0-5.46-2.22-7.65-7.77-7.65h-134a16.18,16.18,0,0,0-2.86.19,5.66,5.66,0,0,0-4.66,5c-.17,3.11,0,6.37,0,9.68"
+                                            transform="translate(-18.76 -61.15)"></path>
+                                        <path class="cls-1"
+                                            d="M142.19,180.05h14.59c2.77,0,3.84,1.06,3.84,3.83V200c0,2.76-1.07,3.85-3.82,3.85H127.6c-2.75,0-3.85-1.09-3.85-3.84V183.89c0-2.76,1.07-3.84,3.84-3.84h14.6m12.2,6.22H130v11.27h24.35Z"
+                                            transform="translate(-18.76 -61.15)"></path>
+                                        <path class="cls-1"
+                                            d="M70.85,150.5h29.38a3.49,3.49,0,0,1,3.58,1.71,3.11,3.11,0,0,1-1.49,4.14,3.47,3.47,0,0,1-.77.25,9.88,9.88,0,0,1-1.72,0H42a8.71,8.71,0,0,1-1.91,0,3.11,3.11,0,0,1,0-6,8.71,8.71,0,0,1,1.91,0H70.82"
+                                            transform="translate(-18.76 -61.15)"></path>
+                                        <path class="cls-1"
+                                            d="M71,162.78H99.65a12.49,12.49,0,0,1,1.73,0,2.89,2.89,0,0,1,2.72,3,3,3,0,0,1-2.74,3.11q-.67,0-1.35,0H41.81a7.65,7.65,0,0,1-1.72-.1,3.11,3.11,0,0,1,0-6,8.71,8.71,0,0,1,1.91,0H71"
+                                            transform="translate(-18.76 -61.15)"></path>
+                                        <path class="cls-1"
+                                            d="M58.93,143.62H41.45c-2.47,0-3.82-1.09-3.83-3s1.38-3.1,3.8-3.1H76.57c2.43,0,3.81,1.15,3.81,3.1s-1.34,3.11-3.78,3.11H58.93"
+                                            transform="translate(-18.76 -61.15)"></path>
+                                    </g>
+                                </g>
+                                <path id="path28" class="cls-1"
+                                    d="M253.4,140.65a33.16,33.16,0,0,0-18.4,6.42l3.8,8c3.33-3,8.7-5.61,13.55-5.61,4.61,0,7.12,1.52,7.12,4.61,0,2.11-1.69,3.16-4.84,3.57-11.92,1.51-21.26,4.78-21.26,13.95,0,7.25,5.19,11.68,13.25,11.68A15.7,15.7,0,0,0,260,175.81v6.25h10.74V155.83C270.74,145,263.21,140.65,253.4,140.65Zm-4,34.16c-3,0-4.56-1.46-4.56-3.91,0-4.55,5.08-6.07,14.37-7.07C259.24,169.91,255.09,174.81,249.37,174.81Zm122.7-26.22v-6.77H361.33v40.24h11.5V162.67c0-9.23,5.55-11.92,9.46-11.92a8.93,8.93,0,0,1,4.91,1.46l2.1-10.63a13,13,0,0,0-5.14-.93c-5.9,0-9.63,2.63-12.09,7.94Zm70.61-7.94a16.09,16.09,0,0,0-13,7.07c-2.22-4.5-6.83-7.07-12.44-7.07A13.48,13.48,0,0,0,405,147.89v-6.07H393.86v40.24h11.5V161.32c0-7.41,3.92-11,7.54-11,3.27,0,6.3,2.11,6.3,7.6v24.12h11.57V161.32c0-7.53,3.79-11,7.59-11,3,0,6.25,2.22,6.25,7.54v24.18h11.51v-27.8c0-9.06-6.08-13.61-13.44-13.61Zm-131.29-1.81v3H293.93v-4.09c0-5.32,3-6.83,5.67-6.83a10.81,10.81,0,0,1,5.13,1.28l3.57-8.12a20.56,20.56,0,0,0-10.16-2.33c-7.36,0-15.72,4.14-15.72,17.17v3h-6.65v8.87h6.65v31.31h11.51V150.69h17.46v31.37H322.9V150.69h10.45v-8.87H322.9v-4.09c0-5.32,3-6.83,5.66-6.83a11.3,11.3,0,0,1,5.14,1.28l3.57-8.12s-3.63-2.33-10.17-2.33C319.8,121.67,311.39,125.81,311.39,138.84Zm28.8,3h11.5v40.24h-11.5Z"
+                                    transform="translate(-18.76 -61.15)"></path>
+                                <path id="path32" class="cls-1"
+                                    d="M407.23,85.69c-31.07,0-58.75,21.55-66.58,49.29h11.27c6.55-20.67,28.8-38.78,55.31-38.78,32.24,0,60,24.53,60,62.73a78.64,78.64,0,0,1-3.21,23.13H475l.12-.35a92,92,0,0,0,2.68-22.78c0-42.58-31-73.24-70.55-73.24"
+                                    transform="translate(-18.76 -61.15)"></path>
+                            </svg>
+                        </div>
+                        <p>EASY FINANCING OPTIONS</p>
+                    </a>
+                </div>
+                <div class="dealbreakers-grid">
+                    <a href="/pages/our-policies#lifetime_warranty">
+                        <div class="icon-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44.453" height="52.936"
+                                viewbox="0 0 44.453 52.936" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <clippath id="clip-path">
+                                        <rect id="Rectangle_156" data-name="Rectangle 156" width="44.453"
+                                            height="52.936" fill="#253243"></rect>
+                                    </clippath>
+                                </defs>
+                                <g id="Group_203" data-name="Group 203" clip-path="url(#clip-path)">
+                                    <path id="Path_67" data-name="Path 67"
+                                        d="M37.581,33.051a9.968,9.968,0,0,1,4.728,3.462A9.848,9.848,0,0,1,43.579,46.7a9.649,9.649,0,0,1-8.145,6.15,9.873,9.873,0,0,1-9.9-4.659.759.759,0,0,0-.743-.356q-11.768.008-23.536,0C.238,47.836,0,47.6,0,46.582V1.265C0,.238.234,0,1.242,0H36.359c.976,0,1.222.249,1.222,1.234V33.051ZM1.731,46.1H24.478A10.3,10.3,0,0,1,35.847,32.578V1.738H1.731ZM34.185,34.169a8.54,8.54,0,1,0,8.52,8.482,8.548,8.548,0,0,0-8.52-8.482"
+                                        transform="translate(0 0)" fill="#253243"></path>
+                                    <path id="Path_68" data-name="Path 68"
+                                        d="M26.484,62.608H14.1c-.984,0-1.232-.246-1.232-1.224,0-1.512,0-3.025,0-4.538,0-.771.3-1.071,1.062-1.071q12.6,0,25.2,0c.77,0,1.07.3,1.072,1.062q.007,2.322,0,4.645c0,.839-.284,1.125-1.117,1.126q-6.3,0-12.6,0m11.983-5.088H14.6v3.351H38.468Z"
+                                        transform="translate(-7.743 -33.564)" fill="#253243"></path>
+                                    <path id="Path_69" data-name="Path 69"
+                                        d="M43.667,14.575a11.774,11.774,0,0,1-.947,5.547,10.536,10.536,0,0,1-5.39,5.369,1.331,1.331,0,0,1-1-.011,10.5,10.5,0,0,1-6.318-9.6C29.958,14.633,30,13.386,30,12.142c0-.7.3-.992,1.011-1.015A7.335,7.335,0,0,0,36.045,9c.612-.593.968-.593,1.587.006a7.34,7.34,0,0,0,5.032,2.122c.7.022.994.324,1,1.026s0,1.387,0,2.422M41.954,12.8a9.284,9.284,0,0,1-5.125-2.2,9.318,9.318,0,0,1-5.112,2.212c0,1.136-.054,2.205.01,3.268a8.8,8.8,0,0,0,4.765,7.576.867.867,0,0,0,.71-.008,8.922,8.922,0,0,0,4.034-4.385c.925-2.066.7-4.244.718-6.465"
+                                        transform="translate(-18.044 -5.148)" fill="#253243"></path>
+                                    <path id="Path_70" data-name="Path 70"
+                                        d="M15.4,101.22q-2.856,0-5.712,0c-.832,0-1.113-.286-1.115-1.127q0-2.322,0-4.645c0-.764.3-1.06,1.072-1.06q5.765,0,11.53,0c.763,0,1.06.3,1.062,1.072q.006,2.349,0,4.7c0,.763-.3,1.06-1.072,1.062q-2.883.005-5.765,0M10.31,99.475H20.492V96.123H10.31Z"
+                                        transform="translate(-5.161 -56.8)" fill="#253243"></path>
+                                    <rect id="Rectangle_154" data-name="Rectangle 154" width="22.158" height="1.643"
+                                        transform="translate(3.442 34.207)" fill="#253243"></rect>
+                                    <rect id="Rectangle_155" data-name="Rectangle 155" width="18.714" height="1.663"
+                                        transform="translate(3.46 30.789)" fill="#253243"></rect>
+                                    <path id="Path_71" data-name="Path 71"
+                                        d="M72.445,97.869l5.129-5.134c.693-.693,1.035-.691,1.737.01s1.411,1.406,2.112,2.114c.576.581.586.982.021,1.549q-4.11,4.117-8.225,8.227c-.554.552-.963.554-1.509.01q-2.42-2.41-4.831-4.829a.9.9,0,0,1,0-1.509q1.125-1.138,2.263-2.264a.9.9,0,0,1,1.509.006c.59.587,1.168,1.185,1.792,1.821m-.048,4.98,7.251-7.259-1.22-1.262c-.139.13-.27.245-.393.367q-2.341,2.339-4.681,4.68c-.73.729-1.062.735-1.775.014-.547-.554-1.082-1.118-1.575-1.628l-1.346,1.35,3.739,3.738"
+                                        transform="translate(-40.001 -55.495)" fill="#253243"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <p>Lifetime Warranty</p>
+                    </a>
+                </div>
+                <div class="dealbreakers-grid">
+                    <a href="/pages/our-policies#free_returns">
+                        <div class="icon-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400.69 399.02"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <style>
+                                        .cls-3,
+                                        .cls-4,
+                                        .cls-5 {
+                                            fill: #253243;
+                                        }
+
+                                        .cls-4 {
+                                            font-size: 154.98px;
+                                            font-family: Agenda-Semibold, Agenda Semibold;
+                                            font-weight: 600;
+                                        }
+
+                                        .cls-5 {
+                                            font-size: 72px;
+                                            font-family: Agenda-Thin, Agenda Thin;
+                                            font-weight: 200;
+                                        }
+
+                                        .cls-6 {
+                                            letter-spacing: 0.04em;
+                                        }
+
+                                        .cls-7 {
+                                            letter-spacing: -0.03em;
+                                        }
+                                    </style>
+                                    <clippath id="clip-path" transform="translate(0 0)">
+                                        <rect class="cls-1" width="43.573" height="43.572"></rect>
+                                    </clippath>
+                                </defs>
+                                <title>Asset 1</title>
+                                <g id="Layer_2" data-name="Layer 2">
+                                    <g id="Layer_1-2" data-name="Layer 1">
+                                        <g class="cls-2">
+                                            <path class="cls-3"
+                                                d="M400.69,106.75c-2,10.2-4.2,20.38-6,30.61s-5,12.08-14.66,8.27c-10.64-4.19-21.26-8.46-31.92-12.59-3.5-1.36-6.17-3.17-6.36-7.34s2.39-6.25,5.74-7.85c4.93-2.36,9.82-4.79,15.9-7.77-7.07-9.85-13.28-19.84-20.81-28.72-31.3-36.89-71.06-58.64-119.17-64.61a184.15,184.15,0,0,0-196,121.18,29.84,29.84,0,0,1-1.58,4.17c-2,3.65-5.08,5.29-9.14,4s-5.8-4.45-5-8.57A41.08,41.08,0,0,1,14.15,130c28.2-70,79.21-112.52,153.38-127,6.16-1.2,12.41-2,18.62-2.92h29.93c4.08.64,8.15,1.32,12.24,1.91,50.45,7.28,92.31,30.31,125.23,69.15,8.52,10.06,15.61,21.34,23.5,32.27,2.93-1.41,6.37-3.06,9.8-4.73,7-3.43,8.45-3.22,13.84,2.16v6"
+                                                transform="translate(0 0)"></path>
+                                            <path class="cls-3"
+                                                d="M26,295.39c-5.08,2.9-9.84,5.6-14.58,8.34-3,1.76-6.5,2.29-8.67-.4C1,301.19-.37,297.6.09,295c2.2-12.4,5-24.68,7.73-37,1.51-6.9,5.73-9.07,12.14-6.28,10.49,4.56,21.07,9,31.33,14,2.55,1.25,5.35,4.57,5.59,7.17.22,2.29-2.51,5.51-4.76,7.23-3.9,3-8.45,5.11-13,7.74A175.46,175.46,0,0,0,72.3,331.64c38.47,36.75,84.5,54.56,137.56,52.23,76.8-3.38,142.12-53.57,166.63-126.7a29.72,29.72,0,0,1,1.32-3.75c1.82-3.67,5-4.87,8.75-3.88s5.48,3.68,5.2,7.47a20.63,20.63,0,0,1-1.23,5.3C363.63,336.19,312,382,234.44,395.88,151.38,410.74,70.74,372,28.3,299.21c-.67-1.14-1.38-2.26-2.32-3.82"
+                                                transform="translate(0 0)"></path>
+                                        </g>
+                                        <text class="cls-4" transform="translate(124.13 231.22)">30</text>
+                                        <text class="cls-5" transform="translate(135.05 292.89)">
+                                            <tspan class="cls-6">D</tspan>
+                                            <tspan class="cls-7" x="50.98" y="0">A</tspan>
+                                            <tspan x="92.66" y="0">Y</tspan>
+                                        </text>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <p>HASSLE FREE RETURNS</p>
+                    </a>
+                </div>
+                <div class="dealbreakers-grid">
+                    <a href="/pages/our-policies#crafting_engraving_resizing">
+                        <div class="icon-svg">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewbox="0 0 118.58 96.68">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #03364c;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>Free Resizing-2--2</title>
+                                <g id="Layer_2" data-name="Layer 2">
+                                    <g id="Layer_1-2" data-name="Layer 1-2">
+                                        <path class="cls-1"
+                                            d="M37.42,94.65c.37-2.67.65-5.35,1.15-8a57.27,57.27,0,0,1,10.51-24A58.5,58.5,0,0,1,69.76,45.23c.33-.17.65-.37,1.12-.64L65,38.77l5.53-5.49c-3.12-3.12-6.08-6.25-9.24-9.19a3.76,3.76,0,0,1-.5-5.29,3.86,3.86,0,0,1,.5-.49C66.67,13.06,72,7.66,77.29,2.29a2.63,2.63,0,0,1,2-.86h34.58a2.48,2.48,0,0,1,1.91.77c5.43,5.47,10.85,11,16.38,16.34a3.73,3.73,0,0,1,.1,5.27.94.94,0,0,1-.1.1C129,26.86,126,30,123,33.05a3.45,3.45,0,0,0-.2.32l5.54,5.35-5.93,5.8C143.8,56,154.9,73.73,156,97.91c-.49,0-.75.09-1,.1h-3.47a55,55,0,0,0-10.16-31.77c-6.69-9.47-15.69-16-26.58-20.08l7.35-7.3-2.48-2.47c-2.54,2.54-5.07,5-7.52,7.57a2.37,2.37,0,0,1-2.59.76,54.75,54.75,0,0,0-26.32.12,1.5,1.5,0,0,1-1.63-.46c-2.61-2.68-5.26-5.3-8-8l-2.4,2.47,7.22,7.19C55.26,55.61,43,72.82,41.59,98.11H37.38ZM84.81,23.46a2.67,2.67,0,0,0,0,.4c2.11,4.83,4.2,9.68,6.36,14.49a1.52,1.52,0,0,0,1.17.55c2.87,0,5.74,0,8.55.06a1.24,1.24,0,0,0,1.34-1c1.91-4.52,3.93-9,5.91-13.54.14-.31.23-.64.38-1Zm7-17.63H80.53a1.94,1.94,0,0,0-1.15.63Q73.53,12.28,67.7,18.14c-.2.2-.39.42-.65.69a2,2,0,0,0,.41.13H79.71a1.76,1.76,0,0,0,1.13-.59c1.62-1.8,3.2-3.65,4.78-5.47,2-2.28,4-4.56,6.18-7.08m9.81,0a5.64,5.64,0,0,0,.31.53c3.55,4.05,7.08,8.12,10.66,12.15a1.93,1.93,0,0,0,1.3.47h11.47c.28,0,.56-.07,1-.12-4.31-4.3-8.47-8.46-12.66-12.6a2,2,0,0,0-1.23-.43H101.61Zm24.8,18-.37-.47c-3.65,0-7.3.07-11,0-1.25,0-2,.24-2.36,1.52a22.13,22.13,0,0,1-1.23,2.87c-1.7,3.91-3.4,7.81-5.13,11.8a11.72,11.72,0,0,1,1.64.36,2.37,2.37,0,0,0,2.8-.83c4.78-4.89,9.66-9.71,14.52-14.54a5,5,0,0,1,1.08-.66M67,23.44c.15.28.17.37.23.41q8,8,16,15.95a1.22,1.22,0,0,0,.89.33c1-.12,1.81-.34,2.79-.53l-.52-1.24c-1.74-4-3.66-7.91-5.16-12-.88-2.36-2-3.21-4.59-3-3.12.26-6.28.05-9.56.05m19.23-4.51h20.84L96.65,7,86.25,18.93"
+                                            transform="translate(-37.38 -1.43)"></path>
+                                        <path class="cls-1"
+                                            d="M50.78,98h-4.4C47,80.18,54.17,65.76,69.06,56.1c18.16-11.76,37-11.73,55.3-.3A49,49,0,0,1,147.21,98H143c-.44-14.87-6.24-27.14-17.94-36.33a44.84,44.84,0,0,0-31.68-9.56A46.29,46.29,0,0,0,50.78,98"
+                                            transform="translate(-37.38 -1.43)"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <p>Free Resizing</p>
+                    </a>
+                </div>
+                <div class="dealbreakers-grid">
+                    <a href="/pages/our-policies#diamond_ethics">
+                        <div class="icon-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50.156" height="43.497"
+                                viewbox="0 0 50.156 43.497">
+                                <path id="Path_32" data-name="Path 32"
+                                    d="M50.155,11.266c-.909,1.164-1.83,2.319-2.726,3.493Q36.657,28.87,25.891,42.988c-.512.671-1.092.679-1.6.016Q12.439,27.472.588,11.938C.45,11.756.3,11.58.176,11.391a.827.827,0,0,1,.047-1.077Q4.359,5.351,8.494.389A1.216,1.216,0,0,1,9.544,0q13.265.007,26.53,0c1.566,0,3.133-.023,4.7.019a1.376,1.376,0,0,1,.919.414c2.769,3.277,5.51,6.577,8.257,9.873.072.087.138.18.207.27Zm-33.938.5,8.815,27.907.121-.024,8.8-27.883ZM2.591,11.752,22.667,38.06a.34.34,0,0,0,.012-.266q-4.05-12.839-8.094-25.681c-.1-.326-.274-.366-.566-.366q-5.288.012-10.575.005H2.591m44.991,0h-.548c-3.607,0-7.213.009-10.82-.012-.411,0-.547.136-.663.5Q31.571,24.9,27.566,37.549c-.049.155-.087.315-.13.472l.077.029,20.068-26.3M32.872,9.984,25.116,2.229l-7.76,7.755Zm-17.741-.64,7.6-7.6H10.7l4.433,7.6M27.284,1.725l7.708,7.706,4.5-7.706Zm-18.194.58L2.7,9.973H13.562L9.089,2.306m38.4,7.686L41.083,2.307,36.6,9.991Z"
+                                    transform="translate(0 0)" fill="#253243"></path>
+                            </svg>
+                        </div>
+                        <p>Conflict Free Diamonds</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="shopify-section-home-fullwidth-image"
+    class="shopify-section index-section--flush fullwidth-image-section">
+    <div class="page-width">
+        <div class="home-fullwidth-image">
+            <div class="absolute-image-wrapper small--hide">
+                <div class="absolute-image-wrapper" style="padding-top:15.277777777777777%;"
+                    data-image-loading-animation>
+                    <img loading="eager" id="TextColumnImage-e5182260-2245-4121-915d-92a33435c912" class="absolute-image lazyload"
+                        src="https://stienhardt.com/cdn/shop/files/Forbes-banner_4096x.webp?v=1683961861" alt="">
+                </div>
+               
+            </div>
+            <div class="absolute-image-wrapper medium-up--hide">
+                <div class="absolute-image-wrapper" style="padding-top:36.16666666666667%;"
+                    data-image-loading-animation>
+                    <img loading="eager" id="TextColumnImage-e5182260-2245-4121-915d-92a33435c912" class="absolute-image lazyload"
+                        data-src="//www.withclarity.com/cdn/shop/files/Forbes__banner_mob_{width}x.webp?v=1683961861"
+                        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728,4096,6144]"
+                        data-aspectratio="2.7649769585253456" data-sizes="auto" alt="">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div id="shopify-section-diamond-4c-education" class="shopify-section"></div>
+<div id="shopify-section-diamond-video-with-overlay-content" class="shopify-section diamond-video-with-overlay-content">
+    <!-- diamond-video-with-overlay-content.liquid -->
+    <link
+        href="//www.withclarity.com/cdn/shop/t/88/assets/diamond-video-with-overlay-content.css?v=110592741397006482531711384181"
+        rel="stylesheet" type="text/css" media="all">
+    <div class="page-width page-width-1440" data-section-id="diamond-video-with-overlay-content"
+        data-section-type="video-section">
+        <div class="video-box">
+            <div class="video-wrapper rs-vd-class" style="padding-top:56.23931623931624%;">
+                <video playsinline="" preload="none" muted="" id="diamondPolishingVideo"
+                    data-video-id="diamond_polishing_video"
+                    poster="//www.withclarity.com/cdn/shop/files/diamond-polishing-wheel-desktop.jpg?v=1684049272">
+                    <source src="https://cdn.shopify.com/videos/c/o/v/d9d6cd257f2541c9abdc137789ed9000.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img loading="eager" src="//www.withclarity.com/cdn/shop/files/diamond-polishing-wheel-desktop.jpg?v=1684049272"
+                    class="video-poster">
+                <div class="video-content flex justify-content_center align-items_center small--hide">
+                    <div class="wrapper">
+                        <h2 class="text-right section-header-reverse">
+                            Curated by us.
+                            <br>
+                            for you.
+                        </h2>
+                        <p>Our expert gemologists take time to inspect every diamond before it reaches you; ensuring
+                            quality and clarity every step of the way.</p>
+                    </div>
+                </div>
+                <div class="video-pre-icon">
+                    <div class="sprite play-icon" title="Play" id="play" style="display: block;"></div>
+                    <div class="sprite stop-icon" title="Stop" id="stop" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="shopify-section-home-help" class="shopify-section index-section home-help-section">
+    <div class="page-width page-width-1440">
+        <div class="wrapper">
+            <div class=" page-width-sm">
+                <div class="help-content ">
+                    <h2 class="section-header">We're here to help.</h2>
+                    <p class="section-description">Our expert gemologists are here to help.
+                        <br>
+                        We’re available seven
+                        days a week to guide you on
+                        <br> diamonds, gemstones, and jewelry.
+                    </p>
+                </div>
+                <div class="help-grids">
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="#" class="button-chat"></a>
+                        <p class="help-title">Chat</p>
+                    </div>
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="mailto:service@withclarity.com" class="button-email"></a>
+                        <p class="help-title">Email</p>
+                    </div>
+                    <div class="help-grid absolute-link-wrapper">
+                        <a href="tel:18442346463" class="button-call US-contact"></a>
+                        <a href="tel:16479316346" class="button-call CA-contact"></a>
+                        <p class="help-title">Call</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="shopify-section-template--15762090885181__main rs-custom-id"  class="shopify-section page-width">
+        <div class="product-template__container   diamond-product-template" id="ProductSection-diamond-product-template">
+            <div class="grid diamond-pdp-loading-skeleton">
+                <div class="grid__item medium-up--two-thirds">
+                  <div class="image-skeleton">
+                    <div class="skeleton-box"></div>
+                  </div>
+                </div>
+                <div class="grid__item medium-up--one-third">
+                  <div class="title skeleton-box "></div>
+                  <div class="price skeleton-box "></div>
+                  <div class="price skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                  <div class="common-skeleton skeleton-box "></div>
+                </div>
+              </div>
+          
+          <div class="product-single-not-available">
+    <p>This diamond is no longer available as it was purchased by another customer. Please try our searching for a new diamond.</p><a href="/collections/lab-diamonds" class="btn" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/collections/lab-diamonds">Choose a diamond</a></div>
+    
+        </div>
+
+   <div class="grid grid--no-gutters-sm product-single">
+    <div class="grid__item product-single__media-group  medium-up--two-thirds" data-product-single-media-group="">
+      <div class="diamond-image">
+        <img loading="eager" src="https://dimdna.azureedge.net/hdfile/HD/imaged/ES-AA-24733/still.jpg" data-uw-rm-alt-original="" data-uw-rm-alt="QU">
+      </div>
+
+<div class="product-single__media-wrapper" >
+  <div class="product-single__media">
+        <a href="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-frontview.jpg?v=1684020011" class="MagicZoom feature-row__image" data-options="zoomPosition: inner;zoomOn: click;expand: off;hint: off;" id="mz-739322325310" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-frontview.jpg?v=1684020011">
+          <figure class="mz-figure mz-click-zoom mz-no-expand mz-inner-zoom mz-ready">
+            <img loading="eager" class="lazyautosizes lazyloaded" data-src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-frontview_1000x.jpg?v=1684020011" data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="1.0" data-sizes="auto" alt="https://embed.imajize.com/2023358" onload="window.performance.mark('debut:product:image_visible');" sizes="443px" src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-frontview_1000x.jpg?v=1684020011" style="max-width: 1000px; max-height: 1000px;" data-uw-rm-alt-original="https://embed.imajize.com/2023358" data-uw-rm-alt="QU"><div class="mz-lens" style="top: 0px; transform: translate(-10000px, -10000px); width: 197px; height: 197px;"><img loading="eager" src="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-frontview_1000x.jpg?v=1684020011" alt="https://embed.imajize.com/2023358" style="position: absolute; top: 0px; left: 0px; width: 443px; height: 443px;" data-uw-rm-alt-original="https://embed.imajize.com/2023358" data-uw-rm-alt="QU"></div><div class="mz-nav-controls"><button type="button" title="Previous" class="mz-button mz-button-prev" style="display: none; visibility: hidden;" aria-label="Get previous item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Next" class="mz-button mz-button-next" style="display: none; visibility: hidden;" aria-label="Get next item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Close" class="mz-button mz-button-close" style="display: none; visibility: hidden;" aria-label="Close this option" data-uw-rm-empty-ctrl=""></button></div><div class="mz-loading"></div></figure>
+        </a>
+      </div>
+    </div>
+      <div class="product-single__media-wrapper " >
+        <div class="image-360-wrapper">
+          <iframe loading="eager" class=" product-featured-media" width="100%" height="100%" src="https://embed.imajize.com/2023358
+" frameborder="0""></iframe>
+        </div>
+      </div>
+
+
+<div class="product-single__media-wrapper  white-round  js" data-image-index="2" tabindex="-1"><div class="product-single__media">
+        <a href="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-profileview.jpg?v=1684020011" class="MagicZoom feature-row__image" data-options="zoomPosition: inner;zoomOn: click;expand: off;hint: off;" id="mz-297039508762" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-profileview.jpg?v=1684020011">
+          <figure class="mz-figure mz-click-zoom mz-no-expand mz-inner-zoom mz-ready"><img loading="eager" class="lazypreload lazyautosizes lazyloaded" data-src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-profileview_1000x.jpg?v=1684020011" data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="1.0" data-sizes="auto" alt="Slender Vine Six Prong Engagement Ring" sizes="443px" src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-profileview_1000x.jpg?v=1684020011" style="max-width: 1000px; max-height: 1000px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"><div class="mz-lens" style="top: 0px; transform: translate(-10000px, -10000px); width: 197px; height: 197px;"><img loading="eager" src="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-profileview_1000x.jpg?v=1684020011" alt="Slender Vine Six Prong Engagement Ring" style="position: absolute; top: 0px; left: 0px; width: 443px; height: 443px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"></div><div class="mz-nav-controls"><button type="button" title="Previous" class="mz-button mz-button-prev" style="display: none; visibility: hidden;" aria-label="Get previous item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Next" class="mz-button mz-button-next" style="display: none; visibility: hidden;" aria-label="Get next item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Close" class="mz-button mz-button-close" style="display: none; visibility: hidden;" aria-label="Close this option" data-uw-rm-empty-ctrl=""></button></div><div class="mz-loading"></div></figure>
+        </a>
+      </div>
+    </div>
+
+
+<div class="product-single__media-wrapper  white-round  js" data-image-index="3" tabindex="-1"><div class="product-single__media">
+        <a href="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-sideview.jpg?v=1684020011" class="MagicZoom feature-row__image" data-options="zoomPosition: inner;zoomOn: click;expand: off;hint: off;" id="mz-299835077767" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-sideview.jpg?v=1684020011">
+          <figure class="mz-figure mz-click-zoom mz-no-expand mz-inner-zoom mz-ready"><img loading="eager" class="lazypreload lazyautosizes lazyloaded" data-src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-sideview_1000x.jpg?v=1684020011" data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="1.0" data-sizes="auto" alt="Slender Vine Six Prong Engagement Ring" sizes="443px" src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-sideview_1000x.jpg?v=1684020011" style="max-width: 1000px; max-height: 1000px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"><div class="mz-lens" style="top: 0px; transform: translate(-10000px, -10000px); width: 197px; height: 197px;"><img loading="eager" src="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-sideview_1000x.jpg?v=1684020011" alt="Slender Vine Six Prong Engagement Ring" style="position: absolute; top: 0px; left: 0px; width: 443px; height: 443px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"></div><div class="mz-nav-controls"><button type="button" title="Previous" class="mz-button mz-button-prev" style="display: none; visibility: hidden;" aria-label="Get previous item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Next" class="mz-button mz-button-next" style="display: none; visibility: hidden;" aria-label="Get next item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Close" class="mz-button mz-button-close" style="display: none; visibility: hidden;" aria-label="Close this option" data-uw-rm-empty-ctrl=""></button></div><div class="mz-loading"></div></figure>
+        </a>
+      </div>
+    </div>
+
+
+<div class="product-single__media-wrapper  white-round  js" data-image-index="4" tabindex="-1"><div class="product-single__media">
+        <a href="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-perspectiveview.jpg?v=1684020011" class="MagicZoom feature-row__image" data-options="zoomPosition: inner;zoomOn: click;expand: off;hint: off;" id="mz-359199155722" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-perspectiveview.jpg?v=1684020011">
+          <figure class="mz-figure mz-click-zoom mz-no-expand mz-inner-zoom mz-ready"><img loading="eager" class="lazypreload lazyautosizes lazyloaded" data-src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-perspectiveview_1000x.jpg?v=1684020011" data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="1.0" data-sizes="auto" alt="Slender Vine Six Prong Engagement Ring" sizes="443px" src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-perspectiveview_1000x.jpg?v=1684020011" style="max-width: 1000px; max-height: 1000px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"><div class="mz-lens" style="top: 0px; transform: translate(-10000px, -10000px); width: 197px; height: 197px;"><img loading="eager" src="https://stienhardt.com/cdn/shop/products/enrrb1501106-round-white-perspectiveview_1000x.jpg?v=1684020011" alt="Slender Vine Six Prong Engagement Ring" style="position: absolute; top: 0px; left: 0px; width: 443px; height: 443px;" data-uw-rm-alt-original="Slender Vine Six Prong Engagement Ring" data-uw-rm-alt="ALT"></div><div class="mz-nav-controls"><button type="button" title="Previous" class="mz-button mz-button-prev" style="display: none; visibility: hidden;" aria-label="Get previous item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Next" class="mz-button mz-button-next" style="display: none; visibility: hidden;" aria-label="Get next item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Close" class="mz-button mz-button-close" style="display: none; visibility: hidden;" aria-label="Close this option" data-uw-rm-empty-ctrl=""></button></div><div class="mz-loading"></div></figure>
+        </a>
+      </div>
+    </div>
+
+
+<div class="product-single__media-wrapper all product-single__video js" data-image-index="63" tabindex="-1">
+      <div class="product-single__media video-wrapper" style="padding-bottom: 100.0%;">
+        <video playsinline="playsinline" class="media-item" autoplay="autoplay" loop="loop" preload="none" muted="muted" aria-label="all" poster="//www.withclarity.com/cdn/shop/files/preview_images/52f025624ae449ed8c1ff71dbd685672.thumbnail.0000000000_small.jpg?v=1684321770" data-uw-rm-av="vi"><source src="https://cdn.shopify.com/videos/c/vp/52f025624ae449ed8c1ff71dbd685672/52f025624ae449ed8c1ff71dbd685672.HD-1080p-2.5Mbps-14695623.mp4" type="video/mp4"><img loading="eager" alt="all" src="//www.withclarity.com/cdn/shop/files/preview_images/52f025624ae449ed8c1ff71dbd685672.thumbnail.0000000000_small.jpg?v=1684321770" data-uw-rm-alt-original="all" data-uw-rm-alt="ALT"></video>
+      </div>
+    </div>
+
+
+<div class="product-single__media-wrapper all
+ rose-oval  js" data-image-index="64" tabindex="-1"><div class="product-single__media">
+        <a href="//www.withclarity.com/cdn/shop/files/BOXIMAGE_fbb7d132-7a06-47d7-9c1b-a3a7a69b1ea6.jpg?v=1710759049" class="MagicZoom feature-row__image" data-options="zoomPosition: inner;zoomOn: click;expand: off;hint: off;" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/cdn/shop/files/BOXIMAGE_fbb7d132-7a06-47d7-9c1b-a3a7a69b1ea6.jpg?v=1710759049" id="mz-938034241587">
+          <figure class="mz-figure mz-click-zoom mz-no-expand mz-inner-zoom mz-ready"><img loading="eager" class="lazypreload lazyautosizes ls-is-cached lazyloaded" data-src="//www.withclarity.com/cdn/shop/files/BOXIMAGE_fbb7d132-7a06-47d7-9c1b-a3a7a69b1ea6_1000x.jpg?v=1710759049" data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="1.0" data-sizes="auto" alt="all" sizes="859px" src="//www.withclarity.com/cdn/shop/files/BOXIMAGE_fbb7d132-7a06-47d7-9c1b-a3a7a69b1ea6_1000x.jpg?v=1710759049" style="max-width: 1000px; max-height: 1000px;" data-uw-rm-alt-original="all" data-uw-rm-alt="ALT"><div class="mz-lens" style="top: 0px; transform: translate(-10000px, -10000px); width: 0px; height: 0px;"><img loading="eager" src="https://stienhardt.com/cdn/shop/files/BOXIMAGE_fbb7d132-7a06-47d7-9c1b-a3a7a69b1ea6_1000x.jpg?v=1710759049" style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px;" alt="all" data-uw-rm-alt-original="all" data-uw-rm-alt="ALT"></div><div class="mz-nav-controls"><button type="button" title="Previous" class="mz-button mz-button-prev" style="display: none; visibility: hidden;" aria-label="Get previous item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Next" class="mz-button mz-button-next" style="display: none; visibility: hidden;" aria-label="Get next item" data-uw-rm-empty-ctrl=""></button><button type="button" title="Close" class="mz-button mz-button-close" style="display: none; visibility: hidden;" aria-label="Close this option" data-uw-rm-empty-ctrl=""></button></div></figure>
+        </a>
+      </div>
+    </div><noscript>
+    
+    <img loading="eager"
+      src="//www.withclarity.com/cdn/shop/products/enrrb1501106-round-white-frontview.jpg?v=1684020011"
+      alt="https://embed.imajize.com/2023358"
+      id="FeaturedMedia-final-product-template"
+      class="product-featured-media"
+      style="max-width: px;">
+  </noscript>
+</div>
+
+
+    <div class="grid__item product-single__information medium-up--one-third product-single__description-container">
+      <div class="product-single__meta">
+        <p class="product-single__para">YOUR ENGAGEMENT RING</p>
+              <h1 class="product-single__title" role="heading" aria-level="2" data-uw-rm-heading="level">Slender Vine Six Prong Engagement Ring  with  1.08 Carat Center Round Lab Diamond</h1>
+              <div class="product-single__sku">SKU#:
+                    <span>1501106RD/14W</span>
+              </div>
+             <div class="product-single__price">
+               <div class="prodcut__price price--on-sale">
+            <div class="price__on-sale" >$2,465</div>
+            <div class="price__regular" >$2,680</div>
+        </div>
+        </div>
+              <div class="affirm-info-wrapper">
+                <p class="affirm-as-low-as" data-page-type="product" data-amount="36600" data-uw-rm-sr="">Starting at <span class="affirm-ala-price" data-uw-rm-sr="">$86</span>/mo or 0% APR with <span class="__affirm-logo __affirm-logo-blue __ligature__affirm_full_logo__ __processed">Affirm</span>. <a class="affirm-modal-trigger" aria-label="See if you qualify - Learn more about Affirm Financing (opens in modal)" href="javascript:void(0)">See if you qualify</a>
+                </p>
+              </div>
+        <div class="product__addon-info">
+  <p class="extented-returns-popup-button">Free Insured Shipping. <span class="extented-returns-title">30 Day Returns.</span></p>
+</div>
+       <div class="product-single__metal-diamond">
+          <div class="product-single__metal">
+            <p class="product-single__para">RING SETTING</p>
+            <p class="metal__info"><span>
+                14KT White Gold</span><span>
+              1/3 CT Side Stones</span></p>
+            <div class="product-single__setting-price"><div class="price__on-sale" data-uw-rm-sr="">$1,820</div></div>
+          </div>
+          <div class="product-single__diamond">
+            <p class="product-single__para">DIAMOND</p>
+            <p class="diamond__info"><span>1.08 CT | Round | Excellent Cut </span><span>D Color | VVS1 Clarity</span></p>
+            <div class="product-single__diamond-price"><div class="price__on-sale" data-uw-rm-sr="">$645</div><div class="price__regular" data-uw-rm-sr="price" aria-label="Previous price was $860">$860</div></div>
+          </div>
+        </div>
+
+        <div class="product-single__size-dropdown"><select id="product-single__ring-size" name="properties[Size]">
+    <option value="">SELECT RING SIZE</option>
+<option value="3">3</option>
+        <option value="3.25">3.25</option>
+        <option value="3.50">3.50</option>
+        <option value="3.75">3.75</option>
+        <option value="4.00">4.00</option>
+        <option value="4.25">4.25</option>
+        <option value="4.50">4.50</option>
+        <option value="4.75">4.75</option><option value="5.00">5.00</option>
+      <option value="5.25">5.25</option>
+      <option value="5.50">5.50</option>
+      <option value="5.75">5.75</option>
+      <option value="6.00">6.00</option>
+      <option value="6.25">6.25</option>
+      <option value="6.50">6.50</option>
+      <option value="6.75">6.75</option>
+      <option value="7.00">7.00</option>
+      <option value="7.25">7.25</option>
+      <option value="7.50">7.50</option>
+      <option value="7.75">7.75</option>
+      <option value="8.00">8.00</option>
+      <option value="8.25">8.25</option>
+      <option value="8.50">8.50</option>
+      <option value="8.75">8.75</option>
+      <option value="9.00">9.00</option>
+      <option value="9.25">9.25</option>
+      <option value="9.50">9.50</option>
+      <option value="9.75">9.75</option>
+      <option value="10.00">10.00</option>
+      <option value="10.25">10.25</option>
+      <option value="10.50">10.50</option>
+      <option value="10.75">10.75</option>
+      <option value="11.00">11.00</option></select>
+  <p class="product-single__para">
+    <a href="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Stienhardt-Ring-Sizing-Guide.pdf?v=1741069544"
+      target="_blank">Ring Size Guide</a>
+  </p>
+  <p class="error-msg">Please select ring size</p>
+</div>
+
+   <div class="product_description--accordion product-engraving-wrapper">
+    <div class="accordion-header">
+        <h4 data-uw-rm-heading="level" role="heading" aria-level="3">BUY MATCHING WEDDING BAND</h4>
+        <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+    </div>
+    <div class="accordion-content" style="display: none; height: 137px; padding-top: 0px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+        
+<div class="matching-products-list">
+            
+            
+<select name="matching-band-variant" id="matching-band-variant" class="hide" data-uw-rm-form="fx" aria-label="Single select" data-uw-hidden-control="hidden-control-element"><option value="45133703610651" data-price="$1,740" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-white-frontview.jpg?v=1683811750&amp;width=350" data-color-title="14KT White Gold" data-color-handle="14kt-white-gold" selected="selected">14KT White Gold</option><option value="45133703643419" data-price="$1,740" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-yellow-frontview.jpg?v=1683811750&amp;width=350" data-color-title="14KT Yellow Gold" data-color-handle="14kt-yellow-gold">14KT Yellow Gold</option><option value="45133703676187" data-price="$1,740" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-rose-frontview.jpg?v=1683811750&amp;width=350" data-color-title="14KT Rose Gold" data-color-handle="14kt-rose-gold">14KT Rose Gold</option><option value="45133703708955" data-price="$1,960" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-white-frontview.jpg?v=1683811750&amp;width=350" data-color-title="18KT White Gold" data-color-handle="18kt-white-gold">18KT White Gold</option><option value="45133703741723" data-price="$1,960" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-yellow-frontview.jpg?v=1683811750&amp;width=350" data-color-title="18KT Yellow Gold" data-color-handle="18kt-yellow-gold">18KT Yellow Gold</option><option value="45133703774491" data-price="$1,960" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-rose-frontview.jpg?v=1683811750&amp;width=350" data-color-title="18KT Rose Gold" data-color-handle="18kt-rose-gold">18KT Rose Gold</option><option value="45133703807259" data-price="$2,020" data-image="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-white-frontview.jpg?v=1683811750&amp;width=350" data-color-title="Platinum" data-color-handle="platinum">Platinum</option></select>
+            <div class="matching-product">
+                <div class="product-information">
+                    <div class="card-body flex">
+                        <label class="switch" for="wedding-band-checkbox">
+                            <input type="checkbox" id="wedding-band-checkbox" checked="" data-uw-rm-form="fx" aria-label="hidden-control-element" data-uw-hidden-control="hidden-control-element">
+                            <div class="slider round"></div>
+                        <span style="color: #ffffff!important;background: #000000!important;clip: rect(1px, 1px, 1px, 1px)!important;clip-path: inset(50%)!important;height: 1px!important;width: 1px!important;margin: -1px!important;overflow: hidden!important;padding: 0!important;position: absolute!important;" class="" data-uw-reader-element="" data-uw-rm-ignore="">Checkbox field</span></label>
+                    </div>
+                    <p class="matching-product-title">Slender Vine Six Prong Solitaire Diamond Wedding Band -
+                        <span>14KT White Gold</span></p>
+                    <p class="matching-product-price" data-uw-rm-sr="">$1,740</p>
+                </div>
+                <div class="product-image"><div class="absolute-image-wrapper" style="padding-top:100px;">
+                        <img loading="eager" id="8273888870683" class="lazyautosizes ls-is-cached lazyloaded" alt="Slender Vine Six Prong Solitaire Diamond Wedding Band" data-widths="[350]" data-aspectratio="1.0" data-sizes="auto" data-image="" data-srcset="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-white-frontview_350x.jpg?v=1683811750 350w" sizes="186px" srcset="//www.withclarity.com/cdn/shop/products/wmbrb1501106b-white-frontview_350x.jpg?v=1683811750 350w" data-uw-rm-alt-original="Slender Vine Six Prong Solitaire Diamond Wedding Band" data-uw-rm-alt="ALT">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+        <div class="product_description--accordion product-engraving-wrapper">
+  <div class="accordion-header">
+    <h4>PERSONALIZE WITH AN ENGRAVING</h4>
+    <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+  </div>
+  <div class="accordion-content">
+    <input type="text" class="engraving-field" name="properties[Engraving text]" placeholder="Enter engraving text" maxlength="15" data-uw-rm-form="fx" aria-label="Enter engraving text" data-uw-hidden-control="hidden-control-element">
+    <p class="engraving-max-length">Max. 15 characters</p>
+  </div>
+</div>
+
+        <div class="purchase-advantage diamond-pdp-advantage hide">
+          <span class="free-return-info">
+            <span></span>30 - day Return Period</span>
+          <span class="free-shipping-info">
+            <span></span>Free Shipping</span>
+<div class="hide">
+          <div id="dropahint_wrapper"><div id="dropahint"><div id="dropahint-cta"><style type="text/css">#dropahint-cta .u-row { display: flex; flex-wrap: nowrap; margin-left: 0; margin-right: 0; } #dropahint-cta .u-row .u-col { position: relative; width: 100%; padding-right: 0; padding-left: 0; } #dropahint-cta .u-row .u-col.u-col-100 { flex: 0 0 100%; max-width: 100%; } @media (max-width: 767px) { #dropahint-cta .u-row:not(.no-stack) { flex-wrap: wrap; } #dropahint-cta .u-row:not(.no-stack) .u-col { flex: 0 0 100% !important; max-width: 100% !important; } } #dropahint-cta .layout-mobile.u-row:not(.no-stack) { flex-wrap: wrap; } #dropahint-cta .layout-mobile.u-row:not(.no-stack) .u-col { flex: 0 0 100% !important; max-width: 100% !important; } #dropahint-cta a[onclick] { cursor: pointer; } #dropahint-cta #u_body a { color: #0000ee; text-decoration: underline; } #dropahint-cta #u_body a:hover { color: #0000ee; text-decoration: underline; } #dropahint-cta #u_content_button_1 a:hover { color: #FFFFFF !important; background-color: #3AAEE0 !important; } #u_content_button_cta a:hover { color: #3c749b !important; background-color: transparent !important; } @media (max-width: 480px) { #u_content_button_cta .v-src-width { width: 100% !important; } #u_content_button_cta .v-src-max-width { max-width: 100% !important; } #u_content_button_cta .v-line-height { line-height: 80% !important; } }</style><div id="u_body" class="u_body" style="min-height: 100vh;"><div id="u_row_2" class="u_row v-row-padding v-row-background-image--outer v-row-background-color" style="padding: 0px;"><div class="container v-row-background-image--inner v-row-columns-background-color-background-color" style="max-width: 590px;margin: 0 auto;"><div class="u-row"><div id="u_column_2" class="u-col u-col-100 u_column v-row-align-items v-col-background-color v-col-border v-col-border-radius" style="display:flex;align-items:center;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"><div class="v-col-padding" style="width: 100%;padding:0px;"><div id="u_content_button_cta" class="u_content_button v-container-padding-padding" style="overflow-wrap: break-word;padding: 0px;"><div class="v-text-align" style="text-align: center;"><a href="" target="_blank" class="v-size-width v-line-height v-padding v-button-colors v-border v-border-radius v-font-family v-font-size v-font-weight" style="color:#3c749b;background-color:transparent;border-radius: 0px;line-height:120%;display:inline-block;text-decoration:none;text-align:center;padding:4px 20px 7px 10px;width:100%;max-width:100%;word-wrap:break-word;border-top-color: #000000; border-top-style: solid; border-top-width: 0px; border-left-color: #000000; border-left-style: solid; border-left-width: 0px; border-right-color: #000000; border-right-style: solid; border-right-width: 0px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 0px;font-family: verdana,geneva,sans-serif; font-size: 14px;" aria-label="Drop a hint - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://stienhardt.com/products/diamonds?sku=2486697056$dropahint" data-uw-rm-brl="PR" data-uw-original-href="https://stienhardt.com/products/diamonds?sku=2486697056"> Drop a hint </a></div></div></div></div></div></div></div></div></div></div></div>
+        </div>     
+        </div>
+
+        <div class="holiday-diamond-event flex">
+    
+    <div class="image-wrapper">
+        <img src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/PDP-mothers-day_2024_2x_5537c5e8-ffac-4dd3-bad7-7b2bd1661602.png?v=1712914931" class="d-block" alt="Mother's day" data-uw-rm-alt-original="Mother's day" data-uw-rm-alt="ALT">
+    </div>
+    <div class="content">
+    
+        <h3 style="font-style:normal">ENDS TODAY</h3>
+        <p data-uw-rm-sr=""><strong>Get 1/4 CTW. Diamond Bar Pendant </strong>with purchase over $1,000.</p>
+        <p data-uw-rm-sr=""><strong>Get 1/2 CTW. Diamond Bolo Bracelet </strong>with purchase over $3,000.</p>
+         <p id="schedule-appointment-btn"></p>
+        <span class="holiday-diamond-event-popup-btn">*TERMS APPLY</span>
+    </div>
+</div>
+        <form method="post" action="/cart/add" id="product_form_8281019023643" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="novalidate" data-product-form=""><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+          
+
+          <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapperrole="alert">
+            <span class="visually-hidden">Error
+            </span>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 14 14"><g fill="none" fill-rule="evenodd"><path d="M7 0a7 7 0 0 1 7 7 7 7 0 1 1-7-7z"></path><path class="icon-error__symbol" d="M6.328 8.396l-.252-5.4h1.836l-.24 5.4H6.328zM6.04 10.16c0-.528.432-.972.96-.972s.972.444.972.972c0 .516-.444.96-.972.96a.97.97 0 0 1-.96-.96z"></path></g></svg>
+            <span class="product-form__error-message" data-error-message="">Quantity must be 1 or more</span>
+          </div>
+
+          <div class="product-form__controls-group product-form__controls-group--submit">
+            <p class="error-message"></p>
+            <div class="product-form__item product-form__item--submit">
+              <div class="product-form__add-to-setting"><div class="pdp-get-in-time flex align-items_center hide">
+                  <img src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/icon-vday_3x_5f947112-8b38-4854-8c7a-de9bae1684f9.png?v=1706005449" class="nye-icon" alt="Get it for V-DAY" data-uw-rm-alt-original="Get it for V-DAY" data-uw-rm-alt="ALT">
+                  <span>GET IT IN TIME FOR <strong>MOTHER'S DAY</strong></span>
+                </div>
+                <div class="ship-timeline-n-tracking">
+                  <p class="product-form_ship-in-ring-timeline ship-msg">Ships by
+                  <b>Mon, June 3 |</b>
+                  </p>
+                  <p class="realtime-track">Track in real time before it ships</p>
+                </div>
+                <div class="sticky-button-price-wrapper">
+                 
+                  <button type="button" name="add" class="btn">
+                    <span class="loading-spinner" data-loader=""></span><span data-add-to-cart-text="">Add to Ring</span></button>
+                </div>
+              </div>
+
+              <div class="button-options">
+  <div class="button-options-wrapper">
+    <a href="#" class="rs-btn-option"><span class="btn-icon"><img loading="eager" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-email-icon_2x_e1ffba2f-d895-41a5-af4e-2e72eb94b45b.png?v=1716388402" data-uw-rm-alt-original=""></span> Drop a Hint</a>
+    <a href="/pages/contact" class="rs-btn-option"><span class="btn-icon"><img loading="eager" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-call-icon_2x_a466bdf6-8bbe-4ee0-94d2-e7e4b6ddc963.png?v=1716388435" height="20px" data-uw-rm-alt-original=""></span> Contact Us</a>
+    <a href="#" class="rs-btn-option"><span class="btn-icon"><img loading="eager" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-schedule-appointment-icon_2x_289c5fc0-d491-4e2c-96e1-c93d78f196ae.png?v=1716388464" height="23px" data-uw-rm-alt-original=""></span> SCHEDULE APPOINTMENT</a>
+
+    <div id="shopify-block-vtn_power_wishlist_wishlist_block_xqMwVz" class="shopify-block shopify-app-block" data-block-handle="wishlist-block"><link href="//cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.css" rel="stylesheet" type="text/css" media="all">
+
+      <style>
+        .vt-wishlist-container {
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+        .vt-wishlist-container svg, .vt-wishlist-container img{
+          width: 20px;
+          height: 20px;
+        }
+        .vt-wishlist-container svg.vt-icon-heart path{
+          stroke: #000000;
+          fill: #000000;
+        }
+        .vt-wishlist-container .vt-wishlist-button{
+          border-radius: 0px;
+          justify-content: center;
+          border: 1px solid;
+          color: #000000;
+          background: #ffffff;
+          border-color: #000000;
+        }
+        .vt-wishlist-container .wishlist-add-success-message{
+          text-align: center;
+          color: #1990c6;
+        }
+        .vt-wishlist-container .wishlist-add-success-message a{
+          color: #1990c6;
+        }
+      </style>
+      <div class="vt-wishlist-container vt-product-page" data-first-variant="41352485339197">
+        <div class="add-wishlist vt-product" data-product="7344258187325" data-variant="41352485339197" data-product-url="stylish-summer-neclace">
+          <div class="vt-wishlist-button">
+          
+            <!-- BEGIN app snippet: icon-heart -->
+          <svg class="vt-product-icon vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9  c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4 M340.8,83C307,83,276,98.8,256,124.8  c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6L245.1,418l10.9,11l10.9-11l148.3-149.8  c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+          </svg>
+        <!-- END app snippet -->
+          
+            <span>Add to Wishlist</span>
+          </div>
+        </div>
+        <div class="remove-wishlist vt-product" style="display:none;" data-product="7344258187325" data-variant="41352485339197" data-product-url="stylish-summer-neclace">
+          <div class="vt-wishlist-button">
+           
+              <!-- BEGIN app snippet: icon-heart -->
+          <svg class="vt-product-icon-filled vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M340.8,83C307,83,276,98.8,256,124.8c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6  L245.1,418l10.9,11l10.9-11l148.3-149.8c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+          </svg>
+      <!-- END app snippet -->
+            
+            <span>Remove from Wishlist</span>
+          </div>
+        </div>
+        <div class="wishlist-add-success-message"><a href="/pages/wishlist">View Wishlist</a></div>
+        <div class="login-message prompt-msg"><p>Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to add the product in wishlist.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+        <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+      </path></svg><!-- END app snippet --></span></div>
+        <div class="login-optional-message prompt-msg"><p>Wishlist is not saved permanently yet. Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to save it.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+        <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+      </path></svg><!-- END app snippet --></span></div>
+      </div>
+      <script id="wishlistproductscript" type="application/json">
+      {
+        "productId": "7344258187325",
+        "variantId": "41352485339197",
+        "productHandle": "stylish-summer-neclace"
+      }
+      </script>
+      <script>
+      if(window.vtScript) {
+        window.vtScript.push("https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js");
+      }else{
+        window.vtScript = ["https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js"];
+      }
+      
+      if(window.vtScriptLoaded) {
+        vtLoadSingleJs("https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js")
+      }
+      </script>
+      
+      </div>
+  
+  </div>
+</div>
+            </div>
+          </div>
+        <input type="hidden" name="product-id" value="8281019023643"><input type="hidden" name="section-id" value="diamond-product-template"></form>
+
+
+        <div class="product_description--accordion">
+  
+    <div class="accordion-header">
+      <h4>ABOUT YOUR RING</h4>
+      <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+    </div>
+    <div class="accordion-content final-product-desc">
+      <p class="product-description">
+        This
+        <span class="ring-metal">
+                14KT White Gold</span>
+        Slender Vine Six Prong Engagement Ring has a
+        <span class="diamond-name">1.08 Carat Round Lab Diamond</span>
+        conflict free diamond with
+        <span class="color-info">D</span>-color,
+        <span class="clarity-info">VVS1</span>-clarity, and
+        <span class="cut-info">Excellent</span>-cut.
+      </p>
+    </div><div class="accordion-header">
+    
+      <h4>Ring Setting Details</h4>
+    
+    <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+  </div>
+  
+  
+  <div class="accordion-content">
+  <p>Tell the story of your bond that only grows and grows through this vine-inspired diamond engagement ring. Slender, wispy vines in precious metal come adorned with diamond leaves and creep towards a central point. A diamond on a six-prong setting marks the spot where the vines meet.</p>
+  <div class="product-infromation">
+    <p>
+      <span class="meta__title">Metal Details</span>
+      <span class="meta-info-desc metal-variant-info"></span>
+    </p>
+    
+    
+      <p>
+        <span class="meta__title">Average Width (mm)</span>
+        <span class="meta-info-desc">1.8 MM</span>
+      </p>
+    
+    
+      <p>
+        <span class="meta__title">Setting Type</span>
+        <span class="meta-info-desc">Prong</span>
+      </p>
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</div>
+  
+    <div class="accordion-header active">
+      
+        <h4>Side Stone Details</h4>
+      
+      <span class="arrow"></span>
+    </div>
+    <div class="accordion-content" style="display: block;">
+      <div class="product-infromation">
+        
+          <p>
+            <span class="meta__title">Diamond</span>
+            <span class="meta-info-desc diamond-type-info">Natural or Lab Diamond, Depending on Center Diamond</span>
+          </p>
+        
+        
+          <p>
+            <span class="meta__title">Total Diamond Weight</span>
+            <span class="meta-info-desc" data-product-side-diamond="1/3 CT">
+              1/3 CT
+<span class="more-info-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="15px"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"></path></svg>
+</span></span>
+          </p>
+        
+        <p class="variant-metafield variant-side-diamond-weight" style="display: none;">
+          <span class="meta__title">Diamond Weight</span>
+          <span class="meta-info-desc "></span>
+        </p>
+        
+        <p class="variant-metafield variant-number-of-stone" style="display: none;">
+          <span class="meta__title">No. of Diamonds</span>
+          <span class="meta-info-desc "></span>
+        </p>
+
+        
+          <p>
+            <span class="meta__title">Diamond Shape</span>
+            <span class="meta-info-desc">Marquise</span>
+          </p>
+        
+        
+          <p>
+            <span class="meta__title">Average Color</span>
+            <span class="meta-info-desc">F/G</span>
+          </p>
+        
+        
+          <p>
+            <span class="meta__title">Average Clarity</span>
+            <span class="meta-info-desc">VS+</span>
+          </p>
+        
+        
+        <p class="variant-metafield variant-gemstone" style="display: none;">
+          <span class="meta__title">Gemstone</span>
+          <span class="meta-info-desc variant-gemstone"></span>
+        </p>
+        
+        
+        <p class="variant-metafield variant-gemstone-treatment" style="display: none;">
+          <span class="meta__title">Gemstone Treatment</span>
+          <span class="meta-info-desc"></span>
+        </p>
+        <p class="variant-metafield variant-gemstone-weight" style="display: none;">
+          <span class="meta__title">Gemstone Weight</span>
+          <span class="meta-info-desc "></span>
+        </p>
+        
+        <p class="variant-metafield variant-gemstone-size" style="display: none;">
+          <span class="meta__title">Gemstone Size</span>
+          <span class="meta-info-desc "></span>
+        </p>
+        
+        
+        <p class="variant-metafield variant-gemstone-number" style="display: none;">
+          <span class="meta__title">No. of Gemstones</span>
+          <span class="meta-info-desc"></span>
+        </p>
+        <p class="variant-metafield variant-diamnd-type" style="display: none;">
+          <span class="meta__title">Diamond Type</span>
+          <span class="meta-info-desc "></span>
+        </p>
+        <p class="variant-metafield variant-gemstone-grade" style="display: none;">
+          <span class="meta__title">Gemstone Grade</span>
+          <span class="meta-info-desc "></span>
+        </p>
+      </div>
+    </div>
+
+  <div class="accordion-header active">
+    <h4>Diamond Details</h4>
+    <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+  </div>
+  <div class="accordion-content" style="display: block;">
+  <div class="pair-first-diamond">
+    <p>
+      <span class="meta__title">Lab</span>
+      <span class="meta-info-desc metal-variant-info">
+        <a class="diamond-certificate-link" target="_blank" href="https://www.igi.org/verify-your-report/?r=614396589" rel="null noopener" aria-describedby="a11y-new-window-message" aria-label="IGI - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://www.igi.org/verify-your-report/?r=614396589$igi" data-uw-rm-brl="PR" data-uw-original-href="https://www.igi.org/verify-your-report/?r=614396589">
+          <span class="lab-name">IGI</span>
+        </a>
+      </span>
+    </p>
+    <p>
+      <span class="meta__title">Certificate Number</span>
+      <span class="meta-info-desc metal-variant-info">
+        <a class="diamond-certificate-link" target="_blank" href="https://www.igi.org/verify-your-report/?r=614396589" rel="null noopener" aria-describedby="a11y-new-window-message" aria-label="614396589 - open in a new tab" data-uw-rm-ext-link="" uw-rm-external-link-id="https://www.igi.org/verify-your-report/?r=614396589$614396589" data-uw-rm-brl="PR" data-uw-original-href="https://www.igi.org/verify-your-report/?r=614396589">
+          <span class="certificate-number">614396589</span>
+        </a>
+      </span>
+    </p>
+    <p>
+      <span class="meta__title">SHAPE</span>
+      <span class="meta-info-desc shape-info">Round</span>
+    </p>
+    <p>
+      <span class="meta__title">CARAT</span>
+      <span class="meta-info-desc carat-info">1.08</span>
+    </p>
+    <p>
+      <span class="meta__title">Cut</span>
+      <span class="meta-info-desc cut-info">Excellent</span>
+    </p>
+    <p>
+      <span class="meta__title">Color</span>
+      <span class="meta-info-desc color-info">D</span>
+    </p>
+    <p class="color-intensity">
+        <span class="meta__title">Intensity</span>
+        <span class="meta-info-desc intensity-info"></span>
+      </p>
+    <p>
+      <span class="meta__title">Clarity</span>
+      <span class="meta-info-desc clarity-info">VVS1</span>
+    </p>
+    <p>
+      <span class="meta__title">Polish</span>
+      <span class="meta-info-desc polish-info">Excellent</span>
+    </p>
+    <p>
+      <span class="meta__title">Symmetry</span>
+      <span class="meta-info-desc symmetry-info">Excellent</span>
+    </p>
+    <p>
+      <span class="meta__title">Fluorescence</span>
+      <span class="meta-info-desc fluorescence-info">None</span>
+    </p>
+    <p>
+      <span class="meta__title">TABLE</span>
+      <span class="meta-info-desc table-info">59.0%</span>
+    </p>
+    <p>
+      <span class="meta__title">DEPTH</span>
+      <span class="meta-info-desc depth-info">61.4%</span>
+    </p>
+    <p>
+      <span class="meta__title">MEASUREMENT</span>
+      <span class="meta-info-desc measurements-info">6.54x6.57x4.03</span>
+    </p>
+    <p>
+      <span class="meta__title">L/W RATIO</span>
+      <span class="meta-info-desc l-w-ratio-info">1.00</span>
+    </p>
+
+  </div></div>
+  
+  <div class="accordion-header">
+  <h4>
+    Shipping &amp; Returns
+  </h4>
+  <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+</div>
+<div class="accordion-content">
+  <p>
+    With Clarity is dedicated to bringing you a jewelry experience that brings you joy, now and forever. We offer complimentary insured shipping, providing peace of mind with shipment tracking and signature upon delivery. Our insured shipping covers any loss, damage, or theft during transit. In the rare event of such occurrences, we make every effort to recover the item(s) and, if unrecoverable, we offer a replacement of equal quality. Returns within 30 days are hassle-free and free of charge within the US, ensuring a smooth and convenient experience for our valued customers.
+  </p>
+</div>
+  
+  <div class="accordion-header">
+  <h4>Lifetime Warranty</h4>
+  <span class="arrow"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9"><path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path></svg></span>
+</div>
+<div class="accordion-content">
+  <p>
+    With Clarity is committed to creating the highest quality jewelry that lasts a lifetime. Our goal is to make you happy with your jewelry now and forever. We offer complimentary lifetime cleaning and replacement of stones under 0.10ct due to everyday wear and tear. However, diamonds above 0.10ct and center stone diamonds/gemstones on engagement rings are not covered by the warranty. Damage, loss, and theft are also not covered. Repair fees apply based on the requirements determined by our jewelers. For warranty validity, we recommend all work be done by With Clarity.
+  </p>
+</div>
+  
+</div>
+    
+      </div>
+    </div>
+       </div>
+    
+    </div>
+

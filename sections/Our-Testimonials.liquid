@@ -1,0 +1,171 @@
+{% comment %}
+{{ section.settings.heading }} 
+{% endcomment %}
+<style>
+  .reviews-section .reviews-wrapper {
+    background: var(--color-btn-primary);
+    padding: 50px 10%;
+}
+.reviews-slider > .reviews-slider-item:not(:first-child) {
+    display: none;
+}
+.reviews-slider.slick-dotted {
+    margin-bottom: 80px;
+}
+.reviews-slider .slick-arrow {
+    width: 44px;
+    height: 44px;
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/Clarity_Sprite_home.svg?v=1716706661) no-repeat;
+    background-position: -716px -50px;
+}
+.reviews-slider .slick-prev {
+    left: -80px;
+    transform: translateY(-50%) rotate(180deg);
+}
+.reviews-slider .slick-next {
+    right: -80px;
+}
+.reviews-slider .review p {
+    font-size: 30px;
+    line-height: 38px;
+    color: #d5ebec;
+    position: relative;
+    padding: 45px;
+}
+.reviews-slider .review p:before,
+.reviews-slider .review p:after {
+    content: "";
+    display: block;
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/Clarity_Sprite_home.svg?v=1716706661) no-repeat;
+    width: 26px;
+    height: 22px;
+    position: absolute;
+}
+.reviews-slider .review p:before {
+    background-position: -173px -14px;
+    left: 0;
+    top: 0;
+}
+.reviews-slider .review p:after {
+    background-position: -206px -14px;
+    right: 0;
+    bottom: 0;
+}
+.reviews-slider .name {
+    color: #d5ebec;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1.83px;
+    display: block;
+    margin-top: 30px;
+}
+.reviews-slider .slick-dots {
+    position: absolute;
+    left: 0;
+    bottom: -80px;
+    width: 100%;
+}
+.reviews-slider .slick-dots li button {
+    border: 1px solid #d5ebec;
+}
+.reviews-slider .slick-dots .slick-active button {
+    background: #d5ebec;
+}
+.reviews-slider .slick-prev:hover:before, .reviews-slider .slick-prev:focus:before, .reviews-slider .slick-next:hover:before, .reviews-slider .slick-next:focus:before{
+  opacity:0;
+}
+@media (max-width: 749px) {
+    .reviews-section .reviews-wrapper {
+        padding: 30px 20px;
+    }
+    .reviews-slider .review p:before {
+        margin-bottom: 30px;
+    }
+    .reviews-slider .review p {
+        font-size: 16px;
+        line-height: 28px;
+        padding: 25px;
+    }
+    .reviews-slider .name {
+        margin-top: 20px;
+    }
+    .reviews-slider.slick-dotted {
+        margin-bottom: 60px;
+    }
+    .reviews-slider .slick-dots {
+        bottom: -60px;
+    }
+}
+  
+
+</style>
+<div class="page-width sm-pd-0 text-center">
+    <div class="reviews-wrapper">
+        <div class="reviews-slider">
+              {%- for block in section.blocks -%}
+                <div class="reviews-slider-item">
+                        <div class="review"><p>{{ block.settings.review }}</p></div>
+                        <span class="name">{{ block.settings.name }}</span>
+                    
+                </div>
+                {%- endfor -%}
+        </div>
+    </div>
+    
+</div>
+<script>
+  $('.reviews-slider').slick({
+    slidesToShow:1,
+    slidesToScroll:1,
+    dots:!0,arrows:!0,
+    responsive:[{
+      breakpoint:992,
+      settings:{arrows:!1}
+    }]
+  });
+</script>
+{% schema %}
+  {
+  "name": "Our Testimonials",
+  "class": "reviews-section",
+  "max_blocks": 6,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A little about us…"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Testimonial",
+      "type": "name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Review"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Testimonials"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,431 @@
+<!-- =====================================================================================================================================================
+                                                                Breadcrumb
+=====================================================================================================================================================-->
+
+<section>
+    <div class="BGBreadcrumb">
+        <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+            <h1 class="ivy cl-theme">Blog</h1>
+            <div class="cusBreadcrumb">
+                <a href="/" class="cusA  LinkBreadcrumb" style="color: #3c749b;">Home</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                    class="mx-2">
+                    <path d="M4.50003 9L7.5 5.99998L4.5 3" stroke="black" stroke-width="1.5" stroke-miterlimit="16"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <a class="cusA  LinkBreadcrumb">Blog</a>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section>
+        
+        <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+                                 
+            <div id="loader" style="display: none;">
+                <img style="width: 3rem;" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Loading.gif?v=1736171458" alt="Loading..." />
+            </div>
+         
+            </div>
+        
+        
+        </section>
+
+
+<section>
+  <a href="https://www.bloglovin.com/blog/21650528/?claim=2fvc6gaygdx"></a>
+</section>
+  
+  
+  <!-- =====================================================================================================================================================
+                                                                  Blog Banner
+  =====================================================================================================================================================-->
+  <section>
+    <div class="container-md">
+        <div class="row d-flex justify-content-center h-100">
+  
+            <div class="col-md-8 mb-3 mb-md-0" id="first_Post_Container">
+  
+            </div>
+  
+            <div class="col-md-4">
+                <div class="row row d-flex justify-content-center h-100">
+                    <div class="col-12 mb-3 mb-md-0" id="second_Post_Container">
+  
+                    </div>
+                    <div class="col-12" id="third_Post_Container">
+  
+                    </div>
+  
+                </div>
+            </div>
+  
+        </div>
+    </div>
+  </section>
+  
+  
+  
+  <!-- =====================================================================================================================================================
+                                                                  Newsletter - Submit Email
+  =====================================================================================================================================================-->
+  <section class="mrg_tb">
+    <div class="BGNewsletter pad_tb">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-5">
+                    <h2 class="ivy cl-theme">Let's Keep in Touch</h2>
+                    <div class="cl-51">Be the first to know about new arrivals, exclusive
+                        offers, and the latest trends.</div>
+                </div>
+                <div class="mt-4 mt-lg-0 col-lg-7">
+                  <form action="/action_page.php">
+                    <div class="row m-0">
+                        <div class="col-8 col-sm-9 p-0">
+                            
+                                <input required="" name="username" id="username"
+                                      class="EmailInput w-100 cusBlogInputHeight cusInpurBorderGray"
+                                      placeholder="Enter your email" type="text"
+                                >
+                        </div>
+                        <div class="col-4 col-sm-3 p-0">
+                            {% comment %} <a href="#"
+                                class="cusA SubmitBtn d-flex justify-content-center align-items-center w-100">SUBMIT</a> {% endcomment %}
+                                <input
+                                      class="cusA SubmitBtn d-flex justify-content-center align-items-center w-100 BlueSubmit"
+                                      style="border: none;" type="submit">
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  
+  
+  
+  
+  
+  <!-- =====================================================================================================================================================
+                                                                  Blog Section
+  =====================================================================================================================================================-->
+  
+  
+  
+  
+  
+  <section class="mrg_t">
+    <div class="container">
+  
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="subHeading"></div>
+        </div>
+  
+  
+        <div class="">
+            <div class="product-filter d-flex justify-content-start align-items-center mt-4 mb-4 cusOverflowX tabs-container"
+                id="category_button">
+  
+            </div>
+        </div>
+  
+        <div class="row product-list" id="product-groups-container">
+  
+  
+  
+        </div>
+  
+    </div>
+  
+  
+    <!-- JavaScript: Toggle Products and Update View All Link -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const productGroupsContainer = document.getElementById('product-groups-container'); // Parent container for product groups
+            const filterButtonsContainer = document.getElementById('category_button'); // Parent container for filter buttons
+  
+            // Delegate click events to the filter buttons container
+            filterButtonsContainer.addEventListener('click', function (event) {
+                const button = event.target.closest('.filter-btn'); // Check if the clicked element is a filter button
+  
+                if (button) {
+                    // Remove active class from all buttons
+                    const filterButtons = filterButtonsContainer.querySelectorAll('.filter-btn');
+                    filterButtons.forEach(btn => btn.classList.remove('cusOptBtnActive'));
+  
+                    // Add active class to clicked button
+                    button.classList.add('cusOptBtnActive');
+  
+                    // Hide all product groups
+                    const productGroups = productGroupsContainer.querySelectorAll('.product-group');
+                    productGroups.forEach(group => group.style.display = 'none');
+  
+                    // Show the selected product group
+                    const filter = button.getAttribute('data-filter');
+                    const selectedProductGroup = document.getElementById(filter);
+  
+                    if (selectedProductGroup) {
+                        selectedProductGroup.style.display = 'block'; // Make sure it shows as block
+                    }
+  
+                }
+            });
+        });
+    </script>
+  
+  
+  
+  </section>
+  
+  
+  
+  
+  
+  
+  
+  <!-- =====================================================================================================================================================
+                                                                  Start with Script
+  =====================================================================================================================================================-->
+  
+  
+  
+  
+  <script>
+
+    const baseUrl = "https://blog-backend-side-4loa.onrender.com/api/auth";
+
+    document.getElementById('loader').style.display = 'block'; // Show loader
+  
+  fetch(`${baseUrl}/get-posts`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.message === "Posts fetched successfully") {
+              const posts = data.posts.reverse();
+
+  
+              const fistPost = posts[0];
+
+  
+              const secondPost = posts[1];
+
+  
+              const thirdPost = posts[2];
+
+  
+              const firstPostContainer = document.getElementById('first_Post_Container');
+              const secondPostContainer = document.getElementById('second_Post_Container');
+              const thirdPostContainer = document.getElementById('third_Post_Container');
+  
+  
+              const firstPostContainerHTML = `
+                  <a href="${fistPost.url}" class="cusA">
+                      <div class="blogHome">
+                          <img src="${fistPost.blog_post_url}" alt="Image of Stienhardt Blog"
+                              draggable="false" class="img-fluid">
+                          <div
+                              class="BLogBannerHeading d-flex flex-column justify-content-center align-items-start p-2 p-lg-3 p-xl-4">
+                              <h2 class="ivy mb-3 mb-lg-4 BLogHomeHead sideBlogHeading">${fistPost.blog_title}
+                              </h2>
+                              <div class="cusA d-inline-block blogButton">View Blog</div>
+                          </div>
+                      </div>
+                  </a>
+                  `;
+  
+              firstPostContainer.innerHTML += firstPostContainerHTML;
+  
+              const secondPostContainerHTML = `
+                  <a href="${secondPost.url}" class="cusA">
+                      <div class="blogHome">
+                          <img src="${secondPost.blog_post_url}" alt="Image of Stienhardt Blog"
+                              draggable="false" class="img-fluid">
+                          <div
+                              class="BLogBannerHeading d-flex flex-column justify-content-center align-items-start p-2 p-lg-3 p-xl-4">
+                              <h2 class="ivy mb-3 mb-lg-4 BLogHomeHead sideBlogHeading">${secondPost.blog_title}</h2>
+                              <div class="cusA d-inline-block blogButton">View Blog</div>
+                          </div>
+                      </div>
+                  </a>
+              `;
+  
+              secondPostContainer.innerHTML += secondPostContainerHTML;
+  
+              const thirdPostContainerHTML = `
+                  <a href="${thirdPost.url}" class="cusA">
+                      <div class="blogHome">
+                          <img src="${thirdPost.blog_post_url}" alt="Image of Stienhardt Blog"
+                              draggable="false" class="img-fluid">
+                          <div
+                              class="BLogBannerHeading d-flex flex-column justify-content-center align-items-start p-2 p-lg-3 p-xl-4">
+                              <h2 class="ivy mb-3 mb-lg-4 BLogHomeHead sideBlogHeading">${thirdPost.blog_title}</h2>
+                              <div class="cusA d-inline-block blogButton">View Blog</div>
+                          </div>
+                      </div>
+                  </a>
+              `;
+  
+              thirdPostContainer.innerHTML += thirdPostContainerHTML;
+  
+  
+  
+  
+  
+  
+          }
+      })
+  
+  
+  fetch(`${baseUrl}/get-blog-category`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.message === "Posts fetched successfully") {
+              const Blog_Category = data.Blog_Category;
+
+              const filteredPostsCategory = Blog_Category.filter(category => category.blog_category_name === "Lab-Grown Diamond Insights");
+
+  
+              const categoryButtonContainer = document.getElementById('category_button');
+              const categoryPostContainer = document.getElementById('product-groups-container');
+              Blog_Category.forEach(categories => {
+  
+                  const categoryButtonContainerHTML = `
+                      <button class="filter-btn cusA cusOptBtn f-14 me-0 ${categories.button_state}" style="margin: 10px 10px 10px 0px !important;" data-filter="${categories.blog_category_name}">${categories.blog_category_name}</button>
+                  `;
+                  const categoryPostContainerHTML = `
+                      <div class="container product-group" id="${categories.blog_category_name}" ${categories.visible_state} style="display: none;">
+  
+                          <div class="row" id="blog-posts-${categories.blog_category_name}">
+  
+                              ${categories.blog_category_name}
+  
+                          </div>
+  
+                      </div>
+                  `;
+                  categoryButtonContainer.innerHTML += categoryButtonContainerHTML;
+                  categoryPostContainer.innerHTML += categoryPostContainerHTML;
+  
+  
+                  fetch(`${baseUrl}/get-posts`)
+                      .then(response => response.json())
+                      .then(data => {
+                          if (data.message === "Posts fetched successfully") {
+                              const posts = data.posts;
+  
+                              const CYName = categories.blog_category_name;
+
+  
+                              const cyURL = categories.url;
+
+  
+                              // Filter posts by "Engagement Ring Insights" category
+                              const filteredPosts = posts.filter(post => post.blog_category === CYName);
+
+
+  
+                              // Sort by recent (reverse chronological order based on `_id` or date)
+                              const sortedPosts = filteredPosts.reverse();
+  
+                              // Initial display: Show only the first 8 posts
+                              const initialPosts = sortedPosts.slice(0, 8);
+                              let remainingPosts = sortedPosts.slice(8); // All remaining posts
+  
+                              const URL_CY_NAME = "blog-posts-" + CYName;
+
+  
+  
+                              const postContainer = document.getElementById(URL_CY_NAME);
+                              let categoryHTML = '';
+  
+                              // Render initial 8 posts
+                              initialPosts.forEach(post => {
+                                  categoryHTML += `
+                                     <div class="col-6 my-3 my-lg-0 mb-0 mb-lg-4 col-lg-3">
+                                         <a href="${post.url}" class="cusA d-block">
+                                             <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                                                 <img src="${post.blog_post_url}" alt="Blog Images" draggable="false" class="img-fluid">
+                                                 <div class="BlogHead mt-3 mb-2 BlogTitle">${post.blog_title}</div>
+                                                 <div class="BlogDesc"><p class="BlogDesc">${post.description}</p></div>
+                                                 <a href="${post.urls}" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More
+                                                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                                         <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151" />
+                                                     </svg>
+                                                 </a>
+                                             </div>
+                                         </a>
+                                     </div>
+                                 `;
+                              });
+  
+                              // Append initial posts and "View All" button to the container
+                              postContainer.innerHTML = `
+                                  <section>
+                                      <div class="container" style="padding-right: 0px !important; padding-left: 0px !important;">
+                                          <div class="row" id="post-grid">
+                                              ${categoryHTML}
+                                          </div>
+                                          <div class="col-12 d-flex justify-content-center align-items-center" id="view-all-container">
+                                              <a href="${cyURL}" class="cusA cusOptBtn f-14" id="view-all-btn">View All</a>
+                                          </div>
+                                      </div>
+                                  </section>
+                              `;
+  
+                          }
+                      });
+  
+  
+  
+  
+  
+              })
+  
+  
+  
+  
+          }
+
+          document.getElementById('loader').style.display = 'none'; // Hide loader after processing
+  
+  
+      });
+  
+  
+        //     document.addEventListener("DOMContentLoaded", function() {
+        //   const element = document.querySelector('.BlogDesc');
+        //   let text = element.innerText;
+        //   let words = text.split(' ');
+        
+        //   while (element.scrollHeight > element.offsetHeight) {
+        //     words.pop();
+        //     element.innerText = words.join(' ') + '...';
+        //   }
+        // });
+  
+  </script>
+  
+  
+  
+  
+  
+  <!-- =====================================================================================================================================================
+                                                      End with Script
+  =====================================================================================================================================================-->
+  
+  
+  {% schema %}
+      {
+        "name": "Blog Home Page",
+        "settings": [
+          
+        ],
+        "presets": [
+          {
+            "name": "Blog Home Page"
+          }
+        ]
+      }
+  {% endschema %}

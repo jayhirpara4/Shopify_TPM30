@@ -1,0 +1,72 @@
+<section>
+  {% comment %}
+    {% if section.settings.about_stienhardt_image %}
+        <style>
+          .bgAboutUs {
+            background-image: url("{{ section.settings.about_stienhardt_image | img_url: '2048x2048' }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom right;
+          }
+        </style>
+    {% endif %}
+  {% endcomment %}
+
+  <div class="bgAboutUs pad_tb mrg_tb">
+    <div class="container">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-xl-6 d-flex flex-column justify-content-center align-items-start">
+            <h2 class="heading text-start">{{ section.settings.heading }}</h2>
+            <div class="cusContent mt-2 mb-4">{{ section.settings.description }}</div>
+            <a href="{{ section.settings.button_url }}/" class="cusA cusBtnOne mt-2">
+              {{- section.settings.button_text -}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Stienhardt",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About Stienhardt"
+    },
+    {
+      "type": "html",
+      "id": "description",
+      "label": "Description",
+      "default": "At Stienhardt, we want to bring the message that love should be enjoyed without harming the environment. To achieve our vision, we are striving to create truly exceptional lab-grown diamonds that are not only beautiful but also produced sustainably. This is why we offer only the best and pledge to deliver gemstones that reflect the beauty of your love."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More About Us"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "about_stienhardt_image",
+      "label": "about_stienhardt_image"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "About Stienhardt"
+    }
+  ]
+}
+{% endschema %}

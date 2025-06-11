@@ -1,0 +1,694 @@
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/abiacarl/jquery-izoomify/dist/jquery.izoomify.js"></script>
+<style>
+  .final-add-to-cart{
+    display:block !important;
+  }
+  </style>
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+
+  unless thumbnail_position
+    assign thumbnail_position = 'beside'
+  endunless
+
+  assign product_zoom_size = '1800x1800'
+  assign product_image_size = '620x'
+
+  case image_container_width
+    when 'small'
+      assign product_image_width = 'medium-up--two-fifths'
+      assign product_description_width = 'medium-up--three-fifths'
+      assign product_image_size = '480x'
+    when 'medium'
+      assign product_image_width = 'medium-up--one-half'
+      assign product_description_width = 'medium-up--one-half'
+      assign product_image_size = '620x'
+    when 'large'
+      assign product_image_width = 'medium-up--three-fifths'
+      assign product_description_width = 'medium-up--two-fifths'
+      assign product_image_size = '740x'
+  endcase
+
+  assign product_img_structure = product.featured_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+
+  assign matchstr = current_variant.title | downcase | replace: '/' , '' | replace: ' ' , '_' | replace: '&' , ''
+
+  assign matchstr1 = current_variant.option1 | downcase | replace: '/' , '' | replace: ' ' , '_' | replace: '&' , ''
+  assign matchstr2 = current_variant.option2 | downcase | replace: '/' , '' | replace: ' ' , '_' | replace: '&' , ''
+-%}
+
+{%- liquid
+  assign connect_to_sizechart = false
+
+  for block in section.blocks
+    if block.type == 'size_chart'
+      assign sizechart_index = forloop.index0
+      assign next_block_index = sizechart_index | plus: 1
+      assign variant_block = section.blocks[next_block_index]
+
+      if variant_block.type == 'variant_picker' and variant_block.settings.picker_type == 'button' and product.has_only_default_variant == false
+        for option in product.options_with_values
+          assign size_trigger = 'products.general.size_trigger' | t | downcase
+          assign downcased_option = option.name | downcase
+
+          if downcased_option contains size_trigger
+            assign connect_to_sizechart = true
+          endif
+        endfor
+      endif
+
+    endif
+  endfor
+-%}
+<style>
+  #shopify-section-template--22879306187058__1715575817d43d45d3 , 
+  #shopify-section-template--22879306187058__tab_with_video_VYRGaN ,
+  #shopify-section-template--22879306187058__product-recommendations ,
+  #shopify-section-template--22879306187058__recently-viewed , 
+  #shopify-section-template--22879306187058__featured_collection_hNNPr9 , 
+  #shopify-section-template--22879306187058__clients_logo_with_text_kgLn7f{
+    display:none!important;
+  }
+</style>
+<link rel="stylesheet" href="{{ 'product-final-step.aio.min.css' | asset_url  }}">
+<div class="process-steps page-width">
+    <div class="process-steps-wrapper">
+        <p class="process-steps-heading">Create Your Diamond Ring</p>
+        <div class="process-steps-container">
+            <div class="start-over-button">
+                <p id="start-over" class="text-uppercase">Start Over</p>
+            </div>
+            <div class="steps-wrapper">
+                <div class="step step-1" data-step="ring-setting">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">1</div>
+                            <div class="title-wrapper">
+                                <p class="title">Choose a setting</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="addedring">
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 " data-step="diamonds">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">2</div>
+                            <div class="title-wrapper">
+                                <p class="title">Choose a diamond</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="addeddiamond">
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-3 active"  data-step="final-ring">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">3</div>
+                            <div class="title-wrapper">
+                                <p class="title">Complete Your Ring</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="completering">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div id="shopify-finalsection" class="page-width">
+  <div class="product-template__container   diamond-product-template" id="ProductSection-diamond-product-template">
+    <div class="grid diamond-pdp-loading-skeleton" id="skel">
+        <div class="grid__item medium-up--two-thirds">
+            <div class="image-skeleton">
+                <div class="skeleton-box" style="display:block;"></div>
+            </div>
+        </div>
+        <div class="grid__item medium-up--one-third">
+            <div class="title skeleton-box " style="display:block;"> </div>
+            <div class="price skeleton-box " style="display:block;"></div>
+            <div class="price skeleton-box " style="display:block;"></div>
+            <div class="common-skeleton skeleton-box " style="display:block;"></div>
+            <div class="common-skeleton skeleton-box " style="display:block;"></div>
+            <div class="common-skeleton skeleton-box " style="display:block;"></div>
+            <div class="common-skeleton skeleton-box " style="display:block;"></div>
+        </div>
+    </div>
+
+    <div class="product-single-not-available" id="noproduct" style="display:none;">
+        <p>This diamond is no longer available as it was purchased by another customer. Please try our searching for a new diamond.</p>
+        <a href="/collections/lab-diamonds" class="btn" data-uw-rm-brl="PR" data-uw-original-href="/collections/lab-diamonds">Choose a diamond</a>
+    </div>
+  </div>
+
+  
+  <div id="finalmainsection" class="grid grid--no-gutters-sm product-single" style="display:none;" >
+
+    <div class="grid__item product-single__media-group  medium-up--two-thirds" data-product-single-media-group="">
+      
+      <div class="diamond-image zoomtarget image-wrap">
+        <img loading="lazy" src=""
+          style="height: 100%;"
+          data-uw-rm-alt-original="" data-uw-rm-alt="QU"
+          data-izoomify-magnify="1.8"
+          data-izoomify-duration="300"
+          >
+         <button type="button" class="btn btn--body btn--circle js-photoswipe__zoom product__photo-zoom">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><title>icon-search</title><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58ZM54 54 41.94 42"/></svg>
+            <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t }}</span>
+          </button>
+      </div>
+      {%  comment %}
+      {%- for media in product.media -%}
+        {%- render 'final-media',
+          section_id: section_id,
+          media: media,
+          featured_media: featured_media,
+          loopIndex0: forloop.index0,
+          loopIndex: forloop.index,
+          product_zoom_enable: product_zoom_enable,
+          product_zoom_size: product_zoom_size,
+          product_image_size: product_image_size,
+          isModal: isModal,
+          video_looping: video_looping,
+          video_style: video_style,
+          sizes: sizes,
+          sizeVariable: sizeVariable,
+          fallback: fallback,
+          loading: loading,
+          mobile_layout: mobile_layout
+        -%}
+      {%- endfor -%}
+      {% endcomment %}
+      {%- render 'final-media',
+          section_id: section_id,
+          media: current_variant.image,
+          featured_media: featured_media,
+          loopIndex0: 0,
+          loopIndex: 0,
+          product_zoom_enable: product_zoom_enable,
+          product_zoom_size: product_zoom_size,
+          product_image_size: product_image_size,
+          isModal: isModal,
+          video_looping: video_looping,
+          video_style: video_style,
+          sizes: sizes,
+          sizeVariable: sizeVariable,
+          fallback: fallback,
+          loading: loading,
+          mobile_layout: mobile_layout
+        -%}
+      {%- for media in product.media -%}
+        {%  if media.alt contains matchstr1 and media.alt contains matchstr2 %}
+        {%- render 'final-media',
+          section_id: section_id,
+          media: media,
+          featured_media: featured_media,
+          loopIndex0: forloop.index0,
+          loopIndex: forloop.index,
+          product_zoom_enable: product_zoom_enable,
+          product_zoom_size: product_zoom_size,
+          product_image_size: product_image_size,
+          isModal: isModal,
+          video_looping: video_looping,
+          video_style: video_style,
+          sizes: sizes,
+          sizeVariable: sizeVariable,
+          fallback: fallback,
+          loading: loading,
+          mobile_layout: mobile_layout
+        -%}
+        {% endif %}
+        {%  if media.alt=='all' or media.alt == prodcut.title %}
+        {%- render 'final-media',
+          section_id: section_id,
+          media: media,
+          featured_media: featured_media,
+          loopIndex0: forloop.index0,
+          loopIndex: forloop.index,
+          product_zoom_enable: product_zoom_enable,
+          product_zoom_size: product_zoom_size,
+          product_image_size: product_image_size,
+          isModal: isModal,
+          video_looping: video_looping,
+          video_style: video_style,
+          sizes: sizes,
+          sizeVariable: sizeVariable,
+          fallback: fallback,
+          loading: loading,
+          mobile_layout: mobile_layout
+        -%}
+        {% endif %}
+      {%- endfor -%}
+      {% if current_variant.metafields.custom.imagepreview_tour %}
+      <div class="product-single__media-wrapper ">
+        <div class="image-360-wrapper">
+          <iframe loading="lazy" class="product-featured-media" width="100%" height="100%" src={{ current_variant.metafields.custom.imagepreview_tour }} frameborder="0" "></iframe>
+		</div>
+      </div>
+    {% endif %}
+
+    </div>
+
+    <div class="grid__item product-single__information medium-up--one-third product-single__description-container">
+      <div class="product-single__meta ">
+        <p class="product-single__para " id="collectionTitle">YOUR ENGAGEMENT RING</p>
+        <h1 class="product-single__title " role="heading" aria-level="2" data-uw-rm-heading="level">{{ product.title }}</h1>
+          <div class="product-single__sku ">
+            {%- if current_variant.sku -%}
+              SKU#:<span>{{ current_variant.sku }}</span>
+            {%- endif -%}
+          
+          </div>
+          <div class="product-single__price">
+            <div class="prodcut__price price--on-sale">
+            <div class="price__on-sale" id="productprice" data-price="{{ current_variant.price }}" >$2,465</div>
+            <div class="price__regular" >$2,680</div>
+            </div>
+          </div>
+          <!--
+          <div class=" affirm-info-wrapper ">
+            <p class=" affirm-as-low-as " data-page-type=" product " data-amount=" 36600 " data-uw-rm-sr=" ">Starting at 
+            <span class=" affirm-ala-price " data-uw-rm-sr=" ">$86</span>/mo or 0% APR with 
+            <span class=" __affirm-logo __affirm-logo-blue __ligature__affirm_full_logo__ __processed ">Affirm</span>. 
+            <a class=" affirm-modal-trigger " aria-label=" See if you qualify - Learn more about Affirm Financing (opens in modal) " href=" javascript:void(0) ">See if you qualify</a>
+            </p>
+          </div>
+          -->
+          <div class="product__addon-info ">
+              <p class="extented-returns-popup-button">Free Insured Shipping. 
+              <span class="extented-returns-title ">15 Day Returns.</span>
+              </p>
+          </div>
+          <div class="product-single__metal-diamond">
+              <div class="product-single__metal">
+                <p class="product-single__para">{{ product.type |upcase }} SETTING</p>
+                <p class="metal__info">
+                  <span>
+                  {{ current_variant.title }}</span>
+                  <span>
+                  {{ current_variant.metafields.custom.side_stone }}</span>
+                </p>
+                <div class="product-single__setting-price">
+                  <div class="price__on-sale " data-uw-rm-sr=" "> {{ current_variant.price | money }}</div>
+                </div>
+              </div>
+              <div class="product-single__diamond" id="diamondInfo">
+                <p class="product-single__para">DIAMOND</p>
+                <p class="diamond__info">
+                  <span>1.08 CT | Round | Excellent Cut </span>
+                  <span>D Color | VVS1 Clarity</span>
+                </p>
+                <div class="product-single__diamond-price">
+                  <div class="price__on-sale" data-uw-rm-sr="">$645</div>
+                  <div class="price__regular" data-uw-rm-sr="price" aria-label=" Previous price was $860 ">$860</div>
+                </div>
+              </div>
+          </div>
+        {% if product.type == 'Ring' %}
+          <div class="product-single__size-dropdown">
+              <select id="product-single__ring-size" name="size">
+                  <option value="">SELECT RING SIZE</option>
+                  <option value="3">3</option>
+                  <option value="3.25">3.25</option>
+                  <option value="3.50">3.50</option>
+                  <option value="3.75">3.75</option>
+                  <option value="4.00">4.00</option>
+                  <option value="4.25">4.25</option>
+                  <option value="4.50">4.50</option>
+                  <option value="4.75">4.75</option>
+                  <option value="5.00">5.00</option>
+                  <option value="5.25">5.25</option>
+                  <option value="5.50">5.50</option>
+                  <option value="5.75">5.75</option>
+                  <option value="6.00">6.00</option>
+                  <option value="6.25">6.25</option>
+                  <option value="6.50">6.50</option>
+                  <option value="6.75">6.75</option>
+                  <option value="7.00">7.00</option>
+                  <option value="7.25">7.25</option>
+                  <option value="7.50">7.50</option>
+                  <option value="7.75">7.75</option>
+                  <option value="8.00">8.00</option>
+                  <option value="8.25">8.25</option>
+                  <option value="8.50">8.50</option>
+                  <option value="8.75">8.75</option>
+                  <option value="9.00">9.00</option>
+                  <option value="9.25">9.25</option>
+                  <option value="9.50">9.50</option>
+                  <option value="9.75">9.75</option>
+                  <option value="10.00">10.00</option>
+                  <option value="10.25">10.25</option>
+                  <option value="10.50">10.50</option>
+                  <option value="10.75">10.75</option>
+                  <option value="11.00">11.00</option>
+              </select>
+              <p class="product-single__para">
+              {% if size_chart_url != blank %}<a href="{{ size_chart_url }}"
+              target=" _blank">Ring Size Guide</a>{% endif %}
+              </p>
+              <p class="error-msg">Please select ring size</p>
+          </div>
+          
+          <!--<div class=" product_description--accordion product-engraving-wrapper ">
+            
+            <div class="accordion-header">
+              <h4 data-uw-rm-heading="level" role="heading" aria-level="3">BUY MATCHING WEDDING BAND</h4>
+              <span class="arrow">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+              <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill=" #fff "></path>
+              </svg>
+              </span>
+            </div>
+            
+            <div class="accordion-content" style="display: none; height: 137px; padding-top: 0px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+                <div class="matching-products-list">
+                  <div class="matching-product">
+                    <div class="product-information">
+                      <div class="card-body flex">
+                      <label class="switch" for=" wedding-band-checkbox ">
+                      <input type="checkbox" id="wedding-band-checkbox" checked="" data-uw-rm-form="fx" aria-label="hidden-control-element" data-uw-hidden-control="hidden-control-element">
+                      <div class="slider round"></div>
+                      <span style="color: #ffffff!important;background: #000000!important;clip: rect(1px, 1px, 1px, 1px)!important;clip-path: inset(50%)!important;height: 1px!important;width: 1px!important;margin: -1px!important;overflow: hidden!important;padding: 0!important;position: absolute!important;" class="" data-uw-reader-element="" data-uw-rm-ignore="">Checkbox field</span>
+                      </label>
+                      </div>
+                      <p class="matching-product-title">Slender Vine Six Prong Solitaire Diamond Wedding Band -<span>14KT White Gold</span>
+                      </p>
+                      <p class="matching-product-price" data-uw-rm-sr=" ">$1,740</p>
+                    </div>
+                    <div class="product-image">
+                      <div class="absolute-image-wrapper" style="padding-top:100px;">
+                      <img loading="lazy" id="8273888870683" class="lazyautosizes ls-is-cached lazyloaded" alt="Slender Vine Six Prong Solitaire Diamond Wedding Band" data-widths="[350]" data-aspectratio="1.0" data-sizes="auto" data-image="" sizes="186px"  data-uw-rm-alt="ALT">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        -->
+        <div class="product_description--accordion product-engraving-wrapper ">
+          <div class="accordion-header">
+          <h4>PERSONALIZE WITH AN ENGRAVING</h4>
+          <span class="arrow">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down " viewBox=" 0 0 9 9 ">
+          <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+          </svg>
+          </span>
+        </div>
+        <div class="accordion-content">
+          <input type="text" style="width: 100%;" class="engraving-field" name="envtxt" placeholder="Enter engraving text" maxlength="15" daria-label="Enter engraving text">
+          <p class="engraving-max-length">Max. 15 characters</p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="purchase-advantage diamond-pdp-advantage hide">
+          <span class="free-return-info">
+          <span></span>30 - day Return Period
+          </span>
+          <span class=" free-shipping-info ">
+            <span></span>Free Shipping
+          </span>
+        </div>
+        {%  comment %}
+        <div class="holiday-diamond-event flex">
+          <div class="image-wrapper">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-mothers-day_2024_2x_5537c5e8-ffac-4dd3-bad7-7b2bd1661602.avif?v=1716216301" class="d-block" alt="Mother 's day" data-uw-rm-alt-original="Mother' s day " data-uw-rm-alt="ALT">
+          </div>
+          <div class="content">
+          <h3 style=" font-style:normal ">ENDS TODAY</h3>
+          <p data-uw-rm-sr=" ">
+          <strong>Get 1/4 CTW. Diamond Bar Pendant </strong>with purchase over $1,000.
+          </p>
+          <p data-uw-rm-sr=" ">
+          <strong>Get 1/2 CTW. Diamond Bolo Bracelet </strong>with purchase over $3,000.
+          </p>
+          <p id="schedule-appointment-btn"></p>
+          <span class="holiday-diamond-event-popup-btn">*TERMS APPLY</span>
+          </div>
+        </div>
+        {%  endcomment %}
+        <form method="post" action="/cart/add" id="product_form_8281019023643" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="novalidate " data-product-form=" ">
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapperrole="alert">
+            <span class=" visually-hidden ">Error </span>
+            <svg aria-hidden=" true " focusable=" false " role=" presentation " class=" icon icon-error " viewBox=" 0 0 14 14 ">
+            <g fill=" none " fill-rule=" evenodd ">
+                <path d=" M7 0a7 7 0 0 1 7 7 7 7 0 1 1-7-7z "></path>
+                <path class=" icon-error__symbol " d=" M6.328 8.396l-.252-5.4h1.836l-.24 5.4H6.328zM6.04 10.16c0-.528.432-.972.96-.972s.972.444.972.972c0 .516-.444.96-.972.96a.97.97 0 0 1-.96-.96z "></path>
+            </g>
+            </svg>
+            <span class="product-form__error-message " data-error-message=" ">Quantity must be 1 or more</span>
+          </div>
+            <div class="product-form__controls-group product-form__controls-group--submit ">
+                <p class="error-message "></p>
+                <div class="product-form__item product-form__item--submit final-add-to-cart ">
+                  <div class="product-form__add-to-setting ">
+                      <div class="pdp-get-in-time flex align-items_center hide ">
+                      <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0757/8851/7659/files/icon-vday_3x_5f947112-8b38-4854-8c7a-de9bae1684f9.png?v=1706005449" class="nye-icon" alt="Get it for V-DAY" data-uw-rm-alt-original="Get it for V-DAY" data-uw-rm-alt="ALT">
+                          <span>GET IT IN TIME FOR 
+                              <strong>MOTHER'S DAY</strong>
+                          </span>
+                      </div>
+                      <div class="ship-timeline-n-tracking">
+                          <p class="product-form_ship-in-ring-timeline ship-msg">Ships by<b id="shipByDate">Mon, June 3 |</b></p>
+                          <p class="realtime-track">Track in real time before it ships</p>
+                      </div>
+                      <div class="sticky-button-price-wrapper">
+                          <button type="button" id="addToCart" name="add" class="btn">
+                              <span class="rsloading-spinner" data-loader=" "></span>
+                              <span data-add-to-cart-text="">Add to Cart</span>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="button-options">
+                      <div class=" button-options-wrapper ">
+                          <a href="javascript:void(0)" class="rs-btn-option dropahintnow">
+                            <span class="btn-icon">
+                                <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-email-icon_2x_e1ffba2f-d895-41a5-af4e-2e72eb94b45b.png?v=1716388402" data-uw-rm-alt-original=" ">
+                                </span> Drop a Hint
+                          </a>
+                          <a href="/pages/contact" class=" rs-btn-option ">
+                            <span class=" btn-icon ">
+                                <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-call-icon_2x_a466bdf6-8bbe-4ee0-94d2-e7e4b6ddc963.png?v=1716388435" height="20px" data-uw-rm-alt-original=" ">
+                                </span> Contact Us
+                          </a>
+                          <a href="javascript:void(0)" class=" rs-btn-option product__addon-schedule-appointment">
+                            <span class=" btn-icon ">
+                                <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-schedule-appointment-icon_2x_289c5fc0-d491-4e2c-96e1-c93d78f196ae.png?v=1716388464 " height="23px" data-uw-rm-alt-original=" ">
+                                </span> SCHEDULE APPOINTMENT
+                          </a>
+
+                          <div id="shopify-block-vtn_power_wishlist_wishlist_block_xqMwVz" class="shopify-block shopify-app-block" data-block-handle="wishlist-block"><link href="//cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.css" rel="stylesheet" type="text/css" media="all">
+
+                              <style>
+                                .vt-wishlist-container {
+                                  margin-top: 0px;
+                                  margin-bottom: 0px;
+                                }
+                                .vt-wishlist-container svg, .vt-wishlist-container img{
+                                  width: 20px;
+                                  height: 20px;
+                                }
+                                .vt-wishlist-container svg.vt-icon-heart path{
+                                  stroke: #000000;
+                                  fill: #000000;
+                                }
+                                .vt-wishlist-container .vt-wishlist-button{
+                                  border-radius: 0px;
+                                  justify-content: center;
+                                  border: 1px solid;
+                                  color: #000000;
+                                  background: #ffffff;
+                                  border-color: #000000;
+                                }
+                                .vt-wishlist-container .wishlist-add-success-message{
+                                  text-align: center;
+                                  color: #1990c6;
+                                }
+                                .vt-wishlist-container .wishlist-add-success-message a{
+                                  color: #1990c6;
+                                }
+                              </style>
+                              <div class="vt-wishlist-container vt-product-page" data-first-variant="{{ product.id }}">
+                                <div class="add-wishlist vt-product" data-product="{{ product.id }}" data-variant="{{  current_variant.id }}" data-product-url="{{ product.handle }}">
+                                  <div class="vt-wishlist-button">
+                                  
+                                    <!-- BEGIN app snippet: icon-heart -->
+                                  <svg class="vt-product-icon vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9  c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4 M340.8,83C307,83,276,98.8,256,124.8  c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6L245.1,418l10.9,11l10.9-11l148.3-149.8  c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+                                  </svg>
+                                <!-- END app snippet -->
+                                  
+                                    <span>Add to Wishlist</span>
+                                  </div>
+                                </div>
+                                <div class="remove-wishlist vt-product" style="display:none;" data-product="{{ product.id }}" data-variant="{{  current_variant.id }}" data-product-url="{{ product.handle }}">
+                                  <div class="vt-wishlist-button">
+                                   
+                                      <!-- BEGIN app snippet: icon-heart -->
+                                  <svg class="vt-product-icon-filled vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path d="M340.8,83C307,83,276,98.8,256,124.8c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6  L245.1,418l10.9,11l10.9-11l148.3-149.8c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+                                  </svg>
+                              <!-- END app snippet -->
+                                    
+                                    <span>Remove from Wishlist</span>
+                                  </div>
+                                </div>
+                                <div class="wishlist-add-success-message"><a href="/pages/wishlist">View Wishlist</a></div>
+                                <div class="login-message prompt-msg"><p>Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to add the product in wishlist.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                                <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+                              </path></svg><!-- END app snippet --></span></div>
+                                <div class="login-optional-message prompt-msg"><p>Wishlist is not saved permanently yet. Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to save it.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                                <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+                              </path></svg><!-- END app snippet --></span></div>
+                              </div>
+                              <script id="wishlistproductscript" type="application/json">
+                              {
+                                "productId": "{{ product.id }}",
+                                "variantId": "{{  current_variant.id }}",
+                                "productHandle": "{{ product.handle }}"
+                              }
+                              </script>
+                              <script>
+                              if(window.vtScript) {
+                                window.vtScript.push("https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js");
+                              }else{
+                                window.vtScript = ["https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js"];
+                              }
+                              
+                              if(window.vtScriptLoaded) {
+                                vtLoadSingleJs("https://cdn.shopify.com/extensions/6ae0ad5c-ebfb-4202-9353-ca0207edea2d/vtn-power-wishlist-32/assets/vt-wishlist-product.js")
+                              }
+                              </script>
+                              
+                              </div>
+                          </div>
+                    </div>
+                  
+                </div>
+              
+            </div>
+          {% render 'trust-badges' %}
+            <input type="hidden" name="product-id" value="{{ product.id }}">
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <input type="hidden" name="section-id" value="diamond-product-template">
+            <input type="hidden" name="properties[METAL COLOR]"  value="{{ current_variant.title }}">
+            <input type="hidden" name="properties[SHAPE]"  id="shapeProp" value="">
+            <input type="hidden" name="properties[Size]" id="RingSize" value="">
+            <input type="hidden" name="properties[ENGRAVING TEXT]" id="Engrave" value="">
+            <input type="hidden" name="properties[Ship By]" id="shipBy" value="">
+            </form>
+            <div class="product_description--accordion">
+                <div class="accordion-header ">
+                    <h4>ABOUT YOUR {{ product.type |upcase }}</h4>
+                    <span class="arrow">
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+                            <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content final-product-desc">
+                    <p class="product-description" id="ringAbout">
+                      This <span class="ring-metal">{{ current_variant.title }} </span>
+                      {{ product.title }} has a
+                      <span class="diamond-name" id="diamond-name">1.08 Carat Round Lab Diamond</span>
+                      conflict free diamond with
+                      <span class="color-info" id="color-info">D</span>-color,
+                      <span class="clarity-info" id="clarity-info" >VVS1</span>-clarity, and
+                      <span class="cut-info" id="cut-info">Excellent</span>-cut.
+                    </p>
+                </div>
+              {% if product.metafields.custom.ring_setting_details %}
+                <div class="accordion-header ">
+                    <h4>Ring Setting Details</h4>
+                    <span class="arrow">
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+                            <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z " fill=" #fff "></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content">
+                    {{ product.metafields.custom.ring_setting_details | metafield_tag }}
+                </div>
+              {% endif %}
+              {% if product.metafields.custom.side_stone_details %}
+                <div class="accordion-header">
+                    <h4>Side Stone Details</h4>
+                    <span class="arrow">
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+                            <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content" >
+                    <div class="product-infromation">
+                        {{ product.metafields.custom.side_stone_details | metafield_tag }}
+                    </div>
+                </div>
+              {% endif %}
+                <div class="accordion-header">
+                    <h4>Diamond Details</h4>
+                    <span class="arrow">
+                        <svg aria-hidden=" true " focusable=" false " role=" presentation " class=" icon icon-chevron-down " viewBox=" 0 0 9 9 ">
+                            <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content" id="diamondinfoall" >
+                  
+                </div>
+                {%- for block in blocks -%}
+                {% assign tab_id = block.id | append: product.id %}
+                {% capture tab_content %}
+                  {{ block.settings.content }}
+                  {{ block.settings.page.content }}
+                {% endcapture %}
+                {% unless tab_content == blank and block.settings.title == blank %}
+                  {% if tab_id == 'tab_q8iPwK7344258187325' %}
+                    <div class="accordion-header">
+                        <h4>Shipping &amp; Returns</h4>
+                        <span class="arrow">
+                            <svg aria-hidden="true" focusable="false" role=" presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+                                <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="accordion-content">
+                       {{ tab_content }}
+                    </div>
+                  {% endif %}
+  
+                  {% if tab_id == 'tab_Y9Ta9j7344258187325' %}
+                    <div class="accordion-header">
+                        <h4>Lifetime Warranty</h4>
+                        <span class="arrow">
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 9 9">
+                                <path d="M8.542 2.558a.625.625 0 0 1 0 .884l-3.6 3.6a.626.626 0 0 1-.884 0l-3.6-3.6a.625.625 0 1 1 .884-.884L4.5 5.716l3.158-3.158a.625.625 0 0 1 .884 0z" fill="#fff"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="accordion-content">
+                       {{ tab_content }}
+                    </div>
+                  {% endif %}
+                
+                {% endunless %}
+                {%- endfor -%}
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ 'finalproduct.aio.min.js' | asset_url }}" ></script>

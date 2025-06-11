@@ -1,0 +1,99 @@
+<div class="page-width">
+    <div class="contact-form-wrapper">
+        <div class="text-center">           
+            <h2 class="section-header">{{ section.settings.heading }} </h2>          
+            <p>{{ section.settings.description }}</p>           
+        </div>
+        <div class="form-wrapper form-vertical">
+          {%- assign form_id = 'contact-' | append: section.id -%}
+          {%- form 'contact', id: "ContactForm" -%}
+            {%- if form.posted_successfully? -%}
+              <p class="note note--success">
+                {{ 'contact.form.post_success' | t }}
+              </p>
+            {%- endif -%}
+
+            {{ form.errors | default_errors }}
+            <input type="hidden" name="form_type" value="contact" />
+            <input type="hidden" name="utf8" value="✓" />
+    
+                <div class="form-field">
+                    <label for="ContactForm-name">Name</label>
+                    <input 
+                        type="text" 
+                        id="ContactForm-name" 
+                        name="contact[Name]" 
+                        value="">
+                </div>
+                <div class="form-field">
+                    <label for="ContactForm-email">Email <span aria-hidden="true">*</span></label>
+                    <input
+                        type="email"
+                        id="ContactForm-email"
+                        name="contact[email]"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        value=""
+                        aria-required="true"></div>
+                <div class="form-field">
+                    <label for="ContactForm-phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="ContactForm-phone"
+                        name="contact[Phone Number]"
+                        pattern="[0-9\-]*"
+                        value="">
+                </div>
+                <div class="form-field">
+                    <label for="ContactForm-topic">Topic <span aria-hidden="true">*</span></label>
+                    <select id="ContactForm-topic" name="contact[Topic]" data-validate="{required:true}" aria-required="true">
+                        <option value="">Select</option>
+                        <option value="Diamonds">Diamonds</option>
+                        <option value="Engagement Rings">Engagement Rings</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Policies">Policies</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="ContactForm-message">Ask a Question</label>
+                    <textarea rows="5" id="ContactForm-message" name="contact[Ask a Question]"></textarea>
+                </div>
+                <div class="form-field text-center">
+                    <input type="submit" class="btn border-button" value="Submit">
+                </div>
+            {%- endform -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Contact Form New",
+  "class": "contact-form-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A little about us…"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form New"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

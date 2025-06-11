@@ -1,0 +1,597 @@
+{% schema %}
+{
+  "name": "Order Tracking",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Order Tracking",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+{% if page.handle == 'order-look-up' %}
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Bootstrap 5 CSS -->
+<style>
+  .w3-order-lookup{
+    display:none;
+  }
+  .CLRedValentine{
+    margin-bottom:10px;
+  }
+  .tracking-form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 440px;
+    max-height: 320px;
+    border: 1px solid #AAAAAA;
+    box-shadow: 12px 12px 24px 0px #0000000F;
+    margin: auto;
+  }
+  .tracking-form h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a3c5e;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .tracking-form p {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .tracking-form label {
+    font-size: 16px !important;
+    color: #000;
+    margin-bottom: 10px;
+    display: block;
+    font-family: 'Ivy Mode';
+    text-transform: capitalize !important;
+  }
+  .tracking-form input {
+        width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #CCCCCC;
+    height: 50px;
+  }
+  .tracking-form button {
+   width: 100%;
+    padding: 10px;
+    background-color: #113174;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    height: 50px;
+    font-weight: 600;
+  }
+  .dummy-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: auto;
+  }
+  .benefits {
+    margin-bottom: 40px;
+  }
+  .benefit-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    height: 100%;
+  }
+  .benefit-card svg {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  .benefit-card h5 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #113174;
+    margin-bottom: 10px;
+    font-family: 'Ivy Mode';
+    letter-spacing: 0;
+    text-transform: capitalize !important;
+  }
+  .benefit-card p {
+    font-size: 14px;
+    color: #515151;
+    margin: 0;
+    line-height: 20px;
+    
+  }
+ {% comment %} new rs css {% endcomment %}
+
+.form-upper-section {
+    text-align: center;
+  padding:  50px 0;
+   
+}
+ .title-h2 {
+    font-size: 24px;
+    line-height: 34px;
+    font-family: 'Ivy Mode';
+    color: #113174;
+       margin-bottom: 10px;
+}
+  .form-upper-section p {
+    color: #515151;
+     width: 90%;
+    margin: auto;
+}
+  .form-headings p {
+    width: 32%;
+    font-size: 10px;
+    line-height: 12px;
+}
+.benefits {
+    background: #EFF4FF;
+    padding: 100px 0;
+  background: url(https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Mask_group.png?v=1748514701);
+}
+.benefit-card img {
+    margin: auto;
+    padding-bottom: 20px;
+}
+  .rs-textset h5 {
+    font-family: 'Ivy Mode';
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+  .rs-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+  .icon-text-wrap {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+  .prog-status {
+    margin: 20px 0;
+    height: 10px;
+    width: 70%;
+    border-radius: 20px;
+    background: #113174;
+    animation: 6s linear load infinite;
+}
+  .progress-bar{
+  background: #113174 !important;
+  }
+  .after-order-progress {
+    padding: 50px 0;
+}
+
+  .box-container {
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 85%;
+      background-color: #fff;
+    }
+    .top-header-bg {
+      background-color: #fff;
+      padding: 10px 15px;
+      font-size: 14px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .progress-section {
+      padding: 30px 15px;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      text-align: center;
+      gap: 20px;
+      overflow: auto;
+    scrollbar-width: thin;
+    }
+    .step-item {
+      flex: 1;
+      font-size: 14px;
+      color: #666;
+    }
+    .step-item i {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 5px;
+      color: #113174;
+    }
+    .step-item.active i {
+      color: #113174;
+    }
+    .step-item.active span {
+      color: #113174;
+      font-weight: bold;
+    }
+@media(max-width: 768px){
+  .benefit-card{
+    padding: 20px 10px;
+  }
+  .form-headings p, .form-upper-section p{
+    width: 100% !important;
+  }
+  .benefits{
+    padding: 50px 0;
+  }
+  .dummy-image {
+    margin-bottom: 20px;
+}
+.box-container{
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+  .form-upper-section{
+    padding: 20px 0;
+  }
+}
+
+
+/* Absolute Center Spinner */
+.mainloader {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.mainloader:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.mainloader:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.mainloader:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-upper-section">
+          <h2 class="title-h2">Easily Check Your Order Status</h2>
+          <p>Welcome to the Stienhardt & Stones Order Look-Up page! Here you can easily trace your order and receive important information about its status, from the moment it leaves our production studio till the moment it arrives to you.</p>
+      </div>
+     </div>
+ </div>    
+    
+  <!-- Tracking Form Section -->
+   <div class="row">
+    <div class="col-md-12">
+      <div class="form-upper-section form-headings">
+          <h2 class="title-h2">Track Your Order</h2>
+          <p>Please enter your order number and the email address associated with your purchase in the fields below:</p>     
+      </div>
+     </div>
+ </div> 
+  <div class="row  pb-4">
+    <div class="col-md-6  order-2 order-md-1">
+      <div class="tracking-form">
+        <form id="orderTrackForm" method="post">
+          <label for="order_id">Order Number</label>
+          <input type="text" id="order_id" name="order_id" required>
+          <label for="email">Email Address</label>
+          <input type="text" id="email" name="email" required>
+          <button type="submit">Track My Order</button>
+          <div id="trackSpinner" style="display: none;">Loading...</div>
+          <p id="errormsg" class="mt-2 mt-2 fw-bold"></p>
+          <div id="orderResult" class="mt-4"></div>
+        </form>
+      </div>
+
+    </div>
+    <div class="col-md-6 d-flex align-items-center order-1 order-md-2">
+      <img src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/line-art-stylized-profile-face-star-shaped-pendant.png?v=1737800024" alt="Line art of a stylized profile of a face with a star shaped pendant, against a white background with text overlay."
+            draggable="false" alt="Tracking Illustration" class="dummy-image">
+    </div>
+  </div>
+  <div class="row" id="trackSec" style="display:none;">
+    <div class="col-12 pb-5">
+       <div class="box-container">
+          <!-- Top Header -->
+          <div class="top-header-bg">
+            <div class="row">
+              <div class="col-6 text-start">
+                ORDER <span class="fw-bold" style="color: #113174 ;" id="orderNum"></span>
+              </div>
+              <div class="col-6 text-end">
+                <a class="fw-bold text-decoration-underline" id="trackUrl" target="_blank">Track</a>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Progress Bar and Steps -->
+          <div class="progress-section">
+            <!-- Progress Bar -->
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 0%" ></div>
+            </div>
+      
+            <!-- Steps with Icons -->
+            <div class="steps">
+              <div class="step-item  st1 active">
+                <i class="bi bi-cart-check"></i>
+                <span>Ordered</span>
+              </div>
+              <div class="step-item stepsP st2 ">
+                <i class="bi bi-truck"></i>
+                <span>Shipped</span>
+              </div>
+              <div class="step-item stepsP st3 ">
+                <i class="bi bi-box-seam"></i>
+                <span>In Transit</span>
+              </div>
+              <div class="step-item stepsP st4 ">
+                <i class="bi bi-truck"></i>
+                <span>Out for Delivery</span>
+              </div>
+              <div class="step-item stepsP st5">
+                <i class="bi bi-house-door"></i>
+                <span id="delTxt">Delivered</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- Benefits Section -->
+<div class="container-fluid p-0">
+  <div class="benefits">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+          <div class="benefit-card">
+            <img alt="Easy 15-day return policy for worry-free shopping" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/100_Lab_Grown.svg?v=1748517022">
+            <h3>15 DAY Returns</h3>
+            <p>Your Satisfaction Matters - 15-Day Easy Returns!</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="benefit-card">
+            <img alt="Free shipping and returns for every order" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Free_shipping_both_ways.svg?v=1748517022">
+            <h3>Free shipping both ways</h3>
+            <p>Experience Shopping Freedom - Free Shipping Both Ways!</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="benefit-card">
+            <img alt="Ethically sourced 100% lab-grown diamonds" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Free_Resizing.svg?v=1748517022">
+            <h3>100% Lab Grown</h3>
+            <p>Shine Bright - 100% Lab Grown, Cult Free!</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="benefit-card">
+            <img alt="Complimentary ring resizing after purchase" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/15_DAY_Returns.svg?v=1748517022">
+            <h3>Free Resizing</h3>
+            <p>Your Size, Your Style - Free Resizing with Every Order!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- text Section -->
+                
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-upper-section">
+          <h2 class="title-h2">Why Track Your Order?</h2>
+<p>Order tracking helps give you an update on the location of your order. The order status is an option provided to give you information of whether your order has been confirmed, is in transit, or has been delivered. That way you can know when to expect your package and how to be ready when it is delivered to your door step.</p> 
+      </div>
+     </div>
+ </div> 
+</div>
+<div class="loaders mainloader" style="display: none;">
+  <img alt="loading placeholder" loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/loading-gif.webp?v=1716031971" data-uw-rm-alt-original="" data-uw-rm-alt="QU">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.getElementById("orderTrackForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    
+    const orderId = document.getElementById("order_id").value;
+    const email = document.getElementById("email").value;
+    const spinner = document.getElementById("trackSpinner");
+    const result = document.getElementById("orderResult");
+    const errormsg = document.getElementById("errormsg");
+    const username = "fooPalawat"; // Replace with your API username
+    const password = "barPalawat"; // Replace with your API password
+    const credentials = btoa(`${username}:${password}`);
+
+    //spinner.style.display = "block";
+    $('.mainloader').show();
+    $('#trackSec').hide();
+    result.innerHTML = "";
+    errormsg.innerHTML = "";
+    $('.stepsP').removeClass('active');
+    $('#delTxt').text('Delivered');
+    
+    fetch(`${theme.settings.apiUrl}/find-order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Basic ${credentials}`,
+      },
+      body: JSON.stringify({ order_id: orderId, email: email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //spinner.style.display = "none";
+        $('.mainloader').hide();
+        if (data.error) {
+          //result.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+          errormsg.innerHTML = `${data.error}`;
+        } else {
+          $('#orderNum').text(data.order_number);
+          $('#trackUrl').attr('href',data.tracking_url);
+          if(data.status=='In Transit' || data.status=='Ready for Pickup'){
+            $('.st2').addClass('active');
+            $('.st3').addClass('active');
+            $('.progress-bar').css('width','50%');
+          }else if(data.status=='Out for Delivery'){
+            $('.st2').addClass('active');
+            $('.st3').addClass('active');
+            $('.st4').addClass('active');
+            $('.progress-bar').css('width','70%');
+          }else if(data.status=='Delivered'){
+            $('.st2').addClass('active');
+            $('.st3').addClass('active');
+            $('.st4').addClass('active');
+            $('.st5').addClass('active');
+            $('.progress-bar').css('width','100%');
+          }else if(data.status=='Delivery Failed'){
+            $('.st2').addClass('active');
+            $('.st3').addClass('active');
+            $('.st4').addClass('active');
+            $('.st5').addClass('active');
+            $('#delTxt').text('Delivery Failed');
+            $('.progress-bar').css('width','100%');
+          }
+          /*result.innerHTML = `
+            <div class="card p-3">
+              <h5>Order: ${data.order_number}</h5>
+              <p>Status: <span class="badge bg-info">${data.status}</span></p>
+              <p>Customer: ${data.customer}</p>
+              <p>Shipping Date: ${data.shipping_date ?? 'N/A'}</p>
+              <p>Tracking: <a href="${data.tracking_url}" target="_blank">${data.tracking_url}</a></p>
+              <p>Courier: ${data.tracking_company ?? 'Unknown'}</p>
+            </div>
+          `;
+          */
+          $('#trackSec').show();
+        }
+      })
+      .catch(() => {
+        //spinner.style.display = "none";
+        //result.innerHTML = `<div class="alert alert-danger">Something went wrong. Please try again.</div>`;
+        errormsg.innerHTML = `We couldn't find a match. Please double-check your email and order number.`;
+        $('.mainloader').hide();
+      });
+  });
+</script>
+{% endif %}

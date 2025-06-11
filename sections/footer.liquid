@@ -1,0 +1,969 @@
+{%- liquid
+  assign show_selectors = false
+  assign currency_selector = false
+  assign locale_selector = false
+
+  if section.settings.show_currency_selector and shop.enabled_currencies.size > 1
+    assign currency_selector = true
+  endif
+
+  if section.settings.show_locale_selector and shop.enabled_locales.size > 1
+    assign locale_selector = true
+  endif
+
+  if currency_selector or locale_selector
+    assign show_selectors = true
+  endif
+-%}
+
+{%- if settings.color_footer == settings.color_body_bg -%}
+  {%- style -%}
+    .site-footer {
+      border-top: 1px solid {{ settings.color_borders }};
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% comment %}
+  <footer class="site-footer" data-section-id="{{ section.id }}" data-section-type="footer-section">
+    <div class="page-width">
+      <div class="grid">
+        {%- assign row_width = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign row_width = row_width | plus: block.settings.container_width -%}
+          {%- if row_width > 100 -%}
+            <div class="footer__clear small--hide"></div>
+            {%- assign row_width = row_width | minus: 100 -%}
+          {%- endif -%}
+
+          <div
+            {{ block.shopify_attributes }}
+            class="grid__item footer__item--{{ block.id }}"
+            data-type="{{ block.type }}"
+          >
+            {%- style -%}
+              @media only screen and (min-width: 769px) and (max-width: 959px) {
+                .footer__item--{{ block.id }} {
+                  width: 50%;
+                  padding-top: 40px;
+                }
+                .footer__item--{{ block.id }}:nth-child(2n + 1) {
+                  clear: left;
+                }
+              }
+              @media only screen and (min-width: 960px) {
+                .footer__item--{{ block.id }} {
+                  width: {{ block.settings.container_width }}%;
+                }
+
+              }
+            {%- endstyle -%}
+
+            {%- liquid
+              case block.type
+                when 'logo_social'
+                  render 'footer-logo', block: block
+                when 'custom'
+                  render 'footer-custom-text', block: block, container_width: block.settings.container_width
+                when 'newsletter'
+                  render 'footer-newsletter', block: block
+                when 'menu'
+                  render 'footer-menu', block: block
+                when 'follow_shop_cta'
+                  render 'follow-shop-cta', block: block
+              endcase
+            -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if show_selectors -%}
+        <div class="footer__section">
+          {%- render 'multi-selectors',
+            locale_selector: locale_selector,
+            currency_selector: currency_selector,
+            show_currency_flags: section.settings.show_currency_flags,
+            location: 'footer'
+          -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons -%}
+        {%- unless shop.enabled_payment_types == empty -%}
+          <ul class="inline-list payment-icons footer__section">
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="icon--payment">
+                {{ type | payment_type_svg_tag }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endunless -%}
+      {%- endif -%}
+
+      {%- if section.settings.show_copyright -%}
+        <p class="footer__small-text">
+          &copy; {{ 'now' | date: '%Y' }}
+          {{ shop.name }}
+          {%- if section.settings.copyright_text != blank -%}
+            {{ section.settings.copyright_text }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+      <p class="footer__small-text">{{ powered_by_link }}</p>
+    </div>
+  </footer>
+{% endcomment %}
+
+{% comment %}
+  {%- assign link_list_2 = section.settings.bottom_menu.links -%}
+  {% if link_list_2 != blank %}
+    <div class="footer-bottom_wrapper">
+      <div class="page-width-wide">
+        <ul class="footer-bottom_content">
+          {%- for link in link_list_2 -%}
+            <li>
+              <a href="{{ link.url }}" data-uw-rm-brl="PR">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endcomment %}
+
+<div class="popup-overlay" id="popup-ani"></div>
+{% comment %} <div class="popup-overlay-close" id="popup-close-ani" style="display: none;"></div> {% endcomment %}
+<div class="popup-overlay-content" id="select-diamond-type-popup">
+  <div class="popup-content-wrapper">
+    <div class="close-popup">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+    <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"></path>
+      </svg>
+    </div>
+    <p class="popup-title">Complete your ring by adding a diamond</p>
+    <p class="popup-description">Pick from our diamond options</p>
+    <p class="luxe-setting-diamond-info hide">
+      We recommend a minimum 2.5ct center diamond for a cohesive look that matches the size & weight of the side stones.
+    </p>
+    <div class="button-wrapper not-disable-natural-button choosediamondbox" id="diamondcontainer" style="display:none;">
+      <a class="btn rs-popup-btn " href="https://stienhardt.com/collections/lab-diamonds">
+        <span data-add-to-setting>Lab Created Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+      <a class="btn btn--secondary-accent nature-diamond-button rs-popup-btn" href="/collections/color-diamonds">
+        <span data-add-to-setting>Colored Lab Grown Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+      <a class="btn btn--secondary-accent rs-popup-btn" href="https://stienhardt.com/collections/lab-grown-diamonds-featured-deals">
+        <span data-add-to-setting>FEATURED DEAL DIAMOND <b>(25% Off)</b></span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+    </div>
+    <div
+      class="button-wrapper not-disable-natural-button choosediamondbox"
+      id="necklacecontainer"
+      style="display:none;"
+    >
+      <a class="btn rs-popup-btn " href="https://stienhardt.com/collections/lab-diamonds">
+        <span data-add-to-setting>Lab Created Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+      <a
+        class="btn btn--secondary-accent nature-diamond-button rs-popup-btn"
+        href="/collections/necklace-natural-diamonds"
+        style="display:none;"
+      >
+        <span data-add-to-setting>Natural Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+      <a class="btn btn--secondary-accent rs-popup-btn" href="https://stienhardt.com/collections/lab-grown-diamonds-featured-deals">
+        <span data-add-to-setting>FEATURED DEAL DIAMOND <b>(25% Off)</b></span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+    </div>
+    <div class="button-wrapper not-disable-natural-button choosediamondbox" id="earingcontainer" style="display:none;">
+      <a class="btn rs-popup-btn " href="https://stienhardt.com/collections/lab-diamonds">
+        <span data-add-to-setting>Lab Created Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+      <a
+        class="btn btn--secondary-accent nature-diamond-button rs-popup-btn"
+        href="/collections/earring-natural-diamonds"
+        style="display:none;"
+      >
+        <span data-add-to-setting>Natural Diamond</span>
+        <span class="loading-spinner" data-loader=""></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+  <div class="popup-overlay-content" id="website-video-appointment">
+    <div class="popup-content-wrapper">
+      <div class="close-popup">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+          <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"/>
+        </svg>
+      </div>
+      <p class="appointment-subtitle"></p>
+      <p class="appointment-title">Book Your Appointment</p>
+      <p class="appointment-description">
+        Book a personalized diamond consultation and explore our exquisite selection of ethically sourced, high-quality
+        diamonds.
+      </p>
+      <div class="button-wrapper ">
+        <button class="btn btn--secondary-accent store-appointmet-btn">
+          <span data-add-to-setting>Schedule Person Appointment</span>
+          <span class="loading-spinner" data-loader=""></span>
+        </button>
+        <button class="btn btn--secondary-accent virtual-appointmet-btn">
+          <span data-add-to-setting>Schedule virtual appointment</span>
+          <span class="loading-spinner" data-loader=""></span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+{% comment %} Start with Try {% endcomment %}
+
+<div class="popup-appointment BookMainBG" id="website-video-appointment">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-start w-100">
+      <span class="ivy cl-theme me-auto">Schedule in Person Appointment</span>
+      <div class="ms-auto close-popup-appointment">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M17 3L3 17" stroke="#113174" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3L17 17" stroke="#113174" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/illustration-stylized-calendar-interface-search-bar-time-reminder.png?v=1736764442"
+        alt="Book Your Appointment"
+        draggable="false"
+        class="img-fluid cusBookImgWidth mx-auto"
+      >
+    </div>
+    <div class="cl-51 text-center mb-3">
+      Book a personalized diamond consultation and explore our exquisite selection of ethically sourced, high-quality
+      diamonds.
+    </div>
+    <a data-add-to-setting class="store-appointmet-btn cusA cusBtnOne text-center cusbookBtn cusborderRadius w-100 mb-3"
+      >Schedule Person Appointment</a
+    >
+    <a data-add-to-setting class="virtual-appointmet-btn cusA cusBtnOne text-center cusbookBtn cusborderRadius w-100"
+      >Schedule Virtual Appointment</a
+    >
+  </div>
+</div>
+
+{% comment %} End with Try {% endcomment %}
+
+{% comment %}
+  <div class="popup-overlay-content" id="website-video-appointment">
+    <div class="popup-content-wrapper">
+      <div class="close-popup">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+          <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"/>
+        </svg>
+      </div>
+      <p class="appointment-subtitle">FOREVER BEGINS HERE</p>
+      <p class="appointment-title">RESERVE YOUR APPOINTMENT</p>
+      <p class="appointment-description">
+        Experience the luxury of engagement rings & fine jewelry through a personalized journey with one of our jewelry
+        specialists.
+      </p>
+      <div class="button-wrapper ">
+        <button class="btn btn--secondary-accent store-appointmet-btn">
+          <span data-add-to-setting>Schedule Showroom Appointment</span>
+          <span class="loading-spinner" data-loader=""></span>
+        </button>
+        <button class="btn btn--secondary-accent virtual-appointmet-btn">
+          <span data-add-to-setting>Schedule virtual appointment</span>
+          <span class="loading-spinner" data-loader=""></span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+<div class="popup-overlay-content" id="start-over-popup">
+  <div class="popup-content-wrapper">
+    <div class="close-popup">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+        <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"/>
+      </svg>
+    </div>
+    <p class="popup-title">Confirm Reset</p>
+    <p class="popup-description">Are you sure you want to remove the ring and diamond selection?</p>
+    <div class="button-wrapper">
+      <div class="btn close-button">Continue Building</div>
+      <a class="btn btn--secondary-accent clear-ring-data" id="confirmReset" href="javascript:void(0)">Start Over</a>
+    </div>
+  </div>
+</div>
+
+<div id="dropahintModals">
+  <div id="hint_modal" style="display: none;">
+    <div id="dropahint-modal">
+      <div class="u-popup-container fields" style="height: 725px; overflow: scroll;">
+        <div class="u-popup-overlay"></div>
+
+        <div class="u-popup-main">
+          <div class="u-popup-header">
+            <a href="#" class="u-close-button" data-uw-rm-brl="PR"><span class="icon-cross"></span></a>
+          </div>
+          <div class="u-popup-content" style="overflow: hidden;">
+            <div
+              id="u_body"
+              style="display: flex; flex-direction: column; justify-content: flex-start;min-height: 100%;color: #000000;background-color: #dee9eb;font-family: courier new,courier,monospace; border-radius: 0px;"
+            >
+              <div style="padding: 0px;">
+                <div class="container" style="max-width: 340px;margin: 0 0 0 auto;">
+                  <div class="u-row">
+                    <div
+                      class="u-col u-col-100"
+                      style="display:flex;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"
+                    >
+                      <div style="width: 100%;padding:0px;">
+                        <div style="overflow-wrap: break-word;padding: 21px 10px 20px;">
+                          <span
+                            class="v-text-align"
+                            style="margin: 0px; line-height: 100%; text-align: center; word-wrap: break-word; font-family: 'Quicksand',sans-serif; font-size: 20px; font-weight: 400;"
+                          >
+                            Drop a Hint
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding: 0px;">
+                <div class="container" style="max-width: 340px;margin: 0 0 0 auto;">
+                  <div class="u-row">
+                    <div
+                      class="u-col u-col-100"
+                      style="display:flex;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"
+                    >
+                      <div style="width: 100%;padding:0px;">
+                        <div id="u_content_form_1" style="overflow-wrap: break-word;padding: 0px 20px 20px;">
+                          <div style="text-align:center">
+                            <form method="post" action="/contact#dropform" id="dropform" accept-charset="UTF-8">
+                            <input type="hidden" name="form_type" value="contact">
+                            <input type="hidden" name="utf8" value="✓">
+                              <div  class="sc-breuTD VMOOC">
+                                <div style="padding-bottom:0px">
+                                  <div
+                                    style="text-align:left;color:#95a5a6;font-size:11px;padding:0px 0px 25px 5px;font-family:'Quicksand',sans-serif"
+                                  ></div>
+                                  <div style="position:relative">
+                                    <input
+                                      type="text"
+                                      required=""
+                                      name="contact[your_name]"
+                                      placeholder="Your Name"
+                                      style="border-top-width:0px;border-top-style:solid;border-top-color:#070d0d;border-left-width:0px;border-left-style:solid;border-left-color:#070d0d;border-right-width:0px;border-right-style:solid;border-right-color:#070d0d;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#070d0d;border-radius:0px;padding:10px;color:#7e8c8d;background-color:transparent;font-size:10px;font-family:verdana,geneva,sans-serif;width:100%"
+                                      autocomplete="name"
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                              <div  class="sc-breuTD VMOOC">
+                                <div style="padding-bottom:0px">
+                                  <div
+                                    style="text-align:left;color:#95a5a6;font-size:11px;padding:0px 0px 25px 5px;font-family:'Quicksand',sans-serif"
+                                  ></div>
+                                  <div style="position:relative">
+                                    <input
+                                      type="email"
+                                      required=""
+                                      name="contact[your_email]"
+                                      placeholder="Your Email"
+                                      style="border-top-width:0px;border-top-style:solid;border-top-color:#070d0d;border-left-width:0px;border-left-style:solid;border-left-color:#070d0d;border-right-width:0px;border-right-style:solid;border-right-color:#070d0d;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#070d0d;border-radius:0px;padding:10px;color:#7e8c8d;background-color:transparent;font-size:10px;font-family:verdana,geneva,sans-serif;width:100%"
+                                      autocomplete="email"
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                              <div  class="sc-breuTD VMOOC">
+                                <div style="padding-bottom:0px">
+                                  <div
+                                    style="text-align:left;color:#95a5a6;font-size:11px;padding:0px 0px 25px 5px;font-family:'Quicksand',sans-serif"
+                                  ></div>
+                                  <div style="position:relative">
+                                    <input
+                                      type="text"
+                                      required=""
+                                      name="contact[receiver_name]"
+                                      placeholder="Receiver Name"
+                                      style="border-top-width:0px;border-top-style:solid;border-top-color:#070d0d;border-left-width:0px;border-left-style:solid;border-left-color:#070d0d;border-right-width:0px;border-right-style:solid;border-right-color:#070d0d;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#070d0d;border-radius:0px;padding:10px;color:#7e8c8d;background-color:transparent;font-size:10px;font-family:verdana,geneva,sans-serif;width:100%"
+                                      autocomplete="name"
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                              <div  class="sc-breuTD VMOOC">
+                                <div style="padding-bottom:0px">
+                                  <div
+                                    style="text-align:left;color:#95a5a6;font-size:11px;padding:0px 0px 25px 5px;font-family:'Quicksand',sans-serif"
+                                  ></div>
+                                  <div style="position:relative">
+                                    <input
+                                      type="email"
+                                      required=""
+                                      name="contact[receiver_email]"
+                                      placeholder="Receiver Email"
+                                      style="border-top-width:0px;border-top-style:solid;border-top-color:#070d0d;border-left-width:0px;border-left-style:solid;border-left-color:#070d0d;border-right-width:0px;border-right-style:solid;border-right-color:#070d0d;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#070d0d;border-radius:0px;padding:10px;color:#7e8c8d;background-color:transparent;font-size:10px;font-family:verdana,geneva,sans-serif;width:100%"
+                                      autocomplete="email"
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                              <div  class="sc-breuTD VMOOC">
+                                <div style="padding-bottom:0px;margin-top:20px;">
+                                  <div style="position:relative">
+                                    <textarea
+                                      name="contact[custom_text]"
+                                      placeholder="Custom Message"
+                                      style="border-top-width:1px;border-top-style:solid;border-top-color:#000000;border-left-width:1px;border-left-style:solid;border-left-color:#000000;border-right-width:1px;border-right-style:solid;border-right-color:#000000;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#000000;border-radius:0px;padding:10px 20px 30px;color:#7e8c8d;background-color:transparent;font-size:10px;font-family:verdana,geneva,sans-serif;width:100%"
+                                      maxlength="80"
+                                      autocomplete="on"
+                                    ></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="u_content_button_1_sendHint" style="overflow-wrap: break-word;">
+                                <div class="v-text-align" style="text-align: center;">
+                                  <button
+                                    type="submit"
+                                    style="color:#FFFFFF;background-color:#14344a;border-radius: 0px;line-height:120%;display:inline-block;text-decoration:none;text-align:center;padding:13px 0px;width:100%;max-width:100%;word-wrap:break-word;border-top-color: #000000; border-top-style: solid; border-top-width: 1px; border-left-color: #000000; border-left-style: solid; border-left-width: 1px; border-right-color: #000000; border-right-style: solid; border-right-width: 1px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 1px;font-family: verdana,geneva,sans-serif; font-size: 12px;font-weight: 400; "
+                                    data-uw-rm-brl="PR"
+                                  >
+                                    <span style="line-height: 14.4px;"
+                                      >Send Hint to <span class="receiver_name"></span
+                                    ></span>
+                                  </button>
+                                </div>
+                              </div>
+                              <div style="text-align:center"></div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-popup-container card">
+              
+              <div class="u-popup-main">
+                <div class="u-popup-content" style="overflow: hidden;">
+                  <div
+                    id="u_body_1"
+                    class="u_body"
+                    style="display: flex; flex-direction: column; justify-content: flex-start;min-height: 100%;color: #000000;background-color: #ffffff;font-family: arial,helvetica,sans-serif; border-radius: 0px;"
+                  >
+                    <div
+                      id="u_row_7"
+                      class="u_row v-row-padding v-row-background-image--outer v-row-background-color"
+                      style="padding: 0px;"
+                    >
+                      <div
+                        class="container v-row-background-image--inner v-row-columns-background-color-background-color"
+                        style="max-width: 460px;margin: 0 auto 0 0;"
+                      >
+                        <div class="u-row">
+                          <div
+                            id="u_column_11"
+                            class="u-col u-col-100 u_column v-row-align-items v-col-background-color v-col-border v-col-border-radius"
+                            style="display:flex;background-color:transparent;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"
+                          >
+                            <div class="v-col-padding" style="width: 100%;padding:0px;">
+                              <div
+                                id="u_content_image_12"
+                                class="u_content_image v-container-padding-padding"
+                                style="overflow-wrap: break-word;padding: 30px 50px 15px;"
+                              >
+                                <div class="v-text-align" style="position:relative;line-height:0px;text-align:center">
+                                  <img
+                                    loading="lazy"
+                                    alt="Stienhardt"
+                                    class="v-src-width v-src-max-width"
+                                    src="https://stienhardt.com/cdn/shop/files/Stienhardt_and_Stones_white_Logo.webp?v=1728291137"
+                                    style="width: 73%;max-width: 73%; border-radius: 0px;margin: 0px auto;"
+                                    title="Stienhardt"
+                                    data-uw-rm-alt-original="Stienhardt"
+                                    data-uw-rm-alt="SVG"
+                                  > 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      id="u_row_9"
+                      class="u_row v-row-padding v-row-background-image--outer v-row-background-color"
+                      style="padding: 0px;"
+                    >
+                      <div
+                        class="container v-row-background-image--inner v-row-columns-background-color-background-color"
+                        style="max-width: 460px;margin: 0 auto 0 0;"
+                      >
+                        <div class="u-row">
+                          <div
+                            id="u_column_15"
+                            class="u-col u-col-100 u_column v-row-align-items v-col-background-color v-col-border v-col-border-radius"
+                            style="display:flex;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"
+                          >
+                            <div class="v-col-padding" style="width: 100%;padding:0px;">
+                              <div
+                                id="u_content_text_14"
+                                class="u_content_text v-container-padding-padding"
+                                style="overflow-wrap: break-word;padding: 10px;"
+                              >
+                                <div
+                                  class="v-color v-text-align v-line-height v-font-weight v-font-family v-font-size"
+                                  style="letter-spacing: 0.18px; font-family: verdana,geneva,sans-serif; font-size: 14px; line-height: 140%; text-align: center; word-wrap: break-word;"
+                                >
+                                  <p style="line-height: 140%;"
+                                    >Dear <span class="receiver_name"></span>, &nbsp; <br>
+                                    &nbsp;Apparently <span class="sender_name"></span>&nbsp; <br>
+                                    has been dreaming about this.</p>
+                                  <br>
+                                </div>
+                              </div>
+                              <div
+                                id="u_content_custom_product_image_8"
+                                class="u_content_custom_product_image v-container-padding-padding"
+                                style="overflow-wrap: break-word;padding: 10px;"
+                              >
+                                <div style="position:relative;line-height:0px;text-align:center">
+                                  <img
+                                    loading="lazy"
+                                    alt="Product Image"
+                                    src="{{ product.featured_image | img_url: '600x600' }}"
+                                    width="254"
+                                    class="productImageDropahint v-src-width v-src-max-width"
+                                    style="width:48%;max-width:48%;border-radius:0px;margin: 0px auto;"
+                                    data-uw-rm-alt-original="Product Image"
+                                    data-uw-rm-alt="ALT"
+                                  >
+                                </div>
+                              </div>
+                              <div
+                                id="u_content_text_12"
+                                class="u_content_text v-container-padding-padding"
+                                style="overflow-wrap: break-word;padding: 15px 10px 10px;"
+                              >
+                                <div
+                                  class="v-color v-text-align v-line-height v-font-weight v-font-family v-font-size"
+                                  style="letter-spacing: 0.18px; font-family: verdana,geneva,sans-serif; font-size: 14px; line-height: 220%; text-align: center; word-wrap: break-word;"
+                                >
+                                  <p style="line-height: 220%;"
+                                    ><span class="product_name">{{ product.title }}</span></p>
+                                  <br>
+                                  <p style="line-height: 220%;display:none;"
+                                    ><span class="product_detail">Metal Color 14KT White Gold, Shape Round</span></p>
+                                  <br>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      id="u_row_10"
+                      class="u_row v-row-padding v-row-background-image--outer v-row-background-color"
+                      style="padding: 0px;"
+                    >
+                      <div
+                        class="container v-row-background-image--inner v-row-columns-background-color-background-color"
+                        style="max-width: 460px;margin: 0 auto 0 0;"
+                      >
+                        <div class="u-row">
+                          <div
+                            id="u_column_16"
+                            class="u-col u-col-100 u_column v-row-align-items v-col-background-color v-col-border v-col-border-radius"
+                            style="display:flex;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;"
+                          >
+                            <div class="v-col-padding" style="width: 100%;padding:0px;">
+                              <div
+                                id="u_content_text_13"
+                                class="u_content_text v-container-padding-padding"
+                                style="overflow-wrap: break-word;padding: 10px;"
+                              >
+                                <div
+                                  class="v-color v-text-align v-line-height v-font-weight v-font-family v-font-size"
+                                  style="letter-spacing: 0.18px; font-family: verdana,geneva,sans-serif; font-size: 14px; line-height: 190%; text-align: center; word-wrap: break-word;"
+                                >
+                                  <p style="line-height: 190%;"
+                                    ><span style="color: #000000; line-height: 26.6px;">Pssst...</span
+                                    ><span style="color: #000000; line-height: 26.6px;"></span
+                                    ><span style="color: #000000; line-height: 26.6px;"></span
+                                  ></p>
+                                  <br>
+                                  <p style="line-height: 190%;"><span class="custom_message"></span></p>
+                                  <br>
+                                  <p style="line-height: 190%;">&nbsp;</p>
+                                  <br>
+                                  <p style="line-height: 190%;">&nbsp;</p>
+                                  <br>
+                                  <p style="line-height: 190%;">&nbsp;</p>
+                                  <br>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+  // Show button after scrolling 50% of the viewport height
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > window.innerHeight / 2) {
+      btn.style.display = 'block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+
+  // Smooth scroll to top
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+ <!-- Back to Top Button -->
+          
+<script>
+  // New Appointment
+  // Appointment
+  $(document).on("click", ".schedule-appointment-btn,.site-header__book-appointment,.Schedule-an-appointment,.product__addon-schedule-appointment , [href='#bookappointment']", function (e) {
+        e.preventDefault(), $("body").addClass("show-website-popup"),
+        $("body").addClass("no-scroll"),
+        $('#website-video-appointment').removeClass('closes'),
+        $("#popup-ani").addClass("show_ani"),
+         $("#website-video-appointment").addClass("show-popup-content").addClass("shows");
+
+    });
+
+  $(".virtual-appointmet-btn").on("click", function () {
+        return (
+            $("body").removeClass("show-website-popup"),
+            $("body").removeClass("no-scroll"),
+            $("#website-video-appointment").removeClass("shows"),
+          $(this).closest(".popup-appointment").removeClass("show-popup-content"),
+          Calendly.initPopupWidget({ url: "https://calendly.com/general-stienhardt/30min" }), !1
+        );
+  });
+  $(".store-appointmet-btn,#shopify-section-08102c87-6898-43ec-b1ef-ac5d6e1371b9 .btn").on("click", function (e) {
+      return (
+          e.preventDefault(),
+          $("body").removeClass("show-website-popup"),
+          $("body").removeClass("no-scroll").removeClass("shows"),
+          $("#website-video-appointment").removeClass("shows"),
+          $(this).closest(".popup-appointment").removeClass("show-popup-content"),
+          Calendly.initPopupWidget({ url: "https://calendly.com/general-stienhardt/30min" }),
+          !1
+      );
+  });
+  $(document).on('click', '.close-popup-appointment, .popup-overlay, .close-button' , function(e){
+      $('#select-diamond-type-popup').removeClass('show-popup-content');
+      $('#website-video-appointment').removeClass('show-popup-content').removeClass('shows').addClass('closes');
+      $("#popup-ani").removeClass("show_ani");
+      $('#start-over-popup').removeClass('show-popup-content');
+      $("body").removeClass("show-website-popup"),
+      $(this).closest(".popup-appointment").removeClass("show-popup-content");
+  });
+  // Closing the appointment card when clicking outside it
+  // $(document).on('click', function(event) {
+  //     if(!$(event.target).closest('.popup-appointment, .store-appointmet-btn, .virtual-appointmet-btn').length) {
+  //         if($('.popup-appointment').is(":visible")) {
+  //             $('.popup-appointment').removeClass('show-popup-content');
+  //             $("body").removeClass("show-website-popup");
+  //         }
+  //     }
+  // });
+   // Disable scrolling when the appointment popup is open
+  // Enable scrolling when closing the popup
+  $(document).on('click', '.close-popup-appointment, .popup-overlay, .close-button', function() {
+      $("body").removeClass("no-scroll");
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header_language_selector",
+      "info": "t:sections.footer.settings.header_language_selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "t:sections.footer.settings.show_locale_selector.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header_currency_selector",
+      "info": "t:sections.footer.settings.header_currency_selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": "t:sections.footer.settings.show_currency_selector.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_flags",
+      "label": "t:sections.footer.settings.show_currency_flags.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header_additional_footer_content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "t:sections.footer.settings.show_payment_icons.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "t:sections.footer.settings.show_copyright.label"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "t:sections.footer.settings.copyright_text.label"
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Bottom menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_social",
+      "name": "t:sections.footer.blocks.logo.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "t:sections.footer.blocks.logo.settings.logo.label"
+        },
+        {
+          "type": "range",
+          "id": "desktop_logo_height",
+          "label": "t:sections.footer.blocks.logo.settings.desktop_logo_height.label",
+          "default": 50,
+          "min": 20,
+          "max": 120,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "container_width",
+          "label": "t:sections.footer.blocks.logo.settings.container_width.label",
+          "default": 25,
+          "min": 15,
+          "max": 95,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "t:sections.footer.blocks.navigation.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_footer_title",
+          "label": "t:sections.footer.blocks.navigation.settings.show_footer_title.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.footer.blocks.navigation.settings.menu.label",
+          "default": "footer",
+          "info": "t:sections.footer.blocks.navigation.settings.menu.info"
+        },
+        {
+          "type": "range",
+          "id": "container_width",
+          "label": "t:sections.footer.blocks.navigation.settings.container_width.label",
+          "default": 25,
+          "min": 15,
+          "max": 95,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "t:sections.footer.blocks.newsletter_and_social.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Footer logo",
+          "id": "image_picker_0"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_footer_title",
+          "label": "t:sections.footer.blocks.newsletter_and_social.settings.show_footer_title.label",
+          "default": true
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.newsletter_and_social.settings.content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.newsletter_and_social.settings.title.label",
+          "default": "Sign up and save"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.footer.blocks.newsletter_and_social.settings.text.label",
+          "info": "t:sections.footer.blocks.newsletter_and_social.settings.text.info",
+          "default": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>"
+        },
+        {
+          "type": "range",
+          "id": "container_width",
+          "label": "t:sections.footer.blocks.newsletter_and_social.settings.container_width.label",
+          "default": 25,
+          "min": 15,
+          "max": 95,
+          "unit": "%"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email"
+        },
+        {
+          "type": "text",
+          "id": "phone_1",
+          "label": "Phone 1"
+        },
+        {
+          "type": "text",
+          "id": "google_id",
+          "label": "Google id"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "name": "t:sections.footer.blocks.custom_text.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_footer_title",
+          "label": "t:sections.footer.blocks.custom_text.settings.show_footer_title.label",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.custom_text.settings.title.label",
+          "default": "Custom text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.footer.blocks.custom_text.settings.image.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.footer.blocks.custom_text.settings.text.label",
+          "default": "<p>Add your own custom text here.</p>"
+        },
+        {
+          "type": "range",
+          "id": "container_width",
+          "label": "t:sections.footer.blocks.custom_text.settings.container_width.label",
+          "default": 25,
+          "min": 15,
+          "max": 95,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "follow_shop_cta",
+      "name": "t:common.follow_shop_cta.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:common.follow_shop_cta.paragraph.content"
+        },
+        {
+          "type": "range",
+          "id": "container_width",
+          "label": "t:sections.footer.blocks.custom_text.settings.container_width.label",
+          "default": 25,
+          "min": 20,
+          "max": 95,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "settings": {},
+    "blocks": [
+      {
+        "type": "menu",
+        "settings": {}
+      },
+      {
+        "type": "logo_social",
+        "settings": {}
+      }
+    ]
+  },
+  "disabled_on": {
+    "groups": ["header", "custom.popups"]
+  }
+}
+{% endschema %}

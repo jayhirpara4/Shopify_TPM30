@@ -1,0 +1,149 @@
+<style>
+/*================ #Home diamonds section ================*/
+.diamond-grid {
+    transition: transform 0.3s linear;
+    padding: 0 15px;
+}
+.diamond-grid .diamond-description {
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+}
+.diamond-grid .diamond-description br {
+    display: none;
+}
+@media (min-width: 750px) {
+    .diamond-grid {
+        width: calc(100% / 9);
+        flex: 1 1 calc(100% / 9);
+        padding-bottom: 20px;
+    }
+    .diamonds-grids > .diamond-grid:not(:nth-child(-n+9)) {display: none;}
+    .diamond-grid:hover {
+        transform: scale(1.25);
+    }
+    .diamond-grid img {
+        transform: scale(0.7);
+    }
+    .diamond-grid:hover img {
+        transform: scale(0.8);
+    }
+    .diamond-grid:hover .diamond-title {
+        font-size: 18px;
+        line-height: 20px;
+        margin: 0 0 8px;
+    }
+    .diamond-grid .diamond-description {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .diamond-grid:hover .diamond-description {
+        opacity: 1;
+    }
+}
+@media (max-width: 749px) {
+    .home-diamonds h2 {
+        padding: 0 20px;
+    }
+    .diamonds-grids {
+        overflow: auto;
+        margin: 0;
+    }
+    .diamonds-grids .diamond-grid {
+        width: 30%;
+        flex: 0 0 30%;
+    }
+    .diamond-grid .block-media {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+    .diamond-grid .diamond-description {
+        display: none;
+    }
+}
+</style>
+    <div class="page-width sm-pd-0">
+        <div class="home-diamonds">
+            <h2 class="section-header-sm section-header-reverse section-header-sb text-uppercase">{{ section.settings.heading }} </h2>
+            <div class="diamonds-grids flex default-slick-slider text-center">
+              {%- for block in section.blocks -%}
+                {%- assign image_picker_2 = block.settings.image_picker_2 -%}
+                <div class="diamond-grid">
+                    <a href="/collections/round-cut-lab-grown-diamonds">
+                        <div class="block-media">
+                            <div class="absolute-image-wrapper" style="padding-top:100.0%;" data-image-loading-animation>
+                              {{ image_picker_2 | image_url: width: image_picker_2.width | image_tag: class: 'absolute-image', loading: 'lazy' }}
+                            </div>
+                        </div>
+                        <p class="diamond-title body-title-2px-spacing">{{ block.settings.heading }}</p>
+                        <p class="diamond-description">{{ block.settings.description }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+<script>
+const diamond_grid = $(".diamonds-grids");
+diamond_grid.length &&
+$(".diamonds-grids").slick({ slidesToShow: 8, slidesToScroll: 1, dots: !1, arrows:1, adaptiveHeight: !0, responsive: [{ breakpoint: 750, settings: { slidesToShow: 1, variableWidth: !0 } }] })
+</script>
+{% schema %}
+  {
+  "name": "Home Diamonds",
+  "class": "home-diamonds-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BROWSE OUR DIAMOND COLLECTION"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image Picker 2",
+          "id": "image_picker_2"
+        },
+        {
+          "type": "url",
+          "label": "Link",
+          "id": "link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Diamonds"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

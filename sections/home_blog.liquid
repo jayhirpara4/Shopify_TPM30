@@ -1,0 +1,180 @@
+<Section>
+    <div class="container">
+        <div class="d-flex flex-column justify-content-center align-items-center mb-3">
+            <h2 class="heading">Blog</h2>
+            <div class="subHeading">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 my-3 my-lg-0 col-lg-3">
+                <a href="#" class="cusA d-block">
+                    <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                        {%- if section.settings.blog_picture_1 != blank -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.blog_picture_1 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blog_picture_1.png?v=1728724368">
+                        {%- endif -%}
+                        <div class="BlogHead mt-3 mb-2">What is Lorem Ipsum?</div>
+                        <div class="BlogDesc">It is a long established fact that a reader will be distracted by the readable content...</div>
+                        <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151"/>
+                            </svg>
+                        </a>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 my-3 my-lg-0 col-lg-3">
+                <a href="#" class="cusA d-block ">
+                    <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                        {%- if section.settings.blog_picture_2 != blank -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.blog_picture_2 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blog_picture_2.png?v=1728724368">
+                        {%- endif -%}
+                        <div class="BlogHead mt-3 mb-2">What is Lorem Ipsum?</div>
+                        <div class="BlogDesc">It is a long established fact that a reader will be distracted by the readable content...</div>
+                        <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151"/>
+                            </svg>
+                        </a>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 my-3 my-lg-0 col-lg-3">
+                <a href="#" class="cusA d-block ">
+                    <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                        {%- if section.settings.blog_picture_3 != blank -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.blog_picture_3 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blog_picture_3.png?v=1728724368">
+                        {%- endif -%}
+                        <div class="BlogHead mt-3 mb-2">What is Lorem Ipsum?</div>
+                        <div class="BlogDesc">It is a long established fact that a reader will be distracted by the readable content...</div>
+                        <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151"/>
+                            </svg>
+                        </a>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 my-3 my-lg-0 col-lg-3">
+                <a href="#" class="cusA d-block ">
+                    <div class="d-flex flex-column justify-content-center align-items-start blogCard scalHvr">
+                        {%- if section.settings.blog_picture_4 != blank -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="{{ section.settings.blog_picture_4 | image_url }}">
+                          {%- else -%}
+                            <img
+                              width="400"
+                              height="400"
+                              loading="lazy"
+                              alt="Blog Images"
+                              draggable="false"
+                              class="img-fluid"
+                              src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/blog_picture_4.png?v=1728724368">
+                        {%- endif -%}
+                        <div class="BlogHead mt-3 mb-2">What is Lorem Ipsum?</div>
+                        <div class="BlogDesc">It is a long established fact that a reader will be distracted by the readable content...</div>
+                        <a href="#" class="cusA cusLearn d-flex justify-content-center align-items-center mt-5 cusTransition">Learn More 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 6 6" fill="none" class="BlogRightArrow cusTransition">
+                                <path d="M1.48894 6C1.43243 5.9999 1.37719 5.98325 1.33004 5.95211C1.28289 5.92097 1.24589 5.8767 1.22361 5.82477C1.20134 5.77284 1.19477 5.71552 1.2047 5.65989C1.21464 5.60427 1.24065 5.55277 1.27953 5.51176L3.66284 3.00003L1.27953 0.488293C1.2534 0.460717 1.23295 0.428264 1.21936 0.392787C1.20577 0.35731 1.1993 0.319503 1.20032 0.281526C1.20238 0.204827 1.23483 0.132088 1.29052 0.0793116C1.3181 0.0531792 1.35055 0.0327343 1.38603 0.0191439C1.4215 0.00555345 1.45931 -0.000916193 1.49729 0.000104417C1.57399 0.00216563 1.64673 0.034611 1.6995 0.0903028L4.2714 2.80103C4.32216 2.85509 4.35041 2.92645 4.35041 3.00061C4.35041 3.07476 4.32216 3.14612 4.2714 3.20018L1.6995 5.90975C1.67249 5.93845 1.63985 5.96128 1.60362 5.9768C1.56739 5.99233 1.52835 6.00022 1.48894 6Z" fill="#515151"/>
+                            </svg>
+                        </a>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</Section>
+
+
+
+{% schema %}
+    {
+      "name": "home_blog",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "blog_picture_1",
+          "label": "blog_picture_1",
+          "info": "400 x 120px .png recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "blog_picture_2",
+          "label": "blog_picture_2",
+          "info": "400 x 120px .png recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "blog_picture_3",
+          "label": "blog_picture_3",
+          "info": "400 x 120px .png recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "blog_picture_4",
+          "label": "blog_picture_4",
+          "info": "400 x 120px .png recommended"
+        }
+      ],
+      "blocks": [],
+      "presets": [
+        {
+          "name": "home_blog"
+        }
+      ]
+    }
+{% endschema %}

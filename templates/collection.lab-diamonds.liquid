@@ -1,0 +1,939 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.min.js" ></script>
+<script>
+
+    function applyMovalFilter() {
+        let params = new URLSearchParams(window.location.search);
+        
+        if (params.get("shape") === "Oval" && params.get("lwfrom") === "1.50") {
+    
+            params.delete("shape");
+            params.delete("lwfrom");
+    
+        } else {
+    
+            params.set("shape", "Oval");
+            params.set("lwfrom", "1.50");
+    
+        }
+    
+        window.location.search = params.toString();
+    }
+    
+    </script>
+
+{% if collection.metafields.custom.active_shape %}
+ {% assign activefilter = collection.metafields.custom.active_shape %}
+{% else %}
+ {% assign activefilter = '' %}
+{% endif %}
+
+{% if collection.metafields.custom.carat_from %}
+ {% assign carat_from = collection.metafields.custom.carat_from %}
+{% else %}
+ {% assign carat_from = 0.0 %}
+{% endif %}
+
+{% if collection.metafields.custom.carat_to %}
+ {% assign carat_to = collection.metafields.custom.carat_to %}
+{% else %}
+ {% assign carat_to = 20 %}
+{% endif %}
+
+{% if collection.metafields.custom.featured_deal %}
+ {% assign featured_deal = collection.metafields.custom.featured_deal %}
+{% else %}
+ {% assign featured_deal = 0 %}
+{% endif %}
+<style>
+.diamond-list.earring-diamond-list {
+    flex-wrap: wrap;
+}
+.diamondbox {
+    width: 90%;
+}
+.earring-diamond-list .diamond-compare {
+    width: 5%;
+}
+.earring-diamond-list  .arrow-wrapper{
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.pair-diamond-wrapper {
+    display: flex;
+    width: 100%;
+}
+</style>
+<div class="page-width" style="margin-top:30px;margin-bottom:30px;">
+
+<section>
+  <div class="process-steps ">
+      <div class="process-steps-wrapper">
+        <h1 class="process-steps-heading">{{ collection.title }}</h1>
+          <p class="process-steps-heading">Conflict-Free & Sustainable</p>
+          <div class="process-steps-container">
+              <div class="start-over-button">
+                  <p id="start-over" class="text-uppercase">Start Over</p>
+              </div>
+              <div class="steps-wrapper">
+                <div class="step step-1" data-step="ring-setting">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">1</div>
+                            <div class="title-wrapper">
+                                <p class="title">Choose a setting</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="addedring">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 active" data-step="diamonds">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">2</div>
+                            <div class="title-wrapper">
+                                <p class="title">Choose a diamond</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="addeddiamond">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-3" data-step="final-ring">
+                    <div class="step-container">
+                        <div class="step-count">
+                            <div class="count">3</div>
+                            <div class="title-wrapper">
+                                <p class="title">Complete Your Ring</p>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="completering">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+      
+
+  <div class="diamond-tab-container page-width"><div class="tab-wrapper">
+    {%- if settings.hide_natural == 'No' -%}
+      <p class="diamond-tab active" data-diamond="lab-diamonds">
+        Lab Diamonds
+      </p>
+      {% if collection.metafields.custom.type == 'Earring' %}
+      <a href="/collections/earring-natural-diamonds" class="diamond-tab " data-diamond="natural-diamonds">
+      {% elsif collection.metafields.custom.type == 'Necklace' %}
+      <a href="/collections/necklace-natural-diamonds" class="diamond-tab " data-diamond="natural-diamonds">
+      {%  else %}
+      <a href="/collections/natural-diamonds" class="diamond-tab " data-diamond="natural-diamonds">
+      {% endif %}
+        Natural diamonds
+      </a>
+      {%- endif -%}
+    </div><button class="mm-button medium-up--hide" id="diamond-filter-opener">Filters</button>
+  </div>
+
+<div class="diamond-filter__wrapper page-width lab-diamonds" id="rsmobile-filter">
+  <div class="mobile-filter-header text-center medium-up--hide">
+    <h2 class="section-header-reverse text-uppercase">Filters</h2>
+    <span class="mm-close" id="diamond-filter-close"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40"><path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"></path></svg></span>
+  </div>
+  
+  <div class="diamond-filter__container">
+    <div class="filter__grid-1fr-2fr-wrapper">
+      <!-- Diamond shape filter -->
+      <div class="filter__shape" id="filter__shape">
+        <h2 class="filter__title">By shape</h2>
+        <div class="filter-shapes">
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Round' %} slide-active {% endif %}" data-value="Round" data-handle="round" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Round_afcc813b-2509-4b0b-b7db-dd9d0c613277.svg?v=1719589989" alt="Round diamond shape icon">
+            </div>
+            <p class="shape__title">Round</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Princess' %} slide-active {% endif %}" data-value="Princess" data-handle="princess" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Princess_7d3683c2-8149-4452-bb87-310365036d06.svg?v=1719590046" alt="Princess diamond shape icon">
+            </div>
+            <p class="shape__title">Princess</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Radiant' %} slide-active {% endif %}" data-value="Radiant" data-handle="radiant" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Radiant_301c8918-d0bf-4371-818b-26094b1fcaf6.svg?v=1719590014" alt="Radiant diamond shape icon">
+            </div>
+            <p class="shape__title">Radiant</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Pear' %} slide-active {% endif %}" data-value="Pear" data-handle="pear" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Pear_a1ac0334-52f5-4c46-91ce-72719dee3d2b.svg?v=1719586565" alt="Pear diamond shape icon">
+            </div>
+            <p class="shape__title">Pear</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Cushion' %} slide-active {% endif %}" data-value="Cushion" data-handle="cushion" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Cushion_144585db-74ec-405b-9d1a-e4e14fc41878.svg?v=1719586565" alt="Cushion diamond shape icon">
+            </div>
+            <p class="shape__title">Cushion</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Asscher' %} slide-active {% endif %}" data-value="Asscher" data-handle="asscher" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Asscher_bacecadd-ff3f-47f0-86ca-d953446da913.svg?v=1719586565" alt="Asscher diamond shape icon">
+            </div>
+            <p class="shape__title">Asscher</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Emerald' %} slide-active {% endif %}" data-value="Emerald" data-handle="emerald" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Emerald_cb676c23-f9ab-44b2-bff0-50b8862b4cd2.svg?v=1719586565" alt="Emerald diamond shape icon">
+            </div>
+            <p class="shape__title">Emerald</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Marquise' %} slide-active {% endif %}" data-value="Marquise" data-handle="marquise" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Marquese.svg?v=1719586565" alt="Marquise diamond shape icon">
+            </div>
+            <p class="shape__title">Marquise</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Oval' %} slide-active {% endif %}" data-value="Oval" data-handle="oval" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Oval_95eba534-7ad5-4d7d-bf63-391053f5c0a6.svg?v=1719586565" alt="Oval diamond shape icon">
+            </div>
+            <p class="shape__title">Oval</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Heart' %} slide-active {% endif %}" data-value="Heart" data-handle="heart" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Heart_86eeb45d-7e4e-41ce-9c34-f258f5811957.svg?v=1719586565" alt="Heart diamond shape icon">
+            </div>
+            <p class="shape__title">Heart</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Portuguese' %} slide-active {% endif %}" data-value="Portuguese" data-handle="portuguese" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Portuguese.svg?v=1719586565" alt="Portuguese diamond shape icon">
+            </div>
+            <p class="shape__title">Portuguese</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Long Cushion' %} slide-active {% endif %}" data-value="Long Cushion" data-handle="long cushion" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Long_Cushion.svg?v=1719586565" alt="Long Cushion diamond shape icon">
+            </div>
+            <p class="shape__title">Long Cushion</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Antique Cuts' %} slide-active {% endif %}" data-value="Antique Cuts" data-handle="antique cuts" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Antique_Cuts.svg?v=1719586565" alt="Antique Cuts diamond shape icon">
+            </div>
+            <p class="shape__title">Antique Cuts</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Moval' %} slide-active {% endif %}" data-value="Moval" data-handle="moval" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/moval-diamond-engagement-ring-design-custom-jewelry-svg.svg?v=1747660380" alt="Moval diamond shape icon">
+            </div>
+            <p class="shape__title">Moval</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Dutch Marquise' %} slide-active {% endif %}" data-value="Dutch Marquise" data-handle="dutch marquise" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/long-hexagon-diamond-engagement-ring-design-modern-geometric-svg.svg?v=1747660426" alt="Dutch Marquise diamond shape icon">
+            </div>
+            <p class="shape__title">Dutch Marquise</p>
+          </div>
+        
+          <div class="shape filter__item diamondfilter {% if activefilter == 'Elongated Hexagon' %} slide-active {% endif %}" data-value="Elongated Hexagon" data-handle="elongated hexagon" style="display: block;">
+            <div class="shape__icon">
+              <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/dutch-marquise-engagement-ring-design-luxury-jewelry-svg.svg?v=1747660326" alt="Elongated Hexagon diamond shape icon">
+            </div>
+            <p class="shape__title">Elongated Hexagon</p>
+          </div>
+        </div>
+        <div class="loading-spinner"></div>
+      </div>
+      <div class="filter__grid-2-fr-wrapper">
+        <div class="filter__flex-wrapper">
+          <!-- Diamond Price filter -->
+          <div class="filter__price filter-with-input-value" id="filter__price">
+            <h2 class="filter__title">By price</h2>
+            <div id="diamonds-price-slider" class="range-slider"></div>
+            <div class="slider-value-wrapper">
+              <input class="slider-start-value" id="slide-min-price" type="text" data-value="100.00" data-min="100" data-uw-rm-form="fx" aria-label="Text field">
+                <span class="slider-to-text" id="uwd8612d">to</span>
+              <input class="slider-end-value" id="slide-max-price" type="text" data-value="700000.00" data-max="700000" data-uw-rm-form="fx" aria-labelledby="uwd8612d">
+            </div>
+          </div>
+
+          <!-- Diamond report filter -->
+          <div class="filter__price" id="filter__report">
+            <h2 class="filter__title">By report</h2>
+            <div class="filter-report text-box-container">
+              
+                <div class="text-box filter__item" data-value="GIA">
+                  <p class="text__title">GIA</p>
+                </div>
+              
+                <div class="text-box filter__item" data-value="IGI">
+                  <p class="text__title">IGI</p>
+                </div>
+              
+                <div class="text-box filter__item" data-value="GCAL">
+                  <p class="text__title">GCAL</p>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="filter__flex-wrapper">
+          <!-- Diamond Carat filter -->
+          <div class="filter__carat filter-with-input-value" id="filter__carat">
+            <h2 class="filter__title">By carat</h2>
+            <div id="diamonds-carat-slider" class="range-slider"></div>
+            <div class="slider-value-wrapper">
+              <input class="slider-start-value" id="slide-min-carat" type="text" value="{{ carat_from }}" data-value="1.50" data-min="0.25" data-uw-rm-form="fx" aria-label="Text field">
+              <span class="slider-to-text" id="uw1ab80d6">to</span>
+              <input class="slider-end-value" id="slide-max-carat" type="text" value="{{ carat_to }}" data-value="20.00" data-max="20.3" data-uw-rm-form="fx" aria-labelledby="uw1ab80d6">
+            </div>
+          </div>
+        </div>
+
+        <div class="filter__flex-wrapper">
+          <!-- Diamond Cut filter -->
+          <div class="filter__cut" id="filter__cut">
+            <h2 class="filter__title">By cut</h2>
+            <div id="diamonds-cut-slider" class="range-slider"></div>
+            <div class="cut-filter-labels filter-labels">
+              
+                <p class="cut-filter-label filter-label" style="width:calc(100% / 4)">Good</p>
+              
+                <p class="cut-filter-label filter-label" style="width:calc(100% / 4)">Very Good</p>
+              
+                <p class="cut-filter-label filter-label" style="width:calc(100% / 4)">Excellent</p>
+              
+                <p class="cut-filter-label filter-label" style="width:calc(100% / 4)">Ideal</p>
+              
+                <p class="cut-filter-label filter-label" style="width:calc(100% / 4)">8X</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Diamond Color filter -->
+    <div class="filter__color" id="filter__color">
+      <h2 class="filter__title">By color</h2>
+      <div class="filter-infos">
+        
+          <p class="color-faint-yellow filter-info ">
+            <span>Faint Yellow</span>
+          </p>
+        
+          <p class="color-near-colorless filter-info ">
+            <span>Near Colorless</span>
+          </p>
+        
+          <p class="color-colorless filter-info ">
+            <span>Colorless</span>
+          </p>
+        
+      </div>
+      <div id="diamonds-color-slider" class="range-slider"></div>
+     <div class="filter-labels">
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">L</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">K</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">J</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">I</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">H</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">G</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">F</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">E</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 8)">D</p>
+        
+      </div>
+    </div>
+    <div class="filter__clarity" id="filter__clarity">
+      <h2 class="filter__title">By clarity</h2>
+      <div class="filter-infos">
+        
+          <p class="clarity-inclusion-visible-by-the-naked-eye filter-info ">
+            <span>Inclusion Visible By The Naked Eye</span>
+          </p>
+        
+          <p class="clarity-inclusion-visible-under-10x-magnification filter-info ">
+            <span>Inclusion Visible Under 10x Magnification</span>
+          </p>
+        
+          <p class="clarity-flawless filter-info ">
+            <span>Flawless</span>
+          </p>
+        
+      </div>
+      <div id="diamonds-clarity-slider" class="range-slider"></div>
+      <div class="filter-labels">
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">I1</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">SI2</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">SI1</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">VS2</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">VS1</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">VVS2</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">VVS1</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">IF</p>
+        
+          <p class="filter-bottom-label filter-label" style="width:calc(100% / 9)">FL</p>
+        
+      </div>
+    </div>
+    <div class="advance-filter-container" id="advance-filter-container">
+      <div class="filter__grid-wrapper">
+          <div class="filter__polish hidden-by-default" id="filter__polish">
+            <h2 class="filter__title">By polish</h2>
+            <div class="filter-labels">
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Fair</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Good</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Very Good</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Excellent</p>
+              
+            </div>
+            <div id="diamonds-polish-slider" class="range-slider"></div>
+          </div>
+          <div class="filter__symmetry hidden-by-default" id="filter__symmetry">
+            <h2 class="filter__title">By symmetry</h2>
+            <div class="filter-labels">
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Fair</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Good</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Very Good</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Excellent</p>
+              
+            </div>
+            <div id="diamonds-symmetry-slider" class="range-slider"></div>
+          </div>
+          <div class="filter__fluorescence hidden-by-default" id="filter__fluorescence">
+            <h2 class="filter__title">By fluorescence</h2>
+            <div class="filter-labels">
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Strong</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Medium</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">Faint</p>
+              
+                <p class="filter-label" style="width:calc(100% / 4)">None</p>
+              
+            </div>
+            <div id="diamonds-fluorescence-slider" class="range-slider"></div>
+          </div>
+          <div class="filter__lw filter-with-input-value hidden-by-default-ratio" id="filter__lw-ratio">
+            <h2 class="filter__title">By l/w ratio</h2>
+            <div id="diamonds-lw-ratio-slider" class="range-slider"></div>
+            <div class="slider-value-wrapper">
+              <input
+                class="slider-start-value"
+                id="slide-min-lw-ratio"
+                type="text"
+              >
+              <span class="slider-to-text">to</span>
+              <input
+                class="slider-end-value"
+                id="slide-max-lw-ratio"
+                type="text"
+              >
+            </div>
+          </div>
+          
+          <div class="filter__table filter-with-input-value hidden-by-default" id="filter__table">
+            <h2 class="filter__title">By table</h2>
+            <div id="diamonds-table-slider" class="range-slider"></div>
+            <div class="slider-value-wrapper">
+              <input
+                class="slider-start-value"
+                id="slide-min-table"
+                type="text"
+              >
+              <span class="slider-to-text">to</span>
+              <input
+                class="slider-end-value"
+                id="slide-max-table"
+                type="text"
+              >
+            </div>
+          </div>
+  
+          <div class="filter__depth filter-with-input-value hidden-by-default" id="filter__depth">
+            <h2 class="filter__title">By depth</h2>
+            <div id="diamonds-depth-slider" class="range-slider"></div>
+            <div class="slider-value-wrapper">
+              <input
+                class="slider-start-value"
+                id="slide-min-depth"
+                type="text"
+              >
+              <span class="slider-to-text">to</span>
+              <input
+                class="slider-end-value"
+                id="slide-max-depth"
+                type="text"
+              >
+            </div>
+           </div>
+  
+        </div>
+    </div>
+
+    <div class="button-wrappers mm-filter-footer">
+      <button type="button" id="show-more-filter" class="btn border-button show-hide-advance-filter small--hide">Show advanced</button>
+      <button type="button" class="btn border-button reset-diamond-filter">Reset filters</button>
+      <button type="button" class="btn apply-filter mm-close medium-up--hide">Apply filters</button>
+    </div>
+    
+  </div>
+</div>
+    <div class="mobile-filter-overlay medium-up--hide"> </div>
+
+
+<div class="diamonds-list-container page-width">
+  <div class="page-title"><h3>
+      Showing Lab Diamonds (
+      <span id="diamond-count" style="display: inline;">0</span>
+      <span id="diamond-total-count" style="display: inline;">&nbsp;of&nbsp;<span>0</span>
+      </span>
+      )
+    </h3>
+  </div>
+
+    <div class="diamond-serach-wrapper">
+      <div class="diamond-sku-serach diamond-serach">
+        <p class="serach-title">Search by SKU</p>
+        <div class="serach-box">
+          <input type="text" placeholder="#########" name="serach-sku" >
+          <button class="btn" type="button">Search</button>
+        </div>
+      </div>
+      <div class="diamond-certificate-serach diamond-serach">
+        <p class="serach-title">Search by Certificate Number/Sku</p>
+        <div class="serach-box">
+          <input type="text" placeholder="#########" id="searchinp" name="serach-certificate" >
+          <button class="btn" id="certsearch" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="diamond__tab-n-sort-container">
+      <div class="diamond__tab-wrapper">      
+        <div class="diamond__featured-deal small--hide tab-box {% if featured_deal == 1 %} quick-active {% endif %}">
+          <label class="checkbox"></label>
+          Featured Deal Diamonds
+        </div>
+        <div class="diamond__quick-shop-tab small--hide tab-box">
+          <label class="checkbox"></label>
+          Quick Ship
+        </div>
+        <!--<div class="diamond__gcal-tab small--hide tab-box">
+          <label class="checkbox"></label>
+          Clarity Plus™ Diamonds
+        </div>
+        -->
+        <div class="diamond__compare-diamond-tab tab-box comparenow" data-tab-type="diamond-compare-body"><label class="checkbox"></label>Compare (<span id="totalCmp">0</span>)</div>
+      </div>
+  
+        <div class="diamond__sort-wrapper">
+        
+        <div class="diamond__report-list" id="diamond__report-list">
+          <div class="select-dropdown">
+            <p class="report-dropdown__button">
+              <span class="sort_by_ttile">Filter by</span>
+              <span class="sort__seperator">|</span>
+              <span class="sort_by-title">Report</span>
+              <span class="toggle-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10">
+                    <defs>
+                        <style>
+                            .dropdown-arrow-a {
+                                fill: #fff;
+                                opacity: 0;
+                            }
+                        </style>
+                    </defs>
+                    <g transform="translate(-170 -702)">
+                        <rect class="dropdown-arrow-a" width="12" height="10" transform="translate(170 702)"></rect>
+                        <path d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z" transform="translate(180.344 704.641) rotate(90)"></path>
+                    </g>
+                </svg></span>
+            </p>
+            <ul class="select-dropdown__list">
+              <li data-value="GIA" class="select-dropdown__list-item">GIA</li>
+              <li data-value="IGI" class="select-dropdown__list-item">IGI</li>
+            </ul>
+          </div>
+        </div>
+        <div class="diamond__sort-list" id="diamond__sort-by">
+          <div class="select-dropdown">
+            <p class="select-dropdown__button">
+              <span class="sort_by_ttile">Sort By</span>
+              <span class="sort__seperator">|</span>
+              <span class="sort_by-title">Price (Low to High)</span>
+              <span class="toggle-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10">
+                        <defs>
+                            <style>
+                                .dropdown-arrow-a {
+                                    fill: #fff;
+                                    opacity: 0;
+                                }
+                            </style>
+                        </defs>
+                        <g transform="translate(-170 -702)">
+                            <rect class="dropdown-arrow-a" width="12" height="10" transform="translate(170 702)"></rect>
+                            <path d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z" transform="translate(180.344 704.641) rotate(90)"></path>
+                        </g>
+                    </svg></span>
+            </p>
+            <ul class="select-dropdown__list">
+              <li data-value="Price-ASC" class="select-dropdown__list-item active-dropdown">Price (Low to High)</li>
+              <li data-value="Price-DESC" class="select-dropdown__list-item">Price (High to Low)</li>
+              <li data-value="Carat-ASC" class="select-dropdown__list-item">Carat (Low to High)</li>
+              <li data-value="Carat-DESC" class="select-dropdown__list-item">Carat (High to Low)</li>
+              <li data-value="Color-ASC" class="select-dropdown__list-item">Color (Low to High)</li>
+              <li data-value="Color-DESC" class="select-dropdown__list-item">Color (High to Low)</li>
+              <li data-value="clarity_index-ASC" class="select-dropdown__list-item">Clarity (Low to High)</li>
+              <li data-value="clarity_index-DESC" class="select-dropdown__list-item">Clarity (High to Low)</li>
+              <li data-value="cut_index-ASC" class="select-dropdown__list-item">Cut (Low to High)</li>
+              <li data-value="cut_index-DESC" class="select-dropdown__list-item">Cut (High to Low)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diamond-heading small--hide">
+      <div class="">COMPARE</div><div class="">VIEW</div>
+      <div class="sort-wrapper" data-type="Shape">SHAPE
+        <span></span>
+      </div>
+      <div class="sort-wrapper" data-type="Carat">CARAT
+        <span></span>
+      </div>
+      <div class="sort-wrapper" data-type="Color">COLOR
+        <span></span>
+      </div>
+      <div class="intensity-wrapper" data-type="Intensity">INTENSITY
+      </div>
+      <div class="sort-wrapper" data-type="clarity_index">CLARITY
+        <span></span>
+      </div>
+      <div class="sort-wrapper" data-type="cut_index">CUT
+        <span></span>
+      </div>
+      <div>REPORT</div>
+      <div class="additional-field sort-wrapper" data-type="Polish">POLISH
+        <span></span>
+      </div>
+      <div class="additional-field sort-wrapper" data-type="Symmetry">SYM.
+        <span></span>
+      </div>
+      <div class="additional-field sort-wrapper" data-type="Fluorescence_Intensities">FLUOR.
+        <span></span>
+      </div>
+      <div class="additional-field sort-wrapper" data-type="Ratio">L/W
+        <span></span>
+      </div>
+      <div class="additional-field sort-wrapper" data-type="QuickShip">TABLE
+        <span></span>
+      </div>
+      <div class="additional-field sort-wrapper" data-type="Depth">DEPTH
+        <span></span>
+      </div>
+      <div class="">QUICK SHIP</div>
+      <div class="sort-wrapper active sort-order-asc" data-type="Price">PRICE
+        <span></span>
+      </div>
+      <div class="pair-diamond-total hide">TOTAL PRICE</div> 
+      <div class="view-arrow"></div> 
+    
+    </div>
+
+    <div class="diamond-body tab-content-container" id="diamondtable">
+    </div>
+    <div id="blankcpmtable" class="diamond-compare-body tab-content-container" style="display: none;"><p class="empty-diamond">Please select diamond to compare.</p></div>
+    <p style="opacity:0;" id="nextpage" type="button">Next page</p>
+    <!-- <div class="loaders mainloader" style="display: none;">
+      <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/loading-gif.webp?v=1716031971" data-uw-rm-alt-original="" data-uw-rm-alt="QU">
+    </div> -->
+
+  </div> 
+</section>
+</div>
+<div class="page-width">
+  <section style="margin-bottom:50px">
+   {% assign descriptions = collection.description | split: "<!-- split -->" %}
+  {% assign short_desc = descriptions[0] %}
+  {% assign long_desc = descriptions[1] %}  
+  {% comment %}
+    {% if collection.description.size > 700 %}
+    <div class="page-content-info product-description-short">
+    {{- short_desc -}} <br> <button id="btnToggle" style="margin-top:20px;" class="readmore read-more-button">Read more</button> 
+  </div>
+   <div class="page-content-info product-description-full" style="display:none;">
+    {{- collection.description -}}
+    <br><button id="btnToggle"  class="readless read-more-button">Read less</button>
+   </div>
+  {% else %}
+  <div class="page-content-info product-description-full">
+    {{ collection.description | replace: '<img', '<img loading="lazy"' | replace: '<iframe', '<iframe loading="lazy"' | replace: '<video', '<video preload="none"' }}
+  </div>
+{% endif %} 
+  {% endcomment %}
+    <div class="page-content-info product-description-full">
+    {{ collection.description | replace: '<img', '<img loading="lazy"' | replace: '<iframe', '<iframe loading="lazy"' | replace: '<video', '<video preload="none"' }}
+  </div>
+    
+  </section>
+  
+</div>
+<script>
+$('.readmore').click(function (event) {
+  event.preventDefault();
+  $('.product-description-short').hide();
+  $('.product-description-full').toggle();
+});
+$('.readless').click(function (event) {
+  event.preventDefault();
+  $('.product-description-full').hide();
+  $('.product-description-short').toggle();
+});  
+</script>
+<style>
+  /* Absolute Center Spinner */
+.mainloader {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.mainloader:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.mainloader:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.mainloader:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.select-dropdown {
+    cursor: pointer;
+}
+.diamond-list .quick-ship {
+    background: url(https://cdn.shopify.com/s/files/1/0599/0839/0973/files/quickship.png?v=1716097652) no-repeat;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+.empty-diamond {
+    padding: 50px 0;
+    text-align: center;
+    font-size: 20px;
+}
+</style>
+<form id="filterform">
+  <input type="hidden" name="type" id="dtype" value="LabGrown">
+  <input type="hidden" name="diamondtype" value="{{ activefilter }}" id="diamondtype">
+  <input type="hidden" name="diamondcut" id="diamondcut">
+  <input type="hidden" name="diamondcolor" id="diamondcolor">
+  <input type="hidden" name="diamondclarity" id="diamondclarity">
+  <input type="hidden" name="diamondpolish" id="diamondpolish">
+  <input type="hidden" name="diamondsymetry" id="diamondsymetry">
+  <input type="hidden" name="diamondflurence" id="diamondflurence">
+  <input type="hidden" name="diamondintensity" id="diamondintensity">
+
+  <input type="hidden" name="pricefrom" id="pricefrom">
+  <input type="hidden" name="priceto" id="priceto">
+
+  <input type="hidden" name="caratfrom" value="{{ carat_from }}" id="caratfrom">
+  <input type="hidden" name="caratto" value="{{ carat_to }}" id="caratto">
+
+  <input type="hidden" name="lwfrom" id="lwfrom">
+  <input type="hidden" name="lwto" id="lwto">
+
+  <input type="hidden" name="tablefrom" id="tablefrom">
+  <input type="hidden" name="tableto" id="tableto">
+
+  <input type="hidden" name="depthfrom" id="depthfrom">
+  <input type="hidden" name="depthto" id="depthto">
+
+  <input type="hidden" name="featureddeal" id="featureddeal" value="{{ featured_deal }}">
+  <input type="hidden" name="quickship" id="quickship" value="0">
+  <input type="hidden" name="sortby" id="sortby" value="Price-ASC">
+  <input type="hidden" name="reportby" id="reportby">
+  <input type="hidden" name="certnum" id="certnum">
+  <input type="hidden" name="lookingfor" id="lookingfor" value="{{ collection.metafields.custom.type }}">
+</form>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  var nosetcarat = '{{ carat_from }}';
+</script>
+<script src="{{ 'diamodfilternew.js' | asset_url }}" ></script>
+<script>
+  $('#diamonds-carat-slider')[0].noUiSlider.set([{{ carat_from }} , {{ carat_to }}]);
+  
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#diamond-filter-opener').click(function() {
+            $('#rsmobile-filter').addClass('has--append');
+        });
+        $('#diamond-filter-close').click(function() {
+            $('#rsmobile-filter').removeClass('has--append');
+        });
+    });
+</script>

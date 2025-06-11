@@ -1,0 +1,272 @@
+<style>
+.faqs-section .accordion .acc-title {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    padding: 11px 40px 11px 20px;
+}
+.faqs-section .accordion .acc-title-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    top: calc(50% - 7px);
+    right: 20px;
+    transition: all 0.2s ease-in-out;
+}
+.faqs-section .accordion .acc-title-icon:before,
+.faqs-section .accordion .acc-title-icon:after {
+    content: "";
+    display: block;
+    border: 1px solid var(--color-text);
+    position: absolute;
+}
+.faqs-section .accordion .acc-title-icon:before {
+    width: 0;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    opacity: 1;
+}
+.faqs-section .accordion .acc-title-icon:after {
+    width: 100%;
+    height: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.faqs-section .accordion .acc-title.active .acc-title-icon {
+    transform: rotate(45deg);
+}
+.faqs-section .accordion .acc-title.active,
+.faqs-section .accordion .acc-title.active + .acc-content {
+    background: #35383a0d;
+}
+.faqs-section .accordion .acc-row {
+    border: 1px solid rgba(54, 56, 58, 0.25);
+    margin-bottom: 10px;
+}
+.faqs-section .accordion .acc-row:not(:last-child) {
+    margin-bottom: 10px;
+}
+.faqs-section .accordion .acc-content {
+    font-size: 18px;
+    padding: 0px 60px 0px;
+}
+.faqs-section ul,
+.faqs-section ol {
+    margin-left: 15px;
+}
+.faqs-section ul:not(:last-child),
+.faqs-section ol:not(:last-child) {
+    margin-bottom: 20px;
+}
+.faqs-section ul li:not(:last-child),
+.faqs-section ol li:not(:last-child) {
+    margin-bottom: 12px;
+}
+.faqs-section ul li {
+    list-style: square;
+}
+.faqs-section ol li {
+    list-style: decimal;
+}
+@media (max-width: 749px) {
+    .faqs-section .accordion .acc-title {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 14px 30px 14px 18px;
+    }
+    .faqs-section .accordion p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .faqs-section .accordion .acc-title-icon {
+        right: 12px;
+    }
+    .faqs-section .accordion .acc-content {
+        padding: 10px 18px 30px;
+    }
+}
+
+.collapsible-trigger--inline .collapsible-trigger__icon {
+     left: auto;
+    right: 20px !important;
+}
+.faqs-wrapper .collapsible-trigger--inline {
+    padding: 11px 0 11px 10px;
+    width: 100%;
+}
+</style>
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+<div class="page-width page-width-sm">            
+  <div class="faqs-wrapper accordion">
+  {%- if section.settings.title != blank -%}
+    <header id="{{ section.settings.title | escape | downcase  | replace: ' ' , '_' | replace: "’" , "_" |  replace: "." , "_" |  replace: "," , "_" | replace: "&" , "" | replace: "amp;" , ""  }}" class="section-header">
+      <h2 class="section-header__title">
+        {{ section.settings.title | escape }}
+      </h2>
+    </header>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'question' %}
+                {
+                  "@type": "Question",
+                  "name": {{ block.settings.title | json }},
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{ block.settings.text | json }}
+                  }
+                }{% unless forloop.last %},{% endunless %}
+            {% endcase %}
+          {% endfor %}
+        ]
+      }
+    </script>
+
+    {%- for block in section.blocks -%}
+      <div  {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'rich-text'%}
+            <div class="index-section index-section--faq">
+              <div class="text-{{ block.settings.align_text }}">
+                {%- if block.settings.title != blank -%}
+                  <p class="h2">
+                    {{ block.settings.title | escape }}
+                  </p>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="rte">
+                    {%- if block.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
+                      {{ block.settings.text }}
+                    {%- if block.settings.enlarge_text %}</div>{% endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
+          {% when 'question'%}
+            <div class="acc-row">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left faq-icon" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span class="acc-title">{{ block.settings.title }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all acc-content">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if section.blocks.size == 0 -%}
+    <div class="placeholder-noblocks">
+      {{ 'home_page.onboarding.no_content' | t }}
+    </div>
+  {%- endif -%}
+  </div>
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.faq.name",
+  "class": "faqs-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.faq.settings.title.label",
+      "default": "FAQs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "rich-text",
+      "name": "t:sections.faq.blocks.rich_text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.faq.blocks.rich_text.settings.title.label",
+          "default": "Rich text"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.faq.blocks.rich_text.settings.text.label",
+          "default": "<p>Use this section for any descriptive text you need to fill out your pages or to add introductory headings between other blocks.</p>"
+        },
+        {
+          "type": "select",
+          "id": "align_text",
+          "label": "t:sections.faq.blocks.rich_text.settings.align_text.label",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.faq.blocks.rich_text.settings.align_text.options.left.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.faq.blocks.rich_text.settings.align_text.options.center.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.faq.blocks.rich_text.settings.align_text.options.right.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "t:sections.faq.blocks.question.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.faq.blocks.question.settings.title.label",
+          "default": "Frequently asked question"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.faq.blocks.question.settings.text.label",
+          "default": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq.presets.faq.name",
+      "blocks": [
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}

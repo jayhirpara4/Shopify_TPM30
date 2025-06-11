@@ -1,0 +1,78 @@
+{%- ########################################################################## 
+# Label: Display image
+# Returns: an image object or nil(if no selection has been made)
+# Image Properties: https://shopify.dev/api/liquid/objects#image
+# Image Filters: https://shopify.dev/api/liquid/filters#image_tag, https://shopify.dev/api/liquid/filters#image_url
+########################################################################## -%}
+{%- assign display_image = section.settings.display_image -%}
+<style>
+.image-text-row h2 {margin-bottom: 50px;}
+.image-text-row h3 {margin-bottom: 30px;}
+.image-text-row p {font-size: 28px;}
+@media (min-width: 750px) {
+    .image-text-row .grid {margin-left: -50px;}
+    .image-text-row .grid__item {padding-left: 50px;}
+    .image-text-row .grid__item-image.align-right {order: 2;}
+}
+@media (max-width: 749px) {
+    .image-text-row h2 {
+        padding: 0 20px;
+        margin: 30px 0 20px;
+    }
+    .image-text-row .grid__item-content {padding: 40px 20px;}
+    .image-text-row h3 {margin-bottom: 20px;}
+    .image-text-row p {font-size: 18px;}
+}
+</style>
+<div class="page-width sm-pd-0">
+    <div class="gemologists-wrapper flex-md align-items_center justify-content_center">
+        <div class="medium-up--one-half grid__item-image">           
+            <div class="image-wrapper absolute-image-wrapper" style="padding-top:150.00000000000003%;">
+                <img loading="lazy" class="lazyautosizes ls-is-cached lazyloaded" src="{{ display_image | image_url: width: display_image.width }}" >
+            </div>          
+        </div>
+        <div class="medium-up--one-half grid__item-content">
+            <div class="content">
+                    <h3 class="section-header-sm">{{ section.settings.heading }}</h3>         
+                    <p>{{ section.settings.description }}</p>              
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Expert Gemologists",
+  "class": "gemologists-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A little about us…"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "display_image",
+      "label": "Display image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expert Gemologists"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

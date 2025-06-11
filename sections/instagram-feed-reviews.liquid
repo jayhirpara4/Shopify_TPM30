@@ -1,0 +1,151 @@
+<style>
+.home-customer__slider.slick-slider {
+    margin-bottom: 0;
+}
+.home-customer__slider .slick-dots {
+    bottom: 30px;
+}
+.home-customer__slider > .home-customer__slide:nth-child(n + 2) {
+    display: none;
+}
+.home-customer-review .review-content {
+    background: #f6f8f9;
+    padding: 60px 30px 120px;
+}
+.home-customer-review .review-content p {
+    margin-bottom: 0;
+}
+.home-customer-review .review-content .desc {
+    font-family: var(--font-stack-header);
+    font-size: 22px;
+    font-style: italic;
+    margin: 40px 0;
+}
+.home-customer-review .review-content img {
+    display: inline-block;
+    width:auto;
+}
+@media (min-width: 750px) {
+    .home-customer-review .home-customer__slide {
+        display: flex;
+    }
+    .home-customer-review .block-media {
+        width: 30%;
+    }
+    .home-customer-review .review-content {
+        width: 40%;
+    }
+    .home-customer-review .block-media .absolute-image-wrapper {
+        height: 100%;
+        padding-top: 0 !important;
+    }
+    .home-customer-review .block-media img {
+        object-fit: cover;
+    }
+}
+@media (max-width: 749px) {
+    .home-customer-review .review-content {
+        padding: 40px 30px 70px;
+    }
+    .home-customer-review .review-content .desc {
+        margin: 30px 0;
+    }
+    .home-customer-review .review-content p {
+        font-size: 18px;
+    }
+}
+
+</style>
+<div class="page-width sm-pd-0">
+    <div class="home-customer-review">
+        <div class="home-customer__slider grid grid--no-gutters">
+        {%- for block in section.blocks -%}
+            {%- assign first_image = block.settings.first_image -%}
+            {%- assign second_image = block.settings.second_image -%}
+            <div class="home-customer__slide grid__item flex-md">
+                <div class="block-media small--one-whole">
+
+                    <div class="image-wrapper absolute-image-wrapper" style="padding-top:77.17678100263852%;">
+                        <img loading="lazy" class="lazyautosizes ls-is-cached lazyloaded" src="{{ first_image | image_url: width: first_image.width  }}"  data-sizes="auto" alt="{{ block.settings.name }}" />
+                    </div>
+
+                </div>
+                <div class="review-content text-center flex-md justify-content_center align-items_center">
+                    <div class="content">
+                        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/with-clarity-favicon-32x32.png?v=1716886965" alt="icon" style="display:none;">
+                        <div class="desc">
+                            <p>“{{ block.settings.description }}”</p>
+                        </div>
+
+
+                        <h3 class="section-header-reverse">{{ block.settings.name }}</h3>
+
+                    </div>
+                </div>
+                <div class="block-media small--hide">
+
+                    <div class="image-wrapper absolute-image-wrapper" style="padding-top:77.17678100263852%;">
+                        <img loading="lazy" class="lazyautosizes ls-is-cached lazyloaded" src="{{ second_image | image_url: width: second_image.width }}" alt="{{ block.settings.name }}" />
+                    </div>
+
+                </div>
+            </div>
+        {%- endfor -%}
+
+        </div>
+    </div>
+</div>
+<script>
+  $(".home-customer__slider").slick({
+    slidesToShow:1,slidesToScroll:1,dots:!0,arrows:!1,adaptiveHeight:!0
+  });
+</script>
+
+{% schema %}
+  {
+  "name": "Home Review Section",
+  "class": "home-customer-review-section",
+  "max_blocks": 8,
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Reviews",
+      "type": "reviews",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "first_image",
+          "label": "First Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "second_image",
+          "label": "Second Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Review Section"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

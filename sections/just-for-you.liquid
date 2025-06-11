@@ -1,0 +1,76 @@
+<section class="mrg_t">
+    <div class="container">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h2 class="heading">{{ section.settings.heading }}</h2>
+            <div class="subHeading">{{ section.settings.subheading }}</div>
+        </div>
+
+        <div class="row mt-4">
+            {% for block in section.blocks %}
+                <div class="col-6 col-lg-3 my-3 my-lg-0">
+                    <a href="{{ block.settings.link }}" class="cusA d-flex flex-column justify-content-center align-items-center scalHvr">
+                        <img src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.product_name }}" draggable="false" class="img-fluid">
+                        <div class="productName mt-3">{{ block.settings.product_name }}</div>
+                        <div class="productPrice f-14">from {{ block.settings.product_price }}</div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Just-for-you",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Just For You"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore our stunning assortment of sustainable and ethical engagement rings, wedding sets and bands, fashion rings, and elegant bridal jewelry."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Oval Half Eternity Wedding Band"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price",
+          "default": "$1,921.00"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Just-for-you",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

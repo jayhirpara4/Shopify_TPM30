@@ -1,0 +1,468 @@
+<style>
+.product-single__form{
+    margin-bottom:10px;
+}
+.product-form__select-setting  {
+    position: relative;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 52px;
+    font-size: 20px;
+    margin-bottom: 30px;
+} 
+.flex {
+    display: flex;
+}
+.swatch {
+    margin: 0 0 var(--diamond-pdp-margin);
+    width: 100%;
+    flex: 0 0 100%;
+    order: 3;
+}
+.chracters-input-wrapper .flex {
+    gap: 10px;
+    align-items: center;
+}
+.swatch-character-dropdown .text-wrapper p {
+    font-size: 18px;
+    margin-bottom: 0;
+    justify-content: space-between;
+    align-items: end;
+}
+.swatch-character-dropdown .text-wrapper span {
+    display: block;
+    font-size: 14px;
+    text-align: right;
+}
+.chracters-input-wrapper label {
+    display: inline;
+    font-size: 12px;
+}
+.swatch-character-dropdown .header {
+    margin-bottom: 15px;
+}
+.swatch .header {
+    color: #323c50;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+.swatch-character-dropdown {
+    max-width: 390px;
+    padding: 25px;
+    background: #f8f8f8;
+}
+.swatch-character-dropdown .chracters-input-wrapper small {
+    font-size: 12px;
+    text-transform: none;
+}
+
+.swatch-character-dropdown input, .swatch-character-dropdown select {
+    width: 100%;
+}
+.error-msg {
+    font-size: 16px;
+    color: red;
+    display: none;
+}
+@media only screen and (max-width: 768px) {
+    .product__main-photos {
+        box-shadow: none;
+    }
+}
+</style>
+{%- for option in product.options_with_values -%}
+  {%- liquid
+      assign option_name = option.name | downcase
+     assign swatch_trigger = 'shape'
+      assign is_shape = false
+      if option_name contains swatch_trigger
+        assign is_shape = true
+      elsif swatch_trigger == 'shape' and option_name contains 'shapes'
+        assign is_shape = true
+      endif
+  -%}
+
+  {%- assign option_index = forloop.index0 -%}
+  {%- assign shapevalues = '' -%}
+  {%- assign cadded = false -%}
+  {% if is_shape %}
+  {%- for variant in product.variants -%}
+    {%- assign shapevalue = variant.options[option_index] %}
+       {%  if shapevalue=='Cushion' and cadded == false -%}
+          {%- liquid
+              assign shapevalues = shapevalues | join: ',' | append: shapevalue  | append: ',' 
+             assign cadded = true
+        -%}
+        
+      {%  endif %}
+      {%- unless shapevalues contains shapevalue -%}
+        {%- liquid
+          assign shapevalues = shapevalues | join: ',' | append: shapevalue  | append: ',' 
+        -%}
+        {% endunless %}
+
+  {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{%- form 'product', product, id: form_id, class: 'product-single__form' -%}
+  <input type="hidden" name="currentshape" id="currentshape" value="{{ current_variant.option2 }}" >
+   <input type="hidden" name="allshapes" id="allshapes" value="{{ shapevalues }}" >
+  
+  {%- liquid
+    assign gift_card_recipient_feature_active = false
+    if block.settings.show_gift_card_recipient and product.gift_card?
+      assign gift_card_recipient_feature_active = true
+    endif
+
+    assign enable_dynamic_buttons = false
+    if show_dynamic_checkout and template != 'product.preorder' and gift_card_recipient_feature_active == false
+      assign enable_dynamic_buttons = true
+    endif
+
+    assign direct_buy = true
+    if product.metafields.custom.direct_buy == blank or product.metafields.custom.direct_buy == 'No'
+      assign direct_buy = false
+    endif
+     
+  -%}
+  {%- if gift_card_recipient_feature_active -%}
+    {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+  {%- endif -%}
+
+
+  {% if product.type== 'Personalized Necklace' %}
+      <div class="swatches">
+          <div class="swatch clearfix swatch-character-dropdown">
+              <p class="header">Personalize Your Item (Required)</p>
+              <div class="chracters-input-wrapper">
+                  <div class="text-wrapper">
+                      <p class="flex">Text
+                      <small>Characters:
+                      <label id="input-counter">0</label>/10</small>
+                      </p>
+                      <input type="text" id="inptxt" name="properties[Input text]" maxlength="10" placeholder="Type Here.." data-uw-rm-form="fx" aria-label="0" required >
+                      <span>
+                    <em>Alphabet and numbers only.</em>
+                  </span>
+                  </div>
+                  <p class="error-msg">Minimum 1 character required to proceed.</p>
+              </div>
+          </div>
+    </div>
+    <script>
+    $(document).on('click','#directadtocart', function(e){
+        e.preventDefault();
+          if($('#inptxt').val()==''){
+            $('.error-msg').show();
+          }else{
+            $('.error-msg').hide();
+            $('.product-single__form').submit();
+          }
+      });
+      $('#inptxt').on('input',function(e){
+          $('#input-counter').text(this.value.length);
+      });
+
+      let color=$('.selector-wrapper.js.product-form__item #SingleOptionSelector-1 :selected').text();
+      console.log(color);
+      $("#color_div").text(color);
+      $( ".selector-wrapper.js.product-form__item #SingleOptionSelector-1" ).change(function() {
+      let color=$('.selector-wrapper.js.product-form__item #SingleOptionSelector-1 :selected').text();
+      console.log(color);
+      $("#color_div").text(color);
+      });
+      
+    </script>
+  {% endif %}
+
+  {% if direct_buy %}
+    {% if product.type == 'Ring' or product.type == 'Rings' %}
+    <div class="rsproductsize product-single__size-dropdown" style="margin-bottom:10px;">
+        <select id="product-single__ring-size" name="properties[Ring Size]">
+            <option value="">SELECT RING SIZE</option>
+            <option value="3">3</option>
+            <option value="3.25">3.25</option>
+            <option value="3.50">3.50</option>
+            <option value="3.75">3.75</option>
+            <option value="4.00">4.00</option>
+            <option value="4.25">4.25</option>
+            <option value="4.50">4.50</option>
+            <option value="4.75">4.75</option>
+            <option value="5.00">5.00</option>
+            <option value="5.25">5.25</option>
+            <option value="5.50">5.50</option>
+            <option value="5.75">5.75</option>
+            <option value="6.00">6.00</option>
+            <option value="6.25">6.25</option>
+            <option value="6.50">6.50</option>
+            <option value="6.75">6.75</option>
+            <option value="7.00">7.00</option>
+            <option value="7.25">7.25</option>
+            <option value="7.50">7.50</option>
+            <option value="7.75">7.75</option>
+            <option value="8.00">8.00</option>
+            <option value="8.25">8.25</option>
+            <option value="8.50">8.50</option>
+            <option value="8.75">8.75</option>
+            <option value="9.00">9.00</option>
+            <option value="9.25">9.25</option>
+            <option value="9.50">9.50</option>
+            <option value="9.75">9.75</option>
+            <option value="10.00">10.00</option>
+            <option value="10.25">10.25</option>
+            <option value="10.50">10.50</option>
+            <option value="10.75">10.75</option>
+            <option value="11.00">11.00</option>
+        </select>
+        <p class="product-single__para">
+        {% if size_chart_url != blank %}<a href="{{ size_chart_url }}"
+        target=" _blank">Ring Size Guide</a>{% endif %}
+        </p>
+    </div>
+      <p class="error-msg" style="margin-bottom: 10px;">Please select ring size</p>
+    {% endif %}
+    <script>
+    $(document).on('click','#directadtocart', function(e){
+        e.preventDefault();
+          if($('#product-single__ring-size').val()==''){
+            $('.error-msg').show();
+          }else{
+            $('.error-msg').hide();
+            $('.product-single__form').submit();
+          }
+      });
+    </script>
+  {% endif %}
+  
+  {%- if enable_dynamic_buttons -%}
+    <div class="payment-buttons">
+  {%- endif -%}
+
+    {%- liquid
+      assign default_text = 'products.product.add_to_cart' | t
+      assign button_text = 'products.product.add_to_cart' | t
+      if template contains 'preorder'
+        assign default_text = 'products.product.preorder' | t
+        assign button_text = 'products.product.preorder' | t
+      endif
+      unless current_variant.available
+        assign button_text = 'products.product.sold_out' | t
+      endunless
+    -%}
+    {% if product.type== 'Personalized Necklace' or  direct_buy %}
+      
+      <div class="sticky-button-price-wrapper">
+    
+        <button id="directadtocart" {% if product.empty? %}type="button"{% else %}type="button"{% endif %}
+          name="add"
+          data-add-to-cart
+          class="btn product-form__add-to-cart btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups == empty %} btn--secondary{% endif %}"
+          {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+          <span data-add-to-cart-text data-default-text="{{ default_text }}">
+            {{ button_text }}
+          </span>
+        </button>
+    </div>
+
+      
+    {% else %}
+    <div class="sticky-button-price-wrapper">
+        <button type="button" aria-label="Choose this setting" id="choosethissetting" data-id="{{ product.id }}" data-type="{{ product.type }}" data-handle="/products/{{ product.handle }}" data-collection="/collections/{{ collection.handle }}" data-collection-title="{{ collection.title }}"  class="btn product-form__select-setting ">
+          <span class="rsloading-spinner" data-loader=""></span>
+          <span data-add-to-cart-text data-default-text="Choose this setting">
+            Choose this setting
+          </span>
+        </button>
+      
+    </div>
+    <button style="display:none;"
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      data-add-to-cart
+      class="btn btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups == empty %} btn--secondary{% endif %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      <!--<span data-add-to-cart-text data-default-text="{{ default_text }}">
+        {{ button_text }}
+      </span>
+      -->
+       <span class="rsloading-spinner" data-loader=""></span>
+        {% if button_text == 'Sold Out' %}
+        <span data-add-to-cart-text data-default-text="{{ default_text }}">{{ default_text }}
+        </span>
+        {% else %}
+        <span data-add-to-cart-text data-default-text="BUY SETTING ONLY">BUY SETTING ONLY
+          <span>(Center stone not included)</span>
+        </span>
+        {% endif %}
+    </button>
+    {% endif %}
+
+    {%- if enable_dynamic_buttons -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+
+  {%- if enable_dynamic_buttons -%}
+    </div>
+  {%- endif -%}
+
+  <div class="shopify-payment-terms product__policies">{{ form | payment_terms }}</div>
+
+  <select name="id" data-product-select class="product-single__variants no-js">
+    {%- for variant in product.variants -%}
+      {%- if variant.available -%}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected"{% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {%- else -%}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {%- endif -%}
+    {%- endfor -%}
+  </select>
+{%- endform -%}
+
+<p>Ship By <strong><span id="fromDate" data-id="{{ product.id }}"></span> | </strong> Track in real time before it ships</p>
+{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}
+{%  if product.id == 8199309394226 %}
+<script>
+var fromDate = Date.today().addDays(1);
+if (fromDate.is().saturday() || fromDate.is().sunday()) {
+//fromDate = fromDate.next().monday();
+}
+document.getElementById('fromDate').innerHTML = fromDate.toString('ddd, MMMM d');
+</script>
+{%  else  %}
+<script>
+var fromDate = Date.today().addDays(21);
+if (fromDate.is().saturday() || fromDate.is().sunday()) {
+//fromDate = fromDate.next().monday();
+}
+document.getElementById('fromDate').innerHTML = fromDate.toString('ddd, MMMM d');
+</script>
+{%  endif %}
+<div class="product__addon-info">
+  <p class="extented-returns-popup-button">Free Insured Shipping. <span class="extented-returns-title">15 Day Returns.</span></p>
+</div>
+
+<div class="button-options">
+  <div class="button-options-wrapper">
+    <a href="javascript:void(0)" class="rs-btn-option dropahintnow"><span class="btn-icon"><img loading="lazy" alt="Drop a hint to someone special" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-email-icon_2x_e1ffba2f-d895-41a5-af4e-2e72eb94b45b.png?v=1716388402"></span> Drop a Hint</a>
+    <a href="/pages/contact" class="rs-btn-option"><span class="btn-icon"><img loading="lazy" alt="Contact customer support or get assistance" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-call-icon_2x_a466bdf6-8bbe-4ee0-94d2-e7e4b6ddc963.png?v=1716388435" height="20px"></span> Contact Us</a>
+    <a href="#" class="rs-btn-option product__addon-schedule-appointment"><span class="btn-icon"><img loading="lazy" alt="Schedule an in-store or virtual appointment" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-schedule-appointment-icon_2x_289c5fc0-d491-4e2c-96e1-c93d78f196ae.png?v=1716388464" height="23px" ></span> SCHEDULE APPOINTMENT</a>
+
+    <div id="shopify-block-vtn_power_wishlist_wishlist_block_xqMwVz" class="shopify-block shopify-app-block"><link href="//cdn.shopify.com/extensions/54840227-2a0c-423c-9d1d-990571b7ecc9/vtn-power-wishlist-33/assets/vt-wishlist-product.css" rel="stylesheet" type="text/css" media="all">
+
+        <style>
+          .vt-wishlist-container {
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+          .vt-wishlist-container svg, .vt-wishlist-container img{
+            width: 20px;
+            height: 20px;
+          }
+          .vt-wishlist-container svg.vt-icon-heart path{
+            stroke: #000000;
+            fill: #000000;
+          }
+          .vt-wishlist-container .vt-wishlist-button{
+            border-radius: 0px;
+            justify-content: center;
+            border: 1px solid;
+            color: #000000;
+            background: #ffffff;
+            border-color: #000000;
+          }
+          .vt-wishlist-container .wishlist-add-success-message{
+            text-align: center;
+            color: #1990c6;
+          }
+          .vt-wishlist-container .wishlist-add-success-message a{
+            color: #1990c6;
+          }
+        </style>
+        <div class="vt-wishlist-container vt-product-page" data-first-variant="{{ product.selected_or_first_available_variant.id }}">
+          <div class="add-wishlist vt-product" data-product="{{ product.id }}" data-variant="{{ product.selected_or_first_available_variant.id }}" data-product-url="{{ product.handle }}">
+            <div class="vt-wishlist-button">
+            
+              <!-- BEGIN app snippet: icon-heart -->
+            <svg class="vt-product-icon vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9  c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4 M340.8,83C307,83,276,98.8,256,124.8  c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6L245.1,418l10.9,11l10.9-11l148.3-149.8  c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+            </svg>
+          <!-- END app snippet -->
+            
+              <span>Add to Wishlist</span>
+            </div>
+          </div>
+          <div class="remove-wishlist vt-product" style="display:none;" data-product="{{ product.id }}" data-variant="{{ product.selected_or_first_available_variant.id }}" data-product-url="{{ product.handle }}">
+            <div class="vt-wishlist-button">
+             
+                <!-- BEGIN app snippet: icon-heart -->
+            <svg class="vt-product-icon-filled vt-icon-heart" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M340.8,83C307,83,276,98.8,256,124.8c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6  L245.1,418l10.9,11l10.9-11l148.3-149.8c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"></path>
+            </svg>
+        <!-- END app snippet -->
+              
+              <span>Remove from Wishlist</span>
+            </div>
+          </div>
+          <div class="wishlist-add-success-message">[View Wishlist]</div>
+          <div class="login-message prompt-msg"><p>Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to add the product in wishlist.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+          <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+        </path></svg><!-- END app snippet --></span></div>
+          <div class="login-optional-message prompt-msg"><p>Wishlist is not saved permanently yet. Please <a href="/account/login">log in</a> or <a href="/account/register">create account</a> to save it.</p> <span class="close-prompt"><!-- BEGIN app snippet: icon-close --><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+          <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+        </path></svg><!-- END app snippet --></span></div>
+        </div>
+        <script id="wishlistproductscript" type="application/json">
+{
+  "productId": "{{ product.id }}",
+  "variantId": "{{ product.selected_or_first_available_variant.id }}",
+  "productHandle": "{{ product.handle }}"
+}
+</script>
+
+<script>
+if(window.vtScript) {
+  window.vtScript.push("https://cdn.shopify.com/extensions/b0bd6378-e362-47b1-b886-e741ba6b1c13/vtn-power-wishlist-36/assets/vt-wishlist-product.js");
+}else{
+  window.vtScript = ["https://cdn.shopify.com/extensions/b0bd6378-e362-47b1-b886-e741ba6b1c13/vtn-power-wishlist-36/assets/vt-wishlist-product.js"];
+}
+
+if(window.vtScriptLoaded) {
+  vtLoadSingleJs("https://cdn.shopify.com/extensions/b0bd6378-e362-47b1-b886-e741ba6b1c13/vtn-power-wishlist-36/assets/vt-wishlist-product.js")
+}
+</script>
+        
+        
+        </div>
+          
+          </div>
+        </div> 
+{% render 'trust-badges' %}
+
+{%  comment %}
+<div class="holiday-diamond-event flex">
+    
+    <div class="image-wrapper">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/PDP-mothers-day_2024_2x_5537c5e8-ffac-4dd3-bad7-7b2bd1661602.avif?v=1716216301" class="d-block" alt="Mother's day" data-uw-rm-alt-original="Mother's day" data-uw-rm-alt="ALT">
+    </div>
+    <div class="content">
+        <span class="sub-title hide">LAST DAY</span>
+        <h3><span>Offer</span> Extended</h3>
+        <p data-uw-rm-sr=""><strong>Get 1/4 CTW. Diamond Bar Pendant </strong>with purchase over $1,000.</p>
+        <p data-uw-rm-sr=""><strong>Get 1/2 CTW. Diamond Bolo Bracelet </strong>with purchase over $3,000.</p>
+         <p id="schedule-appointment-btn"></p>
+        <span class="holiday-diamond-event-popup-btn">*TERMS APPLY</span>
+    </div>
+</div>
+{%  endcomment %}

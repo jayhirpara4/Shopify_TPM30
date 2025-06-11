@@ -1,0 +1,90 @@
+{%- assign image_picker_1 = section.settings.image_picker_1 -%}
+<div id="shopify-section-diamond-video-with-overlay-content" class="shopify-section diamond-video-with-overlay-content">
+    <!-- diamond-video-with-overlay-content.liquid -->
+    <link
+        href="//www.withclarity.com/cdn/shop/t/88/assets/diamond-video-with-overlay-content.css?v=110592741397006482531711384181"
+        rel="stylesheet" type="text/css" media="all">
+    <div class="page-width page-width-1440" data-section-id="diamond-video-with-overlay-content"
+        data-section-type="video-section">
+        <div class="video-box">
+            <div class="video-wrapper rs-vd-class" style="padding-top:56.23931623931624%;">
+                <video playsinline="" preload="none" muted="" id="diamondPolishingVideo"
+                    data-video-id="diamond_polishing_video"
+                    poster="{{ image_picker_1 | image_url: width: image_picker_1.width }}">
+                    <source src="{{ section.settings.videourl }}" type="video/mp4">
+                       Your browser does not support the video tag.
+                    </video>
+                <div class="video-content flex justify-content_center align-items_center small--hide">
+                    <div class="wrapper">
+                        <h2 class="text-right section-header-reverse">
+                           {{ section.settings.heading }}
+                        </h2>
+                        <p>{{ section.settings.description }} </p>
+                    </div>
+                </div>
+                <div class="video-pre-icon">
+                    <div class="sprite play-icon" title="Play" id="play" style="display: block;"></div>
+                    <div class="sprite stop-icon" title="Stop" id="stop" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  $( document ).ready(function($) {
+    $('.sprite').click(function() {
+      if($(this).hasClass('play-icon')){
+        $('#play').hide();
+        $('#stop').show();
+        $('.video-content').hide();
+         $('#diamondPolishingVideo').trigger('play');
+      }else{
+        $('#stop').hide();
+        $('#play').show();
+        $('#diamondPolishingVideo').trigger('pause');
+      }
+    });
+});
+</script>
+{% schema %}
+  {
+  "name": "Video with text overlay",
+  "class": "videobannerwithtext",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": " Curated by us. <br>for you.",
+      "placeholder": "Banner heading"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image Picker 1",
+      "id": "image_picker_1"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our expert gemologists take time to inspect every diamond before it reaches you; ensuring quality and clarity every step of the way."
+    },
+    {
+      "type": "url",
+      "id": "videourl",
+      "label": "Video url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video with text overlay"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

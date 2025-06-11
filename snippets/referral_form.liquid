@@ -1,0 +1,237 @@
+
+    <style> 
+      div#referral_form_wrapper .referral_form_section input {
+        width: 100%;
+        padding: 10px;
+        color: #000;
+        border: 1px solid #eee;
+      }
+      div#referral_form_wrapper .referral_form_section input.submit_form {
+        background: #00648b;
+        color: #fff;
+        font-size: 15px;
+        display: inline-block;
+        width: 150px;
+        margin: 0 auto;
+      }
+      div#referral_form_wrapper {
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #eee;
+        background: #fbfbfb;
+        margin-top: 10px;
+        max-width: 450px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 9999;
+      }
+      #referral_form_wrapper h4#success_message {
+        color: rgba(0, 180, 0, 1);
+        font-size: 17px;
+        margin: 5px 0;
+        display: none;
+      }
+      #referral_form_wrapper h4#error_message {
+        color: rgba(180, 0, 0, 1);
+        font-size: 17px;
+        margin: 5px 0;
+        display: none;
+      }
+      #referral_form_wrapper h4#already_refer_section {
+        color: rgba(180, 0, 80, 1);
+        font-size: 17px;
+        margin: 5px 0;
+        display: none;
+      }
+      div#click_to_refer_section {
+        text-align: left;
+        margin-top: 10px;
+      }
+      div#click_to_refer_section a {
+        font-size: 16px;
+        color: #000000;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: #fff;
+        padding: 10px;
+        text-decoration: none;
+        opacity: 0.8;
+      }
+      div#refere_product_parent_wrap {
+        position: fixed;
+        width: 100%;
+        top: 25% !important;
+        text-align: center;
+        left: 0;
+        z-index: 9999;
+        display: none;
+      }
+      div#refere_product_parent_wrap .popup_mask {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        left: 0;
+        top: 0;
+        z-index: 999;
+      }
+      #refere_product_parent_wrap .close_referral_popup {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+      }
+      #refere_product_parent_wrap .close_referral_popup span {
+        font-size: 18px;
+        color: #fff;
+        font-weight: 600;
+        border: 1px solid rgb(219, 0, 0);
+        border-radius: 51% 53%;
+        padding: 2px 3px 2px 3px;
+        background: rgb(219, 0, 0);
+        cursor: pointer;
+      }
+      h4.form_error_blank_data {
+        color: rgb(255, 0, 0);
+        display: none;
+      }
+      #referral_options_section{
+        display:none;
+      }
+      div#referral_options_section {
+        border: 1px solid #ccc;
+        background: rgba(28, 34, 96,0.5);
+        padding: 30px 10px 40px;
+        margin-top: 10px;
+        text-align: center;
+      }
+      div#referral_options_section p{
+        color:#fff;
+      }
+      div#referral_options_section p {
+        color: #fff;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+      #refere_product_parent_wrap .close_referral_popup img {
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+      }
+    </style>
+    <div id="referral_options_section">
+      <p id="customer_refer_message"></p>
+      <div id="click_to_refer_section" style="text-align:center;"><a href="javascript:void(0)">Click to Refer</a></div>
+    </div>
+    <div id="refere_product_parent_wrap">
+      <div id="referral_form_wrapper">
+        <h2>Please fill below details to send referral</h2>
+        <h4 class="form_error_blank_data">All fields are mandatory</h4>
+        <h4 id="success_message">Referral send successfully</h4>
+        <h4 id="error_message">Something went wrong !!!</h4>
+        <h4 id="already_refer_section">Your referral is already send..</h4>
+        <div class="referral_form_section">
+          <form id="referral_form">
+            <p><input type="text" class="input_fields" id="sender_name" placeholder="Sender Name" required></p>
+            <p><input type="email" class="input_fields" id="sender_email" placeholder="Sender Email" required></p>
+            <p><input type="text" class="input_fields" id="receiver_name" placeholder="Receiver Name" required></p>
+            <p><input type="email" class="input_fields" id="receiver_email" placeholder="Receiver Email" required></p>
+            <p><input type="hidden" id="product_url" value="{{ product.url }}"></p>
+            <p><input type="hidden" id="shop_name" value="stienhard.myshopify.com"></p>
+            <p><input type="hidden" id="product_id" value="{{ product.id }}"></p>
+            <p><input type="hidden" id="currency_symbol" value="{{ currency.symbol }}"></p>           
+            <p><input type="submit" class="submit_form" value="Send" onclick="submit_referral_details(); return false"></p>
+          </form>
+        </div>
+        <div class="close_referral_popup"><img loading="lazy" src="https://artwork.galaxyweblinks.com/referral/assets/images/close.png"></div>
+      </div>
+      <div class="popup_mask"></div>
+    </div>
+    <script type="text/javascript" src="https://artwork.galaxyweblinks.com/referral/assets/js/min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+        var product_id = jQuery("#product_id").val();
+        var shop_name = jQuery("#shop_name").val();
+        var currency_symbol = jQuery("#currency_symbol").val();  
+        var param = {
+          type: "POST",
+          st_shop_name: shop_name,
+          st_pro_id: product_id,
+          currency:currency_symbol
+        };
+        jQuery.ajax({
+          type: "POST",
+          url: "/apps/form_data",
+          data: param,
+          success: function(response) {
+            $("#customer_refer_message").text(response);
+            $("#referral_options_section").css("display","block");
+          }
+        });
+        jQuery("body").on("click", "div#click_to_refer_section a", function() {
+          jQuery("#referral_form_wrapper #error_message").css("display", "none");
+          jQuery("#referral_form_wrapper #success_message").css("display", "none");
+          jQuery("#referral_form_wrapper #already_refer_section").css("display", "none");
+          jQuery("div#refere_product_parent_wrap").fadeIn(500);
+        });
+        jQuery("body").on("click", "#refere_product_parent_wrap .close_referral_popup img", function() {
+          jQuery("div#refere_product_parent_wrap").fadeOut(500);
+        });
+        jQuery("body").on("click", "div#refere_product_parent_wrap .popup_mask", function() {
+          jQuery("div#refere_product_parent_wrap").fadeOut(500);
+        });
+      });
+      function submit_referral_details() {
+        jQuery("div#referral_form_wrapper .referral_form_section input.submit_form").val("Please Wait");
+        jQuery("div#referral_form_wrapper .referral_form_section input.input_fields").css("border-color", "#ddd");
+        jQuery(".form_error_blank_data").css("display", "none");
+        jQuery("#referral_form_wrapper #success_message").css("display", "none");
+        jQuery("#referral_form_wrapper #already_refer_section").css("display", "none");
+        var sndr_name = jQuery("#sender_name").val();
+        var sndr_email = jQuery("#sender_email").val();
+        var recvr_name = jQuery("#receiver_name").val();
+        var recvr_email = jQuery("#receiver_email").val();
+        var shop_name = jQuery("#shop_name").val();
+        var product_url = jQuery("#product_url").val();
+        var product_id = jQuery("#product_id").val();
+        if (sndr_name != "" && sndr_email != "" && recvr_name != "" && recvr_email != "") {
+          var param = {
+            type: "POST",
+            sender_name: sndr_name,
+            sender_email: sndr_email,
+            receiver_name: recvr_name,
+            receiver_email: recvr_email,
+            shop: shop_name,
+            pro_url: product_url,
+            pro_id: product_id
+          };
+          jQuery.ajax({
+            type: "POST",
+            url: "/apps/form_data",
+            data: param,
+            success: function(response) {
+              jQuery("div#referral_form_wrapper .referral_form_section input.submit_form").val("Send");
+              if (response == 1) {
+                jQuery("#referral_form_wrapper #success_message").css("display", "block");
+                jQuery(".referral_form_section input.input_fields").val("");
+                setTimeout(function() {
+                  jQuery("div#refere_product_parent_wrap").fadeOut(500);                  
+                }, 3000);
+              } else if (response == -1) {
+                jQuery("#referral_form_wrapper #already_refer_section").css("display", "block");
+                jQuery(".referral_form_section input.input_fields").val("");
+                setTimeout(function() {
+                  jQuery("div#refere_product_parent_wrap").fadeOut(500);
+                  jQuery("#referral_form_wrapper #already_refer_section").css("");                  
+                }, 3000);
+              } else {
+                jQuery("#referral_form_wrapper #error_message").css("display", "block");
+              }
+            }
+          });
+        } else {
+          jQuery(".form_error_blank_data").css("display", "block");
+          jQuery("div#referral_form_wrapper .referral_form_section input.submit_form").val("Send");
+          jQuery("div#referral_form_wrapper .referral_form_section input.input_fields").css("border-color", "red");
+        }
+      }
+    </script>

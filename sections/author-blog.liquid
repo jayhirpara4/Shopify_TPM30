@@ -1,0 +1,101 @@
+<section>
+    <div class="container">
+        <div class="row">
+            {% for blog in section.blocks %}
+            <div class="col-lg-6 my-3">
+                <div class="blogCardBorder scalHvr">
+                    <div class="position-relative">
+                        <img src="{{ blog.settings.image | img_url: 'master' }}" alt="{{ blog.settings.title }}" draggable="false" class="img-fluid">
+                     
+                        <a href="{{ blog.settings.pinterest_link }}" class="cusA pinButton" target="_blank">
+                            <img src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Pintrest_Share_Button_1.png?v=1733929528" alt="Pintrest Share Button" draggable="false" class="img-fluid">
+                        </a>
+                      
+                    </div>
+<a href="{{ blog.settings.blog_link }}">
+                    <h2 class="ivy cl-theme mt-3">{{ blog.settings.title }}</h2>
+           
+                    <div class="cl-51">{{ blog.settings.description }}</div>
+                 </a>
+
+                    <hr class="cusblogHr">
+                    <div class="d-flex justify-content-start align-items-center blogCardAuthDate">
+                        <a href="#" class="cusA blogCardAuthor">{{ blog.settings.author }}</a>
+                        <span class="px-4 blogCardAuthDate">|</span>
+                        <div class="blogCardAuthDate">{{ blog.settings.date }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+       <div class="col-12 d-flex justify-content-center align-items-center mt-4" style="margin-bottom:30px;">
+            <a href="{{ section.settings.view_all_link }}" class="cusA cusOptBtn f-14">View All</a>
+        </div>
+      
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Author Blog",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "blog",
+      "name": "Blog Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Blog Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Blog Title",
+          "default": "Find Your Sparkle: Comparing Brilliant and Step-Cut Diamonds"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Blog Description",
+          "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+        },
+         {
+          "type": "url",
+          "id": "blog_link",
+          "label": "Blog Link"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Ishan Gevariya"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Oct 14, 2024"
+        },
+        {
+          "type": "url",
+          "id": "pinterest_link",
+          "label": "Pinterest Link"
+        },
+         {
+          "type": "url",
+          "id": "link",
+          "label": "Learn More Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Author Blog",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

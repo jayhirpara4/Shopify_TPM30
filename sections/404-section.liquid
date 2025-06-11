@@ -1,0 +1,83 @@
+<!-- sections/404-error-page.liquid -->
+<section>
+    <div class="ErrorBG pb-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-8 col-xl-6 d-flex flex-column justify-content-center align-items-center text-center">
+                    <img src="{{ section.settings.error_image | img_url: 'master' }}" alt="404 Page Not Found Error" draggable="false" class="img-fluid">
+                    <h2 class="ivy text-center errorOops">{{ section.settings.error_message }}</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4 cusFullwidth">
+                        <a href="{{ section.settings.engagement_rings_link }}" class="cusA">
+                            <div class="cusBtnOne cusFullwidth">{{ section.settings.engagement_rings_text }}</div>
+                        </a>
+                        <a href="{{ section.settings.lab_grown_diamonds_link }}" class="cusA">
+                            <div class="cusBtnTwo ms-md-3 mt-3 mt-md-0 cusFullwidth">{{ section.settings.lab_grown_diamonds_text }}</div>
+                        </a>
+                    </div>
+                    <div class="cl-51 mt-3">
+                        Try browsing our popular categories above, or go to the 
+                        <a href="{{ section.settings.home_page_link }}" class="cusA errorClickLink">{{ section.settings.home_page_text }}</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 Error Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "error_image",
+      "label": "Error Image"
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error Message",
+      "default": "Oops! Sorry but the page that you are trying to reach on our website does not exist."
+    },
+    {
+      "type": "url",
+      "id": "engagement_rings_link",
+      "label": "Engagement Rings Link"
+    },
+    {
+      "type": "text",
+      "id": "engagement_rings_text",
+      "label": "Engagement Rings Button Text",
+      "default": "Shop Engagement Rings"
+    },
+    {
+      "type": "url",
+      "id": "lab_grown_diamonds_link",
+      "label": "Lab-Grown Diamonds Link"
+    },
+    {
+      "type": "text",
+      "id": "lab_grown_diamonds_text",
+      "label": "Lab-Grown Diamonds Button Text",
+      "default": "Shop Lab-Grown Diamonds"
+    },
+    {
+      "type": "url",
+      "id": "home_page_link",
+      "label": "Home Page Link"
+    },
+    {
+      "type": "text",
+      "id": "home_page_text",
+      "label": "Home Page Link Text",
+      "default": "Home Page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "404 Error Page",
+      "category": "Error"
+    }
+  ]
+}
+{% endschema %}

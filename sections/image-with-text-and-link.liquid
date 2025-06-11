@@ -1,0 +1,102 @@
+<style>
+.image-text-overlay {
+  position: relative;
+  z-index: 0;
+}
+.image-text-overlay .content-inner {
+  max-width: 440px;
+}
+.image-text-overlay .btn {margin-top: 10px;}
+@media (min-width: 750px) {
+  .image-text-overlay .content {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 1;
+  }
+  .image-text-overlay .content-center {justify-content: center;}
+  .image-text-overlay .content-right {justify-content: flex-end;}
+}
+@media (max-width: 749px) {
+  .image-text-overlay .content-inner {
+    padding: 20px;
+    margin: 0 auto;
+  }
+}
+</style>
+{%- assign display_image = section.settings.desktop_image -%}
+{%- assign display_image_1 = section.settings.mobile_image -%}
+<div class="page-width sm-pd-0">
+    <div class="image-text-overlay text-center">
+        <div class="section-media">            
+                <div class="image-wrapper absolute-image-wrapper small--hide" style="padding-top:36.52777777777778%;">
+                    <img loading="lazy" class="lazyautosizes ls-is-cached lazyloaded" src="{{ display_image | image_url: width: display_image.width }}">
+                </div>            
+                <div class="image-wrapper absolute-image-wrapper medium-up--hide" style="padding-top:100.65189048239895%;">
+                    <img loading="lazy" class="lazyload" src="{{ display_image_1 | image_url: width: display_image_1.width }}">
+                </div>            
+        </div>
+        <div class="content content-left page-width-sm flex-md">
+            <div class="content-inner medium-up--one-half">               
+                    {% if section.settings.heading %}<h1 class="section-header">{{ section.settings.heading }}</h1>  {% endif %}
+                    {% if section.settings.description %}<p>{{ section.settings.description }}</p>{% endif %}
+                    {% if section.settings.button_link %}<a href="{{ section.settings.button_link }}" class="btn border-button" data-uw-rm-brl="PR" >{{ section.settings.button_text }}</a> {% endif %}          
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Image with links",
+  "class": "image-text-overlay-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A little about us…"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Get started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile banner"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with links"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

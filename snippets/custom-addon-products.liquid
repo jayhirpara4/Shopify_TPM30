@@ -1,0 +1,78 @@
+{%- liquid
+  assign number_of_products = 5
+  assign image_style = block.settings.image_style
+  assign related_collection = null
+
+  if recommendations.products_count > 0
+    assign related_collection = recommendations
+  endif
+-%}
+
+<product-recommendations
+  id="gRecommendations-{{ section.id }}"
+  class="rsblockrelproduct"
+  {% if type == 'block' %}data-block-id="{{ block.id }}" {{ block.shopify_attributes }}{% endif %}
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ number_of_products }}&intent=complementary"
+  data-limit="{{ number_of_products }}">
+
+  <div
+    class="{% if block.settings.product_complementary_heading == blank %}product-recommendations--title-missing{% endif %}"
+    data-section-id="{{ product.id }}"
+    data-subsection
+    data-section-type="collection-template">
+
+    {% if related_collection == null %}
+      <div class="product-recommendations-placeholder" aria-hidden="true">
+        <div class="grids sgrid--uniform visually-invisible" aria-hidden="true">
+          <div class="loading-placeholder">Loading complementary products...</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if related_collection and related_collection.products_count > 0 %}
+      <div class="product-recommendations">
+        <div class="product-single__related grids sgrid--uniform" data-aos="overflow__animation"
+          {% if type == 'block' %}
+            data-slideshow data-controls="{{ block.settings.control_type }}" data-per-slide="5" data-count="5"
+          {% endif %}>
+
+          {% for product in related_collection.products limit: number_of_products %}
+            <div class="sproduct-recommendations__item">
+              {% render 'product-grid-item',
+                image_style: image_style,
+                product: product,
+                style: 'fractions',
+                products_per_row: 5,
+                type: 'horizontal',
+                sizes: '112px'
+              %}
+
+              <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org/",
+                  "@type": "Product",
+                  "name": "{{ product.title | escape }}",
+                  "image": "{{ product.featured_image | img_url: 'master' | prepend: 'https:' }}",
+                  "description": "{{ product.description | strip_html | escape }}",
+                  "sku": "{{ product.selected_or_first_available_variant.sku }}",
+                  "brand": {
+                    "@type": "Brand",
+                    "name": "Stienhardt & Stones"
+                  },
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "{{ shop.currency }}",
+                    "price": "{{ product.selected_or_first_available_variant.price | money_without_currency }}",
+                    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+                    "url": "{{ product.url | within: collection }}"
+                  }
+                }
+              </script>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</product-recommendations>

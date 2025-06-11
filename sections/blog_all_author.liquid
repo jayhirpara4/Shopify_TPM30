@@ -1,0 +1,220 @@
+    <!-- =====================================================================================================================================================
+                                                                Breadcrumb
+=====================================================================================================================================================-->
+<section>
+    <div class="BGBreadcrumb">
+        <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+                    
+            <h1 class="ivy cl-theme">Author</h1>
+            <div class="cusBreadcrumb">
+                <a href="/" class="cusA  LinkBreadcrumb" style="color: #3c749b;">Home</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                    class="mx-2">
+                    <path d="M4.50003 9L7.5 5.99998L4.5 3" stroke="black" stroke-width="1.5" stroke-miterlimit="16"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <a href="/blogs/news" class="cusA  LinkBreadcrumb" style="color: #3c749b;">Blog</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                    class="mx-2">
+                    <path d="M4.50003 9L7.5 5.99998L4.5 3" stroke="black" stroke-width="1.5" stroke-miterlimit="16"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <a class="cusA  LinkBreadcrumb">Author</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+        
+            <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+                                 
+                <div id="loader" style="display: none;">
+                    <img style="width: 3rem;" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Loading.gif?v=1736171458" alt="Loading..." />
+                </div>
+             
+                </div>
+
+        
+    </section>
+
+
+
+<!-- =====================================================================================================================================================
+                                                            1st Author Details
+=====================================================================================================================================================-->
+
+
+<section class="mb-4">
+    <div class="container">
+        <div class="row" id="Author_post_content">
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+<!-- Start with Script -->
+
+
+<script>
+
+    
+    // Get the current page URL
+    const currentPageUrl = window.location.href;
+
+    const baseUrl = "https://blog-backend-side-4loa.onrender.com/api/auth";
+    document.getElementById('loader').style.display = 'block'; // Show loader
+
+
+    fetch(`${baseUrl}/get-posts`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "Posts fetched successfully") {
+                const posts = data.posts;
+
+                fetch(`${baseUrl}/get-author-details`)
+                    .then(response => response.json())
+                    .then(authorData => {
+                        if (authorData.message === "Posts fetched successfully") {
+                            const authors = authorData.authors;
+
+                            // Loop through authors, ensuring each author is processed only once
+                            authors.forEach(author => {
+                                // Filter posts for the current author
+                                const authorPosts = posts
+                                    .filter(post => post.author_name === author.author_name)
+                                    .slice(0, 2); // Get only the 2 most recent posts
+
+                                if (authorPosts.length > 0) {
+                                    // Render author posts only once
+                                    const blogPostContent = document.getElementById('Author_post_content');
+                                    let blogPostContentHTML = '';
+
+                                    authorPosts.forEach(post => {
+                                        blogPostContentHTML += `
+                                        
+                                    <div class="col-lg-6 my-3" style="padding-right: calc(var(--bs-gutter-x)* .5); padding-left: calc(var(--bs-gutter-x)* .5);">
+                                        <a href="${post.url}" class="d-block" style="text-decoration: none; color: inherit;"> <!-- Entire div is now a clickable link -->
+                                            <div class="blogCardBorder scalHvr">
+                                                <div class="position-relative">
+                                                    <img src="${post.blog_post_url}" alt="${post.blog_post_image_alt_text}" draggable="false" class="img-fluid">
+                                                    <div class="cusA pinButton">
+                                                        <a href="https://www.pinterest.com/pin/create/button/" 
+                                                            data-pin-do="buttonPin"
+                                                            data-pin-custom="true"
+                                                            data-pin-media="${post.blog_post_url}"
+                                                            data-pin-url="${currentPageUrl}"
+                                                            data-pin-description="${post.description}" 
+                                                            style="cursor: pointer;"
+                                                            class="cusA pinButton">
+                                                        </a>
+                                                        <img src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Pintrest_Share_Button.png?v=1732725635" alt="Red Pinterest Share button with logo on the left." draggable="false" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                                <h2 class="ivy cl-theme mt-3 BlogTitle">${post.blog_title}</h2>
+                                                <div class="cl-51 BlogDesc">${post.description}</div>
+                                                <hr class="cusblogHr">
+                                                <div class="d-flex justify-content-start align-items-center blogCardAuthDate">
+                                                    <span class="cusA blogCardAuthor">${author.author_name}</span>
+                                                    <span class="px-4 blogCardAuthDate">|</span>
+                                                    <div class="blogCardAuthDate">${post.blog_post_date}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    
+                                `;
+                                    });
+
+                                    // Append the author's two posts to the container
+                                    blogPostContent.innerHTML += `
+                                <section class="mb-4">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-4 col-lg-2"><a ><img src="${author.author_image}"
+                        alt="${author.author_image_alt_text}" draggable="false" class="img-fluid DPborder"></a></div>
+            <div class="col-12 col-sm-8 col-lg-10 d-flex flex-column justify-content-center align-items-start">
+                <a class="cusA">
+                    <h2 class="ivy">${author.author_name}</h2>
+                    <div>${author.author_description}</div>
+                </a>
+                <div class="mt-3 d-flex justify-content-start align-items-center flex-wrap">
+                    <a href="${author.author_linkedin}" class="cusA p-1 BlogSocialicon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
+                            fill="none">
+                            <g clip-path="url(#clip0_260_6688)">
+                                <path
+                                    d="M13 0C5.82141 0 0 5.82141 0 13C0 20.1786 5.82141 26 13 26C20.1786 26 26 20.1786 26 13C26 5.82141 20.1786 0 13 0ZM9.22238 19.6523H6.05627V10.1271H9.22233L9.22238 19.6523ZM7.63938 8.82639H7.61876C6.55632 8.82639 5.8692 8.09504 5.8692 7.18098C5.8692 6.2463 6.57734 5.53516 7.66045 5.53516C8.74352 5.53516 9.41002 6.2463 9.43064 7.18098C9.43064 8.09504 8.74352 8.82644 7.63938 8.82644V8.82639ZM20.6387 19.6523H17.473V14.5565C17.473 13.2759 17.0146 12.4025 15.869 12.4025C14.9944 12.4025 14.4735 12.9917 14.2446 13.5604C14.1609 13.7639 14.1404 14.0484 14.1404 14.333V19.6523H10.9745C10.9745 19.6523 11.016 11.0207 10.9745 10.1271H14.1404V11.4757C14.5612 10.8268 15.314 9.90356 16.9937 9.90356C19.0768 9.90356 20.6387 11.2649 20.6387 14.1906V19.6523Z"
+                                    fill="#ccc" class="hvrFill cusTransition" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_260_6688">
+                                    <rect width="26" height="26" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+                    <a href="${author.author_pinterest}" class="cusA p-1 BlogSocialicon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
+                            fill="none">
+                            <g clip-path="url(#clip0_260_6691)">
+                                <path
+                                    d="M13 0C5.82015 0 0 5.82015 0 13C0 20.1798 5.82015 26 13 26C20.1798 26 26 20.1798 26 13C26 5.82015 20.1798 0 13 0ZM18.1941 14.4746C17.6193 15.7873 16.1323 16.8566 14.6802 16.9369C13.7063 16.9904 12.5514 16.8769 12.0813 15.9182C12.0188 16.3818 11.7014 17.6742 11.5682 18.1372C11.4237 18.6379 11.2933 19.349 10.8895 19.7169C10.6695 19.9171 9.73958 20.4274 9.49259 19.7766C9.169 18.9246 9.86068 16.9496 10.1203 15.9847C10.2597 15.4648 10.344 14.9559 10.4256 14.425C10.4938 13.9846 10.6867 13.5658 10.707 13.1174C10.7281 12.6556 10.5721 12.205 10.5602 11.7448C10.5487 11.2669 10.5577 10.7447 10.8089 10.3211C11.2193 9.62918 12.2802 9.09634 13.002 9.62045C13.6579 10.0961 13.5314 11.1156 13.2884 11.7834C13.1143 12.261 12.9775 12.6696 12.8786 13.174C12.8085 13.53 12.731 14.062 12.5733 14.3735C13.0811 14.89 13.294 15.4189 14.1164 15.4133C14.7137 15.4096 15.3192 15.0846 15.6774 14.6073C16.0348 14.1282 16.3349 13.6092 16.5719 13.0605C16.9217 12.2433 16.8732 11.1917 16.7919 10.3226C16.7519 9.90038 16.6238 9.49128 16.4159 9.12168C16.2079 8.75209 15.9248 8.4302 15.5848 8.17682C13.9437 6.95511 11.2043 7.22491 9.888 8.81612C9.09324 9.77732 8.70318 11.1165 8.84006 12.357C8.88681 12.7809 9.24645 13.0603 9.44415 13.4148C9.62721 13.7435 9.60665 14.5247 9.27968 14.805C8.94989 15.0869 8.44859 14.5312 8.20357 14.3053C7.50288 13.659 7.20182 12.8386 7.05875 11.9146C6.97764 11.3902 7.01369 10.7746 7.19421 10.2969C7.39783 9.76014 7.54062 9.22504 7.88111 8.78683C8.16809 8.41761 8.4852 8.00108 8.80457 7.65524C9.1031 7.33221 9.46386 7.12578 9.88208 6.91625C10.3273 6.69292 10.7402 6.40481 11.2041 6.24372C11.7279 6.06178 12.2413 5.9818 12.7865 5.93561C13.6801 5.86014 14.8297 5.89196 15.6673 6.29892C16.3387 6.62504 17.0729 7.05734 17.6322 7.60539C18.3664 8.32524 18.8573 9.55258 18.9567 10.5532C19.0857 11.8507 18.7123 13.2912 18.1941 14.4746Z"
+                                    fill="#ccc" class="hvrFill cusTransition" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_260_6691">
+                                    <rect width="26" height="26" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            ${blogPostContentHTML}
+
+        </div>
+
+        <div class="d-flex justify-content-center"><a href="${author.url}" class="cusA cusBtnOne text-center">View More</a>
+        </div>
+
+        <hr class="mt-5 mrg_b">
+
+    </div>
+</section>
+                            `;
+                                }
+                            });
+                        }
+                        document.getElementById('loader').style.display = 'none'; // Hide loader after processing
+                    });
+            }
+        });
+
+
+</script>
+
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>  
+
+
+
+
+
+
+
+<!-- End with Script -->
+
+
+
+
+

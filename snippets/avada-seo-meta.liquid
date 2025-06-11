@@ -1,0 +1,74 @@
+{%- assign avada_seo_ovr_product_ids = "9044129382706,9045279113522,9045281243442,9045330166066,9046037135666,9043924812082,9026289303858,9044124401970,9025838317874,9026280653106,9038067138866,9044284211506,9045263941938,9040443146546,9045361230130,9044114145586,9040549970226,9038069236018,9044088488242,9025863418162" -%}
+{%- assign avada_seo_ovr_collection_ids = "472288395570,478567924018,478445306162,457648210226,457648210226,478445011250" -%}
+{%- assign avada_seo_ovr_article_ids = "677902418226" -%}
+{%- assign avada_seo_ovr_page_ids = "" -%}
+  
+{%- if request.page_type == 'product' -%}
+{%-  if avada_seo_ovr_product_ids contains product.id  -%}
+{%- if product.metafields.multilingual_meta_tag.description_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_description -%}
+{{ product.metafields.multilingual_meta_tag.description_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- if product.metafields.multilingual_meta_tag.title_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_title -%}
+{{ product.metafields.multilingual_meta_tag.title_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+  
+{%- if request.page_type == 'collection' -%}
+{%-  if avada_seo_ovr_collection_ids contains collection.id  -%}
+{%- if collection.metafields.multilingual_meta_tag.description_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_description -%}
+{{ collection.metafields.multilingual_meta_tag.description_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- if collection.metafields.multilingual_meta_tag.title_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_title -%}
+{{ collection.metafields.multilingual_meta_tag.title_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+  
+{%- if request.page_type == 'article' -%}
+{%-  if avada_seo_ovr_article_ids contains article.id  -%}
+{%- if article.metafields.multilingual_meta_tag.description_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_description -%}
+{{ article.metafields.multilingual_meta_tag.description_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- if article.metafields.multilingual_meta_tag.title_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_title -%}
+{{ article.metafields.multilingual_meta_tag.title_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+  
+{%- if request.page_type == 'page' -%}
+{%-  if avada_seo_ovr_page_ids contains page.id  -%}
+{%- if page.metafields.multilingual_meta_tag.description_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_description -%}
+{{ page.metafields.multilingual_meta_tag.description_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- if page.metafields.multilingual_meta_tag.title_tag.[shop.locale] -%}
+{%- capture avada_seo_meta_title -%}
+{{ page.metafields.multilingual_meta_tag.title_tag.[shop.locale] }}
+{%- endcapture -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+
+{%- if avada_seo_meta_title -%}
+{%- assign seo_title = avada_seo_meta_title | strip_html | strip -%}
+{%- assign page_title = seo_title -%}
+{%- assign og_title = seo_title -%}
+{%- endif -%}
+{%- if avada_seo_meta_description -%}
+{%- assign page_description = avada_seo_meta_description | strip_html | strip -%}
+{%- assign og_description = page_description -%}
+{%- endif -%}
