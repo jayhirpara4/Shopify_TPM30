@@ -4472,6 +4472,8 @@ div#ProductPhotos-template--22879306187058__main {
 }
 @media screen and (min-width: 768px) {
     .filter-shapes .shape {
+        height: 90px;
+  width: 90px;
         background: transparent;
         padding: 7px 0;
         position: relative;

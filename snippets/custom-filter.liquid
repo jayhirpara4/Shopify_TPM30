@@ -22,491 +22,388 @@
 %}
 <link rel="stylesheet" href="{{ 'custom.aio.min.css' | asset_url  }}">
 <style>
-.loader {
-  display: flex;
-  justify-content: center;  
-}
-.loader_ajax_small {
-  display:flex!important;
-  border: 2px solid #f3f3f3 !important;
-  border-radius: 50%;
-  border-top: 2px solid #2D2D2D !important;
-  width: 29px;
-  height: 29px;
-  -webkit-animation: spin_loader_ajax_small 2s linear infinite;
-  animation: spin_loader_ajax_small 2s linear infinite;
-}
+  .loader {
+    display: flex;
+    justify-content: center;
+  }
+  .loader_ajax_small {
+    display: flex !important;
+    border: 2px solid #f3f3f3 !important;
+    border-radius: 50%;
+    border-top: 2px solid #2d2d2d !important;
+    width: 29px;
+    height: 29px;
+    -webkit-animation: spin_loader_ajax_small 2s linear infinite;
+    animation: spin_loader_ajax_small 2s linear infinite;
+  }
 
-@-webkit-keyframes spin_loader_ajax_small {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+  @-webkit-keyframes spin_loader_ajax_small {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
 
-@keyframes spin_loader_ajax_small {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-  
+  @keyframes spin_loader_ajax_small {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 </style>
 <div class="page-width" style="margin-top:30px;margin-bottom:30px;">
-    <section>
-        <div class="innerpage__banner">
-          {% if collection.metafields.custom.first_image %}
-            <div class="banner_container collection-content__wrapper small--hide">
-                <div class="desktop-banner banner-large">
-                    <div class="image-wrapper absolute-image-wrapper" style="padding-top: 59.04761904761905%">
-                        <img loading="lazy" class="ls-is-cached lazyloaded"
-                            data-src="{{ collection.metafields.custom.first_image }}"
-                            alt="{{ collection.title }}"
-                            src="{{ collection.metafields.custom.first_image }}"
-                            data-uw-rm-alt-original="{{ collection.title }}"
-                            data-uw-rm-alt="ALT" />
-                    </div>
-                </div>
+  <section>
+    <div class="innerpage__banner">
+      {% if collection.metafields.custom.first_image %}
+        <div class="banner_container collection-content__wrapper small--hide">
+          <div class="desktop-banner banner-large">
+            <div class="image-wrapper absolute-image-wrapper" style="padding-top: 59.04761904761905%">
+              <img
+                loading="lazy"
+                class="ls-is-cached lazyloaded"
+                data-src="{{ collection.metafields.custom.first_image }}"
+                alt="{{ collection.title }}"
+                src="{{ collection.metafields.custom.first_image }}"
+                data-uw-rm-alt-original="{{ collection.title }}"
+                data-uw-rm-alt="ALT"
+              >
             </div>
-          {% endif %}
-            <div class="banner_content collection-content__wrapper small--one-whole">
-                <div class="collection-information">
-                    <span class="discount-tag medium-up--hide">{{ collection.title }}</span>
-                    <div class="mm-collection-title">
-                        <h1 role="heading" aria-level="2" data-uw-rm-heading="level">
-                            {{ collection.title }}
-                        </h1>
-                    </div>
-                    <div class="mm-collection-description">
-                        <p>{{ collection.metafields.custom.short_description }}</p>
-                    </div>
-                </div>
-            </div>
-          {% if collection.metafields.custom.second_image %}
-            <div class="banner_container collection-content__wrapper small--hide">
-                <div class="desktop-banner banner-large">
-                    <div class="image-wrapper absolute-image-wrapper" style="padding-top: 59.04761904761905%">
-                        <img loading="lazy" class="ls-is-cached lazyloaded"
-                            data-src="{{ collection.metafields.custom.second_image }}"
-                            src="{{ collection.metafields.custom.second_image }}"
-                            alt="{{ collection.title }}"
-                            data-uw-rm-alt-original="{{ collection.title }}"
-                            data-uw-rm-alt="ALT" />
-                    </div>
-                </div>
-            </div>
-         {% endif %}
-        </div>
-    </section>
-
-    <section>
-      {%  if collectiontype == 'Diamond' or collectiontype == 'Necklace'  or collectiontype == 'Earring' or collectiontype == 'Ring' %}
-        <div class="process-steps ">
-            <div class="process-steps-wrapper">
-                <p class="process-steps-heading">Create Your Diamond Ring</p>
-                <div class="process-steps-container" >
-                    <div class="start-over-button">
-                        <p id="start-over" class="text-uppercase">Start Over</p>
-                    </div>
-                    <div class="steps-wrapper">
-                        <div class="step step-1 active" data-step="ring-setting">
-                            <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
-                                <div class="step-count">
-                                    <div class="count">1</div>
-                                    <div class="title-wrapper">
-                                        <p class="title">Choose a setting</p>
-                                    </div>
-                                </div>
-                                <div class="product-selection" id="addedring">
-                                  {% comment %}
-                                    <div class="current-ring-setting" style="display: none;">
-                                        <div class="product-img">
-                                            <img loading="lazy" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
-                                        </div>
-                                        <div class="product-link">
-                                            <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Change</a>
-                                            <span>|</span>
-                                            <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/products/diamonds?sku=2486697056#">Remove</a>
-                                        </div>
-                                    </div>
-                                  {% endcomment %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step step-2" data-step="diamonds">
-                            <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
-                                <div class="step-count">
-                                    <div class="count">2</div>
-                                    <div class="title-wrapper">
-                                        <p class="title">Choose a diamond</p>
-                                    </div>
-                                </div>
-                                <div class="product-selection" id="addeddiamond">
-                                  {% comment %}
-                                    <div class="current-diamond-option">
-                                        <div class="product-img">
-                                            <img src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
-                                        </div>
-                                        <div class="product-link">
-                                            <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Change</a>
-                                            <span>|</span>
-                                            <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/products/diamonds?sku=2486697056#">Remove</a>
-                                        </div>
-                                    </div>
-                                  {% endcomment %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step step-3" data-step="final-ring">
-                            <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
-                                <div class="step-count">
-                                    <div class="count">3</div>
-                                    <div class="title-wrapper">
-                                        <p class="title">Complete Your Ring</p>
-                                    </div>
-                                </div>
-                                <div class="product-selection" id="completering">
-                                  {% comment %}
-                                  <div class="current-ring-setting">
-                                        <div class="product-img">
-                                            <img loading="lazy" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Complete Purchase" data-uw-rm-alt="CT">
-                                        </div>
-                                        <div class="product-link">
-                                            <a href="/collections/engagement-rings" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Complete Purchase</a>
-                                        </div>
-                                    </div>
-                                  {% endcomment %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
       {% endif %}
-        
-        <div class="filter-sliders">
-          {% if collection.metafields.custom.styles.value %}
-          {%- assign styles = collection.metafields.custom.styles.value -%}
-            <div class="filter-slider-wrapper">
-                <h2 class="filter-slider-heading"> By Style</h2>
-                <div class="filter-slider-carousel filter-slider-carousel-left" id="sliderSlides">
-                  {% for item in styles %}
-                    {% if item.active %}
-                      {%- assign filterActive = 'slide-active' -%}
-                    {% else %}
-                       {%- assign filterActive = '' -%}
-                    {% endif %}
-                    <div class="filter-slide-img stylefilter {{ filterActive }}" data-tag="{{ item.name }}">
-                        {% if item.imguri !='' %}
-                        <img loading="lazy" src="{{ item.imguri }}" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"/>
-                        {% else %}
-                        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_solitaire.svg?v=1717041426" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}" />
-                        {% endif %}
-                        <p class="slide-img title"> {{ item.name | replace: '_' , ' '}} </p>
-                    </div>
-                    {% endfor %}
- 
-                </div>
-            </div>
-            {%  endif %}
-            {% if collection.metafields.custom.shapes.value %}
-            {%- assign shapes = collection.metafields.custom.shapes.value -%}
-            <div class="filter-slider-wrapper">
-                <h2 class="filter-slider-heading"> By Shape</h2>
-                <div class="filter-slider-carousel filter-slider-carousel-right">
-                  {% for item in shapes %}
-                    {% if item.active %}
-                      {%- assign filterActive = 'slide-active' -%}
-                    {% else %}
-                       {%- assign filterActive = '' -%}
-                    {% endif %}
-                    <div class="filter-slide-img shapefilter {{ filterActive }}" data-tag="{{ item.name }}">
-                        {% if item.imguri !='' %}
-                        <img src="{{ item.imguri }}" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"/>
-                        {% else %}
-                        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Round_9d67584b-5bdc-47c9-9e43-242e82c8b214.svg?v=1719586565" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}" />
-                        {% endif %}
-                        <p class="slide-img title"> {{ item.name | replace: '_' , ' '}} </p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-          {% endif %}
+      <div class="banner_content collection-content__wrapper small--one-whole">
+        <div class="collection-information">
+          <span class="discount-tag medium-up--hide">{{ collection.title }}</span>
+          <div class="mm-collection-title">
+            <h1 role="heading" aria-level="2" data-uw-rm-heading="level">
+              {{ collection.title }}
+            </h1>
+          </div>
+          <div class="mm-collection-description">
+            <p>{{ collection.metafields.custom.short_description }}</p>
+          </div>
         </div>
+      </div>
+      {% if collection.metafields.custom.second_image %}
+        <div class="banner_container collection-content__wrapper small--hide">
+          <div class="desktop-banner banner-large">
+            <div class="image-wrapper absolute-image-wrapper" style="padding-top: 59.04761904761905%">
+              <img
+                loading="lazy"
+                class="ls-is-cached lazyloaded"
+                data-src="{{ collection.metafields.custom.second_image }}"
+                src="{{ collection.metafields.custom.second_image }}"
+                alt="{{ collection.title }}"
+                data-uw-rm-alt-original="{{ collection.title }}"
+                data-uw-rm-alt="ALT"
+              >
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
 
-        <div class="filter-options">
-            <div class="show-product-results">
-                <p id="allresult">Showing {{ count_label | t: count: count }} results</p>
-                <div class="sorting-filter-options">
-  
-                    <div class="sorting-filters">
-                        <div class="filter-by filter-group">
-                            <p class="text-uppercase">Filter By |</p>
-                            {%- for filter in filters -%}
-                            {%- capture filter_id -%}filter-{{ filter.label | handleize }}{%- endcapture -%}
-                            {%- assign filter_index = forloop.index -%}
-                            {% if filter.label=='Color' or filter.label=='color' %}
-
-                              {%- liquid
-                                assign is_color = false
-                                assign swatch_file_extension = 'png'
-                                if enable_color_swatches
-                                    assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
-                                    assign downcased_label = filter.label | downcase
-                                    if downcased_label contains swatch_trigger
-                                    assign is_color = true
-                                    elsif swatch_trigger == 'color' and downcased_label contains 'colour'
-                                    assign is_color = true
-                                    endif
-                                endif
-                              -%}
-                              
-                            <div class=" filter-list" data-tag="Color">
-                                <p class="dropdown-title" onclick="metalFunction(event)">
-                                    <span>Metal</span>
-                                    <span class="toggle-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12"
-                                            height="10" viewBox="0 0 12 10">
-                                            <defs>
-                                                <style>
-                                                    .dropdown-arrow-a {
-                                                        fill: #fff;
-                                                        opacity: 0;
-                                                    }
-                                                </style>
-                                            </defs>
-                                            <g transform="translate(-170 -702)">
-                                                <rect class="dropdown-arrow-a" width="12" height="10"
-                                                    transform="translate(170 702)"></rect>
-                                                <path
-                                                    d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z"
-                                                    transform="translate(180.344 704.641) rotate(90)"></path>
-                                            </g>
-                                        </svg></span>
-                                </p>
-                                <ul class="dropdown-filter-option filter-content" style="display: block;" id="metalFilterDropdown" >
-                                  {%- for filter_value in filter.values -%}
-                                    {%- liquid
-                                      assign tag_count = tag_count | plus: 1
-                                      assign filter_value_index = forloop.index
-                  
-                                      assign color_file_name = filter_value.label | handle | append: '.' | append: swatch_file_extension
-                                      assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
-                                      assign color_swatch_fallback = filter_value.label | split: ' ' | last | handle
-                                    -%}
-                                    <li class="dropdown-filter-tag or filter-item filtermetal" data-tag="{{ filter_value.value }}" >
-                                     
-                                        <span class="dropdown-filter-checkbox" style="background-color: {{ color_swatch_fallback }};{% if images[color_file_name] != blank %}  background-image: url({{ color_image }});{% endif %}"></span>
-                                       <label>
-                                        <span class="filter-filter-name">{{ filter_value.label }}</span>
-                                    </label>
-                                    </li>
-                                  {% endfor %}
-
-                                </ul>
+  <section>
+    {% if collectiontype == 'Diamond'
+      or collectiontype == 'Necklace'
+      or collectiontype == 'Earring'
+      or collectiontype == 'Ring'
+    %}
+      <div class="process-steps ">
+        <div class="process-steps-wrapper">
+          <p class="process-steps-heading">Create Your Diamond Ring</p>
+          <div class="process-steps-container">
+            <div class="start-over-button">
+              <p id="start-over" class="text-uppercase">Start Over</p>
+            </div>
+            <div class="steps-wrapper">
+              <div class="step step-1 active" data-step="ring-setting">
+                <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
+                  <div class="step-count">
+                    <div class="count">1</div>
+                    <div class="title-wrapper">
+                      <p class="title">Choose a setting</p>
+                    </div>
+                  </div>
+                  <div class="product-selection" id="addedring">
+                    {% comment %}
+                      <div class="current-ring-setting" style="display: none;">
+                          <div class="product-img">
+                              <img loading="lazy" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
+                          </div>
+                          <div class="product-link">
+                              <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Change</a>
+                              <span>|</span>
+                              <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/products/diamonds?sku=2486697056#">Remove</a>
+                          </div>
+                      </div>
+                    {% endcomment %}
+                  </div>
+                </div>
+              </div>
+              <div class="step step-2" data-step="diamonds">
+                <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
+                  <div class="step-count">
+                    <div class="count">2</div>
+                    <div class="title-wrapper">
+                      <p class="title">Choose a diamond</p>
+                    </div>
+                  </div>
+                  <div class="product-selection" id="addeddiamond">
+                    {% comment %}
+                      <div class="current-diamond-option">
+                          <div class="product-img">
+                              <img src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Change" data-uw-rm-alt="CT">
+                          </div>
+                          <div class="product-link">
+                              <a href="/collections/engagement-rings" class="change" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Change</a>
+                              <span>|</span>
+                              <a href="#" class="remove" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/products/diamonds?sku=2486697056#">Remove</a>
+                          </div>
+                      </div>
+                    {% endcomment %}
+                  </div>
+                </div>
+              </div>
+              <div class="step step-3" data-step="final-ring">
+                <div class="step-container" data-type="{{ collection.metafields.custom.type }}">
+                  <div class="step-count">
+                    <div class="count">3</div>
+                    <div class="title-wrapper">
+                      <p class="title">Complete Your Ring</p>
+                    </div>
+                  </div>
+                  <div class="product-selection" id="completering">
+                    {% comment %}
+                      <div class="current-ring-setting">
+                            <div class="product-img">
+                                <img loading="lazy" src="//cdn.shopify.com/s/files/1/0718/9833/3499/products/enrrb1501246-round-white-frontview_60x.jpg?v=1675848070" data-uw-rm-alt-original="" alt="Complete Purchase" data-uw-rm-alt="CT">
                             </div>
-                            {% endif %}
-                            {% endfor %}
-  
-  
-                            <div class="price-dropdown" data-control="checkbox-dropdown">
-                                <div class=" filter-list" data-tag="Color">
-                                    <p class="dropdown-title" onclick="priceFunction(event)">
-                                        <span>Price</span>
-                                        <span class="toggle-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12"  height="10" viewBox="0 0 12 10">
-                                                <defs>
-                                                    <style>
-                                                        .dropdown-arrow-a {
-                                                            fill: #fff;
-                                                            opacity: 0;
-                                                        }
-                                                    </style>
-                                                </defs>
-                                                <g transform="translate(-170 -702)">
-                                                    <rect class="dropdown-arrow-a" width="12" height="10"
-                                                        transform="translate(170 702)"></rect>
-                                                    <path
-                                                        d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z"
-                                                        transform="translate(180.344 704.641) rotate(90)"></path>
-                                                </g>
-                                            </svg></span>
-                                    </p>
-  
-                                    <div class="dropdown-filter-option" id="filterDropdown">
-                                        <a href="javascript:void(0)" data-toggle="check-all" class="dropdown-option"></a>
-                                        <label class="dropdown-option"><input type="checkbox" class="pricechange" name="dropdown-group" value="$500 - $1000" />$500 - $1,000</label>
-                                        <label class="dropdown-option"><input type="checkbox" class="pricechange" name="dropdown-group" value="$1000 - $2000" />$1,000 - $2,000</label>
-                                        <label class="dropdown-option"><input type="checkbox" class="pricechange" name="dropdown-group" value="$2000 - $3000" />$2,000 - $3,000</label>
-                                        <label class="dropdown-option"><input type="checkbox" class="pricechange" name="dropdown-group" value="$3000 - $100000" />$3,000 - $100,000</label>
-                                    </div>
-                                </div>
-  
-                            </div>
-                            <div class="sort-by filter-group">
-                                {%- assign sort_by = sort_by | default: default_sort_by -%}
-                                <p class="text-uppercase" style="width:40%">{{ 'collections.sorting.title' | t }} |</p>
-                                <select id="filterField" style=" padding-right: 30px;" data-default-sortby="{{ default_sort_by }}">
-                                   <option
-                                    value="title-ascending"
-                                    {% if sort_by == default_sort_by %}
-                                      selected="selected"
-                                    {% endif %}
-                                  >
-                                    {{ 'collections.sorting.title' | t }}
-                                  </option>
-                                  {%- for option in sort_options -%}
-                                    <option
-                                      value="{{ option.value }}"
-                                      {% if option.value == sort_by %}
-                                        selected="selected"
-                                      {% endif %}
-                                    >
-                                      {{ option.name }}
-                                    </option>
-                                  {%- endfor -%}
-                                </select>
+                            <div class="product-link">
+                                <a href="/collections/engagement-rings" data-uw-rm-brl="PR" data-uw-original-href="https://www.withclarity.com/collections/engagement-rings">Complete Purchase</a>
                             </div>
                         </div>
-                    </div>
+                    {% endcomment %}
+                  </div>
                 </div>
+              </div>
             </div>
-    </div>  
-
-    </section>
-
-</div>
-
-      
-<section>
-    <div class="opened-filter-wrapper" id="mobFilterDropdown">
-        <div style="position: relative;">
-            <div class="fixed-filter-header">
-                <h2>Filters</h2>
-                <span id="mobFilterClose" class="mm-close" data-uw-cer-popup-close="" aria-label="Close dialog" role="button"
-                    tabindex="0"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close"
-                        viewBox="0 0 40 40">
-                        <path
-                            d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
-                            class="layer"></path>
-                    </svg></span>
-            </div>
-
-          {% if collection.metafields.custom.styles.value %}
-          {%- assign styles = collection.metafields.custom.styles.value -%}
-          
-            <div class="mobile-by-shape">
-                <h3>BY STYLE</h3>
-                <ul>
-                  {% for item in styles %}
-                    <li class="shape-type-list stylefilter" data-tag="{{ item.name }}">
-                        {% if item.imguri !='' %}
-                        <img src="{{ item.imguri }}" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"/>
-                        {% else %}
-                        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/1_8_a552c274-17a8-4879-b159-2b01a63358be.jpg?v=1714421441" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}" />
-                        {% endif %}
-                        <p>{{ item.name | replace: '_' , ' '}}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            {%- for filter in filters -%}
-            {%- capture filter_id -%}filter-{{ filter.label | handleize }}{%- endcapture -%}
-            {%- assign filter_index = forloop.index -%}
-            {% if filter.label=='Color' or filter.label=='color' %}
-            {%- liquid
-              assign is_color = false
-              assign swatch_file_extension = 'png'
-              if enable_color_swatches
-                  assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
-                  assign downcased_label = filter.label | downcase
-                  if downcased_label contains swatch_trigger
-                  assign is_color = true
-                  elsif swatch_trigger == 'color' and downcased_label contains 'colour'
-                  assign is_color = true
-                  endif
-              endif
-            -%}
-            <div class="mobile-by-shape">
-                <h3>BY METAL TYPE</h3>
-                <ul>
-                  {%- for filter_value in filter.values -%}
-                    {%- liquid
-                      assign tag_count = tag_count | plus: 1
-                      assign filter_value_index = forloop.index
-  
-                      assign color_file_name = filter_value.label | handle | append: '.' | append: swatch_file_extension
-                      assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
-                      assign color_swatch_fallback = filter_value.label | split: ' ' | last | handle
-                    -%}
-                    <li class="shape-type-list filtermetalmobile" style="position:relative;"  data-tag="{{ filter_value.value }}">
-                        <span class="filter-item-icon" style="background-color: {{ color_swatch_fallback }};{% if images[color_file_name] != blank %}  background-image: url({{ color_image }});{% endif %}"></span>
-                        <p>{{ filter_value.value }}</p>
-                    </li>
-                  {% endfor %}
-                    
-                </ul>
-            </div>
-           {% endif %}
-          {% endfor %}
-
-            {% if collection.metafields.custom.shapes.value %}
-            {%- assign shapes = collection.metafields.custom.shapes.value -%}
-            <div class="mobile-by-shape">
-                <h3>BY SHAPE</h3>
-                <ul>
-                    {% for item in shapes %}
-                    <li class="shape-type-list shapefilter mobileshapefilter" data-tag="{{ item.name }}">
-                        {% if item.imguri !='' %}
-                        <img src="{{ item.imguri }}" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"/>
-                        {% else %}
-                        <img src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/1_8_a552c274-17a8-4879-b159-2b01a63358be.jpg?v=1714421441" alt="{{ item.name | replace: '_' , ' '}}" data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}" />
-                        {% endif %}
-                        <p>{{ item.name | replace: '_' , ' '}}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-           {% endif %}
-
-
-            <div class="mobile-by-shape">
-                <h3>BY PRICE</h3>
-                <ul class="filter-content">
-                    <li class="or filter-item filter-selected pricefilter" data-tag="500-1000">
-                        <label><input type="checkbox" class="pricechange" name="dropdown-group" value="$500 - $1000" />
-                        <span class="filter-item-name" data-uw-rm-sr="">$500 - $1,000</span></label>
-                    </li>
-                    <li class="or filter-item pricefilter" data-tag="1000-2000">
-                        <label><input type="checkbox" class="pricechange" name="dropdown-group" value="$1000 - $2000" />
-                        <span class="filter-item-name" data-uw-rm-sr="">$1,000 - $2,000</span></label>
-                    </li>
-                    <li class="or filter-item pricefilter" data-tag="2000-3000">
-                        <label><input type="checkbox" class="pricechange" name="dropdown-group" value="$2000 - $3000" />
-                        <span class="filter-item-name" data-uw-rm-sr="">$2,000 - $3,000</span></label>
-                    </li>
-                    <li class="or filter-item pricefilter" data-tag="3000-100000">
-                        <label><input type="checkbox" id="p4" class="pricechange" name="dropdown-group" value="$3000 - $100000" />
-                        <span class="filter-item-name" data-uw-rm-sr="" for="p4">$3,000 - $100,000</span></label>
-                    </li>
-                </ul>
-            </div>
+          </div>
         </div>
+      </div>
+    {% endif %}
+
+    <div class="filter-sliders">
+      {% if collection.metafields.custom.styles.value %}
+        {%- assign styles = collection.metafields.custom.styles.value -%}
+        <div class="filter-slider-wrapper">
+          <h2 class="filter-slider-heading">By Style</h2>
+          <div class="filter-slider-carousel filter-slider-carousel-left" id="sliderSlides">
+            {% for item in styles %}
+              {% if item.active %}
+                {%- assign filterActive = 'slide-active' -%}
+              {% else %}
+                {%- assign filterActive = '' -%}
+              {% endif %}
+              <div class="filter-slide-img stylefilter {{ filterActive }}" data-tag="{{ item.name }}">
+                {% if item.imguri != '' %}
+                  <img
+                    loading="lazy"
+                    src="{{ item.imguri }}"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% else %}
+                  <img
+                    loading="lazy"
+                    src="https://cdn.shopify.com/s/files/1/0599/0839/0973/files/style-icon_solitaire.svg?v=1717041426"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% endif %}
+                <p class="slide-img title">{{ item.name | replace: '_', ' ' }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      {% if collection.metafields.custom.shapes.value %}
+        {%- assign shapes = collection.metafields.custom.shapes.value -%}
+        <div class="filter-slider-wrapper">
+          <h2 class="filter-slider-heading">By Shape</h2>
+          <div class="filter-slider-carousel filter-slider-carousel-right">
+            {% for item in shapes %}
+              {% if item.active %}
+                {%- assign filterActive = 'slide-active' -%}
+              {% else %}
+                {%- assign filterActive = '' -%}
+              {% endif %}
+              <div class="filter-slide-img shapefilter {{ filterActive }}" data-tag="{{ item.name }}">
+                {% if item.imguri != '' %}
+                  <img
+                    src="{{ item.imguri }}"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% else %}
+                  <img
+                    loading="lazy"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/Round_9d67584b-5bdc-47c9-9e43-242e82c8b214.svg?v=1719586565"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% endif %}
+                <p class="slide-img title">{{ item.name | replace: '_', ' ' }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     </div>
-  
-    <div class="mobile-bottom-nav bottom-nav-hide">
-        <button onclick="mobFilterFunction(event)" class="mobile-filter-btn" id="sidebar-filter-opener">Filters</button>
-        <div style="width: 50%; position: relative;">
-            <button onclick="mobFeaturedFilterFunction(event)" class="mobile-filter-btn featured-filter" id="sidebar-filter-opener" style="width: 100%">Featured
-            </button>
-            <div class="dropdown-filter-option featuredFilterDropdown" id="featuredFilterDropdown">
-              <a href="#" data-toggle="check-all" class="dropdown-option"> </a>
-                <option value="title-ascending" class="featured-dropdown-item sortdrop"
+
+    <div class="filter-options">
+      <div class="show-product-results">
+        <p id="allresult">Showing {{ count_label | t: count: count }} results</p>
+        <div class="sorting-filter-options">
+          <div class="sorting-filters">
+            <div class="filter-by filter-group">
+              <p class="text-uppercase">Filter By |</p>
+              {%- for filter in filters -%}
+                {%- capture filter_id -%}filter-{{ filter.label | handleize }}{%- endcapture -%}
+                {%- assign filter_index = forloop.index -%}
+                {% if filter.label == 'Color' or filter.label == 'color' %}
+                  {%- liquid
+                    assign is_color = false
+                    assign swatch_file_extension = 'png'
+                    if enable_color_swatches
+                      assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+                      assign downcased_label = filter.label | downcase
+                      if downcased_label contains swatch_trigger
+                        assign is_color = true
+                      elsif swatch_trigger == 'color' and downcased_label contains 'colour'
+                        assign is_color = true
+                      endif
+                    endif
+                  -%}
+
+                  <div class=" filter-list" data-tag="Color">
+                    <p class="dropdown-title" onclick="metalFunction(event)">
+                      <span>Metal</span>
+                      <span class="toggle-arrow">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="10"
+                          viewBox="0 0 12 10"
+                        >
+                          <defs>
+                              <style>
+                                  .dropdown-arrow-a {
+                                      fill: #fff;
+                                      opacity: 0;
+                                  }
+                              </style>
+                          </defs>
+                          <g transform="translate(-170 -702)">
+                              <rect class="dropdown-arrow-a" width="12" height="10"
+                                  transform="translate(170 702)"></rect>
+                              <path
+                                  d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z"
+                                  transform="translate(180.344 704.641) rotate(90)"></path>
+                          </g>
+                        </svg>
+                      </span>
+                    </p>
+                    <ul class="dropdown-filter-option filter-content" style="display: block;" id="metalFilterDropdown">
+                      {%- for filter_value in filter.values -%}
+                        {%- liquid
+                          assign tag_count = tag_count | plus: 1
+                          assign filter_value_index = forloop.index
+
+                          assign color_file_name = filter_value.label | handle | append: '.' | append: swatch_file_extension
+                          assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+                          assign color_swatch_fallback = filter_value.label | split: ' ' | last | handle
+                        -%}
+                        <li class="dropdown-filter-tag or filter-item filtermetal" data-tag="{{ filter_value.value }}">
+                          <span
+                            class="dropdown-filter-checkbox"
+                            style="background-color: {{ color_swatch_fallback }};{% if images[color_file_name] != blank %}  background-image: url({{ color_image }});{% endif %}"
+                          ></span>
+                          <label>
+                            <span class="filter-filter-name">{{ filter_value.label }}</span>
+                          </label>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              <div class="price-dropdown" data-control="checkbox-dropdown">
+                <div class=" filter-list" data-tag="Color">
+                  <p class="dropdown-title" onclick="priceFunction(event)">
+                    <span>Price</span>
+                    <span class="toggle-arrow">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10">
+                        <defs>
+                            <style>
+                                .dropdown-arrow-a {
+                                    fill: #fff;
+                                    opacity: 0;
+                                }
+                            </style>
+                        </defs>
+                        <g transform="translate(-170 -702)">
+                            <rect class="dropdown-arrow-a" width="12" height="10"
+                                transform="translate(170 702)"></rect>
+                            <path
+                                d="M.425,8.934a.424.424,0,0,0,.3-.124L4.768,4.768a.426.426,0,0,0,0-.6L.727.125a.426.426,0,1,0-.6.6L3.864,4.467.125,8.207a.426.426,0,0,0,0,.6A.422.422,0,0,0,.425,8.934Z"
+                                transform="translate(180.344 704.641) rotate(90)"></path>
+                        </g>
+                      </svg>
+                    </span>
+                  </p>
+
+                  <div class="dropdown-filter-option" id="filterDropdown">
+                    <a href="javascript:void(0)" data-toggle="check-all" class="dropdown-option"></a>
+                    <label class="dropdown-option"
+                      ><input type="checkbox" class="pricechange" name="dropdown-group" value="$500 - $1000">$500 -
+                      $1,000</label
+                    >
+                    <label class="dropdown-option"
+                      ><input type="checkbox" class="pricechange" name="dropdown-group" value="$1000 - $2000">$1,000 -
+                      $2,000</label
+                    >
+                    <label class="dropdown-option"
+                      ><input type="checkbox" class="pricechange" name="dropdown-group" value="$2000 - $3000">$2,000 -
+                      $3,000</label
+                    >
+                    <label class="dropdown-option"
+                      ><input type="checkbox" class="pricechange" name="dropdown-group" value="$3000 - $100000">$3,000 -
+                      $100,000</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="sort-by filter-group">
+                {%- assign sort_by = sort_by | default: default_sort_by -%}
+                <p class="text-uppercase" style="width:40%">{{ 'collections.sorting.title' | t }} |</p>
+                <select id="filterField" style=" padding-right: 30px;" data-default-sortby="{{ default_sort_by }}">
+                  <option
+                    value="title-ascending"
                     {% if sort_by == default_sort_by %}
                       selected="selected"
                     {% endif %}
                   >
-                  {{ 'collections.sorting.title' | t }}
-                 </option>
-                {%- for option in sort_options -%}
+                    {{ 'collections.sorting.title' | t }}
+                  </option>
+                  {%- for option in sort_options -%}
                     <option
-                      class="featured-dropdown-item sortdrop"
                       value="{{ option.value }}"
                       {% if option.value == sort_by %}
                         selected="selected"
@@ -514,74 +411,244 @@
                     >
                       {{ option.name }}
                     </option>
-                  {%- endfor -%}                   
+                  {%- endfor -%}
+                </select>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
+</div>
 
-    
+<section>
+  <div class="opened-filter-wrapper" id="mobFilterDropdown">
+    <div style="position: relative;">
+      <div class="fixed-filter-header">
+        <h2>Filters1</h2>
+        <span
+          id="mobFilterClose"
+          class="mm-close"
+          data-uw-cer-popup-close=""
+          aria-label="Close dialog"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="icon icon-close"
+            viewBox="0 0 40 40"
+          >
+            <path
+                d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+                class="layer"></path>
+          </svg>
+        </span>
+      </div>
+
+      {% if collection.metafields.custom.styles.value %}
+        {%- assign styles = collection.metafields.custom.styles.value -%}
+
+        <div class="mobile-by-shape">
+          <h3>BY STYLE</h3>
+          <ul>
+            {% for item in styles %}
+              <li class="shape-type-list stylefilter" data-tag="{{ item.name }}">
+                {% if item.imguri != '' %}
+                  <img
+                    src="{{ item.imguri }}"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% else %}
+                  <img
+                    loading="lazy"
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/1_8_a552c274-17a8-4879-b159-2b01a63358be.jpg?v=1714421441"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% endif %}
+                <p>{{ item.name | replace: '_', ' ' }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {%- for filter in filters -%}
+        {%- capture filter_id -%}filter-{{ filter.label | handleize }}{%- endcapture -%}
+        {%- assign filter_index = forloop.index -%}
+        {% if filter.label == 'Color' or filter.label == 'color' %}
+          {%- liquid
+            assign is_color = false
+            assign swatch_file_extension = 'png'
+            if enable_color_swatches
+              assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+              assign downcased_label = filter.label | downcase
+              if downcased_label contains swatch_trigger
+                assign is_color = true
+              elsif swatch_trigger == 'color' and downcased_label contains 'colour'
+                assign is_color = true
+              endif
+            endif
+          -%}
+          <div class="mobile-by-shape">
+            <h3>BY METAL TYPE</h3>
+            <ul>
+              {%- for filter_value in filter.values -%}
+                {%- liquid
+                  assign tag_count = tag_count | plus: 1
+                  assign filter_value_index = forloop.index
+
+                  assign color_file_name = filter_value.label | handle | append: '.' | append: swatch_file_extension
+                  assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+                  assign color_swatch_fallback = filter_value.label | split: ' ' | last | handle
+                -%}
+                <li
+                  class="shape-type-list filtermetalmobile"
+                  style="position:relative;"
+                  data-tag="{{ filter_value.value }}"
+                >
+                  <span
+                    class="filter-item-icon"
+                    style="background-color: {{ color_swatch_fallback }};{% if images[color_file_name] != blank %}  background-image: url({{ color_image }});{% endif %}"
+                  ></span>
+                  <p>{{ filter_value.value }}</p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% if collection.metafields.custom.shapes.value %}
+        {%- assign shapes = collection.metafields.custom.shapes.value -%}
+        <div class="mobile-by-shape">
+          <h3>BY SHAPE</h3>
+          <ul>
+            {% for item in shapes %}
+              <li class="shape-type-list shapefilter mobileshapefilter" data-tag="{{ item.name }}">
+                {% if item.imguri != '' %}
+                  <img
+                    src="{{ item.imguri }}"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% else %}
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0708/5876/8690/files/1_8_a552c274-17a8-4879-b159-2b01a63358be.jpg?v=1714421441"
+                    alt="{{ item.name | replace: '_' , ' '}}"
+                    data-uw-rm-alt-original="{{ item.name | replace: '_' , ' '}}"
+                  >
+                {% endif %}
+                <p>{{ item.name | replace: '_', ' ' }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="mobile-by-shape">
+        <h3>BY PRICE</h3>
+        <ul class="filter-content">
+          <li class="or filter-item filter-selected pricefilter" data-tag="500-1000">
+            <label
+              ><input type="checkbox" class="pricechange" name="dropdown-group" value="$500 - $1000">
+              <span class="filter-item-name" data-uw-rm-sr="">$500 - $1,000</span></label
+            >
+          </li>
+          <li class="or filter-item pricefilter" data-tag="1000-2000">
+            <label
+              ><input type="checkbox" class="pricechange" name="dropdown-group" value="$1000 - $2000">
+              <span class="filter-item-name" data-uw-rm-sr="">$1,000 - $2,000</span></label
+            >
+          </li>
+          <li class="or filter-item pricefilter" data-tag="2000-3000">
+            <label
+              ><input type="checkbox" class="pricechange" name="dropdown-group" value="$2000 - $3000">
+              <span class="filter-item-name" data-uw-rm-sr="">$2,000 - $3,000</span></label
+            >
+          </li>
+          <li class="or filter-item pricefilter" data-tag="3000-100000">
+            <label
+              ><input type="checkbox" id="p4" class="pricechange" name="dropdown-group" value="$3000 - $100000">
+              <span class="filter-item-name" data-uw-rm-sr="" for="p4">$3,000 - $100,000</span></label
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-bottom-nav bottom-nav-hide">
+    <button onclick="mobFilterFunction(event)" class="mobile-filter-btn" id="sidebar-filter-opener">Filters</button>
+    <div style="width: 50%; position: relative;">
+      <button
+        onclick="mobFeaturedFilterFunction(event)"
+        class="mobile-filter-btn featured-filter"
+        id="sidebar-filter-opener"
+        style="width: 100%"
+      >
+        Featured
+      </button>
+      <div class="dropdown-filter-option featuredFilterDropdown" id="featuredFilterDropdown">
+        <a href="#" data-toggle="check-all" class="dropdown-option"> </a>
+        <option
+          value="title-ascending"
+          class="featured-dropdown-item sortdrop"
+          {% if sort_by == default_sort_by %}
+            selected="selected"
+          {% endif %}
+        >
+          {{ 'collections.sorting.title' | t }}
+        </option>
+        {%- for option in sort_options -%}
+          <option
+            class="featured-dropdown-item sortdrop"
+            value="{{ option.value }}"
+            {% if option.value == sort_by %}
+              selected="selected"
+            {% endif %}
+          >
+            {{ option.name }}
+          </option>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
 </section>
 
+<script>
+  document.addEventListener('collection:reloaded', function () {
+    var resTxt = $('#resulttxt').text();
+    $('#allresult').text(resTxt);
 
- <script>
-   document.addEventListener('collection:reloaded', function() {
-     var resTxt = $('#resulttxt').text();
-     $('#allresult').text(resTxt);
-
-     $('input[name="filter.p.tag"]').each(function(){
-          if( !$(this).is(":checked") ){
-            $("div[data-tag='" + $(this).val() +"']").removeClass('slide-active');
-            $("input[value='" + $(this).val() +"']").attr('checked', false); // Unchecks it
-          }
-    }); 
-    $('input[name="filter.v.option.color"]').each(function(){
-          if( !$(this).is(":checked") ){
-            $("li[data-tag='" + $(this).val() +"']").removeClass('r-active');
-          }
+    $('input[name="filter.p.tag"]').each(function () {
+      if (!$(this).is(':checked')) {
+        $("div[data-tag='" + $(this).val() + "']").removeClass('slide-active');
+        $("input[value='" + $(this).val() + "']").attr('checked', false); // Unchecks it
+      }
     });
-    $('input[name="filter.v.option.shape"]').each(function(){
-          if( !$(this).is(":checked") ){
-            $("div[data-tag='" + $(this).val() +"']").removeClass('slide-active');
-          }
+    $('input[name="filter.v.option.color"]').each(function () {
+      if (!$(this).is(':checked')) {
+        $("li[data-tag='" + $(this).val() + "']").removeClass('r-active');
+      }
     });
-     
-   });
-   //alert( $('.stylefilter').length );
-   if($('.stylefilter').length>10){
-     $(document).ready(function(){
-          $('.filter-slider-carousel-left').slick({
-            slidesToShow: ($('.stylefilter').length>5) ? 6 : 5,
-            slidesToScroll: 6,
-            arrows: ($('.stylefilter').length>5) ? true : false,
-            speed: 300,
-            infinite: false,
-            autoplaySpeed: 5000,
-            autoplay: true,
-            responsive: [
-              {
-                breakpoint: 991,
-                settings: {
-                  slidesToShow: 3,
-                }
-              },
-              {
-                breakpoint: 767,
-                settings: {
-                  slidesToShow: 1,
-                }
-              }
-            ]
-          });
-        });
-     }
-   
-    if($('.shapefilter').length>10){
-   
-    $(document).ready(function(){
-      $('.filter-slider-carousel-right').slick({
-        slidesToShow: ($('.shapefilter').length>5) ? 6 : 5,
+    $('input[name="filter.v.option.shape"]').each(function () {
+      if (!$(this).is(':checked')) {
+        $("div[data-tag='" + $(this).val() + "']").removeClass('slide-active');
+      }
+    });
+  });
+  //alert( $('.stylefilter').length );
+  if ($('.stylefilter').length > 10) {
+    $(document).ready(function () {
+      $('.filter-slider-carousel-left').slick({
+        slidesToShow: $('.stylefilter').length > 5 ? 6 : 5,
         slidesToScroll: 6,
-        arrows: ($('.shapefilter').length>5) ? true : false,
+        arrows: $('.stylefilter').length > 5 ? true : false,
         speed: 300,
         infinite: false,
         autoplaySpeed: 5000,
@@ -591,49 +658,74 @@
             breakpoint: 991,
             settings: {
               slidesToShow: 3,
-            }
+            },
           },
           {
             breakpoint: 767,
             settings: {
               slidesToShow: 1,
-            }
-          }
-        ]
+            },
+          },
+        ],
       });
     });
-   }
- </script>
-        
- <script>
-function metalFunction(event) {
-  event.stopPropagation();
-  document.getElementById("metalFilterDropdown").classList.toggle("show");
-}
-function priceFunction(event) {
-  event.stopPropagation();
-  document.getElementById("filterDropdown").classList.toggle("show");
-}
-function mobFilterFunction(event) {
-  event.stopPropagation();
-  document.getElementById("mobFilterDropdown").classList.toggle("show");
-  document.getElementById("mobFilterClose").classList.remove("show");
-}
-function mobFeaturedFilterFunction(event) {
-  event.stopPropagation();
-  document.getElementById("featuredFilterDropdown").classList.toggle("show");
-}
+  }
 
+  if ($('.shapefilter').length > 10) {
+    $(document).ready(function () {
+      $('.filter-slider-carousel-right').slick({
+        slidesToShow: $('.shapefilter').length > 5 ? 6 : 5,
+        slidesToScroll: 6,
+        arrows: $('.shapefilter').length > 5 ? true : false,
+        speed: 300,
+        infinite: false,
+        autoplaySpeed: 5000,
+        autoplay: true,
+        responsive: [
+          {
+            breakpoint: 991,
+            settings: {
+              slidesToShow: 3,
+            },
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      });
+    });
+  }
+</script>
+
+<script>
+  function metalFunction(event) {
+    event.stopPropagation();
+    document.getElementById('metalFilterDropdown').classList.toggle('show');
+  }
+  function priceFunction(event) {
+    event.stopPropagation();
+    document.getElementById('filterDropdown').classList.toggle('show');
+  }
+  function mobFilterFunction(event) {
+    event.stopPropagation();
+    document.getElementById('mobFilterDropdown').classList.toggle('show');
+    document.getElementById('mobFilterClose').classList.remove('show');
+  }
+  function mobFeaturedFilterFunction(event) {
+    event.stopPropagation();
+    document.getElementById('featuredFilterDropdown').classList.toggle('show');
+  }
 </script>
 <script>
   function metalItemActive(index) {
     index = index - 1;
-    var listItems = document.getElementById("metalFilterDropdown").getElementsByTagName("li");
+    var listItems = document.getElementById('metalFilterDropdown').getElementsByTagName('li');
     for (var i = 0; i < listItems.length; i++) {
-        listItems[i].classList.remove("r-active");
+      listItems[i].classList.remove('r-active');
     }
-    listItems[index].classList.add("r-active");
+    listItems[index].classList.add('r-active');
   }
- </script>
-
-     
+</script>
