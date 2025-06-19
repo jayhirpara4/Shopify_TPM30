@@ -1,3 +1,5 @@
+{% comment %} snippets/custom-filter.liquid {% endcomment %}
+
 {% liquid
   if collection.products
     assign count = collection.products_count
@@ -22,6 +24,141 @@
 %}
 <link rel="stylesheet" href="{{ 'custom.aio.min.css' | asset_url  }}">
 <style>
+  /* Added styles for the curved card UI */
+  .filter-slider-wrapper .filter-slider-carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* For Firefox */
+  }
+
+  .filter-slider-wrapper .filter-slider-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-slider-wrapper .filter-slide-img,
+  .mobile-by-shape .shape-type-list {
+    height: 90px;
+    width: 90px;
+    flex-shrink: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .filter-slider-wrapper .filter-slide-img:hover,
+  .mobile-by-shape .shape-type-list:hover {
+    border-color: #333;
+  }
+
+  .filter-slider-wrapper .filter-slide-img img,
+  .mobile-by-shape .shape-type-list img {
+    max-width: 40px;
+    height: auto;
+  }
+
+  .filter-slider-wrapper .filter-slide-img .title,
+  .mobile-by-shape .shape-type-list p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .filter-slider-wrapper .filter-slide-img.slide-active,
+  .mobile-by-shape .shape-type-list.slide-active {
+    border-color: #000;
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+
+  .mobile-by-shape ul {
+    padding: 0;
+    list-style: none;
+  }
+  .filter-slide-img img {
+    min-height: 40px;
+  }
+
+  .slick-slide img {
+    border: 2px solid transparent;
+  }
+
+  .custom-fil ul {
+    display: block;
+  }
+
+  .mobile-by-shape {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* ================================================================== */
+  /* ========= FINAL MOBILE HORIZONTAL SCROLLING FOR FILTERS ========== */
+  /* ================================================================== */
+  @media screen and (max-width: 767px) {
+    /* * Target the lists for scrolling using the parent ID for high specificity.
+   * This prevents other theme styles from overriding it.
+   * We exclude the '.custom-fil' (Price) section.
+  */
+    #mobFilterDropdown .mobile-by-shape:not(.custom-fil) ul {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 10px;
+      /* Add some padding to the sides so items don't touch the edge */
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+      scrollbar-width: none; /* Hides scrollbar on Firefox */
+    }
+
+    /* Hides scrollbar on Chrome, Safari, etc. */
+    #mobFilterDropdown .mobile-by-shape:not(.custom-fil) ul::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* --- Add this code for Mobile Horizontal Scrolling --- */
+  @media screen and (max-width: 767px) {
+    /* This targets the lists (ul) inside the "BY STYLE", "BY METAL TYPE", 
+    and "BY SHAPE 2" sections. It specifically excludes the "BY PRICE" section
+    which has the 'custom-fil' class.
+  */
+    .mobile-by-shape:not(.custom-fil) ul {
+      display: flex;
+      flex-wrap: nowrap; /* This is key to keep items in a single line */
+      overflow-x: auto; /* This creates the horizontal scrollbar */
+      gap: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-bottom: 15px;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      scrollbar-width: none; /* Hides scrollbar for Firefox */
+    }
+
+    /* This hides the scrollbar for Chrome, Safari, and other WebKit browsers */
+    .mobile-by-shape:not(.custom-fil) ul::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* This ensures the individual items in the list do not shrink and cause wrapping */
+    .mobile-by-shape:not(.custom-fil) ul .shape-type-list {
+      flex-shrink: 0;
+    }
+  }
+
   .loader {
     display: flex;
     justify-content: center;
@@ -235,7 +372,7 @@
       {% if collection.metafields.custom.shapes.value %}
         {%- assign shapes = collection.metafields.custom.shapes.value -%}
         <div class="filter-slider-wrapper">
-          <h2 class="filter-slider-heading">By Shape</h2>
+          <h2 class="filter-slider-heading">By Shape 1</h2>
           <div class="filter-slider-carousel filter-slider-carousel-right">
             {% for item in shapes %}
               {% if item.active %}
@@ -526,7 +663,7 @@
       {% if collection.metafields.custom.shapes.value %}
         {%- assign shapes = collection.metafields.custom.shapes.value -%}
         <div class="mobile-by-shape">
-          <h3>BY SHAPE</h3>
+          <h3>BY SHAPE 2</h3>
           <ul>
             {% for item in shapes %}
               <li class="shape-type-list shapefilter mobileshapefilter" data-tag="{{ item.name }}">
@@ -550,7 +687,7 @@
         </div>
       {% endif %}
 
-      <div class="mobile-by-shape">
+      <div class="mobile-by-shape custom-fil">
         <h3>BY PRICE</h3>
         <ul class="filter-content">
           <li class="or filter-item filter-selected pricefilter" data-tag="500-1000">
